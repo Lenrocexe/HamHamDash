@@ -34,8 +34,10 @@ public class Game extends JGEngine
 
 	}
 
+	int hex = 0xFF;
+
 	public void paintFrame()
 	{
-		drawString("Hello World!", 150, 150, 0);
+		drawString(String.valueOf(hex), 150, 150, 0);
 	}
 }
