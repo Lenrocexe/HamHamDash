@@ -27,6 +27,7 @@ public class Game extends JGEngine
 	public void initGame()
 	{
 		setFrameRate(45, 2);
+
 		defineMedia("datasheets/testdata.tbl");
 
 		// Start with the title screen
