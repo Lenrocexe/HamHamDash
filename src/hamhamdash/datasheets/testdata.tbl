@@ -14,31 +14,31 @@ hamtaro_runLeft			resources/sprites/hamtaro-runLeft.png		0	0	40	40	0	0
 hamtaro_runRight		resources/sprites/hamtaro-runRight.png		0	0	40	40	0	0
 
 // Get the sprites from the sprite sheet
-hidle	-	0	resources/sprites/hamtaro-idle.png	-
-hhamha1	-	0	hamtaro_hamha	0	-
-hhamha2	-	0	hamtaro_hamha	1	-
-hhamha3	-	0	hamtaro_hamha	2	-
-hhamha4	-	0	hamtaro_hamha	3	-
-hhamha5	-	0	hamtaro_hamha	4	-
-hhamha6	-	0	hamtaro_hamha	5	-
+hidle		-	0	resources/sprites/hamtaro-idle.png	-
+hhamha1		-	0	hamtaro_hamha	0	-
+hhamha2		-	0	hamtaro_hamha	1	-
+hhamha3		-	0	hamtaro_hamha	2	-
+hhamha4		-	0	hamtaro_hamha	3	-
+hhamha5		-	0	hamtaro_hamha	4	-
+hhamha6		-	0	hamtaro_hamha	5	-
 hhowdie1	-	0	hamtaro_howdie	0	-
 hhowdie2	-	0	hamtaro_howdie	1	-
 hhowdie3	-	0	hamtaro_howdie	2	-
 hhowdie4	-	0	hamtaro_howdie	3	-
 hhowdie5	-	0	hamtaro_howdie	4	-
 hhowdie6	-	0	hamtaro_howdie	5	-
-hrunup1	-	0	hamtaro_runUp	0	-
-hrunup2	-	0	hamtaro_runUp	1	-
-hrunup3	-	0	hamtaro_runUp	2	-
-hrunup4	-	0	hamtaro_runUp	3	-
-hrundown1	-	0	hamtaro_runDown	0	-
-hrundown2	-	0	hamtaro_runDown	1	-
-hrundown3	-	0	hamtaro_runDown	2	-
-hrundown4	-	0	hamtaro_runDown	3	-
-hrunleft1	-	0	hamtaro_runLeft	0	-
-hrunleft2	-	0	hamtaro_runLeft	1	-
-hrunleft3	-	0	hamtaro_runLeft	2	-
-hrunleft4	-	0	hamtaro_runLeft	3	-
+hrunup1		-	0	hamtaro_runUp	0	-
+hrunup2		-	0	hamtaro_runUp	1	-
+hrunup3		-	0	hamtaro_runUp	2	-
+hrunup4		-	0	hamtaro_runUp	3	-
+hrundown1	-	0	hamtaro_runDown		0	-
+hrundown2	-	0	hamtaro_runDown		1	-
+hrundown3	-	0	hamtaro_runDown		2	-
+hrundown4	-	0	hamtaro_runDown		3	-
+hrunleft1	-	0	hamtaro_runLeft		0	-
+hrunleft2	-	0	hamtaro_runLeft		1	-
+hrunleft3	-	0	hamtaro_runLeft		2	-
+hrunleft4	-	0	hamtaro_runLeft		3	-
 hrunright1	-	0	hamtaro_runRight	0	-
 hrunright2	-	0	hamtaro_runRight	1	-
 hrunright3	-	0	hamtaro_runRight	2	-
@@ -47,12 +47,12 @@ hrunright4	-	0	hamtaro_runRight	3	-
 // Define animations from the sprites.
 // 0.3 is the animation speed
 // the "true" indicates a ping-pong animation
-hhamha	hhamha1;hhamha2;hhamha3;hhamha4;hhamha5;hhamha6		0.09		false
-hhowdie	hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5;hhowdie6		0.09		false
-hrunup	hrunup1;hrunup2;hrunup3;hrunup4	0.09	false
-hrundown	hrundown1;hrundown2;hrundown3;hrundown4	0.09	false
-hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4	0.09	false
-hrunright	hrunright1;hrunright2;hrunright3;hrunright4	0.09	false
+hhamha		hhamha1;hhamha2;hhamha3;hhamha4;hhamha5;hhamha6			0.09	false
+hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5;hhowdie6	0.09	false
+hrunup		hrunup1;hrunup2;hrunup3;hrunup4							0.09	false
+hrundown	hrundown1;hrundown2;hrundown3;hrundown4					0.09	false
+hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4					0.09	false
+hrunright	hrunright1;hrunright2;hrunright3;hrunright4				0.09	false
 
 // Define tiles
 mytile		.	0	resources/sprites/emptytile.png	-
