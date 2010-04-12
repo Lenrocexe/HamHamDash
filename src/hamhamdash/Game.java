@@ -55,6 +55,6 @@ public class Game extends JGEngine
 
 	public int getViewportHeight()
 	{
-		return 800;
+		return 400;
 	}
 }
