@@ -1,6 +1,8 @@
 // Define Splash Screen
 splash_image	-	0	resources/sprites/splash.png	-
 
+// Define State Backgrounds
+title_bg	-	0	resources/sprites/title.png	-
 
 // Define animation sprite sheet.
 // The first numbers (0,0) are the topleft coordinates of the sprites.
