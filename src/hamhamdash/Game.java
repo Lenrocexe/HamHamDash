@@ -39,6 +39,5 @@ public class Game extends JGEngine
 	public void paintFrame()
 	{
 		drawString(String.valueOf(hex), 150, 150, 0);
-                drawString("Jelle's test", 200, 200, 0);
 	}
 }
