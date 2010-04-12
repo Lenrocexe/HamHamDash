@@ -37,6 +37,7 @@ public class Game extends JGEngine
 
 	public void paintFrame()
 	{
+		drawImage(0, 0, "splash_image");
 		drawString("TOP LEFT", 0, 8, -1, true);
 		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
 		drawString("TOP RIGHT", pfWidth(), 8, 1, true);

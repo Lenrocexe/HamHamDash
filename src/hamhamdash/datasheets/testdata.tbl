@@ -1,3 +1,7 @@
+// Define Splash Screen
+splash_image	-	0	resources/sprites/splash.png	-
+
+
 // Define animation sprite sheet.
 // The first numbers (0,0) are the topleft coordinates of the sprites.
 // The next numbers (16,16) is the size of one sprite.
