@@ -27,17 +27,34 @@ public class Game extends JGEngine
 	public void initGame()
 	{
 		setFrameRate(45, 2);
+		defineMedia("datasheets/testdata.tbl");
 	}
 
 	public void doFrame()
 	{
-
+		moveObjects(null, 0);
 	}
-
-	int hex = 0xFF;
 
 	public void paintFrame()
 	{
-		drawString(String.valueOf(hex), 150, 150, 0);
+		drawString("TOP LEFT", 0, 8, -1, true);
+		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
+		drawString("TOP RIGHT", pfWidth(), 8, 1, true);
+		drawString("BOTTOM RIGHT", pfWidth(), pfHeight() - 20, 1, true);
+	}
+
+	public int getTileSize()
+	{
+		return 40;
+	}
+
+	public int getViewportWidth()
+	{
+		return 400;
+	}
+
+	public int getViewportHeight()
+	{
+		return 320;
 	}
 }
