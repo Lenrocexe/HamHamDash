@@ -16,7 +16,7 @@ public class Game extends JGEngine
 
 	public static void main(String[] args)
 	{
-		new Game(new JGPoint(800, 640));
+		new Game(new JGPoint(800, 800));
 	}
 
 	public void initCanvas()
@@ -56,6 +56,6 @@ public class Game extends JGEngine
 
 	public int getViewportHeight()
 	{
-		return 320;
+		return 400;
 	}
 }
