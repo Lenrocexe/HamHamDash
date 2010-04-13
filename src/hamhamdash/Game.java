@@ -288,6 +288,7 @@ public class Game extends JGEngine implements KeyListener
 			toggleStartGame();
 		}
 
+		
 		if(getKey(KeyRight) || getKey(KeyDown))
 		{
 			clearKey(KeyRight);
