@@ -4,10 +4,10 @@ package hamhamdash;
  *
  * @author Cornel Alders
  */
-public class AmoebeTile
+public class AmoebeTile extends Tile
 {
-    public AmoebeTile()
+    public AmoebeTile(int x, int y)
     {
-        
+        super(x, y, "A");
     }
 }

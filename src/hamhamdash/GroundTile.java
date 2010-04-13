@@ -4,10 +4,10 @@ package hamhamdash;
  *
  * @author Cornel Alders
  */
-public class GroundTile
+public class GroundTile extends Tile
 {
-    public GroundTile()
+    public GroundTile(int x, int y)
     {
-        
+        super(x, y, "#");
     }
 }

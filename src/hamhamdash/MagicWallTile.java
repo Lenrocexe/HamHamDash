@@ -4,10 +4,10 @@ package hamhamdash;
  *
  * @author Cornel Alders
  */
-public class MagicWallTile
+public class MagicWallTile extends Tile
 {
-    public MagicWallTile()
+    public MagicWallTile(int x, int y)
     {
-        
+        super(x, y, "M");
     }
 }

@@ -4,10 +4,10 @@ package hamhamdash;
  *
  * @author Cornel Alders
  */
-public class ExitTile
+public class ExitTile extends Tile
 {
-    public ExitTile()
+    public ExitTile(int x, int y)
     {
-        
+        super(x, y, "O");
     }
 }
