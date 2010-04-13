@@ -199,7 +199,12 @@ public class Game extends JGEngine
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			objLevels.nextLevel();
+			objLevels.changeLevel(1);
+		}
+		if(getKey(KeyLeft))
+		{
+			clearKey(KeyLeft);
+			objLevels.changeLevel(-1);
 		}
 	}
 

@@ -21,30 +21,42 @@ public class Levels
 		objLevel = new Level(game);
 		objLevel.createLevel();
     }
-    public void nextLevel()
+    public void changeLevel(int direction)
 	{
+		// Get the available levels in an array
 		String[] levels = getAvailableLevels();
 
+		// Search the array for the next level (if there is one)
 		boolean found = false;
-		int findLevel = Game.currentLevelId + 1;
+		System.out.println(Game.currentLevelId);
+		int findLevel = Game.currentLevelId + direction;
+		System.out.println(findLevel);
 		int i;
 		for(i=0; i < levels.length; i++)
 		{
 			int search = Arrays.binarySearch(levels, "level"+findLevel+".hlf");
-			if(search > 0)
+			if(search >= 0)
 			{
 				found = true;
 				break;
 			}
 			else {
-				findLevel++;
+				if(direction < 0)
+				{
+					System.out.println("-");
+					findLevel--;
+				} else
+				{
+					System.out.println("+");
+					findLevel++;
+				}
 			}
 		}
 
 		if(found == true)
 		{
-			Game.currentLevelId = findLevel;
-			startLevel();
+			System.out.println("Level "+findLevel+" found");
+			gotoLevel(findLevel);
 		} 
 		else
 		{
@@ -52,6 +64,12 @@ public class Levels
 		}
 
     }
+	public void gotoLevel(int levelId)
+	{
+		Game.currentLevelId = levelId;
+		startLevel();
+		game.dbgPrint("You are currently running level "+ levelId);
+	}
     public String[] getAvailableLevels()
 	{
 		File dir = new File("./src/hamhamdash/levels");
