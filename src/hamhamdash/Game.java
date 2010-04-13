@@ -9,13 +9,9 @@ import jgame.platform.*;
  */
 public class Game extends JGEngine
 {
-<<<<<<< HEAD
 	private Levels objLevels;
 	static int currentLevelId = 1;
 
-=======
-	
->>>>>>> 89a11c55217020250734ed3bb0976246b0900078
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
@@ -35,37 +31,26 @@ public class Game extends JGEngine
 	{
 		setFrameRate(45, 2);
 		defineMedia("datasheets/testdata.tbl");
-<<<<<<< HEAD
+
 		objLevels = new Levels(this);
-=======
 
 		// Start with the title screen
 		setGameState("Title");
->>>>>>> 89a11c55217020250734ed3bb0976246b0900078
+
 	}
 
 	@Override
 	public void doFrame()
 	{
-<<<<<<< HEAD
-		moveObjects(null, 0);
-		objLevels.startLevel();
-		objLevels.nextLevel();
-=======
+
 //		moveObjects(null, 0);
->>>>>>> 89a11c55217020250734ed3bb0976246b0900078
+
 	}
 
 	@Override
 	public void paintFrame()
 	{
-<<<<<<< HEAD
-		//drawImage(0, 0, "splash_image");
-		drawString("TOP LEFT", 0, 8, -1, true);
-		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
-		drawString("TOP RIGHT", pfWidth(), 8, 1, true);
-		drawString("BOTTOM RIGHT", pfWidth(), pfHeight() - 20, 1, true);
-=======
+
 //		drawString("TOP LEFT", 0, 8, -1, true);
 //		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
 //		drawString("TOP RIGHT", pfWidth(), 8, 1, true);
@@ -198,11 +183,25 @@ public class Game extends JGEngine
 			playerAmount = 1;
 
 		}
-
->>>>>>> 89a11c55217020250734ed3bb0976246b0900078
 	}
 
-
+	// Start Level
+	public void startStartGame()
+	{
+		objLevels.startLevel();
+	}
+	public void paintStartGame()
+	{
+		
+	}
+	public void doFrameStartGame()
+	{
+		if(getKey(KeyRight))
+		{
+			clearKey(KeyRight);
+			objLevels.nextLevel();
+		}
+	}
 
 	// Getter(s) & Setter(s)
 	public int getTileSize()

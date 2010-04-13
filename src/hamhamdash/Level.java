@@ -13,10 +13,10 @@ public class Level
 
     public Level(JGEngine Game)
     {
-	this.game = Game;
+		this.game = Game;
     }
     public void createLevel(){
-	objTileMap = new TileMap(game);
-	objTileMap.paintTiles();
+		objTileMap = new TileMap(game);
+		objTileMap.paintTiles();
     }
 }
