@@ -9,6 +9,9 @@ import jgame.platform.*;
  */
 public class Game extends JGEngine
 {
+	private Levels objLevels;
+	static int currentLevelId = 1;
+
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
@@ -27,18 +30,19 @@ public class Game extends JGEngine
 	public void initGame()
 	{
 		setFrameRate(45, 2);
-
 		defineMedia("datasheets/testdata.tbl");
+		objLevels = new Levels(this);
 	}
 
 	public void doFrame()
 	{
 		moveObjects(null, 0);
+		objLevels.startLevel();
 	}
 
 	public void paintFrame()
 	{
-		drawImage(0, 0, "splash_image");
+		//drawImage(0, 0, "splash_image");
 		drawString("TOP LEFT", 0, 8, -1, true);
 		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
 		drawString("TOP RIGHT", pfWidth(), 8, 1, true);
