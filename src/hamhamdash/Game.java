@@ -11,7 +11,7 @@ import jgame.platform.*;
  *
  * @author Cornel Alders
  */
-public class Game extends JGEngine implements KeyListener
+public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
 	private int playerAmount;
@@ -23,7 +23,6 @@ public class Game extends JGEngine implements KeyListener
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
-		addKeyListener(this);
 	}
 
 	public static void main(String[] args)
@@ -75,13 +74,7 @@ public class Game extends JGEngine implements KeyListener
 			clearKey(KeyEsc);
 			stateCounter = prevState(stateCounter, states);
 		}
-		
-		if(getKey(97))
-		{
-			System.out.println("AAAAMG");
-		}
 
-//		requestFocus();
 
 		// DBG MSG's
 		dbgPrint("" + playerAmount);
@@ -261,52 +254,63 @@ public class Game extends JGEngine implements KeyListener
 	// Define ep (Enter Pwd) vars
 	private int epButtonWidth, epButtonHeight;
 	private JGPoint epPoint;
-//	private JGColor newGameButtonBG;
 
 
 	public void startEnterPwd()
 	{
-		passTfield = new JTextField(5);
-		add(passTfield);
-		epButtonWidth = 70;
-		epButtonHeight = psButtonWidth;
-		epPoint = psPoint;
-		loadGame = false;						// by default 'New Game' is selected
-		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
-		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+	
+		if(loadGame == true)
+		{
+			epButtonWidth = 70;
+			epButtonHeight = psButtonWidth;
+			epPoint = psPoint;
+			loadGame = false;						// by default 'New Game' is selected
+			newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
+			loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+		}
+		else
+		{
+			nextState(stateCounter, states);
+		}
 	}
 
 	public void doFrameEnterPwd()
 	{
 
 
-
-		if(getKey(KeyLeft) || getKey(KeyUp))
+		if(loadGame == true)
 		{
-			clearKey(KeyLeft);
-			clearKey(KeyUp);
-			toggleStartGame();
-		}
 
-		
-		if(getKey(KeyRight) || getKey(KeyDown))
-		{
-			clearKey(KeyRight);
-			clearKey(KeyDown);
-			toggleStartGame();
-		}
+			if(getKey(KeyLeft) || getKey(KeyUp))
+			{
+				clearKey(KeyLeft);
+				clearKey(KeyUp);
+				toggleStartGame();
+			}
 
+
+			if(getKey(KeyRight) || getKey(KeyDown))
+			{
+				clearKey(KeyRight);
+				clearKey(KeyDown);
+				toggleStartGame();
+			}
+		}
 
 	}
 
 	public void paintFrameEnterPwd()
 	{
-		drawString("Enter Password", epPoint.x, epPoint.y, 0);
-		drawString("_ _ _", epPoint.x, epPoint.y + 20, 0);
-//		setColor(newGameButtonBG);
-//		new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
-//		setColor(loadGameButtonBG);
-//		new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
+		if(loadGame == true)
+		{
+
+			drawString("Enter Password", epPoint.x, epPoint.y, 0);
+			drawString("_ _ _", epPoint.x, epPoint.y + 20, 0);
+//			setColor(newGameButtonBG);
+//			new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
+//			setColor(loadGameButtonBG);
+//			new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
+		}
 	}
 
 
@@ -351,36 +355,6 @@ public class Game extends JGEngine implements KeyListener
 	public int getViewportHeight()
 	{
 		return 400;
-	}
-
-
-	public void keyTyped(KeyEvent e)
-	{
-		
-	}
-
-	public void keyPressed(KeyEvent e)
-	{
-		if(e.getKeyText(e.getKeyCode()).equals(" "))
-		{
-			System.out.println(e.getKeyChar() + "LOL");
-		}
-		else
-		{
-			System.out.println(e.getKeyChar() + "LaL");
-		}
-
-		if(e.getKeyCode() == KeyEvent.VK_A)
-		{
-			setKey(KeyEvent.VK_A);
-		}
-		
-
-	}
-
-	public void keyReleased(KeyEvent e)
-	{
-		
 	}
 
 }
