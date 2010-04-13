@@ -38,6 +38,7 @@ public class Game extends JGEngine
 	{
 		moveObjects(null, 0);
 		objLevels.startLevel();
+		objLevels.nextLevel();
 	}
 
 	public void paintFrame()
