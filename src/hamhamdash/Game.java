@@ -9,6 +9,7 @@ import jgame.platform.*;
  */
 public class Game extends JGEngine
 {
+	
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
@@ -73,15 +74,20 @@ public class Game extends JGEngine
 
 	/* Player Select */
 	// Define player select vars
-	private int pw = 30;
-	private JGPoint p = new JGPoint(pfWidth() / 2, 100);
-	private JGColor playerOneButton = JGColor.white, playerTwoButton = JGColor.white;
-	private int playerAmount = 0;
+	private int pw;
+	private JGPoint p;
+	private int playerAmount;
+	private JGColor playerOneButtonBG;
+	private JGColor playerTwoButtonBG;
 
-
+	// Player Select Main Methods
 	public void startPlayerSelect()
 	{
-		
+		pw = 30;
+		p = new JGPoint(pfWidth() / 2, 100);
+		playerAmount = 1;						// default '1P' is selected
+		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
+		playerTwoButtonBG = JGColor.white;		// '2P' is not
 	}
 
 	public void doFramePlayerSelect()
@@ -90,19 +96,13 @@ public class Game extends JGEngine
 		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
-			playerOneButton = JGColor.red;
-			playerTwoButton = JGColor.white;
-			playerAmount = 1;
-			dbgPrint("" + getKey(KeyLeft));
+			togglePlayerSelect();
 		}
 
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			playerOneButton = JGColor.white;
-			playerTwoButton = JGColor.red;
-			playerAmount = 2;
-			dbgPrint("" + getKey(KeyRight));
+			togglePlayerSelect();
 		}
 
 		if(getKey(KeyEnter))
@@ -110,18 +110,16 @@ public class Game extends JGEngine
 			setGameState("StartGame");
 		}
 
+		dbgPrint("" + playerAmount);
 
 
-//		if(getMouseX())
 	}
 
 	public void paintFramePlayerSelect()
-	{
-		p = new JGPoint(pfWidth() / 2, 100);
-		
+	{		
 		drawString("Select amount of Player", p.x, p.y, 0);
 
-		setColor(playerOneButton);
+		setColor(playerOneButtonBG);
 		drawRect(
 				(p.x - (pw / 2)) - pw,
 				p.y + pw/2,
@@ -139,7 +137,7 @@ public class Game extends JGEngine
 				0
 				);
 
-		setColor(playerTwoButton);
+		setColor(playerTwoButtonBG);
 		drawRect(
 				(p.x + (pw / 2)),
 				p.y + pw/2,
@@ -159,6 +157,29 @@ public class Game extends JGEngine
 
 
 	}
+
+	// Player Select Methods
+	public void togglePlayerSelect()
+	{
+
+		if(playerAmount == 1)
+		{
+			playerOneButtonBG = JGColor.white;
+			playerTwoButtonBG = JGColor.red;
+			playerAmount = 2;
+			
+		}else if(playerAmount == 2)
+		{
+			playerOneButtonBG = JGColor.red;
+			playerTwoButtonBG = JGColor.white;
+
+			playerAmount = 1;
+
+		}
+
+	}
+
+
 
 	// Getter(s) & Setter(s)
 	public int getTileSize()
