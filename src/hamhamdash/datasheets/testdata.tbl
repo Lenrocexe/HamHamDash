@@ -1,13 +1,12 @@
 // Define Splash Screen
+// This is exactly like a sprite (see below)
 splash_image	-	0	resources/sprites/splash.png	-
 
 // Define State Backgrounds
 title_bg	-	0	resources/sprites/title.png	-
 
 // Define animation sprite sheet.
-// The first numbers (0,0) are the topleft coordinates of the sprites.
-// The next numbers (16,16) is the size of one sprite.
-// The last numbers (0,0) is the number of pixels to skip between sprites.
+// sheetname;;location;;(0,0)-topleft coordinates;;(40,40)-spritesize;;(0,0)-pixels to skip
 hamtaro_hamha			resources/sprites/hamtaro-hamha.png			0	0	40	40	0	0
 hamtaro_howdie			resources/sprites/hamtaro-howdie.png		0	0	40	40	0	0
 hamtaro_runUp			resources/sprites/hamtaro-runUp.png			0	0	40	40	0	0
@@ -15,7 +14,10 @@ hamtaro_runDown			resources/sprites/hamtaro-runDown.png		0	0	40	40	0	0
 hamtaro_runLeft			resources/sprites/hamtaro-runLeft.png		0	0	40	40	0	0
 hamtaro_runRight		resources/sprites/hamtaro-runRight.png		0	0	40	40	0	0
 
-// Get the sprites from the sprite sheet
+// Individual sprites
+// spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
+// if(spritesheet)frameonsheet;;sprite-modifier;;
+// Sprite-modifiers:
 hidle	-	0	resources/sprites/hamtaro-idle.png	-
 hhamha1	-	0	hamtaro_hamha	0	-
 hhamha2	-	0	hamtaro_hamha	1	-
@@ -47,8 +49,7 @@ hrunright3	-	0	hamtaro_runRight	2	-
 hrunright4	-	0	hamtaro_runRight	3	-
 
 // Define animations from the sprites.
-// 0.3 is the animation speed
-// the "true" indicates a ping-pong animation
+// animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
 hhamha	hhamha1;hhamha2;hhamha3;hhamha4;hhamha5;hhamha6		0.09		false
 hhowdie	hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5;hhowdie6		0.09		false
 hrunup	hrunup1;hrunup2;hrunup3;hrunup4	0.09	false
@@ -56,7 +57,8 @@ hrundown	hrundown1;hrundown2;hrundown3;hrundown4	0.09	false
 hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4	0.09	false
 hrunright	hrunright1;hrunright2;hrunright3;hrunright4	0.09	false
 
-// Define tiles
-mytile		.	0	resources/sprites/emptytile.png	-
+// Tiles
+// (Same as sprites)
+emptytile	.	0	resources/sprites/emptytile.png	-
 walltile	X	1	resources/sprites/walltile.png	-
 groundtile	#	2	resources/sprites/groundtile.png	-

@@ -4,10 +4,10 @@ package hamhamdash;
  *
  * @author Cornel Alders
  */
-public class EmptyTile
+public class EmptyTile extends Tile
 {
-    public EmptyTile()
+    public EmptyTile(int x, int y)
     {
-        
+        super(x, y, ".");
     }
 }
