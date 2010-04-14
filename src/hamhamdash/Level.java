@@ -162,4 +162,31 @@ public class Level
 
 		return temp;
 	}
+
+	/**
+	 * Returns the tile type directly below the given position.
+	 * @return
+	 */
+	public String getTileBelow()
+	{
+		return new String("X");
+	}
+
+	/**
+	 * Returns the tile type at the lower left corner of the given position.
+	 * @return
+	 */
+	public String getTileBelowLeft()
+	{
+		return new String("X");
+	}
+
+	/**
+	 * Returns the tile type at the lower right corner of the given position.
+	 * @return
+	 */
+	public String getTileBelowRight()
+	{
+		return new String("X");
+	}
 }
