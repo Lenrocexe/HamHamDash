@@ -1,6 +1,5 @@
 package hamhamdash;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import jgame.*;
@@ -77,6 +76,7 @@ public class Game extends JGEngine
 				stateCounter = prevState(stateCounter, states);
 			}
 		}
+		
 		// DBG MSG's
 		dbgPrint("PlayerAmount = " + playerAmount);
 		dbgPrint("LoadGame = " + loadGame);
