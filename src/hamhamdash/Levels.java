@@ -28,9 +28,7 @@ public class Levels
 
 		// Search the array for the next level (if there is one)
 		boolean found = false;
-		System.out.println(Game.currentLevelId);
 		int findLevel = Game.currentLevelId + direction;
-		System.out.println(findLevel);
 		int i;
 		for(i=0; i < levels.length; i++)
 		{
@@ -43,11 +41,9 @@ public class Levels
 			else {
 				if(direction < 0)
 				{
-					System.out.println("-");
 					findLevel--;
 				} else
 				{
-					System.out.println("+");
 					findLevel++;
 				}
 			}
@@ -55,14 +51,8 @@ public class Levels
 
 		if(found == true)
 		{
-			System.out.println("Level "+findLevel+" found");
 			gotoLevel(findLevel);
 		} 
-		else
-		{
-			System.out.println("Next level not found");
-		}
-
     }
 	public void gotoLevel(int levelId)
 	{
