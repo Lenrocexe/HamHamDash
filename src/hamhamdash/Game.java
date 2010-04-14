@@ -20,7 +20,6 @@ public class Game extends JGEngine
 	private ArrayList<String> states = new ArrayList<String>();
 	private JTextField passTfield;
 	private Levels objLevels;
-	static int currentLevelId = 1;
 	private String passString;
 	private boolean debug = true;
 
@@ -50,8 +49,8 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
+		// Create Levels object
 		objLevels = new Levels(this);
-		objLevels.loadLevels();
 
 		if(debug)
 		{
@@ -98,7 +97,7 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			drawImage(0, 0, "menus_bg");
+			//drawImage(0, 0, "menus_bg");
 			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
 			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
 		}

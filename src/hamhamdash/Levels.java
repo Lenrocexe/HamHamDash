@@ -10,16 +10,16 @@ import java.util.*;
 public class Levels
 {
 	private JGEngine game;
-    private Level objLevel;
-	public Level[] arrLevels;
-	public int currentLevelId = 1;
+	private Level[] arrLevels;
+	private int currentLevelId = 0;
 
     public Levels(JGEngine Game)
     {
         this.game = Game;
+		loadLevels();
     }
 	
-	public void loadLevels()
+	private void loadLevels()
 	{
 		// Get the available levels in an array
 		String[] levels = getLevelDirList();
@@ -28,8 +28,7 @@ public class Levels
 		int i;
 		for(i=0;i<levels.length;i++)
 		{
-			Level tmpLevel = new Level(game,i,levels[i]);
-			arrLevels[i] = tmpLevel;
+			arrLevels[i] = new Level(game,i,levels[i]);
 		}
 	}
 
@@ -63,7 +62,7 @@ public class Levels
 
 	public void prevLevel()
 	{
-		if(currentLevelId != arrLevels.length)
+		if(currentLevelId != 1)
 		{
 			currentLevelId--;
 			startLevel();

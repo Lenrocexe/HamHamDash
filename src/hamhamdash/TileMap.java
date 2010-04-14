@@ -16,7 +16,7 @@ public class TileMap
     {
         this.game = Game;
     }
-    public String[] getTiles(int levelId)
+    public String[] getTiles(String fileName)
 	{
 		// Read File
 		int h=0;
@@ -24,7 +24,7 @@ public class TileMap
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/level"+levelId+".hlf")));
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
 			String line;
 			boolean blockStarted = false;
 			while( ( line = br.readLine() ) != null ){
