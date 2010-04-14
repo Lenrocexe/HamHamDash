@@ -14,8 +14,8 @@ import jgame.platform.*;
 public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
-	private int playerAmount;
-	private boolean loadGame;
+	private int playerAmount = 1;								// by default '1P' is selected
+	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
 	private JTextField passTfield;
@@ -125,7 +125,6 @@ public class Game extends JGEngine
 	{
 		psButtonWidth = 30;
 		psPoint = new JGPoint(pfWidth() / 2, 100);
-		playerAmount = 1;						// by default '1P' is selected
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
 	}
@@ -194,7 +193,6 @@ public class Game extends JGEngine
 		sgButtonWidth = 70;
 		sgButtonHeight = psButtonWidth;
 		sgPoint = psPoint;
-		loadGame = false;						// by default 'New Game' is selected
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
 	}
@@ -259,19 +257,21 @@ public class Game extends JGEngine
 	public void startEnterPwd()
 	{
 	
-
+		if(loadGame)
+		{
 			epButtonWidth = 70;
 			epButtonHeight = psButtonWidth;
 			epPoint = psPoint;
-			loadGame = false;						// by default 'New Game' is selected
 			newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 			loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+		}
 
 	}
 
 	public void doFrameEnterPwd()
 	{
-
+		if(loadGame)
+		{
 			if(getKey(KeyLeft) || getKey(KeyUp))
 			{
 				clearKey(KeyLeft);
@@ -286,20 +286,21 @@ public class Game extends JGEngine
 				clearKey(KeyDown);
 				toggleStartGame();
 			}
-		
+		}
 
 	}
 
 	public void paintFrameEnterPwd()
 	{
-
+		if(loadGame)
+		{
 			drawString("Enter Password", epPoint.x, epPoint.y, 0);
 			drawString("_ _ _", epPoint.x, epPoint.y + 20, 0);
 //			setColor(newGameButtonBG);
 //			new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
 //			setColor(loadGameButtonBG);
 //			new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
-		
+		}
 	}
 
 
@@ -313,24 +314,21 @@ public class Game extends JGEngine
 	public int nextState(int counter, ArrayList<String> states)
 	{
 
-
-		if(loadGame)
-		{
-
-			counter +=2;
-
-			setGameState(states.get(counter));
-
-			return counter;
-		}
+//
+//		if(loadGame)
+//		{
+//
+//			counter +=2;
+//
+//			setGameState(states.get(counter));
+//
+//			return counter;
+//		}
 
 
 		if(counter < states.size()-1 )
 		{
 			counter++;
-
-
-
 		}
 
 
@@ -345,26 +343,23 @@ public class Game extends JGEngine
 	public int prevState(int counter, ArrayList<String> states)
 	{
 
-		
-			if(loadGame)
-			{
-
-				counter -=2;
-
-				setGameState(states.get(counter));
-
-				return counter;
-			}
+//
+//			if(loadGame)
+//			{
+//
+//				counter -=2;
+//
+//				setGameState(states.get(counter));
+//
+//				return counter;
+//			}
 
 
 			if(counter > 0 )
 			{
 				counter--;
-
-
-
 			}
-			
+
 			setGameState(states.get(counter));
 
 			return counter;
