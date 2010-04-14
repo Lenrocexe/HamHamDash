@@ -2,7 +2,7 @@ package hamhamdash;
 
 import jgame.platform.*;
 import java.io.*;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  *
@@ -10,64 +10,85 @@ import java.util.Arrays;
  */
 public class Levels
 {
-	private Level objLevel;
 	private JGEngine game;
+	private Level objLevel;
+	public Level[] arrLevels;
+	public int currentLevelId = 1;
 
 	public Levels(JGEngine Game)
 	{
 		this.game = Game;
 	}
 
-	public void startLevel()
-	{
-		objLevel = new Level(game);
-		objLevel.createLevel();
-	}
-
-	public void changeLevel(int direction)
+	public void loadLevels()
 	{
 		// Get the available levels in an array
-		String[] levels = getAvailableLevels();
+		String[] levels = getLevelDirList();
 
-		// Search the array for the next level (if there is one)
-		boolean found = false;
-		int findLevel = Game.currentLevelId + direction;
+		arrLevels = new Level[levels.length];
 		int i;
 		for(i = 0; i < levels.length; i++)
 		{
-			int search = Arrays.binarySearch(levels, "level" + findLevel + ".hlf");
-			if(search >= 0)
+			Level tmpLevel = new Level(game, i, levels[i]);
+			arrLevels[i] = tmpLevel;
+		}
+	}
+
+	public void startLevel()
+	{
+		arrLevels[currentLevelId].runLevel();
+	}
+
+	public void startLevelPassword(String password)
+	{
+		int i;
+		for(i = 0; i < arrLevels.length; i++)
+		{
+			if(arrLevels[i].getPassword() == password)
 			{
-				found = true;
+				currentLevelId = i;
+				startLevel();
 				break;
 			}
-			else
-			{
-				if(direction < 0)
-				{
-					findLevel--;
-				}
-				else
-				{
-					findLevel++;
-				}
-			}
 		}
+	}
 
-		if(found == true)
+	public void nextLevel()
+	{
+		if(currentLevelId != arrLevels.length)
 		{
-			gotoLevel(findLevel);
+			currentLevelId++;
+			startLevel();
+		}
+	}
+
+	public void prevLevel()
+	{
+		if(currentLevelId != arrLevels.length)
+		{
+			currentLevelId--;
+			startLevel();
 		}
 	}
 
 	public void gotoLevel(int levelId)
 	{
-		Game.currentLevelId = levelId;
+		currentLevelId = levelId;
 		startLevel();
-		game.dbgPrint("You are currently running level " + levelId);
 	}
 
-	public String[] getAvailableLevels()
+	// Get functions
+	public int getLevelCount()
+	{
+		return arrLevels.length;
+	}
+
+	public int getCurrentLevel()
+	{
+		return currentLevelId;
+	}
+
+	private String[] getLevelDirList()
 	{
 		File dir = new File("./src/hamhamdash/levels");
 		String[] children = dir.list();

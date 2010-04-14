@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import java.io.*;
+import java.util.*;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import jgame.*;
@@ -48,14 +50,15 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
+		objLevels = new Levels(this);
+		objLevels.loadLevels();
+
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
 			dbgShowGameState(true);
 		}
-
-		objLevels = new Levels(this);
-
+		
 		// Start with the title screen
 		setGameState("Title");
 	}
@@ -64,7 +67,6 @@ public class Game extends JGEngine
 	public void doFrame()
 	{
 //		moveObjects(null, 0);
-
 		if(!(states.get(stateCounter).equals("InGame")))
 		{
 			if(getKey(KeyEnter))
@@ -96,6 +98,7 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
+			drawImage(0, 0, "menus_bg");
 			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
 			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
 		}
@@ -130,6 +133,7 @@ public class Game extends JGEngine
 		psPoint = new JGPoint(pfWidth() / 2, 100);
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
+
 	}
 
 	public void doFramePlayerSelect()
@@ -190,6 +194,8 @@ public class Game extends JGEngine
 		sgPoint = psPoint;
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+
+
 	}
 
 	public void doFrameStartGame()
@@ -339,12 +345,12 @@ public class Game extends JGEngine
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			objLevels.changeLevel(1);
+			objLevels.nextLevel();
 		}
 		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
-			objLevels.changeLevel(-1);
+			objLevels.prevLevel();
 		}
 	}
 
