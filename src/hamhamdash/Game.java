@@ -325,7 +325,8 @@ public class Game extends JGEngine
 
 	}
 
-	// Player Select Methods
+	// EnterPwd Methods
+
 	// Global Method(s)
 	public int nextState(int counter, ArrayList<String> states)
 	{
