@@ -8,6 +8,8 @@ import jgame.*;
  */
 public abstract class GCharacter extends JGObject
 {
+	private Game game = null;
+
 	/**
 	 *
 	 * @param name The object name
@@ -17,10 +19,11 @@ public abstract class GCharacter extends JGObject
 	 * @param cid The collision ID
 	 * @param sprite which sprite(animation) to use from the datasheet
 	 */
-    public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite)
-    {
-        super(name, unique, x, y, cid, sprite);
-    }
+	public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
+	{
+		super(name, unique, x, y, cid, sprite);
+		this.game = game;
+	}
 
 	@Override
 	public abstract void move();

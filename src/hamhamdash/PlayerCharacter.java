@@ -13,10 +13,10 @@ public class PlayerCharacter extends GCharacter
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-    public PlayerCharacter(int x, int y)
-    {
-        super("player", true, x, y, 1, "hidle");
-    }
+	public PlayerCharacter(int x, int y, Game game)
+	{
+		super("player", true, x, y, 1, "hidle", game);
+	}
 
 	@Override
 	public void move(){};

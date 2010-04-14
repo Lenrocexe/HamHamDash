@@ -12,24 +12,27 @@ import jgame.platform.*;
 public class TileMap
 {
 	private JGEngine game;
+
 	public TileMap(JGEngine Game)
-    {
-        this.game = Game;
-    }
-    public void paintTiles()
+	{
+		this.game = Game;
+	}
+
+	public void paintTiles()
 	{
 		// Read File
-		int h=0;
+		int h = 0;
 		List<String> lineList = new ArrayList<String>();
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/level"+Game.currentLevelId+".hlf")));
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/level" + Game.currentLevelId + ".hlf")));
 			String line;
-			while( ( line = br.readLine() ) != null )
-			lineList.add( line );
+
+			while((line = br.readLine()) != null)
+				lineList.add( line );
 		}
-		catch( IOException e )
+		catch(IOException e)
 		{	// Fileread error
 			e.printStackTrace();
 		}
@@ -39,22 +42,24 @@ public class TileMap
 			{
 				br.close();
 			}
-			catch( IOException ex )
+			catch(IOException ex)
 			{
 				ex.printStackTrace();
 			}
 		}
-		String[] lines = new String[ lineList.size() ];
-		lineList.toArray( lines );
+		String[] lines = new String[lineList.size()];
+		lineList.toArray(lines);
 		// Paint the tiles on the Game panel
-		game.setTiles(0,0,lines);
-    }
-    public void digTile()
+		game.setTiles(0, 0, lines);
+	}
+
+	public void digTile()
 	{	// Convert a ground tile to an empty tile
-		game.setTile(1,1,".");
-    }
+		game.setTile(1, 1, ".");
+	}
+
 	public void explodeTile()
 	{	// Convert any tile to an empty tile
-		game.setTile(1,2,".");
+		game.setTile(1, 2, ".");
 	}
 }

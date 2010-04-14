@@ -16,11 +16,11 @@ public class Enemy extends GCharacter
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-    public Enemy(String name, int x, int y)
-    {
-        super(name, false, x, y, 1, name+"Idle");
+	public Enemy(String name, int x, int y, Game game)
+	{
+		super(name, false, x, y, 1, name + "Idle", game);
 		this.type = name;
-    }
+	}
 
 	@Override
 	public void move(){};

@@ -6,8 +6,7 @@ package hamhamdash;
  */
 public class Player
 {
-    public Player()
-    {
-        
-    }
+	public Player()
+	{
+	}
 }

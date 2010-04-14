@@ -8,15 +8,17 @@ import jgame.platform.*;
  */
 public class Level
 {
-    private TileMap objTileMap;
-    private JGEngine game;
+	private TileMap objTileMap;
+	private JGEngine game;
 
-    public Level(JGEngine Game)
-    {
+	public Level(JGEngine Game)
+	{
 		this.game = Game;
-    }
-    public void createLevel(){
+	}
+
+	public void createLevel()
+	{
 		objTileMap = new TileMap(game);
 		objTileMap.paintTiles();
-    }
+	}
 }
