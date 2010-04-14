@@ -10,21 +10,22 @@ import jgame.platform.*;
  */
 public class Level
 {
-    private JGEngine game;
+	private JGEngine game;
 	private TileMap objTileMap;
 	private Properties settings = new Properties();
 	private String[] tileMap;
 	private String fileName;
 	private ArrayList arrEnemies = new ArrayList();
 
-    public Level(JGEngine Game, int levelId, String fileName)
-    {
+	public Level(JGEngine Game, int levelId, String fileName)
+	{
 		this.game = Game;
 		this.fileName = fileName;
 		loadSettings();
-    }
-	
-    public void runLevel(){
+	}
+
+	public void runLevel()
+	{
 		// Get and Paint TileMap
 		objTileMap = new TileMap(game);
 		tileMap = objTileMap.getTiles(fileName);
@@ -34,12 +35,14 @@ public class Level
 
 	private void loadSettings()
 	{
-        InputStream in = this.getClass().getResourceAsStream("levels/"+fileName);
-		BufferedReader readSettings = new BufferedReader(new InputStreamReader(in));
+
+		InputStream readSettings = this.getClass().getResourceAsStream("levels/level1.hlf");
+
 		try
 		{
 			settings.load(readSettings);
 		}
+
 		catch (IOException ex)
 		{
 			
@@ -114,43 +117,45 @@ public class Level
 			System.out.println(arrEnemies.get(i));
 		}*/
 	}
-	
+
 	public void digTile()
 	{	// Convert a ground tile to an empty tile
-		game.setTile(1,1,".");
-    }
-	
+		game.setTile(1, 1, ".");
+	}
+
 	public void explodeTile()
 	{	// Convert any tile to an empty tile
-		game.setTile(1,2,".");
+		game.setTile(1, 2, ".");
 	}
-	
+
 	// Get Functions
 	public int getTotalDiamonds()
 	{
 		return 0;
 	}
-	
+
 	public int getStartTimer()
 	{
 		return 0;
 	}
-	
+
 	public int getAmoebetimer()
 	{
 		return 0;
 	}
-	
+
 	public String getPassword()
 	{
 		return settings.getProperty("password");
 	}
+
 	public ArrayList<String> getEnemies()
 	{
 		ArrayList<String> temp = new ArrayList<String>();
 
 		return temp;
 	}
+
 	public ArrayList<String> getGObjects()
 	{
 		ArrayList<String> temp = new ArrayList<String>();

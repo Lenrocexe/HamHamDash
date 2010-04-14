@@ -6,8 +6,8 @@ package hamhamdash;
  */
 public class AmoebeTile extends Tile
 {
-    public AmoebeTile(int x, int y)
-    {
-        super(x, y, "A");
-    }
+	public AmoebeTile(int x, int y)
+	{
+		super(x, y, "A");
+	}
 }

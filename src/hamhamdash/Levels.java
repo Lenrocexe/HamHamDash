@@ -3,6 +3,7 @@ package hamhamdash;
 import jgame.platform.*;
 import java.io.*;
 import java.util.*;
+
 /**
  *
  * @author Cornel Alders
@@ -18,15 +19,16 @@ public class Levels
         this.game = Game;
 		loadLevels();
     }
-	
-	private void loadLevels()
+
+	public void loadLevels()
+
 	{
 		// Get the available levels in an array
 		String[] levels = getLevelDirList();
 
 		arrLevels = new Level[levels.length];
 		int i;
-		for(i=0;i<levels.length;i++)
+		for(i = 0; i < levels.length; i++)
 		{
 			arrLevels[i] = new Level(game,i,levels[i]);
 		}
@@ -40,7 +42,7 @@ public class Levels
 	public void startLevelPassword(String password)
 	{
 		int i;
-		for(i=0;i<arrLevels.length;i++)
+		for(i = 0; i < arrLevels.length; i++)
 		{
 			if(arrLevels[i].getPassword() == password)
 			{
@@ -50,7 +52,7 @@ public class Levels
 			}
 		}
 	}
-    
+
 	public void nextLevel()
 	{
 		if(currentLevelId != arrLevels.length)
@@ -80,13 +82,13 @@ public class Levels
 	{
 		return arrLevels.length;
 	}
-	
+
 	public int getCurrentLevel()
 	{
 		return currentLevelId;
 	}
 
-    private String[] getLevelDirList()
+	private String[] getLevelDirList()
 	{
 		File dir = new File("./src/hamhamdash/levels");
 		String[] children = dir.list();
@@ -102,5 +104,5 @@ public class Levels
 		children = dir.list(filter);
 		Arrays.sort(children);
 		return children;
-    }
+	}
 }

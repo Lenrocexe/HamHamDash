@@ -12,25 +12,29 @@ import jgame.platform.*;
 public class TileMap
 {
 	private JGEngine game;
+
 	public TileMap(JGEngine Game)
     {
         this.game = Game;
     }
-    public String[] getTiles(String fileName)
+
+	public String[] getTiles(String fileName)
 	{
 		// Read File
-		int h=0;
+		int h = 0;
 		List<String> lineList = new ArrayList<String>();
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
 			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+
 			String line;
 			boolean blockStarted = false;
-			while( ( line = br.readLine() ) != null ){
+			while((line = br.readLine()) != null)
+			{
 				if(blockStarted)
 				{
-					lineList.add( line );
+					lineList.add(line);
 				}
 				if(line.contains("[MAP]"))
 				{
@@ -42,7 +46,7 @@ public class TileMap
 				}
 			}
 		}
-		catch( IOException e )
+		catch(IOException e)
 		{	// Fileread error
 			e.printStackTrace();
 		}
@@ -52,15 +56,14 @@ public class TileMap
 			{
 				br.close();
 			}
-			catch( IOException ex )
+			catch(IOException ex)
 			{
 				ex.printStackTrace();
 			}
 		}
-		String[] lines = new String[ lineList.size() ];
-		lineList.toArray( lines );
+		String[] lines = new String[lineList.size()];
+		lineList.toArray(lines);
 		// Return TileMap
 		return lines;
-		
-    }
+	}
 }
