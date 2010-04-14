@@ -290,6 +290,30 @@ public class Game extends JGEngine
 
 	}
 
+	// InGame
+	public void startInGame()
+	{
+		objLevels.startLevel();
+	}
+
+	public void doFrameInGame()
+	{
+		if(getKey(KeyRight))
+		{
+			clearKey(KeyRight);
+			objLevels.changeLevel(1);
+		}
+		if(getKey(KeyLeft))
+		{
+			clearKey(KeyLeft);
+			objLevels.changeLevel(-1);
+		}
+	}
+
+	public void paintframeInGame(){
+
+	}
+
 	// Player Select Methods
 	// Global Method(s)
 	public int nextState(int counter, ArrayList<String> states)
