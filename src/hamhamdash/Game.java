@@ -48,6 +48,8 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
+
+
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
@@ -64,7 +66,6 @@ public class Game extends JGEngine
 	public void doFrame()
 	{
 //		moveObjects(null, 0);
-
 		if(!(states.get(stateCounter).equals("InGame")))
 		{
 			if(getKey(KeyEnter))
@@ -96,6 +97,7 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
+			drawImage(0, 0, "menus_bg");
 			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
 			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
 		}
@@ -130,6 +132,7 @@ public class Game extends JGEngine
 		psPoint = new JGPoint(pfWidth() / 2, 100);
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
+
 	}
 
 	public void doFramePlayerSelect()
