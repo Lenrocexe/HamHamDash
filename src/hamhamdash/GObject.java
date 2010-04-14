@@ -8,6 +8,8 @@ import jgame.*;
  */
 public abstract class GObject extends JGObject
 {
+	private boolean pickable, pushable, falling;
+	private Game game;
 	/**
 	 *
 	 * @param name The object name
@@ -23,11 +25,88 @@ public abstract class GObject extends JGObject
     }
 
 	@Override
-	public abstract void move();
+	public void move()
+	{
+		String tile = getTileBelow(this);
+		if (tile == ".")
+		{
+				moveDown();
+		}
+		if (tile == "R" || "D" || "X" || "#")
+		{
+			tile = getTileBelowLeft(this);
+			if (tile == ".")
+			{
+				for (int i = 0; i <= 19; i++)
+				{
+					xspeed = -2;
+				}
+				stopFalling();
+				
+				for (int i = 0; i <= 19; i++)
+				{
+					yspeed = 2;
+					
+				}
+				
+				stopFalling();
+					
+			}
+			if (tile == "R" || "D" || "X" || "#")
+			{
+				tile = getTileBelowRight(this);
+				if (tile == ".")
+				{
+					for (int i = 0; i <= 19; i++)
+					{
+						xspeed = 2;
+					}
+					stopFalling();
+				    moveDown();
+				}
+				if (tile == "R" || "D" || "X" || "#")
+				{
+						return;
+				}
+			}
+		}
+	}
+	
+	/* 	muur = X
+		grond = #
+		leeg = .
+	 */
 
 	@Override
 	public abstract void hit_bg(int tilecid);
 
 	@Override
 	public abstract void hit(JGObject obj);
+	
+	public void setPickable(boolean p)
+	{
+		pickable = p;
+	}
+	public void setPushable(boolean p)
+	{
+		pushable = p;
+	}
+	public void setFalling (boolean f)
+	{
+		falling = f;
+	}
+	
+	public void moveDown()
+	{
+		for (int i = 0; i <= 19; i++)
+		{
+			yspeed = 2;	
+		}
+		stopFalling();
+	}
+	public boolean isFalling()
+	{
+		return falling;
+	}
+	
 }
