@@ -34,10 +34,10 @@ public abstract class GObject extends JGObject
 //		{
 //			moveDown();
 //		}
-//		if(tile.contains("R") ||
-//			tile.contains("D") ||
-//			tile.contains("X") ||
-//			tile.contains("#"))
+//		else if(tile.contains("R") ||
+//				tile.contains("D") ||
+//				tile.contains("X") ||
+//				tile.contains("#"))
 //		{
 //			tile = getTileBelowLeft(this);
 //			if(tile.contains("."))
@@ -47,20 +47,13 @@ public abstract class GObject extends JGObject
 //					xspeed = -2;
 //				}
 //				stopFalling();
-//
-//				for(int i = 0; i <= 19; i++)
-//				{
-//					yspeed = 2;
-//
-//				}
-//
-//				stopFalling();
+//				moveDown();
 //
 //			}
-//			if(tile.contains("R") ||
-//				tile.contains("D") ||
-//				tile.contains("X") ||
-//				tile.contains("#"))
+//			else if(tile.contains("R") ||
+//					tile.contains("D") ||
+//					tile.contains("X") ||
+//					tile.contains("#"))
 //			{
 //				tile = getTileBelowRight(this);
 //				if(tile.contains("."))
@@ -72,10 +65,10 @@ public abstract class GObject extends JGObject
 //					stopFalling();
 //					moveDown();
 //				}
-//				if(tile.contains("R") ||
-//					tile.contains("D") ||
-//					tile.contains("X") ||
-//					tile.contains("#"))
+//				else if(tile.contains("R") ||
+//						tile.contains("D") ||
+//						tile.contains("X") ||
+//						tile.contains("#"))
 //				{
 //					return;
 //				}
@@ -104,17 +97,34 @@ public abstract class GObject extends JGObject
 		falling = f;
 	}
 
+	/**
+	 * Moves the object 1 tile (exactly 40 pixels) down
+	 */
 	public void moveDown()
 	{
 		for(int i = 0; i <= 19; i++)
 		{
 			yspeed = 2;
 		}
-		//stopFalling();
+		stopFalling();
 	}
 
 	public boolean isFalling()
 	{
 		return falling;
+	}
+
+	/**
+	 * Prepares the object to fall
+	 */
+	public void startFalling()
+	{
+	}
+
+	/**
+	 * Stops the current object
+	 */
+	public void stopFalling()
+	{
 	}
 }
