@@ -78,7 +78,7 @@ public class Game extends JGEngine
 
 		// DBG MSG's
 		dbgPrint("" + playerAmount);
-
+		dbgPrint("" + loadGame);
 
 	}
 
@@ -259,27 +259,18 @@ public class Game extends JGEngine
 	public void startEnterPwd()
 	{
 	
-		if(loadGame == true)
-		{
+
 			epButtonWidth = 70;
 			epButtonHeight = psButtonWidth;
 			epPoint = psPoint;
 			loadGame = false;						// by default 'New Game' is selected
 			newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 			loadGameButtonBG = JGColor.white;		// 'Load Game' is not
-		}
-		else
-		{
-			nextState(stateCounter, states);
-		}
+
 	}
 
 	public void doFrameEnterPwd()
 	{
-
-
-		if(loadGame == true)
-		{
 
 			if(getKey(KeyLeft) || getKey(KeyUp))
 			{
@@ -295,14 +286,12 @@ public class Game extends JGEngine
 				clearKey(KeyDown);
 				toggleStartGame();
 			}
-		}
+		
 
 	}
 
 	public void paintFrameEnterPwd()
 	{
-		if(loadGame == true)
-		{
 
 			drawString("Enter Password", epPoint.x, epPoint.y, 0);
 			drawString("_ _ _", epPoint.x, epPoint.y + 20, 0);
@@ -310,7 +299,7 @@ public class Game extends JGEngine
 //			new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
 //			setColor(loadGameButtonBG);
 //			new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
-		}
+		
 	}
 
 
@@ -321,24 +310,65 @@ public class Game extends JGEngine
 
 
 	// Global Method(s)
-	public int nextState(int counter, ArrayList<String> frames)
+	public int nextState(int counter, ArrayList<String> states)
 	{
-		if(counter < frames.size()-1 )
+
+
+		if(loadGame)
+		{
+
+			counter +=2;
+
+			setGameState(states.get(counter));
+
+			return counter;
+		}
+
+
+		if(counter < states.size()-1 )
 		{
 			counter++;
+
+
+
 		}
-		setGameState(frames.get(counter));
+
+
+		
+		System.out.println(states.get(counter));
+		setGameState(states.get(counter));
+
+
 		return counter;
 	}
 	
-	public int prevState(int counter, ArrayList<String> frames)
+	public int prevState(int counter, ArrayList<String> states)
 	{
-		if(counter > 0)
-		{
-			counter--;
-		}
-		setGameState(frames.get(counter));
-		return counter;
+
+		
+			if(loadGame)
+			{
+
+				counter -=2;
+
+				setGameState(states.get(counter));
+
+				return counter;
+			}
+
+
+			if(counter > 0 )
+			{
+				counter--;
+
+
+
+			}
+			
+			setGameState(states.get(counter));
+
+			return counter;
+
 	}
 
 	// Getter(s) & Setter(s)
