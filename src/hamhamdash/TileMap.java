@@ -16,7 +16,7 @@ public class TileMap
     {
         this.game = Game;
     }
-    public void paintTiles()
+    public String[] getTiles(int levelId)
 	{
 		// Read File
 		int h=0;
@@ -24,10 +24,23 @@ public class TileMap
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/level"+Game.currentLevelId+".hlf")));
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/level"+levelId+".hlf")));
 			String line;
-			while( ( line = br.readLine() ) != null )
-			lineList.add( line );
+			boolean blockStarted = false;
+			while( ( line = br.readLine() ) != null ){
+				if(blockStarted)
+				{
+					lineList.add( line );
+				}
+				if(line.contains("[MAP]"))
+				{
+					blockStarted = true;
+				}
+				else if(line.contains("[/MAP]"))
+				{
+					blockStarted = false;
+				}
+			}
 		}
 		catch( IOException e )
 		{	// Fileread error
@@ -46,15 +59,8 @@ public class TileMap
 		}
 		String[] lines = new String[ lineList.size() ];
 		lineList.toArray( lines );
-		// Paint the tiles on the Game panel
-		game.setTiles(0,0,lines);
+		// Return TileMap
+		return lines;
+		
     }
-    public void digTile()
-	{	// Convert a ground tile to an empty tile
-		game.setTile(1,1,".");
-    }
-	public void explodeTile()
-	{	// Convert any tile to an empty tile
-		game.setTile(1,2,".");
-	}
 }

@@ -53,6 +53,7 @@ public class Game extends JGEngine
 		dbgShowGameState(true);
 
 		objLevels = new Levels(this);
+		objLevels.loadLevels();
 
 		// Start with the title screen
 		setGameState("Title");
@@ -293,7 +294,7 @@ public class Game extends JGEngine
 	// InGame
 	public void startInGame()
 	{
-		objLevels.startLevel();
+		//objLevels.startLevel(currentLevelId);
 	}
 
 	public void doFrameInGame()
