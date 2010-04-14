@@ -28,24 +28,13 @@ public class Levels
 		int i;
 		for(i=0; i < levels.length; i++)
 		{
-			arrLevels[i] = new Level(game,i,levels[i]);
-			/*int search = Arrays.binarySearch(levels, "level"+findLevel+".hlf");
-			if(search >= 0)
-			{
-				System.out.println("newlevelid: "+newLevelId);
-				//arrLevels[newLevelId] = new Level(game, i, "level"+findLevel+".hlf");
-				Level tmpObjLevel = new Level(game,1,"level"+findLevel+".hlf");
-				//arrLevels.add(tmpObjLevel);
-				newLevelId++;
-			}
-			findLevel++;*/
+			Level tmpLevel = new Level(game,i,levels[i]);
+			arrLevels[i] = tmpLevel;
 		}
-
 	}
 	public void startLevel()
 	{
-		//arrLevels[currentLevelId].runLevel();
-		//System.out.println(arrLevels[currentLevelId-1]);
+		arrLevels[currentLevelId].runLevel();
 	}
     public void changeLevel(int direction)
 	{

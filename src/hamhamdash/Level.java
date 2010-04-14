@@ -3,7 +3,7 @@ package hamhamdash;
 import java.io.*;
 import java.util.*;
 import jgame.platform.*;
-import java.net.URL;
+
 
 
 /**
@@ -14,7 +14,7 @@ public class Level
 {
     private JGEngine game;
 	private TileMap objTileMap;
-	private Properties settings;
+	private Properties settings = new Properties();
 	private String[] tileMap;
 	private String fileName;
 	public int levelId;
@@ -24,7 +24,7 @@ public class Level
 		this.game = Game;
 		this.levelId = levelId;
 		this.fileName = fileName;
-		//loadSettings();
+		loadSettings();
     }
 	
     public void runLevel(){
@@ -39,11 +39,8 @@ public class Level
         InputStream in = this.getClass().getResourceAsStream("levels/level1.hlf");
 		try
 		{
-			System.out.println(in);
-			in.read();
-			BufferedReader test = new BufferedReader(new InputStreamReader(in));
-			System.out.println(test.readLine());
-			settings.load(test);
+			BufferedReader readSettings = new BufferedReader(new InputStreamReader(in));
+			settings.load(readSettings);
 		}
 		catch (IOException ex)
 		{
