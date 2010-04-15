@@ -51,17 +51,14 @@ public class Level
 
 	public void insertDiamondRock()
 	{
-
 		int i;
 		for(i=0;i<arrDiamondRock.size();i++)
 		{
 			int type = arrDiamondRock.get(i)[0];
 			int x = arrDiamondRock.get(i)[1];
 			int y = arrDiamondRock.get(i)[2];
-			System.out.println("Type"+type+": "+x+"+"+y);
 			game.setTile(x,y,"."); // Clear background tiles
 		}
-
 	}
 
 	private void loadSettings()
