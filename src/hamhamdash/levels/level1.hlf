@@ -8,19 +8,13 @@ endposy=8
 
 [MAP]
 XXXXXXXXXX
-X.#######X
-X.#######X
-X.#######X
-X....####X
-X###..###X
-X####....X
-X#######.X
-X........X
+X.##RR##DX
+X###DD###X
+X###DD###X
+X########X
+X##DDDD##X
+X####DDDDX
+X1..#####X
+X...#####X
 XXXXXXXXXX
 [/MAP]
-
-[ENEMY]
-type=1
-startposx=5
-startposy=1
-[/ENEMY]
