@@ -58,6 +58,7 @@ hrundown	hrundown1;hrundown2;hrundown3;hrundown4	0.09	false
 hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4	0.09	false
 hrunright	hrunright1;hrunright2;hrunright3;hrunright4	0.09	false
 
+
 // Tiles
 // (Same as sprites)
 emptytile	.	0	resources/sprites/emptytile.png	-
