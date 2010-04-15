@@ -114,7 +114,7 @@ public class Game extends JGEngine
 
 	public void paintFrameTitle()
 	{
-		drawImage(0, 0, "title_bg");
+		//drawImage(0, 0, "title_bg");
 		drawString("Press <ENTER> to continue", pfWidth() / 2, pfHeight() - 50, 0);
 	}
 
