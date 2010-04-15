@@ -8,10 +8,10 @@ import jgame.*;
  */
 public class Rock extends GObject
 {
-    public Rock(String name, boolean unique, int x, int y, int cid, String sprite)
-    {
-        super(name, unique, x, y, cid, sprite);
-    }
+	public Rock(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
+	{
+		super(name, unique, x, y, cid, sprite, game);
+	}
 
 	@Override
 	public void move(){};

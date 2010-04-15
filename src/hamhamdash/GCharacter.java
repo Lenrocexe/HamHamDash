@@ -13,10 +13,21 @@ public abstract class GCharacter extends JGObject
 	private MoveDirection direction;
 	public static Boolean moveUp = false, moveDown = false,
 			moveLeft = false, moveRight = false;
+	public Game game = null;
 
-	public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite)
+	/**
+	 *
+	 * @param name The object name
+	 * @param unique Set false if multiple chracters with the same name can exist (Like common enemies)
+	 * @param x Starting X position
+	 * @param y Starting Y position
+	 * @param cid The collision ID
+	 * @param sprite which sprite(animation) to use from the datasheet
+	 */
+	public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
 	{
 		super(name, unique, x, y, cid, sprite);
+		this.game = game;
 	}
 
 	public Boolean isWalking()

@@ -9,12 +9,17 @@ import jgame.platform.*;
  */
 public class PlayerCharacter extends GCharacter
 {
-	private JGEngine game;
+	//private JGEngine game;
 	//private GCharacter GCharacter;
 
-	public PlayerCharacter(int x, int y)
+	/**
+	 *
+	 * @param x Starting x position
+	 * @param y Starting y position
+	 */
+	public PlayerCharacter(int x, int y, Game game)
 	{
-		super("player", true, x, y, 1, "hidle");
+		super("player", true, x, y, 1, "hidle", game);
 	}
 
 	@Override
