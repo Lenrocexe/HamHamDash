@@ -42,11 +42,7 @@ public abstract class GObject extends JGObject
 //			tile = getTileBelowLeft(this);
 //			if(tile.contains("."))
 //			{
-//				for(int i = 0; i <= 19; i++)
-//				{
-//					xspeed = -2;
-//				}
-//				stopFalling();
+//				moveLeft();
 //				moveDown();
 //
 //			}
@@ -58,11 +54,7 @@ public abstract class GObject extends JGObject
 //				tile = getTileBelowRight(this);
 //				if(tile.contains("."))
 //				{
-//					for(int i = 0; i <= 19; i++)
-//					{
-//						xspeed = 2;
-//					}
-//					stopFalling();
+//					moveRight();
 //					moveDown();
 //				}
 //				else if(tile.contains("R") ||
@@ -97,18 +89,6 @@ public abstract class GObject extends JGObject
 		falling = f;
 	}
 
-	/**
-	 * Moves the object 1 tile (exactly 40 pixels) down
-	 */
-	public void moveDown()
-	{
-		for(int i = 0; i <= 19; i++)
-		{
-			yspeed = 2;
-		}
-		stopFalling();
-	}
-
 	public boolean isFalling()
 	{
 		return falling;
@@ -119,6 +99,7 @@ public abstract class GObject extends JGObject
 	 */
 	public void startFalling()
 	{
+		falling = true;
 	}
 
 	/**
@@ -126,5 +107,38 @@ public abstract class GObject extends JGObject
 	 */
 	public void stopFalling()
 	{
+		yspeed = 0;
+		xspeed = 0;
+		falling = false;
+	}
+
+	/**
+	 * Moves the object 1 tile (exactly 40 pixels) down
+	 */
+	public void moveDown()
+	{
+		for (int i = 0; i <= 19; i++)
+		{
+			yspeed = 2;
+		}
+		stopFalling();
+	}
+
+	public void moveLeft()
+	{
+		for (int i = 0; i <= 19; i++)
+		{
+			xspeed = -2;
+		}
+		stopFalling();
+	}
+
+	public void moveRight()
+	{
+		for (int i = 0; i <= 19; i++)
+		{
+			xspeed = 2;
+		}
+		stopFalling();
 	}
 }
