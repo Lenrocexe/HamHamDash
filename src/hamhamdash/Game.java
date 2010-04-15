@@ -79,8 +79,11 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-//		moveObjects(null, 0);
-		if(!(states.get(stateCounter).equals("InGame")))
+		if(states.get(stateCounter).equals("InGame"))
+		{
+//			moveObjects(null, 0);
+		}
+		else
 		{
 			if(getKey(KeyEnter))
 			{
@@ -100,9 +103,11 @@ public class Game extends JGEngine
 		{
 			dbgPrint("PlayerAmount = " + playerAmount);
 			dbgPrint("LoadGame = " + loadGame);
+
 			String pressedKey = getKeyDesc(getLastKey());
 			dbgPrint(pressedKey + " was pressed");
 			dbgPrint("Password = " + passString);
+
 			dbgPrint(selectedPos + "" );
 			dbgPrint(goodNumbers[Integer.parseInt(passPosList[selectedPos])]);
 			dbgPrint(passPosList[selectedPos] + "");
