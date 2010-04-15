@@ -6,8 +6,8 @@ package hamhamdash;
  */
 public class ExitTile extends Tile
 {
-    public ExitTile(int x, int y)
-    {
-        super(x, y, "O");
-    }
+	public ExitTile(int x, int y)
+	{
+		super(x, y, "O");
+	}
 }

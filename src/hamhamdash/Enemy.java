@@ -15,11 +15,10 @@ public class Enemy extends GCharacter
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public Enemy(String spat, int x, int y)
+		public Enemy(String name, int x, int y, Game game)
 	{
-		super(spat, false, x, y, 1, spat + "Idle");
-		this.type = spat;
-
+		super(name, false, x, y, 1, name + "Idle", game);
+		this.type = name;
 	}
 
 	@Override
@@ -125,8 +124,12 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
+//	if (nextToPlayer)
+//	{
+//		life = --
+//	}
 
-	if(!and(checkBGCollision(-xspeed, yspeed), 3))
+	/*else*/ if(!and(checkBGCollision(-xspeed, yspeed), 3))
 	{
 		xspeed = -xspeed;
 	}
@@ -147,9 +150,11 @@ public class Enemy extends GCharacter
 	{
 		if (checkCollision(1,xspeed,yspeed)==0)
 		{
-			// reverse direction
-			xspeed = -xspeed;
-			yspeed = -yspeed;
+			
+//			xspeed = turnLeft;
+//			yspeed = turnLeft;
+//			-xspeed = turnleft;
+//			-yspeed = turnLeft;
 		}
 	}
 

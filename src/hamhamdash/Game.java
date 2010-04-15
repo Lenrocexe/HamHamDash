@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import java.io.*;
+import java.util.*;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import jgame.*;
@@ -18,9 +20,8 @@ public class Game extends JGEngine
 	private ArrayList<String> states = new ArrayList<String>();
 	private JTextField passTfield;
 	private Levels objLevels;
-	static int currentLevelId = 1;
 	private String passString;
-
+	private boolean debug = true;
 
 	public Game(JGPoint dimension)
 	{
@@ -48,11 +49,15 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
-		dbgShowBoundingBox(true);
-		dbgShowGameState(true);
-
+		// Create Levels object
 		objLevels = new Levels(this);
 
+		if(debug)
+		{
+			dbgShowBoundingBox(true);
+			dbgShowGameState(true);
+		}
+		
 		// Start with the title screen
 		setGameState("Title");
 	}
@@ -61,42 +66,41 @@ public class Game extends JGEngine
 	public void doFrame()
 	{
 //		moveObjects(null, 0);
-
 		if(!(states.get(stateCounter).equals("InGame")))
 		{
-			if (getKey(KeyEnter))
+			if(getKey(KeyEnter))
 			{
 				// next step is player selection
 				clearKey(KeyEnter);
 				stateCounter = nextState(stateCounter, states);
 			}
-			if (getKey(KeyEsc))
+			if(getKey(KeyEsc))
 			{
 				clearKey(KeyEsc);
 				stateCounter = prevState(stateCounter, states);
 			}
 		}
-		
-		// DBG MSG's
-		dbgPrint("PlayerAmount = " + playerAmount);
-		dbgPrint("LoadGame = " + loadGame);
-		String pressedKey = getKeyDesc(getLastKey());
-		dbgPrint(pressedKey + " was pressed");
-		dbgPrint("Password = " + passString);
 
+		// DBG MSG's
+		if(debug)
+		{
+			dbgPrint("PlayerAmount = " + playerAmount);
+			dbgPrint("LoadGame = " + loadGame);
+			String pressedKey = getKeyDesc(getLastKey());
+			dbgPrint(pressedKey + " was pressed");
+			dbgPrint("Password = " + passString);
+		}
 	}
 
 	@Override
 	public void paintFrame()
 	{
-
-//		drawString("TOP LEFT", 0, 8, -1, true);
-//		drawString("BOTTOM LEFT", 0, pfHeight() - 20, -1, true);
-//		drawString("TOP RIGHT", pfWidth(), 8, 1, true);
-//		drawString("BOTTOM RIGHT", pfWidth(), pfHeight() - 20, 1, true);
-		drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
-		drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
-
+		if(debug)
+		{
+			//drawImage(0, 0, "menus_bg");
+			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
+			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
+		}
 	}
 
 	/* Title Screen */
@@ -128,17 +132,18 @@ public class Game extends JGEngine
 		psPoint = new JGPoint(pfWidth() / 2, 100);
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
+
 	}
 
 	public void doFramePlayerSelect()
 	{
-		if (getKey(KeyLeft) || getKey(KeyUp))
+		if(getKey(KeyLeft) || getKey(KeyUp))
 		{
 			clearKey(KeyLeft);
 			clearKey(KeyUp);
 			togglePlayerSelect();
 		}
-		if (getKey(KeyRight) || getKey(KeyDown))
+		if(getKey(KeyRight) || getKey(KeyDown))
 		{
 			clearKey(KeyRight);
 			clearKey(KeyDown);
@@ -160,12 +165,13 @@ public class Game extends JGEngine
 	public void togglePlayerSelect()
 	{
 
-		if (playerAmount == 1)
+		if(playerAmount == 1)
 		{
 			playerOneButtonBG = JGColor.white;
 			playerTwoButtonBG = JGColor.red;
 			playerAmount = 2;
-		} else if (playerAmount == 2)
+		}
+		else if(playerAmount == 2)
 		{
 			playerOneButtonBG = JGColor.red;
 			playerTwoButtonBG = JGColor.white;
@@ -187,18 +193,20 @@ public class Game extends JGEngine
 		sgPoint = psPoint;
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+
+
 	}
 
 	public void doFrameStartGame()
 	{
-		if (getKey(KeyLeft) || getKey(KeyUp))
+		if(getKey(KeyLeft) || getKey(KeyUp))
 		{
 			clearKey(KeyLeft);
 			clearKey(KeyUp);
 			toggleLoadGame();
 		}
 
-		if (getKey(KeyRight) || getKey(KeyDown))
+		if(getKey(KeyRight) || getKey(KeyDown))
 		{
 			clearKey(KeyRight);
 			clearKey(KeyDown);
@@ -218,12 +226,13 @@ public class Game extends JGEngine
 	// Player Select Methods
 	public void toggleLoadGame()
 	{
-		if (loadGame)
+		if(loadGame)
 		{
 			newGameButtonBG = JGColor.red;
 			loadGameButtonBG = JGColor.white;
 			loadGame = false;
-		} else
+		}
+		else
 		{
 			newGameButtonBG = JGColor.white;
 			loadGameButtonBG = JGColor.red;
@@ -236,7 +245,10 @@ public class Game extends JGEngine
 	private int epButtonWidth, epButtonHeight;
 	private JGPoint epPoint;
 	// Array with correct password chars
-	private String[] goodNumbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	private String[] goodNumbers =
+	{
+		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+	};
 	// 1 var for each password position, these vars will combine to be the passString
 	private ArrayList<String> passPosList;
 	private String passPos1;
@@ -270,7 +282,7 @@ public class Game extends JGEngine
 
 	public void doFrameEnterPwd()
 	{
-		if (getKey(KeyLeft))
+		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
 			if(selectedPos > 0)
@@ -278,13 +290,11 @@ public class Game extends JGEngine
 				selectedPos--;
 			}
 		}
-
-		if (getKey(KeyUp))
+		if(getKey(KeyUp))
 		{
 			clearKey(KeyLeft);
 		}
-
-		if (getKey(KeyRight))
+		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
 			if(selectedPos < passPosList.size() - 1)
@@ -292,12 +302,10 @@ public class Game extends JGEngine
 				selectedPos++;
 			}
 		}
-
-		if (getKey(KeyDown))
+		if(getKey(KeyDown))
 		{
 			clearKey(KeyDown);
 		}
-
 	}
 
 	public void paintFrameEnterPwd()
@@ -319,13 +327,11 @@ public class Game extends JGEngine
 			drawString(passPosList.get(i), epPoint.x + (i * ppWidth) - (((passPosList.size() - 1) * ppWidth) / 2), epPoint.y + 20, 1);
 		}
 
-
 //		setColor(newGameButtonBG);
 //		new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
 //		setColor(loadGameButtonBG);
 //		new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
 	}
-
 
 	// InGame
 	public void startInGame()
@@ -338,25 +344,23 @@ public class Game extends JGEngine
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			objLevels.changeLevel(1);
+			objLevels.nextLevel();
 		}
 		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
-			objLevels.changeLevel(-1);
+			objLevels.prevLevel();
 		}
 	}
 
 	public void paintframeInGame()
 	{
-
 	}
 
 	// EnterPwd Methods
 	public boolean checkPasswordString(String passString)
 	{
 		String lvlPass = "98567";
-
 		if(lvlPass.equals(passString))
 		{
 			return true;
@@ -365,43 +369,34 @@ public class Game extends JGEngine
 		{
 			return false;
 		}
-
-
 	}
 
 	// Global Method(s)
 	public int nextState(int counter, ArrayList<String> states)
 	{
-		if (counter < states.size() - 1)
+		if(counter < states.size() - 1)
 		{
 			counter++;
 		}
-
 		if(states.get(counter).equals("EnterPwd") && !loadGame)
 		{
 			counter++;
 		}
-
 		setGameState(states.get(counter));
-
 		return counter;
 	}
 
 	public int prevState(int counter, ArrayList<String> states)
 	{
-
-		if (counter > 0)
+		if(counter > 0)
 		{
 			counter--;
 		}
-
 		if(states.get(counter).equals("EnterPwd") && !loadGame)
 		{
 			counter--;
 		}
-
 		setGameState(states.get(counter));
-
 		return counter;
 	}
 
@@ -420,5 +415,4 @@ public class Game extends JGEngine
 	{
 		return 400;
 	}
-
 }

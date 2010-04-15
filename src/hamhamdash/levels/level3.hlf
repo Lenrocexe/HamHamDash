@@ -1,3 +1,12 @@
+[CONFIG]
+password=1234
+startposx=1
+startposy=1
+endposx=8
+endposy=8
+[/CONFIG]
+
+[MAP]
 XXXXXXXXXX
 X########X
 X########X
@@ -8,3 +17,10 @@ X#..##..#X
 X.######.X
 X########X
 XXXXXXXXXX
+[/MAP]
+
+[ENEMY]
+type=1
+startposx=5
+startposy=1
+[/ENEMY]
