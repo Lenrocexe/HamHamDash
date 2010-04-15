@@ -23,6 +23,10 @@ public class Game extends JGEngine
 	private String passString;
 	private boolean debug = true;
 
+//***************************************
+// Start Game initialization
+//***************************************
+
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
@@ -62,11 +66,24 @@ public class Game extends JGEngine
 		setGameState("Title");
 	}
 
+//***************************************
+// End Game initialization
+//***************************************
+
+
+
+//***************************************
+// Start default loop
+//***************************************
+
 	@Override
 	public void doFrame()
 	{
-//		moveObjects(null, 0);
-		if(!(states.get(stateCounter).equals("InGame")))
+		if(states.get(stateCounter).equals("InGame"))
+		{
+//			moveObjects(null, 0);
+		}
+		else
 		{
 			if(getKey(KeyEnter))
 			{
@@ -86,9 +103,15 @@ public class Game extends JGEngine
 		{
 			dbgPrint("PlayerAmount = " + playerAmount);
 			dbgPrint("LoadGame = " + loadGame);
+
 			String pressedKey = getKeyDesc(getLastKey());
 			dbgPrint(pressedKey + " was pressed");
 			dbgPrint("Password = " + passString);
+
+			dbgPrint(selectedPos + "" );
+			dbgPrint(goodNumbers[Integer.parseInt(passPosList[selectedPos])]);
+			dbgPrint(passPosList[selectedPos] + "");
+			dbgPrint(selectedNum + "");
 		}
 	}
 
@@ -97,13 +120,25 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			//drawImage(0, 0, "menus_bg");
-			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
-			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
+			if(!(states.get(stateCounter).equals("InGame")))
+			{
+				drawImage(0, 0, "menu_bg");
+				drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
+				drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
+			}
 		}
 	}
 
-	/* Title Screen */
+//***************************************
+// End default loop
+//***************************************
+
+
+
+//***************************************
+// Start Game State Title
+//***************************************
+
 	public void startTitle()
 	{
 	}
@@ -118,21 +153,28 @@ public class Game extends JGEngine
 		drawString("Press <ENTER> to continue", pfWidth() / 2, pfHeight() - 50, 0);
 	}
 
-	/* Player Select */
+//***************************************
+// End Game State Title
+//***************************************
+
+
+
+//***************************************
+// Start Game State Player Select
+//***************************************
+
 	// Define ps(Player Select) vars
 	private int psButtonWidth;
 	private JGPoint psPoint;
 	private JGColor playerOneButtonBG;
 	private JGColor playerTwoButtonBG;
 
-	// Player Select Main Methods
 	public void startPlayerSelect()
 	{
 		psButtonWidth = 30;
 		psPoint = new JGPoint(pfWidth() / 2, 100);
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
-
 	}
 
 	public void doFramePlayerSelect()
@@ -158,10 +200,8 @@ public class Game extends JGEngine
 		new HamButton(this, "1P", psPoint.x, psPoint.y + psButtonWidth, psButtonWidth, psButtonWidth, JGColor.black);
 		setColor(playerTwoButtonBG);
 		new HamButton(this, "2P", psPoint.x, psPoint.y + (psButtonWidth * 2), psButtonWidth, psButtonWidth, JGColor.black);
-
 	}
 
-	// Player Select Methods
 	public void togglePlayerSelect()
 	{
 
@@ -179,7 +219,16 @@ public class Game extends JGEngine
 		}
 	}
 
-	/* Start Game */
+//***************************************
+// End Game State Player Select
+//***************************************
+
+
+
+//***************************************
+// Start Game State Start Game
+//***************************************
+
 	// Define sg (Start Game) vars
 	private int sgButtonWidth, sgButtonHeight;
 	private JGPoint sgPoint;
@@ -193,8 +242,6 @@ public class Game extends JGEngine
 		sgPoint = psPoint;
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
-
-
 	}
 
 	public void doFrameStartGame()
@@ -240,7 +287,16 @@ public class Game extends JGEngine
 		}
 	}
 
-	/* Enter Pwd*/
+//***************************************
+// End Game State Start Game
+//***************************************
+
+
+
+//***************************************
+// Start Game State Enter Password
+//***************************************
+
 	// Define ep (Enter Pwd) vars
 	private int epButtonWidth, epButtonHeight;
 	private JGPoint epPoint;
@@ -250,17 +306,11 @@ public class Game extends JGEngine
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 	};
 	// 1 var for each password position, these vars will combine to be the passString
-	private ArrayList<String> passPosList;
-	private String passPos1;
-	private String passPos2;
-	private String passPos3;
-	private String passPos4;
-	private String passPos5;
-	private String passPos6;
+	private String[] passPosList;
 	// pp (passPos) draw attributes
 	private int ppWidth = 10;
 	private int ppHeight = 10;
-	private int selectedPos;
+	private int selectedPos, selectedNum;
 	private JGColor selectedPosColor = JGColor.red;
 
 	public void startEnterPwd()
@@ -271,17 +321,20 @@ public class Game extends JGEngine
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
 		selectedPos = 0;
-		passPosList = new ArrayList<String>();
-		passPosList.add(passPos1 = goodNumbers[0]);
-		passPosList.add(passPos2 = goodNumbers[0]);
-		passPosList.add(passPos3 = goodNumbers[0]);
-		passPosList.add(passPos4 = goodNumbers[0]);
-		passPosList.add(passPos5 = goodNumbers[0]);
-		passPosList.add(passPos6 = goodNumbers[0]);
+		selectedNum = 0;
+		passPosList = new String[6];
+		passPosList[0] = goodNumbers[0];
+		passPosList[1] = goodNumbers[0];
+		passPosList[2] = goodNumbers[0];
+		passPosList[3] = goodNumbers[0];
+		passPosList[4] = goodNumbers[0];
+		passPosList[5] = goodNumbers[0];
 	}
 
 	public void doFrameEnterPwd()
 	{
+//		voegen in de array!!!!
+		selectedNum = Integer.parseInt(passPosList[selectedPos]);
 		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
@@ -292,12 +345,18 @@ public class Game extends JGEngine
 		}
 		if(getKey(KeyUp))
 		{
-			clearKey(KeyLeft);
+			clearKey(KeyUp);
+			if(selectedNum < goodNumbers.length - 1)
+			{
+				selectedNum++;
+			}
+			passPosList[selectedPos] = goodNumbers[selectedNum];
+			
 		}
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			if(selectedPos < passPosList.size() - 1)
+			if(selectedPos < passPosList.length - 1)
 			{
 				selectedPos++;
 			}
@@ -305,16 +364,20 @@ public class Game extends JGEngine
 		if(getKey(KeyDown))
 		{
 			clearKey(KeyDown);
+			if(selectedNum > 0)
+			{
+				selectedNum--;
+			}
+			passPosList[selectedPos] = goodNumbers[selectedNum];
 		}
 	}
 
 	public void paintFrameEnterPwd()
 	{
 		drawString("Enter Password", epPoint.x, epPoint.y, 0);
-//		drawString("_ _ _ _ _", epPoint.x, epPoint.y + 20, 0);
 
 		// Draw the individual passPos vars
-		for(int i = 0; i < passPosList.size(); i++)
+		for(int i = 0; i < passPosList.length; i++)
 		{
 			if(selectedPos == i)
 			{
@@ -324,14 +387,19 @@ public class Game extends JGEngine
 			{
 				setColor(JGColor.white);
 			}
-			drawString(passPosList.get(i), epPoint.x + (i * ppWidth) - (((passPosList.size() - 1) * ppWidth) / 2), epPoint.y + 20, 1);
+			drawString(passPosList[i], epPoint.x + (i * ppWidth) - (((passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
 		}
-
-//		setColor(newGameButtonBG);
-//		new HamButton(this,"New Game",epPoint.x, epPoint.y + epButtonHeight, epButtonWidth, epButtonHeight, JGColor.black);
-//		setColor(loadGameButtonBG);
-//		new HamButton(this,"Load Game",epPoint.x, epPoint.y + (epButtonHeight * 2), epButtonWidth, epButtonHeight, JGColor.black);
 	}
+
+//***************************************
+// End Game State Enter Password
+//***************************************
+
+
+
+//***************************************
+// Start Game State InGame
+//***************************************
 
 	// InGame
 	public void startInGame()
