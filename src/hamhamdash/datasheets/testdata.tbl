@@ -3,8 +3,8 @@
 splash_image	-	0	resources/sprites/splash.png	-
 
 // Define State Backgrounds
-title_bg	-	0	resources/sprites/menu.png	-
-menus_bg	-	0	resources/sprites/menu.png	-
+title_bg	-	0	resources/sprites/title.png	-
+menu_bg	-	0	resources/sprites/menu.png	-
 
 // Define animation sprite sheet.
 // sheetname;;location;;(0,0)-topleft coordinates;;(40,40)-spritesize;;(0,0)-pixels to skip
