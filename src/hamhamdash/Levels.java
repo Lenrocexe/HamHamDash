@@ -39,7 +39,7 @@ public class Levels
 		arrLevels[currentLevelId].runLevel();
 	}
 
-	public void startLevelPassword(String password)
+	public boolean checkPassword(String password)
 	{
 		int i;
 		for(i = 0; i < arrLevels.length; i++)
@@ -47,10 +47,10 @@ public class Levels
 			if(arrLevels[i].getPassword() == password)
 			{
 				currentLevelId = i;
-				startLevel();
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void nextLevel()
