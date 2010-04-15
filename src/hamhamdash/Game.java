@@ -101,9 +101,12 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			//drawImage(0, 0, "menus_bg");
-			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
-			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
+			if(!(states.get(stateCounter).equals("InGame")))
+			{
+				drawImage(0, 0, "menu_bg");
+				drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
+				drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
+			}
 		}
 	}
 
@@ -111,7 +114,7 @@ public class Game extends JGEngine
 	public void startTitle()
 	{
 	}
-Í
+
 	public void doFrameTitle()
 	{
 	}
