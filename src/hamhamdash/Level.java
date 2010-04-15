@@ -3,6 +3,7 @@ package hamhamdash;
 import java.io.*;
 import java.util.*;
 import jgame.platform.*;
+import jgame.JGRectangle.*;
 
 /**
  *
@@ -15,13 +16,16 @@ public class Level
 	private Properties settings = new Properties();
 	private String[] tileMap;
 	private String fileName;
-	private ArrayList arrEnemies = new ArrayList();
+	private ArrayList<int[]> arrEnemies = new ArrayList<int[]>();
+	private ArrayList<int[]> arrDiamondRock = new ArrayList<int[]>();
 
 	public Level(JGEngine Game, int levelId, String fileName)
 	{
 		this.game = Game;
 		this.fileName = fileName;
 		loadSettings();
+		loadEnemies();
+		loadDiamondStone();
 	}
 
 	public void runLevel()
@@ -30,14 +34,36 @@ public class Level
 		objTileMap = new TileMap(game);
 		tileMap = objTileMap.getTiles(fileName);
 		game.setTiles(0,0,tileMap);
-		loadEnemies();
+		insertEnemies();
+		insertDiamondRock();
     }
+
+	public void insertEnemies()
+	{
+		int i;
+		for(i=0;i<arrEnemies.size();i++)
+		{
+			int x = arrEnemies.get(i)[1];
+			int y = arrEnemies.get(i)[2];
+			game.setTile(x,y,"."); // Clear background tiles
+		}
+	}
+
+	public void insertDiamondRock()
+	{
+		int i;
+		for(i=0;i<arrDiamondRock.size();i++)
+		{
+			int type = arrDiamondRock.get(i)[0];
+			int x = arrDiamondRock.get(i)[1];
+			int y = arrDiamondRock.get(i)[2];
+			game.setTile(x,y,"."); // Clear background tiles
+		}
+	}
 
 	private void loadSettings()
 	{
-
 		InputStream readSettings = this.getClass().getResourceAsStream("levels/level1.hlf");
-
 		try
 		{
 			settings.load(readSettings);
@@ -63,39 +89,55 @@ public class Level
 	private void loadEnemies()
 	{
 		// Read File
-		int h=0;
-		List<String> lineList = new ArrayList<String>();
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
 			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+
 			String line;
-			int currentEnemy = 0;
-			Properties tempProperties = new Properties();
+			int y = 0;
 			boolean blockStarted = false;
-			while( ( line = br.readLine() ) != null ){
-				if(line.contains("[/ENEMY]") && blockStarted == true)
+			while((line = br.readLine()) != null)
+			{
+				if(line.contains("[/MAP]"))
 				{
 					blockStarted = false;
-					arrEnemies.add(tempProperties);
-					tempProperties.clear();
-					currentEnemy++;
 				}
-
 				if(blockStarted)
 				{
-					String key = line.split("=")[0];
-					String value = line.split("=")[1];
-					tempProperties.setProperty(key, value);
+					int x;
+					String[] chars = new String[line.split("").length];
+					chars = line.split("");
+					
+					for(x=0;x<line.split("").length;x++)
+					{
+						if(chars[x].matches("1"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 1;
+							pos[1] = x-1;
+							pos[2] = y;
+							arrEnemies.add(pos);
+						}
+						else if(chars[x].matches("2"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 2;
+							pos[1] = x-1;
+							pos[2] = y;
+							arrEnemies.add(pos);
+						}
+					}
 				}
-
-				if(line.contains("[ENEMY]"))
+				y++;
+				if(line.contains("[MAP]"))
 				{
 					blockStarted = true;
+					y = 0;
 				}
 			}
 		}
-		catch( IOException e )
+		catch(IOException e)
 		{	// Fileread error
 			e.printStackTrace();
 		}
@@ -105,17 +147,79 @@ public class Level
 			{
 				br.close();
 			}
-			catch( IOException ex )
+			catch(IOException ex)
 			{
 				ex.printStackTrace();
 			}
 		}
+	}
 
-		/*int i;
-		for(i=0;i<arrEnemies.size();i++)
+	private void loadDiamondStone()
+	{
+		// Read File
+		BufferedReader br = null;
+		try
+		{	// Put lines in ArrayList
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+
+			String line;
+			int y = 0;
+			boolean blockStarted = false;
+			while((line = br.readLine()) != null)
+			{
+				if(line.contains("[/MAP]"))
+				{
+					blockStarted = false;
+				}
+				if(blockStarted)
+				{
+					int x;
+					String[] chars = new String[line.split("").length];
+					chars = line.split("");
+
+					for(x=0;x<line.split("").length;x++)
+					{
+						if(chars[x].matches("D"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 1;
+							pos[1] = x-1;
+							pos[2] = y;
+							arrDiamondRock.add(pos);
+						}
+						else if(chars[x].matches("R"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 2;
+							pos[1] = x-1;
+							pos[2] = y;
+							arrDiamondRock.add(pos);
+						}
+					}
+				}
+				y++;
+				if(line.contains("[MAP]"))
+				{
+					blockStarted = true;
+					y = 0;
+				}
+			}
+		}
+		catch(IOException e)
+		{	// Fileread error
+			e.printStackTrace();
+		}
+		finally
 		{
-			System.out.println(arrEnemies.get(i));
-		}*/
+			try
+			{
+				br.close();
+			}
+			catch(IOException ex)
+			{
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	public void digTile()

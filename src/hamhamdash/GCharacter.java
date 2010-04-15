@@ -8,7 +8,12 @@ import jgame.*;
  */
 public abstract class GCharacter extends JGObject
 {
-	private Game game = null;
+	private Boolean doWalking;
+	private int stepInpixels;
+	private MoveDirection direction;
+	public static Boolean moveUp = false, moveDown = false,
+			moveLeft = false, moveRight = false;
+	public Game game = null;
 
 	/**
 	 *
@@ -28,6 +33,38 @@ public abstract class GCharacter extends JGObject
 	{
 		super(name, unique, x, y, cid, sprite);
 		this.game = game;
+	}
+
+	public Boolean isWalking()
+	{
+		return doWalking;
+	}
+
+	public MoveDirection getDirection()
+	{
+		return direction;
+	}
+
+	public void setDirection(MoveDirection direction)
+	{
+		this.direction = direction;
+	}
+
+	public void setStepInpixels(int stepInpixels)
+	{
+		this.stepInpixels = stepInpixels;
+	}
+
+	public void stopWalking()
+	{
+		moveUp = false;
+		moveDown = false;
+		moveLeft = false;
+		moveRight = false;
+	}
+
+	public void startWalking()
+	{
 	}
 
 	@Override

@@ -3,8 +3,8 @@
 splash_image	-	0	resources/sprites/splash.png	-
 
 // Define State Backgrounds
-title_bg	-	0	resources/sprites/menu.png	-
-menus_bg	-	0	resources/sprites/menu.png	-
+title_bg	-	0	resources/sprites/title.png	-
+menu_bg	-	0	resources/sprites/menu.png	-
 
 // Define animation sprite sheet.
 // sheetname;;location;;(0,0)-topleft coordinates;;(40,40)-spritesize;;(0,0)-pixels to skip
@@ -58,8 +58,12 @@ hrundown	hrundown1;hrundown2;hrundown3;hrundown4	0.09	false
 hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4	0.09	false
 hrunright	hrunright1;hrunright2;hrunright3;hrunright4	0.09	false
 
+
 // Tiles
 // (Same as sprites)
 emptytile	.	0	resources/sprites/emptytile.png	-
 walltile	X	1	resources/sprites/walltile.png	-
 groundtile	#	2	resources/sprites/groundtile.png	-
+diamond		D	3	resources/sprites/diamond.png	-
+rock	R	4	resources/sprites/rock.png	-
+enemy1		1	4	resources/sprites/SpatAsheet.png	-
