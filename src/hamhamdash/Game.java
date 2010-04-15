@@ -23,6 +23,10 @@ public class Game extends JGEngine
 	private String passString;
 	private boolean debug = true;
 
+//***************************************
+// Start Game initialization
+//***************************************
+
 	public Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
@@ -61,6 +65,16 @@ public class Game extends JGEngine
 		// Start with the title screen
 		setGameState("Title");
 	}
+
+//***************************************
+// End Game initialization
+//***************************************
+
+
+
+//***************************************
+// Start default loop
+//***************************************
 
 	@Override
 	public void doFrame()
@@ -110,7 +124,16 @@ public class Game extends JGEngine
 		}
 	}
 
-	/* Title Screen */
+//***************************************
+// End default loop
+//***************************************
+
+
+
+//***************************************
+// Start Game State Title
+//***************************************
+
 	public void startTitle()
 	{
 	}
@@ -125,21 +148,28 @@ public class Game extends JGEngine
 		drawString("Press <ENTER> to continue", pfWidth() / 2, pfHeight() - 50, 0);
 	}
 
-	/* Player Select */
+//***************************************
+// End Game State Title
+//***************************************
+
+
+
+//***************************************
+// Start Game State Player Select
+//***************************************
+
 	// Define ps(Player Select) vars
 	private int psButtonWidth;
 	private JGPoint psPoint;
 	private JGColor playerOneButtonBG;
 	private JGColor playerTwoButtonBG;
 
-	// Player Select Main Methods
 	public void startPlayerSelect()
 	{
 		psButtonWidth = 30;
 		psPoint = new JGPoint(pfWidth() / 2, 100);
 		playerOneButtonBG = JGColor.red;		// '1P' is highlighted as default
 		playerTwoButtonBG = JGColor.white;		// '2P' is not
-
 	}
 
 	public void doFramePlayerSelect()
@@ -165,10 +195,8 @@ public class Game extends JGEngine
 		new HamButton(this, "1P", psPoint.x, psPoint.y + psButtonWidth, psButtonWidth, psButtonWidth, JGColor.black);
 		setColor(playerTwoButtonBG);
 		new HamButton(this, "2P", psPoint.x, psPoint.y + (psButtonWidth * 2), psButtonWidth, psButtonWidth, JGColor.black);
-
 	}
 
-	// Player Select Methods
 	public void togglePlayerSelect()
 	{
 
@@ -186,7 +214,16 @@ public class Game extends JGEngine
 		}
 	}
 
-	/* Start Game */
+//***************************************
+// End Game State Player Select
+//***************************************
+
+
+
+//***************************************
+// Start Game State Start Game
+//***************************************
+
 	// Define sg (Start Game) vars
 	private int sgButtonWidth, sgButtonHeight;
 	private JGPoint sgPoint;
@@ -200,8 +237,6 @@ public class Game extends JGEngine
 		sgPoint = psPoint;
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
-
-
 	}
 
 	public void doFrameStartGame()
@@ -247,7 +282,16 @@ public class Game extends JGEngine
 		}
 	}
 
-	/* Enter Pwd*/
+//***************************************
+// End Game State Start Game
+//***************************************
+
+
+
+//***************************************
+// Start Game State Enter Password
+//***************************************
+
 	// Define ep (Enter Pwd) vars
 	private int epButtonWidth, epButtonHeight;
 	private JGPoint epPoint;
@@ -341,6 +385,16 @@ public class Game extends JGEngine
 			drawString(passPosList[i], epPoint.x + (i * ppWidth) - (((passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
 		}
 	}
+
+//***************************************
+// End Game State Enter Password
+//***************************************
+
+
+
+//***************************************
+// Start Game State InGame
+//***************************************
 
 	// InGame
 	public void startInGame()
