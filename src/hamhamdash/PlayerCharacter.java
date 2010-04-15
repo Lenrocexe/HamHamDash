@@ -90,7 +90,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else
 		{
-			setGraphic("hstandstill");
+			setGraphic("hidle");
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
