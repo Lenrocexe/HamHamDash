@@ -1,9 +1,6 @@
 package hamhamdash;
 
-import java.io.*;
-import java.util.*;
 import java.util.ArrayList;
-import javax.swing.JTextField;
 import jgame.*;
 import jgame.platform.*;
 
@@ -18,7 +15,6 @@ public class Game extends JGEngine
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
-	private JTextField passTfield;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
@@ -83,6 +79,29 @@ public class Game extends JGEngine
 		{
 //			moveObjects(null, 0);
 		}
+		else if(states.get(stateCounter).equals("EnterPwd"))
+		{
+			if(getKey(KeyEnter))
+			{
+				clearKey(KeyEnter);
+				passString = "";
+				for(String perPass : passPosList)
+				{
+					passString += perPass;
+				}
+
+				if(checkPasswordString(passString))
+				{
+					System.out.println("Password passed");
+					stateCounter = nextState(stateCounter, states);
+				}
+				else
+				{
+					System.out.println("Je wachtwoord is verkeerd, JONGÈ!");
+				}
+
+			}
+		}
 		else
 		{
 			if(getKey(KeyEnter))
@@ -90,13 +109,13 @@ public class Game extends JGEngine
 				// next step is player selection
 				clearKey(KeyEnter);
 				stateCounter = nextState(stateCounter, states);
-			}
-			if(getKey(KeyEsc))
+			}else if(getKey(KeyEsc))
 			{
 				clearKey(KeyEsc);
 				stateCounter = prevState(stateCounter, states);
 			}
 		}
+		
 
 		// DBG MSG's
 		if(debug)
@@ -318,6 +337,7 @@ public class Game extends JGEngine
 		epButtonWidth = 70;
 		epButtonHeight = psButtonWidth;
 		epPoint = psPoint;
+		passString = "";
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
 		selectedPos = 0;
@@ -428,7 +448,7 @@ public class Game extends JGEngine
 	// EnterPwd Methods
 	public boolean checkPasswordString(String passString)
 	{
-		String lvlPass = "98567";
+		String lvlPass = "985678";
 		if(lvlPass.equals(passString))
 		{
 			return true;
