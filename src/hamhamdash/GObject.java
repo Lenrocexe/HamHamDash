@@ -8,8 +8,8 @@ import jgame.*;
  */
 public abstract class GObject extends JGObject
 {
-	private boolean pickable, pushable, falling;
-	private Game game;
+	private boolean pickable, pushable, falling = false;
+	private Game game = null;
 
 	/**
 	 *
@@ -20,63 +20,62 @@ public abstract class GObject extends JGObject
 	 * @param cid The collision ID
 	 * @param sprite which sprite(animation) to use from the datasheet
 	 */
-	public GObject(String name, boolean unique, int x, int y, int cid, String sprite)
+	public GObject(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
 	{
 		super(name, unique, x, y, cid, sprite);
+		this.game = game;
 	}
 
 	@Override
 	public void move()
 	{
 //		String tile = getTileBelow(this);
-//		if (tile == ".")
+//		if(tile.contains("."))
 //		{
-//				moveDown();
+//			moveDown();
 //		}
-//		if (tile == "R" || "D" || "X" || "#")
+//		else if(tile.contains("R") ||
+//				tile.contains("D") ||
+//				tile.contains("X") ||
+//				tile.contains("#"))
 //		{
 //			tile = getTileBelowLeft(this);
-//			if (tile == ".")
+//			if(tile.contains("."))
 //			{
-//				for (int i = 0; i <= 19; i++)
+//				for(int i = 0; i <= 19; i++)
 //				{
 //					xspeed = -2;
 //				}
 //				stopFalling();
-//
-//				for (int i = 0; i <= 19; i++)
-//				{
-//					yspeed = 2;
-//
-//				}
-//
-//				stopFalling();
+//				moveDown();
 //
 //			}
-//			if (tile == "R" || "D" || "X" || "#")
+//			else if(tile.contains("R") ||
+//					tile.contains("D") ||
+//					tile.contains("X") ||
+//					tile.contains("#"))
 //			{
 //				tile = getTileBelowRight(this);
-//				if (tile == ".")
+//				if(tile.contains("."))
 //				{
-//					for (int i = 0; i <= 19; i++)
+//					for(int i = 0; i <= 19; i++)
 //					{
 //						xspeed = 2;
 //					}
 //					stopFalling();
-//				    moveDown();
+//					moveDown();
 //				}
-//				if (tile == "R" || "D" || "X" || "#")
+//				else if(tile.contains("R") ||
+//						tile.contains("D") ||
+//						tile.contains("X") ||
+//						tile.contains("#"))
 //				{
-//						return;
+//					return;
 //				}
 //			}
 //		}
 	}
 
-	/* 	muur = X
-	grond = #
-	leeg = .
-	 */
 	@Override
 	public abstract void hit_bg(int tilecid);
 
@@ -98,17 +97,34 @@ public abstract class GObject extends JGObject
 		falling = f;
 	}
 
+	/**
+	 * Moves the object 1 tile (exactly 40 pixels) down
+	 */
 	public void moveDown()
 	{
 		for(int i = 0; i <= 19; i++)
 		{
 			yspeed = 2;
 		}
-		//stopFalling();
+		stopFalling();
 	}
 
 	public boolean isFalling()
 	{
 		return falling;
+	}
+
+	/**
+	 * Prepares the object to fall
+	 */
+	public void startFalling()
+	{
+	}
+
+	/**
+	 * Stops the current object
+	 */
+	public void stopFalling()
+	{
 	}
 }

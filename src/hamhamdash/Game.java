@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import java.io.*;
+import java.util.*;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import jgame.*;
@@ -18,7 +20,6 @@ public class Game extends JGEngine
 	private ArrayList<String> states = new ArrayList<String>();
 	private JTextField passTfield;
 	private Levels objLevels;
-	static int currentLevelId = 1;
 	private String passString;
 	private boolean debug = true;
 
@@ -48,16 +49,15 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
-
+		// Create Levels object
+		objLevels = new Levels(this);
 
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
 			dbgShowGameState(true);
 		}
-
-		objLevels = new Levels(this);
-
+		
 		// Start with the title screen
 		setGameState("Title");
 	}
@@ -101,12 +101,9 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			if(!(states.get(stateCounter).equals("InGame")))
-			{
-				drawImage(0, 0, "menu_bg");
-				drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
-				drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
-			}
+			//drawImage(0, 0, "menus_bg");
+			drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 40, -1, true);
+			drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 20, -1, true);
 		}
 	}
 
@@ -114,7 +111,7 @@ public class Game extends JGEngine
 	public void startTitle()
 	{
 	}
-
+Í
 	public void doFrameTitle()
 	{
 	}
@@ -200,6 +197,8 @@ public class Game extends JGEngine
 		sgPoint = psPoint;
 		newGameButtonBG = JGColor.red;			// 'New Game' is highlighted as default
 		loadGameButtonBG = JGColor.white;		// 'Load Game' is not
+
+
 	}
 
 	public void doFrameStartGame()
@@ -351,12 +350,12 @@ public class Game extends JGEngine
 		if(getKey(KeyRight))
 		{
 			clearKey(KeyRight);
-			objLevels.changeLevel(1);
+			objLevels.nextLevel();
 		}
 		if(getKey(KeyLeft))
 		{
 			clearKey(KeyLeft);
-			objLevels.changeLevel(-1);
+			objLevels.prevLevel();
 		}
 	}
 
