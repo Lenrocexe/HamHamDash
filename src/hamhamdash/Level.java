@@ -63,7 +63,7 @@ public class Level
 
 	private void loadSettings()
 	{
-		InputStream readSettings = this.getClass().getResourceAsStream("levels/level1.hlf");
+		InputStream readSettings = this.getClass().getResourceAsStream("levels/"+fileName);
 		try
 		{
 			settings.load(readSettings);

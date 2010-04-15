@@ -14,23 +14,22 @@ public class Levels
 	private Level[] arrLevels;
 	private int currentLevelId = 0;
 
-    public Levels(JGEngine Game)
-    {
-        this.game = Game;
+	public Levels(JGEngine Game)
+	{
+		this.game = Game;
 		loadLevels();
-    }
+	}
 
 	public void loadLevels()
-
 	{
 		// Get the available levels in an array
 		String[] levels = getLevelDirList();
 
 		arrLevels = new Level[levels.length];
 		int i;
-		for(i = 0; i < levels.length; i++)
+		for (i = 0; i < levels.length; i++)
 		{
-			arrLevels[i] = new Level(game,i,levels[i]);
+			arrLevels[i] = new Level(game, i, levels[i]);
 		}
 	}
 
@@ -41,10 +40,10 @@ public class Levels
 
 	public boolean checkPassword(String password)
 	{
-		int i;
-		for(i = 0; i < arrLevels.length; i++)
+
+		for (int i = 0; i < arrLevels.length; i++)
 		{
-			if(arrLevels[i].getPassword() == password)
+			if (arrLevels[i].getPassword().equals(password))
 			{
 				currentLevelId = i;
 				return true;
@@ -55,7 +54,7 @@ public class Levels
 
 	public void nextLevel()
 	{
-		if(currentLevelId != arrLevels.length)
+		if (currentLevelId != arrLevels.length)
 		{
 			currentLevelId++;
 			startLevel();
@@ -64,7 +63,7 @@ public class Levels
 
 	public void prevLevel()
 	{
-		if(currentLevelId != 1)
+		if (currentLevelId != 1)
 		{
 			currentLevelId--;
 			startLevel();
