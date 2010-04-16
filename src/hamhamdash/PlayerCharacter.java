@@ -49,7 +49,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyDown) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
-			if (y > game.pfHeight() - 56)
+			if (y > game.pfHeight() - 57)
 			{
 				setGraphic("hrundown");
 				yspeed = 0;
