@@ -15,6 +15,7 @@ public class Game extends JGEngine
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
+	private Player player = null;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
@@ -426,20 +427,22 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
-		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
-		{
-			clearKey(KeyCtrl);
-			clearKey(KeyShift);
-			clearKey(KeyRight);
-			objLevels.nextLevel();
-		}
-		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
-		{
-			clearKey(KeyCtrl);
-			clearKey(KeyShift);
-			clearKey(KeyLeft);
-			objLevels.prevLevel();
-		}
+//		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
+//		{
+//			clearKey(KeyCtrl);
+//			clearKey(KeyShift);
+//			clearKey(KeyRight);
+//			objLevels.nextLevel();
+//		}
+//		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
+//		{
+//			clearKey(KeyCtrl);
+//			clearKey(KeyShift);
+//			clearKey(KeyLeft);
+//			objLevels.prevLevel();
+//		}
+		player = new Player();
+		player.setPc(new PlayerCharacter(80, 160));
 	}
 
 	public void paintframeInGame()
