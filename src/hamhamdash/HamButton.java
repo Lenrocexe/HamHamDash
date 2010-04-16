@@ -12,8 +12,9 @@ public class HamButton extends JGObject
 	public final static int NORMAL = 0, OVER = 1;
 	private String normalButton = "ham_button_normal";
 	private String overButton = "ham_button_over";
+	private Game game = Game.getGame();
 	
-	public HamButton(Game game, int x, int y, String label, JGColor labelColor, int state)
+	public HamButton(int x, int y, String label, JGColor labelColor, int state)
 	{
 		super("hambutton", true, x, y, 0, "ham_button_over");
 
@@ -24,6 +25,7 @@ public class HamButton extends JGObject
 		{
 			setGraphic(overButton);
 		}
+
 
 		game.setColor(labelColor);
 		game.drawString(

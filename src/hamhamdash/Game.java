@@ -20,19 +20,30 @@ public class Game extends JGEngine
 	private boolean debug = true;
 
 
-
-
 //***************************************
 // Start Game initialization
 //***************************************
-	public Game(JGPoint dimension)
+	private Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
 	}
 
-	public static void main(String[] args)
+	/**
+	 * Gets loaded on first execution of getGame() OR at the first call GameHolder.INSTANCE
+	 * Next call will return the instance of the game
+	 */
+	private static class GameHolder
 	{
-		new Game(new JGPoint(800, 800));
+		private static final Game INSTANCE = new Game(new JGPoint(800, 800));
+	}
+
+	/**
+	 * Returns the instance of the game
+	 * @return
+	 */
+	public static Game getGame()
+	{
+		return GameHolder.INSTANCE;
 	}
 
 	public void initCanvas()
@@ -62,6 +73,11 @@ public class Game extends JGEngine
 
 		// Start with the title screen
 		setGameState("Title");
+	}
+
+	public static void main(String[] args)
+	{
+		Game.getGame();
 	}
 
 //***************************************
@@ -214,9 +230,9 @@ public class Game extends JGEngine
 	{
 		drawString("Select amount of Player", psPoint.x, psPoint.y, 0);
 		setColor(playerOneButtonBG);
-		new HamButton(this, psPoint.x, psPoint.y, "1P", JGColor.black, 1);
+		new HamButton(psPoint.x, psPoint.y, "1P", JGColor.black, 1);
 		setColor(playerTwoButtonBG);
-		new HamButton(this, psPoint.x, psPoint.y + (psButtonWidth * 2), "2P", JGColor.black, 1);
+		new HamButton(psPoint.x, psPoint.y + (psButtonWidth * 2), "2P", JGColor.black, 1);
 
 	}
 
@@ -280,9 +296,11 @@ public class Game extends JGEngine
 	{
 		drawString(playerAmount + " Player game selected", sgPoint.x, sgPoint.y, 0);
 		setColor(newGameButtonBG);
-		new HamButton(this, sgPoint.x, sgPoint.y, "New Game", JGColor.black, 1);
+
+		new HamButton(sgPoint.x, sgPoint.y, "New Game", JGColor.black, 1);
 		setColor(loadGameButtonBG);
-		new HamButton(this, sgPoint.x, sgPoint.y + (sgButtonHeight * 2), "Load Game", JGColor.black, 1);
+		new HamButton(sgPoint.x, sgPoint.y + (sgButtonHeight * 2), "Load Game", JGColor.black, 1);
+
 
 	}
 
