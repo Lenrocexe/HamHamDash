@@ -9,48 +9,53 @@ import jgame.*;
 public class Enemy extends GCharacter
 {
 	private String type = null;
-
+	private String turnLeft;
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-		public Enemy(String name, int x, int y, Game game)
+		public Enemy(String name, int x, int y)
 	{
-		super(name, false, x, y, 1, name + "Idle", game);
+		super(name, false, x, y, 1, name + "Idle");
 		this.type = name;
 	}
 
 	@Override
 	public void move()
 	{
+
+
 		if (0 < xspeed)
 		{
-			setGraphic("spatLeft");
+			setGraphic("spatAsheet");
 		}
 		else
 		{
-			setGraphic("spatRight");
+			setGraphic("spatAsheet");
 		}
 		if (0 < yspeed)
 		{
-			setGraphic("spatUp");
+			setGraphic("spatAsheet");
 		}
 		else
 		{
-			setGraphic("spatDown");
+			setGraphic("spatAsheet");
 		}
+
 //        if (getDirection == GCharacter.moveUp && isWalking()||
 //            getDirection == GCharacter.moveDown && isWalking()||
 //            getDirection == GCharacter.moveLeft && isWalking()||
 //            getDirection == GCharacter.moveRight && isWalking())
-//        switch (GCharacter.getDirection())
+		}
+        
+//	switch (EnemyDirection);
 //	{
-//		case GCharacter.moveLeft:
+//		case MoveDirection:
 //
 //                        if (nextTile == EmptyTile)
 //                        {
-//                                GCharacter.StepInPixel;
+//                                GCharacter.stepInpixels;
 //                        }
 //                        else
 //                        {
@@ -99,63 +104,40 @@ public class Enemy extends GCharacter
 //                default:
 //                        break;
 //                }
-        }
+//        }
 
-	public void directionview()
-    {
-//            if (GCharacter.moveUp)
+//	public void directionview()
+//    {
+//            if (moveUp)
 //            {
-//                LEFT,UP,RIGHT
+//                [LEFT,UP,RIGHT]
 //            }
-//            else if (GCharacter.moveDown)
+//            else if (moveDown)
 //            {
-//                RIGHT,DOWN,LEFT
+//                [RIGHT,DOWN,LEFT]
 //            }
-//            else if (GCharacter.moveLeft)
+//            else if (moveLeft)
 //            {
-//                DOWN,LEFT,UP
+//                [DOWN,LEFT,UP]
 //            }
-//            else if (GCharacter.moveRight)
+//            else if (moveRight)
 //            {
-//                UP,RIGHT,DOWN
+//                [UP,RIGHT,DOWN]
 //            }
-    }
+//    }
 
 	@Override
 	public void hit_bg(int tilecid)
 	{
 //	if (nextToPlayer)
-//	{
-//		life = --
-//	}
-
-	/*else*/ if(!and(checkBGCollision(-xspeed, yspeed), 3))
-	{
-		xspeed = -xspeed;
-	}
-	else if(!and(checkBGCollision(xspeed, -yspeed), 3))
-	{
-		yspeed = -yspeed;
-	}
-	else if(!and(checkBGCollision(xspeed, -yspeed), 3)
-			&& !and(checkBGCollision(-xspeed, -yspeed), 3))
-	{
-		xspeed = -xspeed;
-		yspeed = -yspeed;
-	}
+	
+//		Player.removeLife();
 	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		if (checkCollision(1,xspeed,yspeed)==0)
-		{
-			
-//			xspeed = turnLeft;
-//			yspeed = turnLeft;
-//			-xspeed = turnleft;
-//			-yspeed = turnLeft;
-		}
+		
 	}
 
 	public String getType()
