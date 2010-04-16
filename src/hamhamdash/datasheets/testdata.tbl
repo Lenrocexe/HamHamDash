@@ -18,6 +18,7 @@ hamtaro_runRight		resources/sprites/hamtaro-runRight.png		0	0	40	40	0	0
 
 // Define Button annimation sheets.
 ham_button	resources/sprites/ham_button.png	0	0	100	60	0	0
+player_button	resources/sprites/player_sheet.png	0	0	75	35	0	0
 
 
 // Individual sprites
@@ -58,6 +59,10 @@ hrunright4	-	0	hamtaro_runRight	3	-
 ham_button_normal	-	0	ham_button	0	-
 ham_button_rollover1	-	0	ham_button	1	-
 ham_button_rollover2	-	0	ham_button	2	-
+player1_button_normal	-	0	player_button	0	-
+player1_button_rollover	-	0	player_button	1	-
+player2_button_normal	-	0	player_button	2	-
+player2_button_rollover	-	0	player_button	3	-
 
 // Define animations from the sprites.
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
