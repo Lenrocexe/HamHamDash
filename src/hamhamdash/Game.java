@@ -423,6 +423,8 @@ public class Game extends JGEngine
 	public void startInGame()
 	{
 		objLevels.startLevel();
+		player.setPc(new PlayerCharacter("h", 80, 160));
+		enemy = new Enemy("SpatA", 120, 240);
 //		setFieldSize(objLevels.getCurrentLevelSize());
 	}
 
@@ -442,9 +444,7 @@ public class Game extends JGEngine
 			clearKey(KeyLeft);
 			objLevels.prevLevel();
 		}
-		player = new Player();
-		player.setPc(new PlayerCharacter(80, 160));
-		enemy = new Enemy("SpatA", 120, 240);
+		System.out.println(player.getPc().getName());
 	}
 
 	public void paintframeInGame()

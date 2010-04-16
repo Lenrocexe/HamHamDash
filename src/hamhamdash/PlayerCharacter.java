@@ -9,6 +9,7 @@ import jgame.platform.*;
  */
 public class PlayerCharacter extends GCharacter
 {
+	private String name = null;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
 	/**
@@ -18,7 +19,14 @@ public class PlayerCharacter extends GCharacter
 	 */
 	public PlayerCharacter(String name, int x, int y)
 	{
-		super(name, true, x, y, 1, "idle");
+		super(name, true, x, y, 1, name + "idle");
+		this.name = name;
+	}
+
+	@Override
+	public String getName()
+	{
+		return name;
 	}
 
 	@Override
@@ -94,7 +102,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else
 		{
-			setGraphic(getName() + "idle");
+//			setGraphic(getName() + "idle");
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
