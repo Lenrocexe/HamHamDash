@@ -20,19 +20,30 @@ public class Game extends JGEngine
 	private boolean debug = true;
 
 
-
-
 //***************************************
 // Start Game initialization
 //***************************************
-	public Game(JGPoint dimension)
+	private Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
 	}
 
-	public static void main(String[] args)
+	/**
+	 * Gets loaded on first execution of getGame() OR at the first call GameHolder.INSTANCE
+	 * Next call will return the instance of the game
+	 */
+	private static class GameHolder
 	{
-		new Game(new JGPoint(800, 800));
+		private static final Game INSTANCE = new Game(new JGPoint(800, 800));
+	}
+
+	/**
+	 * Returns the instance of the game
+	 * @return
+	 */
+	public static Game getGame()
+	{
+		return GameHolder.INSTANCE;
 	}
 
 	public void initCanvas()
@@ -62,6 +73,11 @@ public class Game extends JGEngine
 
 		// Start with the title screen
 		setGameState("Title");
+	}
+
+	public static void main(String[] args)
+	{
+		Game.getGame();
 	}
 
 //***************************************
@@ -213,9 +229,9 @@ public class Game extends JGEngine
 	{
 		drawString("Select amount of Player", psPoint.x, psPoint.y, 0);
 		setColor(playerOneButtonBG);
-		new HamButton(this, "1P", psPoint.x, psPoint.y + psButtonWidth, psButtonWidth, psButtonWidth, JGColor.black);
+		new HamButton("1P", psPoint.x, psPoint.y + psButtonWidth, psButtonWidth, psButtonWidth, JGColor.black);
 		setColor(playerTwoButtonBG);
-		new HamButton(this, "2P", psPoint.x, psPoint.y + (psButtonWidth * 2), psButtonWidth, psButtonWidth, JGColor.black);
+		new HamButton("2P", psPoint.x, psPoint.y + (psButtonWidth * 2), psButtonWidth, psButtonWidth, JGColor.black);
 	}
 
 	public void togglePlayerSelect()
@@ -278,9 +294,9 @@ public class Game extends JGEngine
 	{
 		drawString(playerAmount + " Player game selected", sgPoint.x, sgPoint.y, 0);
 		setColor(newGameButtonBG);
-		new HamButton(this, "New Game", sgPoint.x, sgPoint.y + sgButtonHeight, sgButtonWidth, sgButtonHeight, JGColor.black);
+		new HamButton("New Game", sgPoint.x, sgPoint.y + sgButtonHeight, sgButtonWidth, sgButtonHeight, JGColor.black);
 		setColor(loadGameButtonBG);
-		new HamButton(this, "Load Game", sgPoint.x, sgPoint.y + (sgButtonHeight * 2), sgButtonWidth, sgButtonHeight, JGColor.black);
+		new HamButton("Load Game", sgPoint.x, sgPoint.y + (sgButtonHeight * 2), sgButtonWidth, sgButtonHeight, JGColor.black);
 	}
 
 	// Player Select Methods
