@@ -11,15 +11,14 @@ import jgame.platform.*;
  */
 public class TileMap
 {
-	private JGEngine game;
+	private Game game = Game.getGame();
 
 	/**
 	 * TileMap constructor
 	 * @param Game
 	 */
-	public TileMap(JGEngine Game)
+	public TileMap()
     {
-        this.game = Game;
     }
 
 	/**

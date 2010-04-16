@@ -13,7 +13,7 @@ public abstract class GCharacter extends JGObject
 	private MoveDirection direction;
 	public static Boolean moveUp = false, moveDown = false,
 			moveLeft = false, moveRight = false;
-	public Game game = null;
+	public Game game = Game.getGame();
 
 	/**
 	 *
@@ -29,10 +29,9 @@ public abstract class GCharacter extends JGObject
 //	{
 //		super(name, unique, x, y, cid, sprite);
 
-	public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
+	public GCharacter(String name, boolean unique, int x, int y, int cid, String sprite)
 	{
 		super(name, unique, x, y, cid, sprite);
-		this.game = game;
 	}
 
 	public Boolean isWalking()

@@ -93,6 +93,7 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
+		moveObjects(null, 0);
 		if (states.get(stateCounter).equals("InGame"))
 		{
 //			moveObjects(null, 0);
@@ -230,9 +231,10 @@ public class Game extends JGEngine
 	{
 		drawString("Select amount of Player", psPoint.x, psPoint.y, 0);
 		setColor(playerOneButtonBG);
-		new HamButton("1P", psPoint.x, psPoint.y + psButtonWidth, psButtonWidth, psButtonWidth, JGColor.black);
+		new HamButton(psPoint.x, psPoint.y, "1P", JGColor.black, 1);
 		setColor(playerTwoButtonBG);
-		new HamButton("2P", psPoint.x, psPoint.y + (psButtonWidth * 2), psButtonWidth, psButtonWidth, JGColor.black);
+		new HamButton(psPoint.x, psPoint.y + (psButtonWidth * 2), "2P", JGColor.black, 1);
+
 	}
 
 	public void togglePlayerSelect()
@@ -295,9 +297,12 @@ public class Game extends JGEngine
 	{
 		drawString(playerAmount + " Player game selected", sgPoint.x, sgPoint.y, 0);
 		setColor(newGameButtonBG);
-		new HamButton("New Game", sgPoint.x, sgPoint.y + sgButtonHeight, sgButtonWidth, sgButtonHeight, JGColor.black);
+
+		new HamButton(sgPoint.x, sgPoint.y, "New Game", JGColor.black, 1);
 		setColor(loadGameButtonBG);
-		new HamButton("Load Game", sgPoint.x, sgPoint.y + (sgButtonHeight * 2), sgButtonWidth, sgButtonHeight, JGColor.black);
+		new HamButton(sgPoint.x, sgPoint.y + (sgButtonHeight * 2), "Load Game", JGColor.black, 1);
+
+
 	}
 
 	// Player Select Methods

@@ -1,30 +1,39 @@
 package hamhamdash;
 
 import jgame.JGColor;
+import jgame.JGObject;
 
 /**
  *
  * @author Serhan Uygur
  */
-public class HamButton
+public class HamButton extends JGObject
 {
-	public HamButton(String label, int x, int y, int width, int height, JGColor labelColor)
+	public final static int NORMAL = 0, OVER = 1;
+	private String normalButton = "ham_button_normal";
+	private String overButton = "ham_button_over";
+	private Game game = Game.getGame();
+	
+	public HamButton(int x, int y, String label, JGColor labelColor, int state)
 	{
-		Game.getGame().drawRect(
-				x,
-				y,
-				width,
-				height,
-				true,
-				true
-				);
+		super("hambutton", true, x, y, 0, "ham_button_over");
 
-		Game.getGame().setColor(labelColor);
-		Game.getGame().drawString(
+		if(state == NORMAL)
+		{
+			setGraphic(normalButton);
+		}else if(state == OVER)
+		{
+			setGraphic(overButton);
+		}
+
+
+		game.setColor(labelColor);
+		game.drawString(
 				label,
 				x,
 				y - 3,
-				0
+				-1
 				);
-	}
+
+}
 }
