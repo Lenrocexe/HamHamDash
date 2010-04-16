@@ -131,6 +131,12 @@ public class Levels
 		return arrLevels[currentLevelId];
 	}
 
+	public int[] getCurrentLevelSize()
+	{
+		Level l = (Level) getCurrentLevelObj();
+		return l.getLevelSize();
+	}
+
 	/**
 	 * Get the level object of the given level
 	 * @param levelId

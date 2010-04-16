@@ -15,13 +15,14 @@ public class Game extends JGEngine
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
-	private Player player = null;
+	private Player player = new Player();
 	private Enemy enemy = null;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
 	public int tileWidth = 40;
 	public int tileHeight = 40;
+	private int xofs, yofs = 0;
 
 //***************************************
 // Start Game initialization
@@ -435,7 +436,7 @@ public class Game extends JGEngine
 		objLevels.startLevel();
 		player.setPc(new PlayerCharacter("h", 80, 160));
 		enemy = new Enemy("SpatA", 120, 240);
-//		setFieldSize(objLevels.getCurrentLevelSize());
+		setFieldSize(objLevels.getCurrentLevelSize());
 	}
 
 	public void doFrameInGame()
@@ -456,9 +457,11 @@ public class Game extends JGEngine
 				clearKey(KeyLeft);
 				objLevels.prevLevel();
 			}
-			player = new Player();
-			player.setPc(new PlayerCharacter("h", 80, 160));
 		}
+		xofs = (int)player.getPc().x + pfWidth() / viewWidth();
+		yofs = (int)player.getPc().y + pfHeight() / viewHeight();
+
+		setViewOffset(xofs, yofs, true);
 	}
 
 	public void paintFrameInGame()

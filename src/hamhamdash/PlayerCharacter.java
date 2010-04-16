@@ -38,13 +38,13 @@ public class PlayerCharacter extends GCharacter
 		ydir = 0;
 		if (eng.getKey(eng.KeyUp) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
-			if (y < game.pfHeight() - 230)
-			{
-				setGraphic(getName() + "runup");
-				yspeed = 0;
-				ydir = 0;
-			}
-			else
+//			if (y < game.pfHeight() - 230)
+//			{
+//				setGraphic(getName() + "runup");
+//				yspeed = 0;
+//				ydir = 0;
+//			}
+//			else
 			{
 				setGraphic(getName() + "runup");
 				yspeed = -6;
@@ -53,13 +53,13 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyDown) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
-			if (y > game.pfHeight() - 57)
-			{
-				setGraphic(getName() + "rundown");
-				yspeed = 0;
-				ydir = 0;
-			}
-			else
+//			if (y > game.pfHeight() - 57)
+//			{
+//				setGraphic(getName() + "rundown");
+//				yspeed = 0;
+//				ydir = 0;
+//			}
+//			else
 			{
 				setGraphic(getName() + "rundown");
 				yspeed = 6;
@@ -68,13 +68,13 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyLeft) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
-			if (x < game.pfWidth() - 300)
-			{
-				setGraphic(getName() + "runleft");
-				xspeed = 0;
-				xdir = 0;
-			}
-			else
+//			if (x < game.pfWidth() - 300)
+//			{
+//				setGraphic(getName() + "runleft");
+//				xspeed = 0;
+//				xdir = 0;
+//			}
+//			else
 			{
 				setGraphic(getName() + "runleft");
 				xspeed = -6;
@@ -83,13 +83,13 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyRight) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
-			if (x > game.pfWidth() - 60)
-			{
-				setGraphic(getName() + "runright");
-				xspeed = 0;
-				xdir = 0;
-			}
-			else
+//			if (x > game.pfWidth() - 60)
+//			{
+//				setGraphic(getName() + "runright");
+//				xspeed = 0;
+//				xdir = 0;
+//			}
+//			else
 			{
 				setGraphic(getName() + "runright");
 				xspeed = 6;
@@ -107,16 +107,8 @@ public class PlayerCharacter extends GCharacter
 	}
 
 	@Override
-	public void hit_bg(int tilecid)
-	{
-	}
-
-	;
+	public void hit_bg(int tilecid){}
 
 	@Override
-	public void hit(JGObject obj)
-	{
-	}
-
-	;
+	public void hit(JGObject obj){}
 }
