@@ -15,6 +15,7 @@ hamtaro_runDown			resources/sprites/hamtaro-runDown.png		0	0	40	40	0	0
 hamtaro_runLeft			resources/sprites/hamtaro-runLeft.png		0	0	40	40	0	0
 hamtaro_runRight		resources/sprites/hamtaro-runRight.png		0	0	40	40	0	0
 hamtaro_runRight		resources/sprites/hamtaro-runRight.png		0	0	40	40	0	0
+spatAsheet				resources/sprites/SpatAsheet.png			0	0	40	40	0	0
 
 // Define Button annimation sheets.
 ham_button	resources/sprites/ham_button.png	0	0	100	60	0	0
@@ -25,6 +26,7 @@ player_button	resources/sprites/player_sheet.png	0	0	75	35	0	0
 // spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
 // if(spritesheet)frameonsheet;;sprite-modifier;;
 // Sprite-modifiers:
+SpatAIdle	-	0	spatAsheet	0	-
 hidle	-	0	resources/sprites/hamtaro-idle.png	-
 hhamha1	-	0	hamtaro_hamha	0	-
 hhamha2	-	0	hamtaro_hamha	1	-
