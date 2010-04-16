@@ -42,7 +42,6 @@ public class Level
 		game.setTiles(0,0,tileMap);
 		insertEnemies();
 		insertDiamondRock();
-		String[][] test;
     }
 
 	/**
