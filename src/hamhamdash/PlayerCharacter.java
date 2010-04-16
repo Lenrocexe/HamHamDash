@@ -37,14 +37,12 @@ public class PlayerCharacter extends GCharacter
 				ydir = 0;
 				System.out.println(x);
 				System.out.println(y);
-				System.out.println(game.pfHeight());
 			}
 			else
 			{
 				setGraphic(getName() + "runup");
 				yspeed = -6;
 				ydir = 1;
-				System.out.println(x);
 			}
 		}
 		else if (eng.getKey(eng.KeyDown) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
