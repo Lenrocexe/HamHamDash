@@ -1,17 +1,16 @@
 package hamhamdash;
 
-/**
- *
- * @author Cornel Alders
- */
 import jgame.*;
 
+/**
+ * The dataclass of a player
+ * @author Cornel Alders
+ */
 public class Player
 {
 	private PlayerCharacter pc;
 	private int lifes;
 	private int score;
-
 
 	public Player()
 	{
@@ -21,11 +20,6 @@ public class Player
 	public int getLifes()
 	{
 		return lifes;
-	}
-
-		public int getScore()
-	{
-		return score;
 	}
 
 	public void resetLifes()
@@ -40,12 +34,12 @@ public class Player
 
 	public void addLife()
 	{
-		lifes ++;
+		lifes++;
 	}
 
 	public void removeLife()
 	{
-		lifes --;
+		lifes--;
 	}
 
 	public PlayerCharacter getPc()
@@ -58,9 +52,23 @@ public class Player
 		this.pc = pc;
 	}
 
+	public int getScore()
+	{
+		return score;
+	}
 
 	public void setScore(int score)
 	{
 		this.score = score;
+	}
+
+	public void addScore(int score)
+	{
+		this.score += score;
+	}
+
+	public void resetScore()
+	{
+		setScore(0);
 	}
 }
