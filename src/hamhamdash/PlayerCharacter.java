@@ -35,8 +35,6 @@ public class PlayerCharacter extends GCharacter
 				setGraphic(getName() + "runup");
 				yspeed = 0;
 				ydir = 0;
-				System.out.println(x);
-				System.out.println(y);
 			}
 			else
 			{
