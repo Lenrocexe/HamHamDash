@@ -468,6 +468,7 @@ public class Game extends JGEngine
 	// End Game State Enter Password
 	//***************************************
 
+
 	// Global Method(s)
 	public int nextState(int counter, ArrayList<String> states)
 	{
