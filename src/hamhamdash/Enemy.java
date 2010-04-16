@@ -28,19 +28,19 @@ public class Enemy extends GCharacter
 
 		if (0 < xspeed)
 		{
-			setGraphic("spatAsheet");
+			setGraphic("SpatAIdle");
 		}
 		else
 		{
-			setGraphic("spatAsheet");
+			setGraphic("SpatAIdle");
 		}
 		if (0 < yspeed)
 		{
-			setGraphic("spatAsheet");
+			setGraphic("SpatAIdle");
 		}
 		else
 		{
-			setGraphic("spatAsheet");
+			setGraphic("SpatAIdle");
 		}
 
 //        if (getDirection == GCharacter.moveUp && isWalking()||
