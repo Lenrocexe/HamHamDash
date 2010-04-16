@@ -10,6 +10,8 @@ public class Player
 {
 	private PlayerCharacter pc;
 	private int lifes;
+	private int score;
+
 
 	public Player()
 	{
@@ -19,6 +21,11 @@ public class Player
 	public int getLifes()
 	{
 		return lifes;
+	}
+
+		public int getScore()
+	{
+		return score;
 	}
 
 	public void resetLifes()
@@ -49,5 +56,11 @@ public class Player
 	public void setPc(PlayerCharacter pc)
 	{
 		this.pc = pc;
+	}
+
+
+	public void setScore(int score)
+	{
+		this.score = score;
 	}
 }
