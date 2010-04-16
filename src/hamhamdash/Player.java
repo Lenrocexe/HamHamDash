@@ -1,11 +1,11 @@
 package hamhamdash;
 
-/**
- *
- * @author Cornel Alders
- */
 import jgame.*;
 
+/**
+ * The dataclass of a player
+ * @author Cornel Alders
+ */
 public class Player
 {
 	private PlayerCharacter pc;
@@ -71,5 +71,15 @@ public class Player
 	public void setPlayerName(String playerName)
 	{
 		this.playerName = playerName;
+	}
+
+	public void addScore(int score)
+	{
+		this.score += score;
+	}
+
+	public void resetScore()
+	{
+		setScore(0);
 	}
 }
