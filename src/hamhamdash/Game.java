@@ -436,6 +436,7 @@ public class Game extends JGEngine
 	public void startInGame()
 	{
 		objLevels.startLevel();
+//		setFieldSize(objLevels.getCurrentLevelSize());
 	}
 
 	public void doFrameInGame()
@@ -459,6 +460,10 @@ public class Game extends JGEngine
 	public void paintframeInGame()
 	{
 	}
+
+//***************************************
+// Start Game State InGame
+//***************************************
 
 	// EnterPwd Methods
 	public boolean checkPasswordString(String passString)
@@ -516,5 +521,14 @@ public class Game extends JGEngine
 	public int getViewportHeight()
 	{
 		return 400;
+	}
+
+	/**
+	 * Sets the PlayField size based on the size of the current level
+	 * @param t int[width, height] The size of the current level
+	 */
+	public void setFieldSize(int[] t)
+	{
+		setPFSize(t[0], t[1]);
 	}
 }
