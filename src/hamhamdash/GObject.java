@@ -9,7 +9,7 @@ import jgame.*;
 public abstract class GObject extends JGObject
 {
 	private boolean pickable, pushable, falling = false;
-	private Game game = null;
+	private Game game = Game.getGame();
 
 	/**
 	 *
@@ -20,10 +20,9 @@ public abstract class GObject extends JGObject
 	 * @param cid The collision ID
 	 * @param sprite which sprite(animation) to use from the datasheet
 	 */
-	public GObject(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
+	public GObject(String name, boolean unique, int x, int y, int cid, String sprite)
 	{
 		super(name, unique, x, y, cid, sprite);
-		this.game = game;
 	}
 
 	@Override
