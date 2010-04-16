@@ -23,7 +23,7 @@ public class Level
 	 * @param levelId
 	 * @param fileName
 	 */
-	public Level(int levelId, String fileName)
+	public Level(String fileName)
 	{
 		this.fileName = fileName;
 		loadSettings();
