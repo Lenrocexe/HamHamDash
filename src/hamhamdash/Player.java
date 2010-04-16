@@ -11,7 +11,7 @@ public class Player
 	private PlayerCharacter pc;
 	private int lifes;
 	private int score;
-
+	private String playerName;
 
 	public Player()
 	{
@@ -23,9 +23,14 @@ public class Player
 		return lifes;
 	}
 
-		public int getScore()
+	public int getScore()
 	{
 		return score;
+	}
+
+	public String getPlayerName()
+	{
+		return playerName;
 	}
 
 	public void resetLifes()
@@ -40,12 +45,12 @@ public class Player
 
 	public void addLife()
 	{
-		lifes ++;
+		lifes++;
 	}
 
 	public void removeLife()
 	{
-		lifes --;
+		lifes--;
 	}
 
 	public PlayerCharacter getPc()
@@ -58,9 +63,13 @@ public class Player
 		this.pc = pc;
 	}
 
-
 	public void setScore(int score)
 	{
 		this.score = score;
+	}
+
+	public void setPlayerName(String playerName)
+	{
+		this.playerName = playerName;
 	}
 }
