@@ -23,13 +23,10 @@ public class Enemy extends GCharacter
 		setDirection(MoveDirection.LEFT);
 	}
 	
-	
-
 	public MoveDirection getDirection()
 	{
 		return Direction;
 	}
-
 
 	public void setDirection(MoveDirection newDirection)
 	{
@@ -41,18 +38,22 @@ public class Enemy extends GCharacter
 		if (getDirection() == MoveDirection.LEFT )
 		{
 			setDirection(MoveDirection.UP);
+			setGraphic("SpatAIdle");
 		}
 		else if (getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.RIGHT);
+			setGraphic("SpatAIdle");
 		}
 		else if (getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.DOWN);
+			setGraphic("SpatAIdle");
 		}
 		else if (getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.LEFT);
+			setGraphic("SpatAIdle");
 		}
 	}
 
@@ -75,8 +76,6 @@ public class Enemy extends GCharacter
 			setDirection(MoveDirection.LEFT);
 		}
 	}
-
-
 
 	@Override
 	public void move()
@@ -106,12 +105,9 @@ System.out.println(getDirection());
 			}
 			default:
 			{
-
 			}
 		}
 	}
-
-
 
 	@Override
 	public void hit_bg(int tilecid)
@@ -139,7 +135,6 @@ System.out.println(getDirection());
 	@Override
 	public void hit(JGObject obj)
 	{
-		
 	}
 
 	public String getType()
