@@ -42,6 +42,7 @@ public class Level
 		game.setTiles(0,0,tileMap);
 		insertEnemies();
 		insertDiamondRock();
+		String[][] test;
     }
 
 	/**
@@ -381,6 +382,34 @@ public class Level
 	{
 		return new String(game.getTileStr(x+1, y+1));
 	}
+
+	/**
+	 * Returns an array of the surrounding tiles of the given tile.
+	 * For each tile a String identifier, X and Y value are available.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public String[][] getSurroundingTiles(int x, int y)
+	{
+		String[][] surroundingTiles = new String[8][3];
+		int cntCoord = 0;
+		int newY, newX;
+		for(newY=y-1;newY<=y+1;newY++)
+		{
+			for(newX=x-1;newX<=x+1;newX++)
+			{
+				if(!(newX == x && newY == y))
+				{
+					surroundingTiles[cntCoord][0] = game.getTileStr(newX, newY);
+					surroundingTiles[cntCoord][1] = newX+"";
+					surroundingTiles[cntCoord][2] = newY+"";
+					cntCoord++;
+				}
+			}
+		}
+		return surroundingTiles;
+	}
 	
 	/**
 	 * Returns an array with the X and the Y value of a tile calculated by pixel X and Y
@@ -396,5 +425,18 @@ public class Level
 		tileXY[0] = tileX.intValue();
 		tileXY[1] = tileY.intValue();
 		return tileXY;
+	}
+
+	/**
+	 * Returns an array with the tile count in the X and Y direction of the level
+	 * @return
+	 */
+	public int[] getLevelSize()
+	{
+		int[] levelSize = new int[2];
+		levelSize[0] = game.pfTilesX();
+		levelSize[1] = game.pfTilesY();
+
+		return levelSize;
 	}
 }

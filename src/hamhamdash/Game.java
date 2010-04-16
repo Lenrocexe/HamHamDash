@@ -421,17 +421,22 @@ public class Game extends JGEngine
 	public void startInGame()
 	{
 		objLevels.startLevel();
+//		setFieldSize(objLevels.getCurrentLevelSize());
 	}
 
 	public void doFrameInGame()
 	{
-		if (getKey(KeyRight))
+		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
 		{
+			clearKey(KeyCtrl);
+			clearKey(KeyShift);
 			clearKey(KeyRight);
 			objLevels.nextLevel();
 		}
-		if (getKey(KeyLeft))
+		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
 		{
+			clearKey(KeyCtrl);
+			clearKey(KeyShift);
 			clearKey(KeyLeft);
 			objLevels.prevLevel();
 		}
@@ -484,5 +489,14 @@ public class Game extends JGEngine
 	public int getViewportHeight()
 	{
 		return 400;
+	}
+
+	/**
+	 * Sets the PlayField size based on the size of the current level
+	 * @param t int[width, height] The size of the current level
+	 */
+	public void setFieldSize(int[] t)
+	{
+		setPFSize(t[0], t[1]);
 	}
 }

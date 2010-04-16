@@ -74,7 +74,7 @@ public class Levels
 	 */
 	public void nextLevel()
 	{
-		if (currentLevelId != arrLevels.length)
+		if (currentLevelId != arrLevels.length-1)
 		{
 			currentLevelId++;
 			startLevel();
@@ -86,7 +86,7 @@ public class Levels
 	 */
 	public void prevLevel()
 	{
-		if (currentLevelId != 1)
+		if (currentLevelId != 0)
 		{
 			currentLevelId--;
 			startLevel();
@@ -117,11 +117,30 @@ public class Levels
 	 * Returns the current level
 	 * @return
 	 */
-	public int getCurrentLevel()
+	public int getCurrentLevelId()
 	{
 		return currentLevelId;
 	}
 
+	/**
+	 * Get the level object of the current level
+	 * @return
+	 */
+	public Object getCurrentLevelObj()
+	{
+		return arrLevels[currentLevelId];
+	}
+
+	/**
+	 * Get the level object of the given level
+	 * @param levelId
+	 * @return
+	 */
+	public Object getLevelObj(int levelId)
+	{
+		return arrLevels[levelId];
+	}
+	
 	/**
 	 * Returns a list of available level files
 	 * @return
