@@ -64,7 +64,7 @@ public class Game extends JGEngine
 		states.add("InGame");
 
 		// Create Levels object
-		objLevels = new Levels(this);
+		objLevels = new Levels();
 
 		if (debug)
 		{

@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Levels
 {
-	private JGEngine game;
+	private Game game = Game.getGame();
 	private Level[] arrLevels;
 	private int currentLevelId = 0;
 
@@ -18,9 +18,8 @@ public class Levels
 	 * Levels constructor
 	 * @param Game
 	 */
-	public Levels(JGEngine Game)
+	public Levels()
 	{
-		this.game = Game;
 		loadLevels();
 	}
 
@@ -36,7 +35,7 @@ public class Levels
 		int i;
 		for (i = 0; i < levels.length; i++)
 		{
-			arrLevels[i] = new Level(game, i, levels[i]);
+			arrLevels[i] = new Level(i, levels[i]);
 		}
 	}
 

@@ -2,8 +2,6 @@ package hamhamdash;
 
 import java.io.*;
 import java.util.*;
-import jgame.platform.*;
-import jgame.JGRectangle.*;
 
 /**
  *
@@ -11,7 +9,7 @@ import jgame.JGRectangle.*;
  */
 public class Level
 {
-	private JGEngine game;
+	private Game game = Game.getGame();
 	private TileMap objTileMap;
 	private Properties settings = new Properties();
 	private String[] tileMap;

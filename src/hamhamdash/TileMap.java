@@ -3,16 +3,12 @@ package hamhamdash;
 import java.io.*;
 import java.util.*;
 
-import jgame.platform.*;
-
 /**
  *
  * @author Cornel Alders
  */
 public class TileMap
 {
-	private Game game = Game.getGame();
-
 	/**
 	 * TileMap constructor
 	 * @param Game
