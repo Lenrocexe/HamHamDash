@@ -9,7 +9,7 @@ import jgame.*;
 public abstract class GObject extends JGObject
 {
 	private boolean pickable, pushable, falling = false;
-	private Game game = Game.getGame();
+	public Game game = Game.getGame();
 
 	/**
 	 *
@@ -28,35 +28,52 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-//		String tile = getTileBelow(this);
-//		if(tile.contains("."))
+//		String tile = getTiles(this);
+//		if(tile2.contains("."))
 //		{
 //			moveDown();
+//
 //		}
-//		else if(tile.contains("R") ||
+//
+
+//              else  if (tile2 == "P" || "E" && isFalling())
+//                        {
+//                            explode();
+//                        }
+//		else if(tile2.contains("R") ||
 //				tile.contains("D") ||
 //				tile.contains("X") ||
 //				tile.contains("#"))
 //		{
-//			tile = getTileBelowLeft(this);
-//			if(tile.contains("."))
+//			//tile = getTileBelowLeft(this);
+//			if(tile1 && tile4.contains("."))
 //			{
 //				moveLeft();
 //				moveDown();
-//
 //			}
+//                      else if (tile1 == "P" || "E" && isFalling())
+//                          {
+//                          explode();
+//                          }
+//
 //			else if(tile.contains("R") ||
 //					tile.contains("D") ||
 //					tile.contains("X") ||
 //					tile.contains("#"))
 //			{
-//				tile = getTileBelowRight(this);
-//				if(tile.contains("."))
+//				//tile = getTileBelowRight(this);
+//				if(tile3 && tile6.contains("."))
 //				{
 //					moveRight();
 //					moveDown();
 //				}
-//				else if(tile.contains("R") ||
+//
+//                              else if (tile3 == "P" || "E" && isFalling())
+//                              {
+//                                      explode();
+//                       }
+//                 }
+//				else if(tile3.contains("R") ||
 //						tile.contains("D") ||
 //						tile.contains("X") ||
 //						tile.contains("#"))
