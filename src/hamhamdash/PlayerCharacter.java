@@ -11,15 +11,14 @@ public class PlayerCharacter extends GCharacter
 {
 	//private JGEngine game;
 	//private GCharacter GCharacter;
-
 	/**
 	 *
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public PlayerCharacter(int x, int y, Game game)
+	public PlayerCharacter(int x, int y)
 	{
-		super("player", true, x, y, 1, "hidle", game);
+		super("player", true, x, y, 1, "hidle");
 	}
 
 	@Override
