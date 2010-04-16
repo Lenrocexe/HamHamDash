@@ -16,7 +16,6 @@ public class HamButton
 	private JGColor labelColor;
 	private int state;
 	private String label;
-	private int hamButtonWidth = 100;
 	private int hamMargin = 30;
 	private JGPoint point;
 
@@ -33,7 +32,6 @@ public class HamButton
 		if(state == NORMAL)
 		{
 			game.drawImage(point.x - 50, point.y, normalButton);
-			System.out.println("im in normal");
 		}
 		else if(state == OVER)
 		{
