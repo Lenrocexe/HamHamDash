@@ -18,7 +18,8 @@ public class Game extends JGEngine
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
-
+	public int tileWidth = 40;
+	public int tileHeight = 40;
 
 //***************************************
 // Start Game initialization
@@ -48,7 +49,7 @@ public class Game extends JGEngine
 
 	public void initCanvas()
 	{
-		setCanvasSettings(10, 10, 40, 40, JGColor.white, new JGColor(44, 44, 44), null);
+		setCanvasSettings(10, 10, tileWidth, tileHeight, JGColor.white, new JGColor(44, 44, 44), null);
 	}
 
 	public void initGame()
@@ -63,7 +64,7 @@ public class Game extends JGEngine
 		states.add("InGame");
 
 		// Create Levels object
-		objLevels = new Levels(this);
+		objLevels = new Levels();
 
 		if (debug)
 		{
