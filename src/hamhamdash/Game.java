@@ -440,13 +440,17 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
-		if (getKey(KeyRight))
+		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
 		{
+			clearKey(KeyCtrl);
+			clearKey(KeyShift);
 			clearKey(KeyRight);
 			objLevels.nextLevel();
 		}
-		if (getKey(KeyLeft))
+		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
 		{
+			clearKey(KeyCtrl);
+			clearKey(KeyShift);
 			clearKey(KeyLeft);
 			objLevels.prevLevel();
 		}
