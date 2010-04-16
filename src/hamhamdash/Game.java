@@ -16,6 +16,7 @@ public class Game extends JGEngine
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
 	private Player player = null;
+	private Enemy enemy = null;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
@@ -454,7 +455,7 @@ public class Game extends JGEngine
 				objLevels.prevLevel();
 			}
 			player = new Player();
-			player.setPc(new PlayerCharacter(80, 160));
+			player.setPc(new PlayerCharacter("h", 80, 160));
 		}
 	}
 
