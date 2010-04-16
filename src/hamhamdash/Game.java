@@ -92,6 +92,8 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
+				System.out.println(existsObject("."));
+
 		moveObjects(null, 0);
 		if (states.get(stateCounter).equals("InGame"))
 		{

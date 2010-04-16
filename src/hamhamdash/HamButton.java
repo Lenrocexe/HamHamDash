@@ -17,7 +17,9 @@ public class HamButton extends JGObject
 	public HamButton(int x, int y, String label, JGColor labelColor, int state)
 	{
 		super("hambutton", true, x, y, 0, "ham_button_over");
-
+		stopAnim();
+		System.out.println(getAnimId());
+		
 		if(state == NORMAL)
 		{
 			setGraphic(normalButton);
@@ -25,6 +27,9 @@ public class HamButton extends JGObject
 		{
 			setGraphic(overButton);
 		}
+
+//		game.drawImage(y, y, overButton);
+
 
 
 		game.setColor(labelColor);
