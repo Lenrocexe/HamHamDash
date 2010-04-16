@@ -351,4 +351,20 @@ public class Level
 	{
 		return new String("X");
 	}
+	
+	/**
+	 * Returns an array with the X and the Y value of a tile calculated by pixel X and Y
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public int[] getTileXYByPixel(int x, int y)
+	{
+		Double tileX = Math.floor((double)x/game.tileWidth());
+		Double tileY = Math.floor((double)y/game.tileHeight());
+		int[] tileXY = new int[2];
+		tileXY[0] = tileX.intValue();
+		tileXY[1] = tileY.intValue();
+		return tileXY;
+	}
 }

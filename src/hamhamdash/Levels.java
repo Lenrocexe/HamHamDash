@@ -46,6 +46,7 @@ public class Levels
 	public void startLevel()
 	{
 		arrLevels[currentLevelId].runLevel();
+		arrLevels[currentLevelId].getTileXYByPixel(92, 10);
 	}
 
 	/**
