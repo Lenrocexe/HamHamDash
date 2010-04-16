@@ -35,7 +35,7 @@ public class Game extends JGEngine
 	 */
 	private static class GameHolder
 	{
-		private static final Game INSTANCE = new Game(new JGPoint(800, 800));
+		private static final Game INSTANCE = new Game(new JGPoint(400, 400));
 	}
 
 	/**
