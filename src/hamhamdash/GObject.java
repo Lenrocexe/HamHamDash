@@ -9,7 +9,7 @@ import jgame.*;
 public abstract class GObject extends JGObject
 {
 	private boolean pickable, pushable, falling = false;
-	private Game game = Game.getGame();
+	public Game game = Game.getGame();
 
 	/**
 	 *
