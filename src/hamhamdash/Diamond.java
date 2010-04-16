@@ -23,15 +23,17 @@ public class Diamond extends GObject
 	@Override
 	public void hit_bg(int tilecid){};
 
-//		pickupDiamond();
 
 	@Override
 	public void hit(JGObject obj){};
 
+//		pickupDiamond();
+
 	public void pickupDiamond()
 	{
 //		if (tile.contains("P"))
-
-		destroy();
+//		{
+//			destroy();
+//		}
 	}
 }
