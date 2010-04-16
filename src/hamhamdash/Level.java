@@ -42,7 +42,6 @@ public class Level
 		game.setTiles(0,0,tileMap);
 		insertEnemies();
 		insertDiamondRock();
-		String[][] test;
     }
 
 	/**
@@ -415,7 +414,7 @@ public class Level
 	 * Returns an array with the X and the Y value of a tile calculated by pixel X and Y
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return Array with Tile X [0] and Tile Y [1]
 	 */
 	public int[] getTileXYByPixel(int x, int y)
 	{

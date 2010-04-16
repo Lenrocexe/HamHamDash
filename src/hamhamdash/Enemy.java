@@ -9,7 +9,8 @@ import jgame.*;
 public class Enemy extends GCharacter
 {
 	private String type = null;
-	private String turnLeft;
+	public MoveDirection Direction;
+	
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
 	 * @param x Starting x position
@@ -19,125 +20,121 @@ public class Enemy extends GCharacter
 	{
 		super(name, false, x, y, 1, name + "Idle");
 		this.type = name;
+		setDirection(MoveDirection.LEFT);
+	}
+	
+	public MoveDirection getDirection()
+	{
+		return Direction;
+	}
+
+	public void setDirection(MoveDirection newDirection)
+	{
+		Direction = newDirection;
+	}
+
+	private void turnRight()
+	{
+		if (getDirection() == MoveDirection.LEFT )
+		{
+			setDirection(MoveDirection.UP);
+			setGraphic("SpatAIdle");
+		}
+		else if (getDirection() == MoveDirection.UP)
+		{
+			setDirection(MoveDirection.RIGHT);
+			setGraphic("SpatAIdle");
+		}
+		else if (getDirection() == MoveDirection.RIGHT)
+		{
+			setDirection(MoveDirection.DOWN);
+			setGraphic("SpatAIdle");
+		}
+		else if (getDirection() == MoveDirection.DOWN)
+		{
+			setDirection(MoveDirection.LEFT);
+			setGraphic("SpatAIdle");
+		}
+	}
+
+	private void turnLeft()
+	{
+		if (getDirection() == MoveDirection.LEFT )
+		{
+			setDirection(MoveDirection.DOWN);
+		}
+		else if (getDirection() == MoveDirection.DOWN)
+		{
+			setDirection(MoveDirection.RIGHT);
+		}
+		else if (getDirection() == MoveDirection.RIGHT)
+		{
+			setDirection(MoveDirection.UP);
+		}
+		else if (getDirection() == MoveDirection.UP)
+		{
+			setDirection(MoveDirection.LEFT);
+		}
 	}
 
 	@Override
 	public void move()
 	{
-
-
-		if (0 < xspeed)
+System.out.println(getDirection());
+		switch(getDirection())
 		{
-			setGraphic("SpatAIdle");
+			case LEFT:
+			{
+				xspeed = -2;
+				break;
+			}
+			case RIGHT:
+			{
+				xspeed = 2;
+				break;
+			}
+			case UP:
+			{
+				yspeed = -2;
+				break;
+			}
+			case DOWN:
+			{
+				yspeed = 2;
+				break;
+			}
+			default:
+			{
+			}
 		}
-		else
-		{
-			setGraphic("SpatAIdle");
-		}
-		if (0 < yspeed)
-		{
-			setGraphic("SpatAIdle");
-		}
-		else
-		{
-			setGraphic("SpatAIdle");
-		}
-
-//        if (getDirection == GCharacter.moveUp && isWalking()||
-//            getDirection == GCharacter.moveDown && isWalking()||
-//            getDirection == GCharacter.moveLeft && isWalking()||
-//            getDirection == GCharacter.moveRight && isWalking())
-		}
-        
-//	switch (EnemyDirection);
-//	{
-//		case MoveDirection:
-//
-//                        if (nextTile == EmptyTile)
-//                        {
-//                                GCharacter.stepInpixels;
-//                        }
-//                        else
-//                        {
-//                            GCharacter.moveDown||GCharacter.moveUp;
-//                        }
-//
-//                        break;
-//
-//                case GCharacter.moveUp:
-//
-//                        if (nextTile == EmptyTile)
-//                        {
-//                                GCharacter.StepInPixel;
-//                        }
-//                        else
-//                        {
-//                            GCharacter.moveLeft||GCharacter.moveRight;
-//                        }
-//
-//                        break;
-//
-//                case GCharacter.moveRight:
-//
-//                        if (nextTile == EmptyTile)
-//                        {
-//                                GCharacter.StepInPixel;
-//                        }
-//                        else
-//                        {
-//                            GCharacter.moveUp||GCharacter.moveDown;
-//                        }
-//
-//                        break;
-//                case GCharacter.moveDown:
-//
-//                        if (nextTile == EmptyTile)
-//                        {
-//                                GCharacter.StepInPixel;
-//                        }
-//                        else
-//                        {
-//                            GCharacter.moveRight||GCharacter.moveLeft;
-//                        }
-//
-//                        break;
-//                default:
-//                        break;
-//                }
-//        }
-
-//	public void directionview()
-//    {
-//            if (moveUp)
-//            {
-//                [LEFT,UP,RIGHT]
-//            }
-//            else if (moveDown)
-//            {
-//                [RIGHT,DOWN,LEFT]
-//            }
-//            else if (moveLeft)
-//            {
-//                [DOWN,LEFT,UP]
-//            }
-//            else if (moveRight)
-//            {
-//                [UP,RIGHT,DOWN]
-//            }
-//    }
+	}
 
 	@Override
 	public void hit_bg(int tilecid)
 	{
-//	if (nextToPlayer)
-	
-//		Player.removeLife();
+		if(tilecid == 3)
+		{
+			yspeed = 0;
+			xspeed = 0;
+			turnRight();
+		}
+		if (tilecid == 2)
+		{
+			yspeed = 0;
+			xspeed = 0;
+			turnRight();
+		}
+		if (tilecid == 1)
+		{
+			yspeed = 0;
+			xspeed = 0;
+			turnRight();
+		}
 	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		
 	}
 
 	public String getType()

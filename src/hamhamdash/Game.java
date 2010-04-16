@@ -96,6 +96,16 @@ public class Game extends JGEngine
 		if (states.get(stateCounter).equals("InGame"))
 		{
 			moveObjects(null, 0);
+			if(getKey(KeyEsc) && inGameState("Paused"))
+			{
+				clearKey(KeyEsc);
+				setGameState("InGame");
+			}
+			else if(getKey(KeyEsc))
+			{
+				clearKey(KeyEsc);
+				setGameState("Paused");
+			}
 		} else if (states.get(stateCounter).equals("EnterPwd"))
 		{
 			if (getKey(KeyEnter))
@@ -430,26 +440,33 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
-		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
+		if(debug)
 		{
-			clearKey(KeyCtrl);
-			clearKey(KeyShift);
-			clearKey(KeyRight);
-			objLevels.nextLevel();
+			if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
+			{
+				clearKey(KeyCtrl);
+				clearKey(KeyShift);
+				clearKey(KeyRight);
+				objLevels.nextLevel();
+			}
+			if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
+			{
+				clearKey(KeyCtrl);
+				clearKey(KeyShift);
+				clearKey(KeyLeft);
+				objLevels.prevLevel();
+			}
+			player = new Player();
+			player.setPc(new PlayerCharacter("h", 80, 160));
 		}
-		if (getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
-		{
-			clearKey(KeyCtrl);
-			clearKey(KeyShift);
-			clearKey(KeyLeft);
-			objLevels.prevLevel();
-		}
-		System.out.println(player.getPc().getName());
 	}
 
-	public void paintframeInGame()
+	public void paintFrameInGame()
 	{
 	}
+	//***************************************
+	// End Game State Enter Password
+	//***************************************
 
 	// Global Method(s)
 	public int nextState(int counter, ArrayList<String> states)
