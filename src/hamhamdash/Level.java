@@ -2,8 +2,6 @@ package hamhamdash;
 
 import java.io.*;
 import java.util.*;
-import jgame.platform.*;
-import jgame.JGRectangle.*;
 
 /**
  *
@@ -11,7 +9,7 @@ import jgame.JGRectangle.*;
  */
 public class Level
 {
-	private JGEngine game;
+	private Game game = Game.getGame();
 	private TileMap objTileMap;
 	private Properties settings = new Properties();
 	private String[] tileMap;
@@ -25,9 +23,8 @@ public class Level
 	 * @param levelId
 	 * @param fileName
 	 */
-	public Level(JGEngine Game, int levelId, String fileName)
+	public Level(int levelId, String fileName)
 	{
-		this.game = Game;
 		this.fileName = fileName;
 		loadSettings();
 		loadEnemies();
@@ -40,11 +37,12 @@ public class Level
 	public void runLevel()
 	{
 		// Get and Paint TileMap
-		objTileMap = new TileMap(game);
+		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(fileName);
 		game.setTiles(0,0,tileMap);
 		insertEnemies();
 		insertDiamondRock();
+		String[][] test;
     }
 
 	/**
@@ -326,29 +324,119 @@ public class Level
 	}
 
 	/**
+	 * Returns the tile type directly above the given position
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public String getTileAbove(int x, int y)
+	{
+		return new String(game.getTileStr(x, y-1));
+	}
+
+	/**
+	 * Returns the tile type directly right of the given position
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public String getTileRight(int x, int y)
+	{
+		return new String(game.getTileStr(x+1, y));
+	}
+
+	/**
+	 * Returns the tile type directly left of the given position
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public String getTileLeft(int x, int y)
+	{
+		return new String(game.getTileStr(x-1, y));
+	}
+
+	/**
 	 * Returns the tile type directly below the given position.
 	 * @return
 	 */
 	public String getTileBelow(int x, int y)
 	{
-		return new String("X");
+		return new String(game.getTileStr(x, y+1));
 	}
 
 	/**
 	 * Returns the tile type at the lower left corner of the given position.
 	 * @return
 	 */
-	public String getTileBelowLeft()
+	public String getTileBelowLeft(int x, int y)
 	{
-		return new String("X");
+		return new String(game.getTileStr(x-1, y+1));
 	}
 
 	/**
 	 * Returns the tile type at the lower right corner of the given position.
 	 * @return
 	 */
-	public String getTileBelowRight()
+	public String getTileBelowRight(int x, int y)
 	{
-		return new String("X");
+		return new String(game.getTileStr(x+1, y+1));
+	}
+
+	/**
+	 * Returns an array of the surrounding tiles of the given tile.
+	 * For each tile a String identifier, X and Y value are available.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public String[][] getSurroundingTiles(int x, int y)
+	{
+		String[][] surroundingTiles = new String[8][3];
+		int cntCoord = 0;
+		int newY, newX;
+		for(newY=y-1;newY<=y+1;newY++)
+		{
+			for(newX=x-1;newX<=x+1;newX++)
+			{
+				if(!(newX == x && newY == y))
+				{
+					surroundingTiles[cntCoord][0] = game.getTileStr(newX, newY);
+					surroundingTiles[cntCoord][1] = newX+"";
+					surroundingTiles[cntCoord][2] = newY+"";
+					cntCoord++;
+				}
+			}
+		}
+		return surroundingTiles;
+	}
+	
+	/**
+	 * Returns an array with the X and the Y value of a tile calculated by pixel X and Y
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public int[] getTileXYByPixel(int x, int y)
+	{
+		Double tileX = Math.floor((double)x/game.tileWidth());
+		Double tileY = Math.floor((double)y/game.tileHeight());
+		int[] tileXY = new int[2];
+		tileXY[0] = tileX.intValue();
+		tileXY[1] = tileY.intValue();
+		return tileXY;
+	}
+
+	/**
+	 * Returns an array with the tile count in the X and Y direction of the level
+	 * @return
+	 */
+	public int[] getLevelSize()
+	{
+		int[] levelSize = new int[2];
+		levelSize[0] = game.pfTilesX();
+		levelSize[1] = game.pfTilesY();
+
+		return levelSize;
 	}
 }

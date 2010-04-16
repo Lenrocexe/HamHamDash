@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Levels
 {
-	private JGEngine game;
+	private Game game = Game.getGame();
 	private Level[] arrLevels;
 	private int currentLevelId = 0;
 
@@ -18,9 +18,8 @@ public class Levels
 	 * Levels constructor
 	 * @param Game
 	 */
-	public Levels(JGEngine Game)
+	public Levels()
 	{
-		this.game = Game;
 		loadLevels();
 	}
 
@@ -36,7 +35,7 @@ public class Levels
 		int i;
 		for (i = 0; i < levels.length; i++)
 		{
-			arrLevels[i] = new Level(game, i, levels[i]);
+			arrLevels[i] = new Level(i, levels[i]);
 		}
 	}
 
@@ -46,6 +45,7 @@ public class Levels
 	public void startLevel()
 	{
 		arrLevels[currentLevelId].runLevel();
+		arrLevels[currentLevelId].getTileXYByPixel(92, 10);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class Levels
 	 */
 	public void nextLevel()
 	{
-		if (currentLevelId != arrLevels.length)
+		if (currentLevelId != arrLevels.length-1)
 		{
 			currentLevelId++;
 			startLevel();
@@ -86,7 +86,7 @@ public class Levels
 	 */
 	public void prevLevel()
 	{
-		if (currentLevelId != 1)
+		if (currentLevelId != 0)
 		{
 			currentLevelId--;
 			startLevel();
@@ -117,11 +117,30 @@ public class Levels
 	 * Returns the current level
 	 * @return
 	 */
-	public int getCurrentLevel()
+	public int getCurrentLevelId()
 	{
 		return currentLevelId;
 	}
 
+	/**
+	 * Get the level object of the current level
+	 * @return
+	 */
+	public Object getCurrentLevelObj()
+	{
+		return arrLevels[currentLevelId];
+	}
+
+	/**
+	 * Get the level object of the given level
+	 * @param levelId
+	 * @return
+	 */
+	public Object getLevelObj(int levelId)
+	{
+		return arrLevels[levelId];
+	}
+	
 	/**
 	 * Returns a list of available level files
 	 * @return

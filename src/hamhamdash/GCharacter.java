@@ -14,6 +14,7 @@ public abstract class GCharacter extends JGObject
 	public static Boolean moveUp = false, moveDown = false,
 			moveLeft = false, moveRight = false;
 	public Game game = Game.getGame();
+	private Boolean alive;
 
 	/**
 	 *
