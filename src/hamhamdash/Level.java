@@ -19,15 +19,24 @@ public class Level
 	private ArrayList<int[]> arrEnemies = new ArrayList<int[]>();
 	private ArrayList<int[]> arrDiamondRock = new ArrayList<int[]>();
 
+	/**
+	 * Level Constructor
+	 * @param Game
+	 * @param levelId
+	 * @param fileName
+	 */
 	public Level(JGEngine Game, int levelId, String fileName)
 	{
 		this.game = Game;
 		this.fileName = fileName;
 		loadSettings();
 		loadEnemies();
-		loadDiamondStone();
+		loadDiamondRock();
 	}
 
+	/**
+	 * Runs the current level
+	 */
 	public void runLevel()
 	{
 		// Get and Paint TileMap
@@ -38,7 +47,10 @@ public class Level
 		insertDiamondRock();
     }
 
-	public void insertEnemies()
+	/**
+	 * Inserts enemies in the current level
+	 */
+	private void insertEnemies()
 	{
 		int i;
 		for(i=0;i<arrEnemies.size();i++)
@@ -49,7 +61,10 @@ public class Level
 		}
 	}
 
-	public void insertDiamondRock()
+	/**
+	 * Inserts Diamonds and Rocks in the current level
+	 */
+	private void insertDiamondRock()
 	{
 		int i;
 		for(i=0;i<arrDiamondRock.size();i++)
@@ -61,6 +76,9 @@ public class Level
 		}
 	}
 
+	/**
+	 * Loads the level settings
+	 */
 	private void loadSettings()
 	{
 		InputStream readSettings = this.getClass().getResourceAsStream("levels/"+fileName);
@@ -86,6 +104,9 @@ public class Level
 		}
 	}
 
+	/**
+	 * Loads the enemies
+	 */
 	private void loadEnemies()
 	{
 		// Read File
@@ -154,7 +175,10 @@ public class Level
 		}
 	}
 
-	private void loadDiamondStone()
+	/**
+	 * Loads the diamonds and rocks
+	 */
+	private void loadDiamondRock()
 	{
 		// Read File
 		BufferedReader br = null;
@@ -222,37 +246,67 @@ public class Level
 		}
 	}
 
-	public void digTile()
-	{	// Convert a ground tile to an empty tile
+	/**
+	 * Changes a given tile to an empty tile
+	 * @param x
+	 * @param y
+	 */
+	public void digTile(int x, int y)
+	{
 		game.setTile(1, 1, ".");
 	}
 
-	public void explodeTile()
-	{	// Convert any tile to an empty tile
+	/**
+	 * Explodes a given tile and changes it to an empty tile
+	 * @param x
+	 * @param y
+	 */
+	public void explodeTile(int x, int y)
+	{
 		game.setTile(1, 2, ".");
 	}
 
 	// Get Functions
+	/**
+	 * Returns total diamond count for this level
+	 * @return
+	 */
 	public int getTotalDiamonds()
 	{
 		return 0;
 	}
 
+	/**
+	 * Returns the timercount for this level
+	 * @return
+	 */
 	public int getStartTimer()
 	{
 		return 0;
 	}
 
+	/**
+	 * Returns the amoebe count for this level
+	 * @return
+	 */
 	public int getAmoebetimer()
 	{
 		return 0;
 	}
 
+	/**
+	 * Returns the password for this level
+	 * @return
+	 */
 	public String getPassword()
 	{
 		return settings.getProperty("password");
 	}
 
+	/**
+	 * Returns an ArrayList with Enemies in this level
+	 * @return
+	 */
 	public ArrayList<String> getEnemies()
 	{
 		ArrayList<String> temp = new ArrayList<String>();
@@ -260,6 +314,10 @@ public class Level
 		return temp;
 	}
 
+	/**
+	 * Returns an ArrayList with GObjects in this level
+	 * @return
+	 */
 	public ArrayList<String> getGObjects()
 	{
 		ArrayList<String> temp = new ArrayList<String>();
@@ -271,7 +329,7 @@ public class Level
 	 * Returns the tile type directly below the given position.
 	 * @return
 	 */
-	public String getTileBelow()
+	public String getTileBelow(int x, int y)
 	{
 		return new String("X");
 	}

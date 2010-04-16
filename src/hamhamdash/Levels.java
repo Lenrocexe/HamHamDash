@@ -14,12 +14,19 @@ public class Levels
 	private Level[] arrLevels;
 	private int currentLevelId = 0;
 
+	/**
+	 * Levels constructor
+	 * @param Game
+	 */
 	public Levels(JGEngine Game)
 	{
 		this.game = Game;
 		loadLevels();
 	}
 
+	/**
+	 * Loads the available levels in memory
+	 */
 	public void loadLevels()
 	{
 		// Get the available levels in an array
@@ -33,11 +40,21 @@ public class Levels
 		}
 	}
 
+	/**
+	 * Starts current level
+	 */
 	public void startLevel()
 	{
 		arrLevels[currentLevelId].runLevel();
 	}
 
+	/**
+	 * Checks if the password belongs to a level
+	 * If it does, set the current level and returns true
+	 * If it doesn't returns false
+	 * @param password
+	 * @return
+	 */
 	public boolean checkPassword(String password)
 	{
 
@@ -52,6 +69,9 @@ public class Levels
 		return false;
 	}
 
+	/**
+	 * Starts the next available level
+	 */
 	public void nextLevel()
 	{
 		if (currentLevelId != arrLevels.length)
@@ -61,6 +81,9 @@ public class Levels
 		}
 	}
 
+	/**
+	 * Starts the previous level
+	 */
 	public void prevLevel()
 	{
 		if (currentLevelId != 1)
@@ -70,6 +93,10 @@ public class Levels
 		}
 	}
 
+	/**
+	 * Starts a specific level
+	 * @param levelId
+	 */
 	public void gotoLevel(int levelId)
 	{
 		currentLevelId = levelId;
@@ -77,16 +104,28 @@ public class Levels
 	}
 
 	// Get functions
+	/**
+	 * Returns total amount of levels
+	 * @return
+	 */
 	public int getLevelCount()
 	{
 		return arrLevels.length;
 	}
 
+	/**
+	 * Returns the current level
+	 * @return
+	 */
 	public int getCurrentLevel()
 	{
 		return currentLevelId;
 	}
 
+	/**
+	 * Returns a list of available level files
+	 * @return
+	 */
 	private String[] getLevelDirList()
 	{
 		File dir = new File("./src/hamhamdash/levels");

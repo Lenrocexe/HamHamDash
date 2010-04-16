@@ -13,11 +13,20 @@ public class TileMap
 {
 	private JGEngine game;
 
+	/**
+	 * TileMap constructor
+	 * @param Game
+	 */
 	public TileMap(JGEngine Game)
     {
         this.game = Game;
     }
 
+	/**
+	 * Returns an array of the tiles found in the levelfile
+	 * @param fileName
+	 * @return
+	 */
 	public String[] getTiles(String fileName)
 	{
 		// Read File
