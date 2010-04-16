@@ -8,16 +8,35 @@ import jgame.*;
  */
 public class Rock extends GObject
 {
-	public Rock(String name, boolean unique, int x, int y, int cid, String sprite, Game game)
+	public Rock(String name, boolean unique, int x, int y, int cid, String sprite)
 	{
-		super(name, unique, x, y, cid, sprite, game);
+		super(name, unique, x, y, cid, sprite);
 	}
 
 	@Override
-	public void move(){};
+	public void move(){
+
+
+        };
 
 	@Override
-	public void hit_bg(int tilecid){};
+	public void hit_bg(int tilecid){
+//        String duw = getPushSource();
+//        if (duw == left)
+//            {
+//                moveright();
+//            }
+//        if (duw == right)
+//            {
+//                moveleft();
+//            }
+//        if (duw == down)
+//            {
+//                return;
+//            }
+
+
+        }
 
 	@Override
 	public void hit(JGObject obj){};
