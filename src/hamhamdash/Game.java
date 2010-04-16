@@ -15,6 +15,8 @@ public class Game extends JGEngine
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
+	private Player player = null;
+	private Enemy enemy = null;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
@@ -440,6 +442,9 @@ public class Game extends JGEngine
 			clearKey(KeyLeft);
 			objLevels.prevLevel();
 		}
+		player = new Player();
+		player.setPc(new PlayerCharacter(80, 160));
+		enemy = new Enemy("SpatA", 120, 240);
 	}
 
 	public void paintframeInGame()
