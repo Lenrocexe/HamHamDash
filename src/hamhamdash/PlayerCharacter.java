@@ -16,9 +16,9 @@ public class PlayerCharacter extends GCharacter
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public PlayerCharacter(int x, int y)
+	public PlayerCharacter(String name, int x, int y)
 	{
-		super("player", true, x, y, 1, "hidle");
+		super(name, true, x, y, 1, "idle");
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class PlayerCharacter extends GCharacter
 		{
 			if (y < game.pfHeight() - 230)
 			{
-				setGraphic("hrunup");
+				setGraphic(getName() + "runup");
 				yspeed = 0;
 				ydir = 0;
 				System.out.println(x);
@@ -41,7 +41,7 @@ public class PlayerCharacter extends GCharacter
 			}
 			else
 			{
-				setGraphic("hrunup");
+				setGraphic(getName() + "runup");
 				yspeed = -6;
 				ydir = 1;
 				System.out.println(x);
@@ -51,13 +51,13 @@ public class PlayerCharacter extends GCharacter
 		{
 			if (y > game.pfHeight() - 57)
 			{
-				setGraphic("hrundown");
+				setGraphic(getName() + "rundown");
 				yspeed = 0;
 				ydir = 0;
 			}
 			else
 			{
-				setGraphic("hrundown");
+				setGraphic(getName() + "rundown");
 				yspeed = 6;
 				ydir = 1;
 			}
@@ -66,13 +66,13 @@ public class PlayerCharacter extends GCharacter
 		{
 			if (x < game.pfWidth() - 300)
 			{
-				setGraphic("hrunleft");
+				setGraphic(getName() + "runleft");
 				xspeed = 0;
 				xdir = 0;
 			}
 			else
 			{
-				setGraphic("hrunleft");
+				setGraphic(getName() + "runleft");
 				xspeed = -6;
 				xdir = 1;
 			}
@@ -81,20 +81,20 @@ public class PlayerCharacter extends GCharacter
 		{
 			if (x > game.pfWidth() - 60)
 			{
-				setGraphic("hrunright");
+				setGraphic(getName() + "runright");
 				xspeed = 0;
 				xdir = 0;
 			}
 			else
 			{
-				setGraphic("hrunright");
+				setGraphic(getName() + "runright");
 				xspeed = 6;
 				xdir = 1;
 			}
 		}
 		else
 		{
-			setGraphic("hidle");
+			setGraphic(getName() + "idle");
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
