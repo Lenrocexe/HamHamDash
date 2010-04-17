@@ -10,19 +10,19 @@ public class Enemy extends GCharacter
 {
 	private String type = null;
 	public MoveDirection Direction;
-	
+
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-		public Enemy(String name, int x, int y)
+	public Enemy(String name, int x, int y)
 	{
 		super(name, false, x, y, 1, name + "Idle");
 		this.type = name;
 		setDirection(MoveDirection.LEFT);
 	}
-	
+
 	public MoveDirection getDirection()
 	{
 		return Direction;
@@ -35,22 +35,22 @@ public class Enemy extends GCharacter
 
 	private void turnRight()
 	{
-		if (getDirection() == MoveDirection.LEFT )
+		if(getDirection() == MoveDirection.LEFT)
 		{
 			setDirection(MoveDirection.UP);
 			setGraphic("SpatAIdle");
 		}
-		else if (getDirection() == MoveDirection.UP)
+		else if(getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.RIGHT);
 			setGraphic("SpatAIdle");
 		}
-		else if (getDirection() == MoveDirection.RIGHT)
+		else if(getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.DOWN);
 			setGraphic("SpatAIdle");
 		}
-		else if (getDirection() == MoveDirection.DOWN)
+		else if(getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.LEFT);
 			setGraphic("SpatAIdle");
@@ -59,19 +59,19 @@ public class Enemy extends GCharacter
 
 	private void turnLeft()
 	{
-		if (getDirection() == MoveDirection.LEFT )
+		if(getDirection() == MoveDirection.LEFT)
 		{
 			setDirection(MoveDirection.DOWN);
 		}
-		else if (getDirection() == MoveDirection.DOWN)
+		else if(getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.RIGHT);
 		}
-		else if (getDirection() == MoveDirection.RIGHT)
+		else if(getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.UP);
 		}
-		else if (getDirection() == MoveDirection.UP)
+		else if(getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.LEFT);
 		}
@@ -80,7 +80,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void move()
 	{
-System.out.println(getDirection());
+//		System.out.println(getDirection());
 		switch(getDirection())
 		{
 			case LEFT:
@@ -118,13 +118,13 @@ System.out.println(getDirection());
 			xspeed = 0;
 			turnRight();
 		}
-		if (tilecid == 2)
+		if(tilecid == 2)
 		{
 			yspeed = 0;
 			xspeed = 0;
 			turnRight();
 		}
-		if (tilecid == 1)
+		if(tilecid == 1)
 		{
 			yspeed = 0;
 			xspeed = 0;

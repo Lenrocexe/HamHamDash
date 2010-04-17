@@ -33,7 +33,7 @@ public class HamButton
 		if(state == NORMAL)
 		{
 			game.drawImage(point.x - 50, point.y, normalButton);
-			System.out.println("im in normal");
+//			System.out.println("im in normal");
 		}
 		else if(state == OVER)
 		{
@@ -45,7 +45,6 @@ public class HamButton
 				label,
 				point.x,
 				point.y + hamMargin + (hamMargin / 2) - 3,
-				0
-				);
+				0);
 	}
 }

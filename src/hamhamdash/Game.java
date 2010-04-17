@@ -525,4 +525,9 @@ public class Game extends JGEngine
 	{
 		setPFSize(t[0], t[1]);
 	}
+
+	public Level getCurrentLevel()
+	{
+		return objLevels.getCurrentLevel();
+	}
 }

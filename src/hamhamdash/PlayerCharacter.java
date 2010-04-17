@@ -1,7 +1,6 @@
 package hamhamdash;
 
 import jgame.*;
-import jgame.platform.*;
 
 /**
  *
@@ -12,6 +11,7 @@ public class PlayerCharacter extends GCharacter
 	private String name = null;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
+
 	/**
 	 *
 	 * @param x Starting x position
@@ -36,7 +36,7 @@ public class PlayerCharacter extends GCharacter
 		yspeed = 0;
 		xdir = 0;
 		ydir = 0;
-		if (eng.getKey(eng.KeyUp) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
+		if(eng.getKey(eng.KeyUp) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
 //			if (y < game.pfHeight() - 230)
 //			{
@@ -51,7 +51,7 @@ public class PlayerCharacter extends GCharacter
 				ydir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyDown) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
+		else if(eng.getKey(eng.KeyDown) && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
 //			if (y > game.pfHeight() - 57)
 //			{
@@ -66,7 +66,7 @@ public class PlayerCharacter extends GCharacter
 				ydir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyLeft) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+		else if(eng.getKey(eng.KeyLeft) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
 //			if (x < game.pfWidth() - 300)
 //			{
@@ -81,7 +81,7 @@ public class PlayerCharacter extends GCharacter
 				xdir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyRight) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+		else if(eng.getKey(eng.KeyRight) && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
 //			if (x > game.pfWidth() - 60)
 //			{
@@ -107,8 +107,12 @@ public class PlayerCharacter extends GCharacter
 	}
 
 	@Override
-	public void hit_bg(int tilecid){}
+	public void hit_bg(int tilecid)
+	{
+	}
 
 	@Override
-	public void hit(JGObject obj){}
+	public void hit(JGObject obj)
+	{
+	}
 }

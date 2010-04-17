@@ -28,65 +28,56 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		/**
-		 * [0][0] = tile linksboven -> X
-		 * [1][0] = tile boven -> X identifier
-		 * [2][1] = tile Rechtsboven -> 120 X positie
-		 * [2][2] = tile \\RB -> 150 //Y positie
-		 *
-		 *
-		 *
-		 */
-		String[][] tile = null; //game.objLevels.getcurrentlevel().getSurroundindTiles(x, y);
-		if (tile[5][0].contains("."))
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles((int) x, (int) y);
+
+		if(tile[5][0].contains("."))
 		{
 			startFalling();
 			moveDown();
 		}
-		else if (tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
+		else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
 			//explode();
 		}
-		else if (tile[5][0].contains("R")
-			|| tile[5][0].contains("D")
-			|| tile[5][0].contains("X")
-			|| tile[5][0].contains("#"))
+		else if(tile[5][0].contains("R")
+				|| tile[5][0].contains("D")
+				|| tile[5][0].contains("X")
+				|| tile[5][0].contains("#"))
 		{
-// left and down
-			if (tile[6][0].contains(".") && tile[7][0].contains("."))
+			// left and down
+			if(tile[6][0].contains(".") && tile[7][0].contains("."))
 			{
 				startFalling();
 				moveLeft();
 				startFalling();
 				moveDown();
 			}
-
-			else if (tile[6][0].contains("P") || tile[5][0].contains("E") && isFalling())
+			else if(tile[6][0].contains("P") || tile[5][0].contains("E") && isFalling())
 			{
 				//explode();
 			}
-			else if (tile[6][0].contains("R") && tile[5][0].contains("R")
-				|| tile[6][0].contains("D") && tile[5][0].contains("D")
-				|| tile[6][0].contains("X") && tile[5][0].contains("X")
-				|| tile[6][0].contains("#") && tile[5][0].contains("#"))
+			else if(tile[6][0].contains("R") && tile[5][0].contains("R")
+					|| tile[6][0].contains("D") && tile[5][0].contains("D")
+					|| tile[6][0].contains("X") && tile[5][0].contains("X")
+					|| tile[6][0].contains("#") && tile[5][0].contains("#"))
 			{
-// right and down
-				if (tile[6][0].contains(".") && tile[5][0].contains("."))
+				// right and down
+				if(tile[6][0].contains(".") && tile[5][0].contains("."))
 				{
 					startFalling();
 					moveRight();
 					startFalling();
 					moveDown();
 				}
-				else if (tile[6][0].contains("P") || tile[6][0].contains("E") && isFalling())
+				else if(tile[6][0].contains("P") || tile[6][0].contains("E") && isFalling())
 				{
 					//explode();
 				}
 			}
-			else if (tile[6][0].contains("R") && tile[6][0].contains("R")
-				|| tile[6][0].contains("D") && tile[6][0].contains("D")
-				|| tile[6][0].contains("X") && tile[6][0].contains("X")
-				|| tile[6][0].contains("#") && tile[6][0].contains("#"))
+			else if(tile[6][0].contains("R") && tile[6][0].contains("R")
+					|| tile[6][0].contains("D") && tile[6][0].contains("D")
+					|| tile[6][0].contains("X") && tile[6][0].contains("X")
+					|| tile[6][0].contains("#") && tile[6][0].contains("#"))
 			{
 				return;
 			}
@@ -137,7 +128,7 @@ public abstract class GObject extends JGObject
 	 */
 	public void moveDown()
 	{
-		for (int i = 0; i <= 19; i++)
+		for(int i = 0; i <= 19; i++)
 		{
 			yspeed = 2;
 		}
@@ -146,7 +137,7 @@ public abstract class GObject extends JGObject
 
 	public void moveLeft()
 	{
-		for (int i = 0; i <= 19; i++)
+		for(int i = 0; i <= 19; i++)
 		{
 			xspeed = -2;
 		}
@@ -155,7 +146,7 @@ public abstract class GObject extends JGObject
 
 	public void moveRight()
 	{
-		for (int i = 0; i <= 19; i++)
+		for(int i = 0; i <= 19; i++)
 		{
 			xspeed = 2;
 		}

@@ -14,8 +14,8 @@ public class TileMap
 	 * @param Game
 	 */
 	public TileMap()
-    {
-    }
+	{
+	}
 
 	/**
 	 * Returns an array of the tiles found in the levelfile
@@ -30,7 +30,7 @@ public class TileMap
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/" + fileName)));
 
 			String line;
 			boolean blockStarted = false;
