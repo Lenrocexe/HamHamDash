@@ -15,6 +15,7 @@ public class StateTitle extends State
 	@Override
 	public void start()
 	{
+
 	}
 
 	@Override
@@ -25,5 +26,7 @@ public class StateTitle extends State
 	@Override
 	public void paintFrame()
 	{
+		game.drawImage(0, 0, "title_bg");
+		game.drawString("Press <ENTER> to continue", game.pfWidth() / 2, game.pfHeight() - 50, 0);
 	}
 }
