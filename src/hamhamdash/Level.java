@@ -38,7 +38,7 @@ public class Level
 	{
 		// Get and Paint TileMap
 		objTileMap = new TileMap();
-		tileMap = objTileMap.getTiles(fileName);
+		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
 		insertEnemies();
 		insertDiamondRock();
@@ -73,12 +73,18 @@ public class Level
 		}
 	}
 
+	private InputStream loadDataFile()
+	{
+		InputStream datafile = this.getClass().getResourceAsStream("levels/" + fileName);
+		return datafile;
+	}
+
 	/**
 	 * Loads the level settings
 	 */
 	private void loadSettings()
 	{
-		InputStream readSettings = this.getClass().getResourceAsStream("levels/" + fileName);
+		InputStream readSettings = loadDataFile();
 		try
 		{
 			settings.load(readSettings);
@@ -106,7 +112,7 @@ public class Level
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/" + fileName)));
+			br = new BufferedReader(new InputStreamReader(loadDataFile()));
 
 			String line;
 			int y = 0;
@@ -177,7 +183,7 @@ public class Level
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/" + fileName)));
+			br = new BufferedReader(new InputStreamReader(loadDataFile()));
 
 			String line;
 			int y = 0;

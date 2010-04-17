@@ -22,7 +22,7 @@ public class TileMap
 	 * @param fileName
 	 * @return
 	 */
-	public String[] getTiles(String fileName)
+	public String[] getTiles(InputStream is)
 	{
 		// Read File
 		int h = 0;
@@ -30,7 +30,7 @@ public class TileMap
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/" + fileName)));
+			br = new BufferedReader(new InputStreamReader(is));
 
 			String line;
 			boolean blockStarted = false;
