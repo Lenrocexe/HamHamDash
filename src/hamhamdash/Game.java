@@ -11,7 +11,7 @@ import jgame.platform.*;
 public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
-	private boolean loadGame = false;							// by default 'New Game' is selected
+	public boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
 	public Player player = new Player();
@@ -236,11 +236,6 @@ public class Game extends JGEngine
 // Start Game State Start Game
 //***************************************
 	// Define sg (Start Game) vars
-	public int sgButtonWidth, sgButtonHeight;
-	public JGPoint sgPoint;
-	public int newGameState;
-	public int loadGameState;
-	public JGColor hamButtonLabelColor = new JGColor(180, 175, 150);
 
 	public void startStartGame()
 	{
@@ -255,23 +250,6 @@ public class Game extends JGEngine
 	public void paintFrameStartGame()
 	{
 		getCurrentState().paintFrame();
-	}
-
-	// Player Select Methods
-	public void toggleLoadGame()
-	{
-		if(loadGame)
-		{
-			newGameState = 1;
-			loadGameState = 0;
-			loadGame = false;
-		}
-		else
-		{
-			newGameState = 0;
-			loadGameState = 1;
-			loadGame = true;
-		}
 	}
 //***************************************
 // End Game State Start Game

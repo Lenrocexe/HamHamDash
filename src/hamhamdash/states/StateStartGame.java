@@ -3,6 +3,7 @@ package hamhamdash.states;
 import hamhamdash.Game;
 import hamhamdash.HamButton;
 import hamhamdash.State;
+import jgame.JGColor;
 import jgame.JGPoint;
 
 /**
@@ -11,6 +12,13 @@ import jgame.JGPoint;
  */
 public class StateStartGame extends State
 {
+	private int sgButtonWidth = 70;
+	private int sgButtonHeight = 30;
+	private JGPoint sgPoint = new JGPoint(game.pfWidth() / 2, 60);
+	private JGColor hamButtonLabelColor = new JGColor(180, 175, 150);
+	private int newGameState = 1; // 'New Game' is highlighted as default
+	private int loadGameState = 0; // 'Load Game' is not
+
 	public StateStartGame()
 	{
 	}
@@ -18,11 +26,6 @@ public class StateStartGame extends State
 	@Override
 	public void start()
 	{
-		game.sgButtonWidth = 70;
-		game.sgButtonHeight = 30;
-		game.sgPoint = new JGPoint(game.pfWidth() / 2, 60);
-		game.newGameState = 1;						// 'New Game' is highlighted as default
-		game.loadGameState = 0;						// 'Load Game' is not
 	}
 
 	@Override
@@ -32,14 +35,14 @@ public class StateStartGame extends State
 		{
 			game.clearKey(Game.KeyLeft);
 			game.clearKey(Game.KeyUp);
-			game.toggleLoadGame();
+			toggleLoadGame();
 		}
 
 		if(game.getKey(Game.KeyRight) || game.getKey(Game.KeyDown))
 		{
 			game.clearKey(Game.KeyRight);
 			game.clearKey(Game.KeyDown);
-			game.toggleLoadGame();
+			toggleLoadGame();
 		}
 	}
 
@@ -47,12 +50,29 @@ public class StateStartGame extends State
 	public void paintFrame()
 	{
 		game.setBlendMode(1, 0);
-		game.drawString("Select your action", game.sgPoint.x, game.sgPoint.y, 0);
+		game.drawString("Select your action", sgPoint.x, sgPoint.y, 0);
 
 		HamButton b;
-		b = new HamButton(game.sgPoint.x, game.sgPoint.y, "New Game", game.hamButtonLabelColor, game.newGameState);
+		b = new HamButton(sgPoint.x, sgPoint.y, "New Game", hamButtonLabelColor, newGameState);
 		b.paint();
-		b = new HamButton(game.sgPoint.x, game.sgPoint.y + (game.sgButtonHeight * 2), "Load Game", game.hamButtonLabelColor, game.loadGameState);
+		b = new HamButton(sgPoint.x, sgPoint.y + (sgButtonHeight * 2), "Load Game", hamButtonLabelColor, loadGameState);
 		b.paint();
+	}
+
+	// Player Select Methods
+	public void toggleLoadGame()
+	{
+		if(game.loadGame)
+		{
+			newGameState = 1;
+			loadGameState = 0;
+			game.loadGame = false;
+		}
+		else
+		{
+			newGameState = 0;
+			loadGameState = 1;
+			game.loadGame = true;
+		}
 	}
 }

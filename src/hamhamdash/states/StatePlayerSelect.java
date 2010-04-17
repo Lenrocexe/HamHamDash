@@ -22,8 +22,8 @@ public class StatePlayerSelect extends State
 	@Override
 	public void start()
 	{
-		playerOneButtonState = "rollover";				// 'player one' is highlighted as default
-		playerTwoButtonState = "normal";			// 'player two' is not
+		playerOneButtonState = "rollover"; // 'player one' is highlighted as default
+		playerTwoButtonState = "normal"; // 'player two' is not
 		started = true;
 	}
 

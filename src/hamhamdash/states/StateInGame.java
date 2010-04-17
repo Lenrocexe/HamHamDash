@@ -15,7 +15,6 @@ public class StateInGame extends State
 	@Override
 	public void start()
 	{
-		System.out.println("startInGame");
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.player.setPc(new PlayerCharacter("h", 80, 160));
