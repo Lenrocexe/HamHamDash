@@ -2,6 +2,7 @@ package hamhamdash.states;
 
 import hamhamdash.*;
 import jgame.JGColor;
+import jgame.JGPoint;
 
 /**
  *
@@ -16,7 +17,7 @@ public class StateEnterPwd extends State
 	@Override
 	public void start()
 	{
-		game.epPoint = game.psPoint;
+		game.epPoint = new JGPoint(game.pfWidth() / 2, 60);
 		game.passString = "";
 		game.selectedPos = 0;
 		game.selectedNum = 0;

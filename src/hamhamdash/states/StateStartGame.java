@@ -3,6 +3,7 @@ package hamhamdash.states;
 import hamhamdash.Game;
 import hamhamdash.HamButton;
 import hamhamdash.State;
+import jgame.JGPoint;
 
 /**
  *
@@ -18,8 +19,8 @@ public class StateStartGame extends State
 	public void start()
 	{
 		game.sgButtonWidth = 70;
-		game.sgButtonHeight = game.psButtonWidth;
-		game.sgPoint = game.psPoint;
+		game.sgButtonHeight = 30;
+		game.sgPoint = new JGPoint(game.pfWidth() / 2, 60);
 		game.newGameState = 1;						// 'New Game' is highlighted as default
 		game.loadGameState = 0;						// 'Load Game' is not
 	}

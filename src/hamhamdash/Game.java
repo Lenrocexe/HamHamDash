@@ -11,7 +11,6 @@ import jgame.platform.*;
 public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
-	private int playerAmount = 1;								// by default '1P' is selected
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
@@ -159,7 +158,6 @@ public class Game extends JGEngine
 		// DBG MSG's
 		if(debug)
 		{
-			dbgPrint("PlayerAmount = " + playerAmount);
 			dbgPrint("LoadGame = " + loadGame);
 
 			String pressedKey = getKeyDesc(getLastKey());
@@ -215,10 +213,6 @@ public class Game extends JGEngine
 // Start Game State Player Select
 //***************************************
 	// Define ps(Player Select) vars
-	public int psButtonWidth;
-	public JGPoint psPoint;
-	public String playerOneButtonState;// = "rollover";
-	public String playerTwoButtonState;// = "normal";
 
 	public void startPlayerSelect()
 	{
@@ -233,22 +227,6 @@ public class Game extends JGEngine
 	public void paintFramePlayerSelect()
 	{
 		getCurrentState().paintFrame();
-	}
-
-	public void togglePlayerSelect()
-	{
-		if(playerAmount == 1)
-		{
-			playerOneButtonState = "normal";
-			playerTwoButtonState = "rollover";
-			playerAmount = 2;
-		}
-		else if(playerAmount == 2)
-		{
-			playerOneButtonState = "rollover";
-			playerTwoButtonState = "normal";
-			playerAmount = 1;
-		}
 	}
 
 //***************************************
@@ -460,6 +438,11 @@ public class Game extends JGEngine
 	public void setYoffset(int i)
 	{
 		this.yofs = i;
+	}
+
+	public boolean isDebug()
+	{
+		return debug;
 	}
 
 	public State getCurrentState()
