@@ -15,14 +15,16 @@ public class Game extends JGEngine
 	private boolean loadGame = false;							// by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
-	private Player player = new Player();
-	private Enemy enemy = null;
+	public Player player = new Player();
+	public Enemy enemy = null;
 	private Levels objLevels;
 	private String passString;
 	private boolean debug = true;
 	public int tileWidth = 40;
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;
+
+	private State currentState = null;
 
 //***************************************
 // Start Game initialization
@@ -76,6 +78,9 @@ public class Game extends JGEngine
 			dbgShowGameState(true);
 		}
 
+		//Temporarily set the state to InGame
+		setCurrentState("InGame");
+
 		// Start with the title screen
 		setGameState("Title");
 	}
@@ -119,7 +124,7 @@ public class Game extends JGEngine
 					passString += perPass;
 				}
 
-				if(objLevels.checkPassword(passString))
+				if(getObjLevels().checkPassword(passString))
 				{
 					passIsCorrect = true;
 					stateCounter = nextState(stateCounter, states);
@@ -433,39 +438,34 @@ public class Game extends JGEngine
 //***************************************
 	public void startInGame()
 	{
-		setFieldSize(objLevels.getCurrentLevelSize());
-		objLevels.startLevel();
-		player.setPc(new PlayerCharacter("h", 80, 160));
-		enemy = new Enemy("SpatA", 120, 160);
+		getCurrentState().start();
 	}
 
 	public void doFrameInGame()
 	{
-		if(debug)
-		{
-			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
-			{
-				clearKey(KeyCtrl);
-				clearKey(KeyShift);
-				clearKey(KeyRight);
-				objLevels.nextLevel();
-			}
-			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
-			{
-				clearKey(KeyCtrl);
-				clearKey(KeyShift);
-				clearKey(KeyLeft);
-				objLevels.prevLevel();
-			}
-		}
-		xofs = (int) player.getPc().x + pfWidth() / viewWidth();
-		yofs = (int) player.getPc().y + pfHeight() / viewHeight();
-
-		setViewOffset(xofs, yofs, true);
+//		if(debug)
+//		{
+//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
+//			{
+//				clearKey(KeyCtrl);
+//				clearKey(KeyShift);
+//				clearKey(KeyRight);
+//				getObjLevels().nextLevel();
+//			}
+//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
+//			{
+//				clearKey(KeyCtrl);
+//				clearKey(KeyShift);
+//				clearKey(KeyLeft);
+//				getObjLevels().prevLevel();
+//			}
+//		}
+		getCurrentState().doFrame();
 	}
 
 	public void paintFrameInGame()
 	{
+		getCurrentState().paintFrame();
 	}
 //***************************************
 // End Game State Enter Password
@@ -528,6 +528,64 @@ public class Game extends JGEngine
 
 	public Level getCurrentLevel()
 	{
-		return objLevels.getCurrentLevel();
+		return getObjLevels().getCurrentLevel();
+	}
+
+	/**
+	 * @return the objLevels
+	 */
+	public Levels getObjLevels()
+	{
+		return objLevels;
+	}
+
+	public int getXoffset()
+	{
+		return xofs;
+	}
+
+	public int getYoffset()
+	{
+		return yofs;
+	}
+
+	public void setXoffset(int i)
+	{
+		this.xofs = i;
+	}
+
+	public void setYoffset(int i)
+	{
+		this.yofs = i;
+	}
+
+	public State getCurrentState()
+	{
+		return currentState;
+	}
+
+	/**
+	 * Set the currente Game State ex: "InGame" or "Title"
+	 * Will create a new Instance of the given state class and stores ref in currentState.
+	 * @param state The state name
+	 */
+	public void setCurrentState(String state)
+	{
+		try
+		{
+			State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
+
+			if(debug)
+				System.out.println(c.getClass());
+
+			if(c instanceof State)
+			{
+				this.currentState = c;
+				setGameState(state);
+			}
+		}
+		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
+		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
+		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 	}
 }
