@@ -435,8 +435,8 @@ public class Level
 	public int[] getLevelSize()
 	{
 		int[] levelSize = new int[2];
-		levelSize[0] = game.pfTilesX();
-		levelSize[1] = game.pfTilesY();
+		levelSize[0] = Integer.parseInt(settings.getProperty("xtiles"));
+		levelSize[1] = Integer.parseInt(settings.getProperty("ytiles"));
 
 		return levelSize;
 	}

@@ -433,10 +433,10 @@ public class Game extends JGEngine
 //***************************************
 	public void startInGame()
 	{
+		setFieldSize(objLevels.getCurrentLevelSize());
 		objLevels.startLevel();
 		player.setPc(new PlayerCharacter("h", 80, 160));
-		enemy = new Enemy("SpatA", 120, 240);
-		setFieldSize(objLevels.getCurrentLevelSize());
+		enemy = new Enemy("SpatA", 120, 160);
 	}
 
 	public void doFrameInGame()
@@ -523,6 +523,7 @@ public class Game extends JGEngine
 	public void setFieldSize(int[] t)
 	{
 		setPFSize(t[0], t[1]);
+//		System.out.println(objLevels.getCurrentLevelSize()[0] + " " + objLevels.getCurrentLevelSize()[1]);
 	}
 
 	public Level getCurrentLevel()
