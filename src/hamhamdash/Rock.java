@@ -14,29 +14,24 @@ public class Rock extends GObject
 	}
 
 	@Override
-	public void move(){
-
-
-        };
+	public void move(){};
 
 	@Override
 	public void hit_bg(int tilecid){
 //        String duw = getPushSource();
-//        if (duw == left)
-//            {
-//                moveright();
-//            }
-//        if (duw == right)
-//            {
-//                moveleft();
-//            }
-//        if (duw == down)
-//            {
-//                return;
-//            }
-
-
-        }
+//		if(duw == left)
+//		{
+//			moveRight();
+//		}
+//		if(duw == right)
+//		{
+//			moveLeft();
+//		}
+//		if(duw == down)
+//		{
+//			return;
+//		}
+	}
 
 	@Override
 	public void hit(JGObject obj){};

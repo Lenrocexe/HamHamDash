@@ -43,7 +43,6 @@ public class HamButton
 				label,
 				point.x,
 				point.y + hamMargin + (hamMargin / 2) - 3,
-				0
-				);
+				0);
 	}
 }

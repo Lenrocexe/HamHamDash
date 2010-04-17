@@ -1,17 +1,16 @@
 package hamhamdash;
 
-import jgame.platform.*;
 import java.io.*;
 import java.util.*;
 
 /**
- *
+ * This class maintains all interaction with levels
  * @author Cornel Alders
  */
 public class Levels
 {
 	private Game game = Game.getGame();
-	private Level[] arrLevels;
+	private ArrayList<Level> arrLevels = new ArrayList<Level>();
 	private int currentLevelId = 0;
 
 	/**
@@ -31,11 +30,9 @@ public class Levels
 		// Get the available levels in an array
 		String[] levels = getLevelDirList();
 
-		arrLevels = new Level[levels.length];
-		int i;
-		for (i = 0; i < levels.length; i++)
+		for(String l : levels)
 		{
-			arrLevels[i] = new Level(i, levels[i]);
+			arrLevels.add(new Level(l));
 		}
 	}
 
@@ -44,8 +41,8 @@ public class Levels
 	 */
 	public void startLevel()
 	{
-		arrLevels[currentLevelId].runLevel();
-		arrLevels[currentLevelId].getTileXYByPixel(92, 10);
+		arrLevels.get(currentLevelId).runLevel();
+		arrLevels.get(currentLevelId).getTileXYByPixel(92, 10);
 	}
 
 	/**
@@ -57,12 +54,11 @@ public class Levels
 	 */
 	public boolean checkPassword(String password)
 	{
-
-		for (int i = 0; i < arrLevels.length; i++)
+		for(Level level : arrLevels)
 		{
-			if (arrLevels[i].getPassword().equals(password))
+			if(level.getPassword().equals(password))
 			{
-				currentLevelId = i;
+				currentLevelId = arrLevels.indexOf(level);
 				return true;
 			}
 		}
@@ -74,7 +70,7 @@ public class Levels
 	 */
 	public void nextLevel()
 	{
-		if (currentLevelId != arrLevels.length-1)
+		if(currentLevelId != arrLevels.size() - 1)
 		{
 			currentLevelId++;
 			startLevel();
@@ -86,7 +82,7 @@ public class Levels
 	 */
 	public void prevLevel()
 	{
-		if (currentLevelId != 0)
+		if(currentLevelId != 0)
 		{
 			currentLevelId--;
 			startLevel();
@@ -110,7 +106,7 @@ public class Levels
 	 */
 	public int getLevelCount()
 	{
-		return arrLevels.length;
+		return arrLevels.size();
 	}
 
 	/**
@@ -126,9 +122,14 @@ public class Levels
 	 * Get the level object of the current level
 	 * @return
 	 */
-	public Object getCurrentLevelObj()
+	public Level getCurrentLevel()
 	{
-		return arrLevels[currentLevelId];
+		return arrLevels.get(currentLevelId);
+	}
+
+	public int[] getCurrentLevelSize()
+	{
+		return getCurrentLevel().getLevelSize();
 	}
 
 	/**
@@ -136,11 +137,11 @@ public class Levels
 	 * @param levelId
 	 * @return
 	 */
-	public Object getLevelObj(int levelId)
+	public Level getLevel(int levelId)
 	{
-		return arrLevels[levelId];
+		return arrLevels.get(levelId);
 	}
-	
+
 	/**
 	 * Returns a list of available level files
 	 * @return

@@ -23,7 +23,7 @@ public class Level
 	 * @param levelId
 	 * @param fileName
 	 */
-	public Level(int levelId, String fileName)
+	public Level(String fileName)
 	{
 		this.fileName = fileName;
 		loadSettings();
@@ -38,12 +38,11 @@ public class Level
 	{
 		// Get and Paint TileMap
 		objTileMap = new TileMap();
-		tileMap = objTileMap.getTiles(fileName);
-		game.setTiles(0,0,tileMap);
+		tileMap = objTileMap.getTiles(loadDataFile());
+		game.setTiles(0, 0, tileMap);
 		insertEnemies();
 		insertDiamondRock();
-		String[][] test;
-    }
+	}
 
 	/**
 	 * Inserts enemies in the current level
@@ -51,11 +50,11 @@ public class Level
 	private void insertEnemies()
 	{
 		int i;
-		for(i=0;i<arrEnemies.size();i++)
+		for(i = 0; i < arrEnemies.size(); i++)
 		{
 			int x = arrEnemies.get(i)[1];
 			int y = arrEnemies.get(i)[2];
-			game.setTile(x,y,"."); // Clear background tiles
+			game.setTile(x, y, "."); // Clear background tiles
 		}
 	}
 
@@ -65,13 +64,19 @@ public class Level
 	private void insertDiamondRock()
 	{
 		int i;
-		for(i=0;i<arrDiamondRock.size();i++)
+		for(i = 0; i < arrDiamondRock.size(); i++)
 		{
 			int type = arrDiamondRock.get(i)[0];
 			int x = arrDiamondRock.get(i)[1];
 			int y = arrDiamondRock.get(i)[2];
-			game.setTile(x,y,"."); // Clear background tiles
+			game.setTile(x, y, "."); // Clear background tiles
 		}
+	}
+
+	private InputStream loadDataFile()
+	{
+		InputStream datafile = this.getClass().getResourceAsStream("levels/" + fileName);
+		return datafile;
 	}
 
 	/**
@@ -79,23 +84,19 @@ public class Level
 	 */
 	private void loadSettings()
 	{
-		InputStream readSettings = this.getClass().getResourceAsStream("levels/"+fileName);
+		InputStream readSettings = loadDataFile();
 		try
 		{
 			settings.load(readSettings);
 		}
-
-		catch (IOException ex)
-		{
-			
-		}
+		catch(IOException ex){}
 		finally
 		{
 			try
 			{
 				readSettings.close();
 			}
-			catch( IOException ex )
+			catch(IOException ex)
 			{
 				ex.printStackTrace();
 			}
@@ -111,7 +112,7 @@ public class Level
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+			br = new BufferedReader(new InputStreamReader(loadDataFile()));
 
 			String line;
 			int y = 0;
@@ -127,14 +128,14 @@ public class Level
 					int x;
 					String[] chars = new String[line.split("").length];
 					chars = line.split("");
-					
-					for(x=0;x<line.split("").length;x++)
+
+					for(x = 0; x < line.split("").length; x++)
 					{
 						if(chars[x].matches("1"))
 						{
 							int[] pos = new int[3];
 							pos[0] = 1;
-							pos[1] = x-1;
+							pos[1] = x - 1;
 							pos[2] = y;
 							arrEnemies.add(pos);
 						}
@@ -142,7 +143,7 @@ public class Level
 						{
 							int[] pos = new int[3];
 							pos[0] = 2;
-							pos[1] = x-1;
+							pos[1] = x - 1;
 							pos[2] = y;
 							arrEnemies.add(pos);
 						}
@@ -182,7 +183,7 @@ public class Level
 		BufferedReader br = null;
 		try
 		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("levels/"+fileName)));
+			br = new BufferedReader(new InputStreamReader(loadDataFile()));
 
 			String line;
 			int y = 0;
@@ -199,13 +200,13 @@ public class Level
 					String[] chars = new String[line.split("").length];
 					chars = line.split("");
 
-					for(x=0;x<line.split("").length;x++)
+					for(x = 0; x < line.split("").length; x++)
 					{
 						if(chars[x].matches("D"))
 						{
 							int[] pos = new int[3];
 							pos[0] = 1;
-							pos[1] = x-1;
+							pos[1] = x - 1;
 							pos[2] = y;
 							arrDiamondRock.add(pos);
 						}
@@ -213,7 +214,7 @@ public class Level
 						{
 							int[] pos = new int[3];
 							pos[0] = 2;
-							pos[1] = x-1;
+							pos[1] = x - 1;
 							pos[2] = y;
 							arrDiamondRock.add(pos);
 						}
@@ -331,7 +332,7 @@ public class Level
 	 */
 	public String getTileAbove(int x, int y)
 	{
-		return new String(game.getTileStr(x, y-1));
+		return new String(game.getTileStr(x, y - 1));
 	}
 
 	/**
@@ -342,7 +343,7 @@ public class Level
 	 */
 	public String getTileRight(int x, int y)
 	{
-		return new String(game.getTileStr(x+1, y));
+		return new String(game.getTileStr(x + 1, y));
 	}
 
 	/**
@@ -353,7 +354,7 @@ public class Level
 	 */
 	public String getTileLeft(int x, int y)
 	{
-		return new String(game.getTileStr(x-1, y));
+		return new String(game.getTileStr(x - 1, y));
 	}
 
 	/**
@@ -362,7 +363,7 @@ public class Level
 	 */
 	public String getTileBelow(int x, int y)
 	{
-		return new String(game.getTileStr(x, y+1));
+		return new String(game.getTileStr(x, y + 1));
 	}
 
 	/**
@@ -371,7 +372,7 @@ public class Level
 	 */
 	public String getTileBelowLeft(int x, int y)
 	{
-		return new String(game.getTileStr(x-1, y+1));
+		return new String(game.getTileStr(x - 1, y + 1));
 	}
 
 	/**
@@ -380,7 +381,7 @@ public class Level
 	 */
 	public String getTileBelowRight(int x, int y)
 	{
-		return new String(game.getTileStr(x+1, y+1));
+		return new String(game.getTileStr(x + 1, y + 1));
 	}
 
 	/**
@@ -395,32 +396,32 @@ public class Level
 		String[][] surroundingTiles = new String[8][3];
 		int cntCoord = 0;
 		int newY, newX;
-		for(newY=y-1;newY<=y+1;newY++)
+		for(newY = y - 1; newY <= y + 1; newY++)
 		{
-			for(newX=x-1;newX<=x+1;newX++)
+			for(newX = x - 1; newX <= x + 1; newX++)
 			{
 				if(!(newX == x && newY == y))
 				{
 					surroundingTiles[cntCoord][0] = game.getTileStr(newX, newY);
-					surroundingTiles[cntCoord][1] = newX+"";
-					surroundingTiles[cntCoord][2] = newY+"";
+					surroundingTiles[cntCoord][1] = newX + "";
+					surroundingTiles[cntCoord][2] = newY + "";
 					cntCoord++;
 				}
 			}
 		}
 		return surroundingTiles;
 	}
-	
+
 	/**
 	 * Returns an array with the X and the Y value of a tile calculated by pixel X and Y
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return Array with Tile X [0] and Tile Y [1]
 	 */
 	public int[] getTileXYByPixel(int x, int y)
 	{
-		Double tileX = Math.floor((double)x/game.tileWidth());
-		Double tileY = Math.floor((double)y/game.tileHeight());
+		Double tileX = Math.floor((double) x / game.tileWidth());
+		Double tileY = Math.floor((double) y / game.tileHeight());
 		int[] tileXY = new int[2];
 		tileXY[0] = tileX.intValue();
 		tileXY[1] = tileY.intValue();
@@ -434,8 +435,8 @@ public class Level
 	public int[] getLevelSize()
 	{
 		int[] levelSize = new int[2];
-		levelSize[0] = game.pfTilesX();
-		levelSize[1] = game.pfTilesY();
+		levelSize[0] = Integer.parseInt(settings.getProperty("xtiles"));
+		levelSize[1] = Integer.parseInt(settings.getProperty("ytiles"));
 
 		return levelSize;
 	}
