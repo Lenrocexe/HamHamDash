@@ -6,9 +6,9 @@ import hamhamdash.*;
  *
  * @author Cornel Alders
  */
-public class EnterPwd extends State
+public class StateEnterPwd extends State
 {
-	public EnterPwd()
+	public StateEnterPwd()
 	{
 	}
 
