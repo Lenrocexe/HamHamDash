@@ -1,7 +1,5 @@
 package hamhamdash;
 
-import hamhamdash.states.StateEnterPwd;
-import hamhamdash.states.StateInGame;
 import java.util.ArrayList;
 import jgame.*;
 import jgame.platform.*;
@@ -101,7 +99,7 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if(getCurrentState() instanceof StateInGame)
+		if(states.get(stateCounter).equals("InGame"))
 		{
 			moveObjects(null, 0);
 			if(getKey(KeyEsc) && inGameState("Paused"))
@@ -115,7 +113,7 @@ public class Game extends JGEngine
 				setCurrentState("Paused");
 			}
 		}
-		else if(getCurrentState() instanceof StateEnterPwd)
+		else if(states.get(stateCounter).equals("EnterPwd"))
 		{
 			if(getKey(KeyEnter))
 			{
@@ -136,6 +134,11 @@ public class Game extends JGEngine
 					passIsCorrect = false;
 					passAttempt++;
 				}
+			}
+			else if(getKey(KeyEsc))
+			{
+				clearKey(KeyEsc);
+				stateCounter = prevState(stateCounter, states);
 			}
 		}
 		else
@@ -175,7 +178,7 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			if(!(getCurrentState() instanceof StateInGame))
+			if(!(states.get(stateCounter).equals("InGame")))
 			{
 				drawImage(0, 0, "menu_bg");
 				drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 60, -1, true);
@@ -343,6 +346,23 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
+//		if(debug)
+//		{
+//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
+//			{
+//				clearKey(KeyCtrl);
+//				clearKey(KeyShift);
+//				clearKey(KeyRight);
+//				getObjLevels().nextLevel();
+//			}
+//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
+//			{
+//				clearKey(KeyCtrl);
+//				clearKey(KeyShift);
+//				clearKey(KeyLeft);
+//				getObjLevels().prevLevel();
+//			}
+//		}
 		getCurrentState().doFrame();
 	}
 
@@ -361,7 +381,7 @@ public class Game extends JGEngine
 		{
 			counter++;
 		}
-		if(getCurrentState() instanceof StateEnterPwd && !loadGame)
+		if(states.get(counter).equals("EnterPwd") && !loadGame)
 		{
 			counter++;
 		}
@@ -375,7 +395,7 @@ public class Game extends JGEngine
 		{
 			counter--;
 		}
-		if(getCurrentState() instanceof StateEnterPwd && !loadGame)
+		if(states.get(counter).equals("EnterPwd") && !loadGame)
 		{
 			counter--;
 		}
@@ -406,6 +426,7 @@ public class Game extends JGEngine
 	public void setFieldSize(int[] t)
 	{
 		setPFSize(t[0], t[1]);
+//		System.out.println(objLevels.getCurrentLevelSize()[0] + " " + objLevels.getCurrentLevelSize()[1]);
 	}
 
 	public Level getCurrentLevel()
