@@ -91,7 +91,7 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if(states.get(stateCounter).equals("InGame"))
+		if(inGameState("InGame"))
 		{
 			moveObjects(null, 0);
 			if(getKey(KeyEsc) && inGameState("Paused"))
@@ -105,7 +105,7 @@ public class Game extends JGEngine
 				setCurrentState("Paused");
 			}
 		}
-		else if(states.get(stateCounter).equals("EnterPwd"))
+		else if(inGameState("EnterPwd"))
 		{
 			if(getKey(KeyEnter))
 			{
@@ -159,7 +159,7 @@ public class Game extends JGEngine
 	{
 		if(debug)
 		{
-			if(!(states.get(stateCounter).equals("InGame")))
+			if(!(inGameState("InGame")))
 			{
 				drawImage(0, 0, "menu_bg");
 				drawString("<ESC> - Back", pfWidth() - 91, pfHeight() - 60, -1, true);
@@ -292,7 +292,7 @@ public class Game extends JGEngine
 		{
 			counter++;
 		}
-		if(states.get(counter).equals("EnterPwd") && !loadGame)
+		if(inGameState("EnterPwd") && !loadGame)
 		{
 			counter++;
 		}
@@ -306,7 +306,7 @@ public class Game extends JGEngine
 		{
 			counter--;
 		}
-		if(states.get(counter).equals("EnterPwd") && !loadGame)
+		if(inGameState("EnterPwd") && !loadGame)
 		{
 			counter--;
 		}
