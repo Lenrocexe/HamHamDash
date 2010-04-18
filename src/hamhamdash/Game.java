@@ -112,8 +112,9 @@ public class Game extends JGEngine
 				clearKey(KeyEnter);
 				passString = "";
 				for(String perPass : passPosList)
+				{
 					passString += perPass;
-
+				}
 				if(getObjLevels().checkPassword(passString))
 				{
 					passIsCorrect = true;
@@ -151,6 +152,7 @@ public class Game extends JGEngine
 		{
 			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
+			dbgPrint(inGameState("EnterPwd") + "");
 		}
 	}
 
@@ -282,7 +284,67 @@ public class Game extends JGEngine
 		getCurrentState().paintFrame();
 	}
 //***************************************
-// End Game State Enter Password
+// End Game State InGame
+//***************************************
+//***************************************
+// Start Game State Pause
+//***************************************
+	public void startPause()
+	{
+		getCurrentState().start();
+	}
+
+	public void doFramePause()
+	{
+		getCurrentState().doFrame();
+	}
+
+	public void paintFramePause()
+	{
+		getCurrentState().paintFrame();
+	}
+//***************************************
+// End Game State Pause
+//***************************************
+//***************************************
+// Start Game State Win
+//***************************************
+	public void startWin()
+	{
+		getCurrentState().start();
+	}
+
+	public void doFrameWin()
+	{
+		getCurrentState().doFrame();
+	}
+
+	public void paintFrameWin()
+	{
+		getCurrentState().paintFrame();
+	}
+//***************************************
+// End Game State Win
+//***************************************
+//***************************************
+// Start Game State GameOver
+//***************************************
+	public void startGameOver()
+	{
+		getCurrentState().start();
+	}
+
+	public void doFrameGameOver()
+	{
+		getCurrentState().doFrame();
+	}
+
+	public void paintFrameGameOver()
+	{
+		getCurrentState().paintFrame();
+	}
+//***************************************
+// End Game State GameOver
 //***************************************
 
 	// Global Method(s)
@@ -292,7 +354,7 @@ public class Game extends JGEngine
 		{
 			counter++;
 		}
-		if(inGameState("EnterPwd") && !loadGame)
+		if(inGameState("StartGame") && !loadGame)
 		{
 			counter++;
 		}
@@ -306,7 +368,7 @@ public class Game extends JGEngine
 		{
 			counter--;
 		}
-		if(inGameState("EnterPwd") && !loadGame)
+		if(inGameState("StartGame") && !loadGame)
 		{
 			counter--;
 		}

@@ -34,6 +34,7 @@ public class StateEnterPwd extends State
 		game.passPosList[4] = game.goodNumbers[0];
 		game.passPosList[5] = game.goodNumbers[0];
 		started = true;
+		game.loadGame = false;
 	}
 
 	@Override

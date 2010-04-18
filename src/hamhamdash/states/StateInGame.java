@@ -31,18 +31,18 @@ public class StateInGame extends State
 		}
 		if(game.isDebug())
 		{
-			if(game.getKey(game.KeyCtrl) && game.getKey(game.KeyShift) && game.getKey(game.KeyRight))
+			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyRight))
 			{
-				game.clearKey(game.KeyCtrl);
-				game.clearKey(game.KeyShift);
-				game.clearKey(game.KeyRight);
+				game.clearKey(Game.KeyCtrl);
+				game.clearKey(Game.KeyShift);
+				game.clearKey(Game.KeyRight);
 				game.getObjLevels().nextLevel();
 			}
-			if(game.getKey(game.KeyCtrl) && game.getKey(game.KeyShift) && game.getKey(game.KeyLeft))
+			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyLeft))
 			{
-				game.clearKey(game.KeyCtrl);
-				game.clearKey(game.KeyShift);
-				game.clearKey(game.KeyLeft);
+				game.clearKey(Game.KeyCtrl);
+				game.clearKey(Game.KeyShift);
+				game.clearKey(Game.KeyLeft);
 				game.getObjLevels().prevLevel();
 			}
 		}
