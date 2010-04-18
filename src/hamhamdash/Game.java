@@ -11,7 +11,7 @@ import jgame.platform.*;
 public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
-	public boolean loadGame = false;							// by default 'New Game' is selected
+	public boolean loadGame = false; // by default 'New Game' is selected
 	private int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
 	public Player player = new Player();
@@ -22,7 +22,6 @@ public class Game extends JGEngine
 	public int tileWidth = 40;
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;
-
 	private State currentState = null;
 
 //***************************************
@@ -62,25 +61,19 @@ public class Game extends JGEngine
 		setVideoSyncedUpdate(true);
 		defineMedia("datasheets/testdata.tbl");
 
+		objLevels = new Levels();
 		states.add("Title");
 		states.add("PlayerSelect");
 		states.add("StartGame");
 		states.add("EnterPwd");
 		states.add("InGame");
 
-		// Create Levels object
-		objLevels = new Levels();
-
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
 			dbgShowGameState(true);
 		}
-
-		//Temporarily set the state to InGame
-//		setCurrentState("InGame");
-
-		// Start with the title screen
+		// Start the game in title screen
 		setCurrentState("Title");
 	}
 
@@ -119,9 +112,7 @@ public class Game extends JGEngine
 				clearKey(KeyEnter);
 				passString = "";
 				for(String perPass : passPosList)
-				{
 					passString += perPass;
-				}
 
 				if(getObjLevels().checkPassword(passString))
 				{
@@ -159,15 +150,7 @@ public class Game extends JGEngine
 		if(debug)
 		{
 			dbgPrint("LoadGame = " + loadGame);
-
-			String pressedKey = getKeyDesc(getLastKey());
-			dbgPrint(pressedKey + " was pressed");
-			dbgPrint("Password = " + passString);
-
-			dbgPrint(selectedPos + "");
-			dbgPrint(goodNumbers[Integer.parseInt(passPosList[selectedPos])]);
-			dbgPrint(passPosList[selectedPos] + "");
-			dbgPrint(selectedNum + "");
+			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 		}
 	}
 
@@ -179,9 +162,9 @@ public class Game extends JGEngine
 			if(!(states.get(stateCounter).equals("InGame")))
 			{
 				drawImage(0, 0, "menu_bg");
-				drawString("<ESC>     - Back", pfWidth() - 100, pfHeight() - 60, -1, true);
-				drawString("<ENTER> - Next", pfWidth() - 100, pfHeight() - 40, -1, true);
-				drawString("<ARROWS> - Navigation", pfWidth() - 100, pfHeight() - 20, -1, true);
+				drawString("<ESC> - Back", pfWidth() - 91, pfHeight() - 60, -1, true);
+				drawString("<ENTER> - Next", pfWidth() - 103, pfHeight() - 40, -1, true);
+				drawString("<ARROWS> - Navigation", pfWidth() - 115, pfHeight() - 20, -1, true);
 			}
 		}
 	}
@@ -212,8 +195,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Player Select
 //***************************************
-	// Define ps(Player Select) vars
-
 	public void startPlayerSelect()
 	{
 		getCurrentState().start();
@@ -228,15 +209,12 @@ public class Game extends JGEngine
 	{
 		getCurrentState().paintFrame();
 	}
-
 //***************************************
 // End Game State Player Select
 //***************************************
 //***************************************
 // Start Game State Start Game
 //***************************************
-	// Define sg (Start Game) vars
-
 	public void startStartGame()
 	{
 		getCurrentState().start();
@@ -257,8 +235,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Enter Password
 //***************************************
-	// Define ep (Enter Pwd) vars
-	public JGPoint epPoint;
 	// Array with correct password chars
 	public String[] goodNumbers =
 	{
@@ -266,9 +242,6 @@ public class Game extends JGEngine
 	};
 	// 1 var for each password position, these vars will combine to be the passString
 	public String[] passPosList;
-	// pp (passPos) draw attributes
-	public int ppWidth = 10;
-	public int ppHeight = 10;
 	public int selectedPos, selectedNum;
 	public JGColor selectedPosColor = JGColor.red;
 	public boolean passIsCorrect = false;
@@ -288,7 +261,6 @@ public class Game extends JGEngine
 	{
 		getCurrentState().paintFrame();
 	}
-
 //***************************************
 // End Game State Enter Password
 //***************************************
@@ -302,23 +274,6 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
-//		if(debug)
-//		{
-//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyRight))
-//			{
-//				clearKey(KeyCtrl);
-//				clearKey(KeyShift);
-//				clearKey(KeyRight);
-//				getObjLevels().nextLevel();
-//			}
-//			if(getKey(KeyCtrl) && getKey(KeyShift) && getKey(KeyLeft))
-//			{
-//				clearKey(KeyCtrl);
-//				clearKey(KeyShift);
-//				clearKey(KeyLeft);
-//				getObjLevels().prevLevel();
-//			}
-//		}
 		getCurrentState().doFrame();
 	}
 
