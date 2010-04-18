@@ -21,6 +21,8 @@ spatAsheet				resources/sprites/SpatAsheet.png			0	0	40	40	0	0
 ham_button	resources/sprites/ham_button.png	0	0	100	60	0	0
 player_button	resources/sprites/player_sheet.png	0	0	75	35	0	0
 
+// Define Pause Sheets
+pause_menu	resources/sprites/pause_menu_sheet.png	0	0	256	250	0	0
 
 // Individual sprites
 // spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
@@ -65,6 +67,12 @@ player1_button_normal	-	0	player_button	0	-
 player1_button_rollover	-	0	player_button	1	-
 player2_button_normal	-	0	player_button	2	-
 player2_button_rollover	-	0	player_button	3	-
+
+// Individual Pause Sprites.
+pause_res_game	-	0	pause_menu	0	-
+pause_help	-	0	pause_menu	1	-
+pause_exit_title	-	0	pause_menu	2	-
+pause_exit_windows	-	0	pause_menu	3	-
 
 // Define animations from the sprites.
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->

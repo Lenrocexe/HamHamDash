@@ -1,6 +1,7 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
+import java.awt.Color;
 
 /**
  *
@@ -11,6 +12,7 @@ public class StateInGame extends State
 	private boolean init = false;
 	public StateInGame()
 	{
+		game.setBackground(null);
 	}
 
 	@Override

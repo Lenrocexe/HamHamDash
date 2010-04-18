@@ -94,15 +94,10 @@ public class Game extends JGEngine
 		if(inGameState("InGame"))
 		{
 			moveObjects(null, 0);
-			if(getKey(KeyEsc) && inGameState("Paused"))
+			if(getKey(KeyEsc))
 			{
 				clearKey(KeyEsc);
-				setCurrentState("InGame");
-			}
-			else if(getKey(KeyEsc))
-			{
-				clearKey(KeyEsc);
-				setCurrentState("Paused");
+				addCurrentState("Pause");
 			}
 		}
 		else if(inGameState("EnterPwd"))
@@ -470,4 +465,33 @@ public class Game extends JGEngine
 		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
 		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 	}
+
+	/**
+	 * Add a Game State ex: "InGame" or "Title", to the current Game State
+	 * Will create a new Instance of the given state class and stores ref in currentState.
+	 * @param state The state name
+	 */
+	public void addCurrentState(String state)
+	{
+		try
+		{
+			State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
+
+			if(debug)
+			{
+				System.out.println(c.getClass());
+			}
+			if(c instanceof State)
+			{
+				this.currentState = c;
+				addGameState(state);
+			}
+		}
+		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
+		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
+		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
+	}
+	
+
+
 }

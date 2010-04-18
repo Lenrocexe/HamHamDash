@@ -23,7 +23,7 @@ public class StateWin extends State
 	@Override
 	public void doFrame()
 	{
-
+		System.out.println(game.player.getLifes());
 	}
 
 	@Override
