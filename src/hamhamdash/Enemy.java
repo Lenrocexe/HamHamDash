@@ -115,7 +115,6 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		System.out.println("Cid"+tilecid);
 		if(tilecid == 3)
 		{
 			yspeed = 0;
