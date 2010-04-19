@@ -155,8 +155,9 @@ public class PlayerCharacter extends GCharacter
 			public void alarm()
 			{
 				remove();
-				if (game.getPlayer().getLifes() > 50)
+				if (game.getPlayer().getLifes() > 0)
 				{
+					game.getPlayer().removeLife();
 					game.setCurrentState("Death");
 					System.out.println("Continue!!!");
 				}

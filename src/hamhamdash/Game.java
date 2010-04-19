@@ -94,98 +94,101 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if(!paused)
+		if(!inGameState("Death"))
 		{
-			if(inGameState("InGame"))
+			if(!inGameState("Pause"))
 			{
-				moveObjects(null, 0);
-				System.out.println("Player: " + player.getPc().colid);
-				System.out.println("Enemy: " + enemy.colid);
-				//Object collision
-				//Enemy -> Hamtaro
-				checkCollision(2, 1);
-				//Diamond -> Hamtaro
-				checkCollision(3, 1);
-				//Rock -> Hamtaro
-				checkCollision(4, 1);
-				//Enemy collision
-				checkCollision(2, 2);
-				checkCollision(3, 2);
-				checkCollision(4, 2);
-				//Tile collision
-				//Hamtaro
-				checkBGCollision(1, 1);
-				checkBGCollision(2, 1);
-				checkBGCollision(3, 1);
-				checkBGCollision(4, 1);
-				//Enemy
-				checkBGCollision(1, 2);
-				checkBGCollision(2, 2);
-				checkBGCollision(3, 2);
-				checkBGCollision(4, 2);
-
-				if(getKey(KeyEsc))
+				if(inGameState("InGame"))
 				{
-					stateCounter = 0;
-
 					moveObjects(null, 0);
+					System.out.println("Player: " + player.getPc().colid);
+					System.out.println("Enemy: " + enemy.colid);
+					//Object collision
+					//Enemy -> Hamtaro
+					checkCollision(2, 1);
+					//Diamond -> Hamtaro
+					checkCollision(3, 1);
+					//Rock -> Hamtaro
+					checkCollision(4, 1);
+					//Enemy collision
+					checkCollision(2, 2);
+					checkCollision(3, 2);
+					checkCollision(4, 2);
+					//Tile collision
+					//Hamtaro
+					checkBGCollision(1, 1);
+					checkBGCollision(2, 1);
+					checkBGCollision(3, 1);
+					checkBGCollision(4, 1);
+					//Enemy
+					checkBGCollision(1, 2);
+					checkBGCollision(2, 2);
+					checkBGCollision(3, 2);
+					checkBGCollision(4, 2);
+
 					if(getKey(KeyEsc))
 					{
-						clearKey(KeyEsc);
-						addState("Pause");
+						stateCounter = 0;
+
+						moveObjects(null, 0);
+						if(getKey(KeyEsc))
+						{
+							clearKey(KeyEsc);
+							addState("Pause");
+						}
 					}
 				}
-			}
-			else if(inGameState("EnterPwd"))
-			{
-				if(getKey(KeyEnter))
+				else if(inGameState("EnterPwd"))
 				{
-					clearKey(KeyEnter);
-					passString = "";
-					for(String perPass : passPosList)
+					if(getKey(KeyEnter))
 					{
-						passString += perPass;
+						clearKey(KeyEnter);
+						passString = "";
+						for(String perPass : passPosList)
+						{
+							passString += perPass;
+						}
+						if(getObjLevels().checkPassword(passString))
+						{
+							passIsCorrect = true;
+							stateCounter = nextState();
+						}
+						else
+						{
+							passIsCorrect = false;
+							passAttempt++;
+						}
 					}
-					if(getObjLevels().checkPassword(passString))
+					else if(getKey(KeyEsc))
 					{
-						passIsCorrect = true;
+						clearKey(KeyEsc);
+						stateCounter = prevState();
+					}
+				}
+				else
+				{
+					if(getKey(KeyEnter))
+					{
+						// next step is player selection
+						clearKey(KeyEnter);
 						stateCounter = nextState();
 					}
-					else
+					else if(getKey(KeyEsc))
 					{
-						passIsCorrect = false;
-						passAttempt++;
+						clearKey(KeyEsc);
+						stateCounter = prevState();
 					}
 				}
-				else if(getKey(KeyEsc))
-				{
-					clearKey(KeyEsc);
-					stateCounter = prevState();
-				}
-			}
-			else
-			{
-				if(getKey(KeyEnter))
-				{
-					// next step is player selection
-					clearKey(KeyEnter);
-					stateCounter = nextState();
-				}
-				else if(getKey(KeyEsc))
-				{
-					clearKey(KeyEsc);
-					stateCounter = prevState();
-				}
-			}
 
-			// DBG MSG's
-			if(debug)
-			{
-				dbgPrint("LoadGame = " + loadGame);
-				dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
-				dbgPrint(inGameState("EnterPwd") + "");
-			}
+				// DBG MSG's
+				if(debug)
+				{
+					dbgPrint("LoadGame = " + loadGame);
+					dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
+					dbgPrint(inGameState("EnterPwd") + "");
+				}
 
+			}
 		}
 	}
 
@@ -212,7 +215,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startTitle()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -220,7 +223,7 @@ public class Game extends JGEngine
 
 	public void doFrameTitle()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -228,7 +231,7 @@ public class Game extends JGEngine
 
 	public void paintFrameTitle()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -241,7 +244,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startPlayerSelect()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -249,7 +252,7 @@ public class Game extends JGEngine
 
 	public void doFramePlayerSelect()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -257,7 +260,7 @@ public class Game extends JGEngine
 
 	public void paintFramePlayerSelect()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -270,7 +273,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startStartGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -278,7 +281,7 @@ public class Game extends JGEngine
 
 	public void doFrameStartGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -286,7 +289,7 @@ public class Game extends JGEngine
 
 	public void paintFrameStartGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -311,7 +314,7 @@ public class Game extends JGEngine
 
 	public void startEnterPwd()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -319,7 +322,7 @@ public class Game extends JGEngine
 
 	public void doFrameEnterPwd()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -327,7 +330,7 @@ public class Game extends JGEngine
 
 	public void paintFrameEnterPwd()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -340,7 +343,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startInGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -348,7 +351,7 @@ public class Game extends JGEngine
 
 	public void doFrameInGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -356,7 +359,7 @@ public class Game extends JGEngine
 
 	public void paintFrameInGame()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -369,7 +372,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startPause()
 	{
-		if(!paused)
+		if(inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -377,7 +380,7 @@ public class Game extends JGEngine
 
 	public void doFramePause()
 	{
-		if(paused)
+		if(inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -385,7 +388,7 @@ public class Game extends JGEngine
 
 	public void paintFramePause()
 	{
-		if(paused)
+		if(inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -398,7 +401,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startWin()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -406,7 +409,7 @@ public class Game extends JGEngine
 
 	public void doFrameWin()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -414,7 +417,7 @@ public class Game extends JGEngine
 
 	public void paintFrameWin()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}
@@ -427,7 +430,7 @@ public class Game extends JGEngine
 //***************************************
 	public void startGameOver()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().start();
 		}
@@ -435,7 +438,7 @@ public class Game extends JGEngine
 
 	public void doFrameGameOver()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().doFrame();
 		}
@@ -443,7 +446,7 @@ public class Game extends JGEngine
 
 	public void paintFrameGameOver()
 	{
-		if(!paused)
+		if(!inGameState("Pause"))
 		{
 			getCurrentState().paintFrame();
 		}

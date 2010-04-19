@@ -8,6 +8,8 @@ import hamhamdash.State;
  */
 public class StateDeath extends State
 {
+	private boolean started = false; //lowsy boolean for start() method
+
 	public StateDeath()
 	{
 	}
@@ -16,6 +18,7 @@ public class StateDeath extends State
 	public void start()
 	{
 		System.out.println("I am Dead!!!!");
+		started = true;
 	}
 
 	@Override

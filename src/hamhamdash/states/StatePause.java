@@ -45,8 +45,17 @@ public class StatePause extends State
 	@Override
 	public void doFrame()
 	{
+
+//										System.out.println("amigwAWD IM GOOD");
+										System.out.println(started);
+
+
+
 		if(started)
 		{
+
+
+
 			if(game.getKey(Game.KeyEsc))
 			{
 				game.clearKey(Game.KeyEsc);
