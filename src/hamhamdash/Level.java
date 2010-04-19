@@ -31,7 +31,6 @@ public class Level
 		this.fileName = fileName;
 		loadSettings();
 		loadMapObjects();
-		loadEnemies();
 	}
 
 	/**
@@ -44,10 +43,8 @@ public class Level
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
 		game.player.setPc(new PlayerCharacter("h", 80, 160));
+		game.getCurrentLevel().loadEnemies();
 		insertGObjects();
-
-			//System.out.println("Player: " + game.player.getPc().colid);
-			//System.out.println("Enemy: " + game.enemy.colid);
 	}
 
 	/**
@@ -210,6 +207,7 @@ public class Level
 
 	public void loadEnemies()
 	{
+		int i = 0;
 		// Insert Enemies
 		for(int[] e : arrEnemies)
 		{
@@ -226,6 +224,8 @@ public class Level
 				name = "SpatB";
 			}
 			arrEnemyObj.add(new Enemy(name, x, y));
+					System.out.println(x + "x" + y);
+					i++;
 		}
 	}
 

@@ -18,7 +18,7 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name, false, x, y, 2, name + "Idle");
+		super(name+""+x+""+y, false, x, y, 2, name + "Idle");
 		this.type = name;
 		setDirection(MoveDirection.LEFT);
 	}

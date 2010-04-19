@@ -1,7 +1,6 @@
 package hamhamdash;
 
 import jgame.*;
-import jgame.platform.*;
 
 /**
  *
@@ -22,7 +21,7 @@ public class PlayerCharacter extends GCharacter
 	 */
 	public PlayerCharacter(String name, int x, int y)//, Player player)
 	{
-		super(name, true, x, y, 1, name + "idle");
+		super(name+""+x+""+y, true, x, y, 1, name + "idle");
 		this.name = name;
 		//this.player = player;
 	}
@@ -116,7 +115,7 @@ public class PlayerCharacter extends GCharacter
 		if (tilecid == 1)
 		{
 			//destroy();
-			System.out.println("1");
+			//System.out.println("1");
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
@@ -125,7 +124,7 @@ public class PlayerCharacter extends GCharacter
 		else if (tilecid == 2)
 		{
 			//setGraphic(getName() + "runleft");
-			System.out.println("2");
+			//System.out.println("2");
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
@@ -133,7 +132,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (tilecid == 3)
 		{
-			System.out.println("3");
+			//System.out.println("3");
 			//remove();
 		}
 	}
