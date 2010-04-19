@@ -15,7 +15,7 @@ public class StateTitle extends State
 	@Override
 	public void start()
 	{
-
+		System.out.println("I am in the title!!!!");
 	}
 
 	@Override
