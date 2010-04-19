@@ -162,8 +162,8 @@ public class PlayerCharacter extends GCharacter
 				}
 				else
 				{
+					game.resetViewport();
 					game.setCurrentState("GameOver");
-					System.out.println("Game over!!!");
 				}
 			}
 		};
