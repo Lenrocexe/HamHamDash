@@ -32,7 +32,6 @@ public class Game extends JGEngine
 	{
 		initEngine(dimension.x, dimension.y);
 	}
-
 	/**
 	 * Gets loaded on first execution of getGame() OR at the first call GameHolder.INSTANCE
 	 * Next call will return the instance of the game
@@ -196,9 +195,9 @@ public class Game extends JGEngine
 			if(!(inGameState("InGame")))
 			{
 				drawImage(0, 0, "menu_bg");
-				drawString("<ESC> - Back", pfWidth() - 91, pfHeight() - 60, -1, true);
-				drawString("<ENTER> - Next", pfWidth() - 103, pfHeight() - 40, -1, true);
-				drawString("<ARROWS> - Navigation", pfWidth() - 115, pfHeight() - 20, -1, true);
+				drawString("<ESC> - Back", viewWidth() - 91, viewHeight() - 60, -1, true);
+				drawString("<ENTER> - Next", viewWidth() - 103, viewHeight() - 40, -1, true);
+				drawString("<ARROWS> - Navigation", viewWidth() - 115, viewHeight() - 20, -1, true);
 			}
 		}
 	}

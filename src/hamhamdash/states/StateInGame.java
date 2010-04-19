@@ -49,8 +49,8 @@ public class StateInGame extends State
 				game.getObjLevels().prevLevel();
 			}
 		}
-		game.setXoffset((int) game.player.getPc().x + game.pfWidth() /game.viewWidth());
-		game.setYoffset((int) game.player.getPc().y + game.pfHeight() / game.viewHeight());
+		game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
+		game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
 	}

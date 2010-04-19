@@ -10,7 +10,7 @@ import jgame.JGPoint;
 public class StatePlayerSelect extends State
 {
 	private boolean started = false; //lowsy boolean for start() method
-	private JGPoint psPoint = new JGPoint(game.pfWidth() / 2, 60);
+	private JGPoint psPoint = new JGPoint(game.viewWidth() / 2, 60);
 	private String playerOneButtonState;
 	private String playerTwoButtonState;
 	private int playerAmount = 1;

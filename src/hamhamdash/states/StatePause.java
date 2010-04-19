@@ -108,7 +108,7 @@ public class StatePause extends State
 	{
 		if(started)
 		{
-			game.drawImage(game.getViewportWidth() / 2 - (256/2), game.getViewportHeight() / 2 - (250/2), toDrawImage);
+			game.drawImage(game.viewWidth() / 2 - (256/2), game.viewHeight() / 2 - (250/2), toDrawImage, false);
 		}
 	}
 

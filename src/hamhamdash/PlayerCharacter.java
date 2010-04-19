@@ -41,7 +41,7 @@ public class PlayerCharacter extends GCharacter
 		ydir = 0;
 		if (eng.getKey(eng.KeyUp) && stop_walking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
-//			if (y < game.pfHeight() - 230)
+//			if (y < game.viewHeight() - 230)
 //			{
 //				setGraphic(getName() + "runup");
 //				yspeed = 0;
@@ -56,7 +56,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyDown) && stop_walking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
-//			if (y > game.pfHeight() - 57)
+//			if (y > game.viewHeight()- 57)
 //			{
 //				setGraphic(getName() + "rundown");
 //				yspeed = 0;
@@ -71,7 +71,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyLeft) && stop_walking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
-//			if (x < game.pfWidth() - 300)
+//			if (x < game.viewWidth() - 300)
 //			{
 //				setGraphic(getName() + "runleft");
 //				xspeed = 0;
@@ -86,7 +86,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if (eng.getKey(eng.KeyRight) && stop_walking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
-//			if (x > game.pfWidth() - 60)
+//			if (x > game.viewWidth() - 60)
 //			{
 //				setGraphic(getName() + "runright");
 //				xspeed = 0;

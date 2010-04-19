@@ -28,6 +28,6 @@ public class StateTitle extends State
 	public void paintFrame()
 	{
 		game.drawImage(0, 0, "title_bg");
-		game.drawString("Press <ENTER> to continue", game.pfWidth() / 2, game.pfHeight() - 50, 0);
+		game.drawString("Press <ENTER> to continue", game.viewWidth()/ 2, game.viewHeight() - 50, 0);
 	}
 }
