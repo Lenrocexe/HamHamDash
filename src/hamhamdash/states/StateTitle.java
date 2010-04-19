@@ -15,6 +15,7 @@ public class StateTitle extends State
 	@Override
 	public void start()
 	{
+		game.setViewOffset(0, 0, true);
 		System.out.println("I am in the title!!!!");
 	}
 

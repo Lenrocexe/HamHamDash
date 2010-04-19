@@ -24,7 +24,7 @@ public class Game extends JGEngine
 	private int xofs, yofs = 0;
 	private State currentState = null;
 	private State previousState = null;
-	public boolean paused;
+
 //***************************************
 // Start Game initialization
 //***************************************
@@ -69,8 +69,6 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
-		paused = false;
-
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
@@ -101,8 +99,8 @@ public class Game extends JGEngine
 				if(inGameState("InGame"))
 				{
 					moveObjects(null, 0);
-					System.out.println("Player: " + player.getPc().colid);
-					System.out.println("Enemy: " + enemy.colid);
+//					System.out.println("Player: " + player.getPc().colid);
+//					System.out.println("Enemy: " + enemy.colid);
 					//Object collision
 					//Enemy -> Hamtaro
 					checkCollision(2, 1);
@@ -126,17 +124,15 @@ public class Game extends JGEngine
 					checkBGCollision(3, 2);
 					checkBGCollision(4, 2);
 
+					stateCounter = 0;
+
+					moveObjects(null, 0);
 					if(getKey(KeyEsc))
 					{
-						stateCounter = 0;
-
-						moveObjects(null, 0);
-						if(getKey(KeyEsc))
-						{
-							clearKey(KeyEsc);
-							addState("Pause");
-						}
+						clearKey(KeyEsc);
+						addState("Pause");
 					}
+					
 				}
 				else if(inGameState("EnterPwd"))
 				{
