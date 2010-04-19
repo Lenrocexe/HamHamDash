@@ -21,6 +21,7 @@ public class StateInGame extends State
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.player.setPc(new PlayerCharacter("h", 80, 160));
+		game.stateCounter = 0;
 	}
 
 	@Override

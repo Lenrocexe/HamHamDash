@@ -12,7 +12,7 @@ public class Game extends JGEngine
 {
 	// Define "GLOBAL" Vars
 	public boolean loadGame = false; // by default 'New Game' is selected
-	private int stateCounter = 0;
+	public int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
 	public Player player = new Player();
 	public Enemy enemy = null;
@@ -24,7 +24,7 @@ public class Game extends JGEngine
 	private int xofs, yofs = 0;
 	private State currentState = null;
 	private State previousState = null;
-
+	public boolean paused;
 //***************************************
 // Start Game initialization
 //***************************************
@@ -69,6 +69,8 @@ public class Game extends JGEngine
 		states.add("EnterPwd");
 		states.add("InGame");
 
+		paused = false;
+
 		if(debug)
 		{
 			dbgShowBoundingBox(true);
@@ -92,86 +94,99 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if(inGameState("InGame"))
-		{
-			moveObjects(null, 0);
-			//Object collision
-			//Enemy -> Hamtaro
-			checkCollision(2, 1);
-			//Diamond -> Hamtaro
-			checkCollision(3, 1);
-			//Rock -> Hamtaro
-			checkCollision(4, 1);
-			//Enemy collision
-			checkCollision(2, 2);
-			checkCollision(3, 2);
-			checkCollision(4, 2);
-			//Tile collision
-			//Hamtaro
-			checkBGCollision(1, 1);
-			checkBGCollision(2, 1);
-			checkBGCollision(3, 1);
-			checkBGCollision(4, 1);
-			//Enemy
-			checkBGCollision(1, 2);
-			checkBGCollision(2, 2);
-			checkBGCollision(3, 2);
-			checkBGCollision(4, 2);
 
-			if(getKey(KeyEsc))
-			{
-				clearKey(KeyEsc);
-				addState("Pause");
-			}
-		}
-		else if(inGameState("EnterPwd"))
+		if(!paused)
 		{
-			if(getKey(KeyEnter))
+			if(inGameState("InGame"))
 			{
-				clearKey(KeyEnter);
-				passString = "";
-				for(String perPass : passPosList)
-				{
-					passString += perPass;
-				}
-				if(getObjLevels().checkPassword(passString))
-				{
-					passIsCorrect = true;
-					stateCounter = nextState(stateCounter, states);
-				}
-				else
-				{
-					passIsCorrect = false;
-					passAttempt++;
-				}
-			}
-			else if(getKey(KeyEsc))
-			{
-				clearKey(KeyEsc);
-				stateCounter = prevState(stateCounter, states);
-			}
-		}
-		else
-		{
-			if(getKey(KeyEnter))
-			{
-				// next step is player selection
-				clearKey(KeyEnter);
-				stateCounter = nextState(stateCounter, states);
-			}
-			else if(getKey(KeyEsc))
-			{
-				clearKey(KeyEsc);
-				stateCounter = prevState(stateCounter, states);
-			}
-		}
+				moveObjects(null, 0);
+				//System.out.println("Player: " + player.getPc().colid);
+				//System.out.println("Enemy: " + enemy.colid);
+				//Object collision
+				//Enemy -> Hamtaro
+				checkCollision(2, 1);
+				//Diamond -> Hamtaro
+				checkCollision(3, 1);
+				//Rock -> Hamtaro
+				checkCollision(4, 1);
+				//Enemy collision
+				checkCollision(2, 2);
+				checkCollision(3, 2);
+				checkCollision(4, 2);
+				//Tile collision
+				//Hamtaro
+				checkBGCollision(1, 1);
+				checkBGCollision(2, 1);
+				checkBGCollision(3, 1);
+				checkBGCollision(4, 1);
+				//Enemy
+				checkBGCollision(1, 2);
+				checkBGCollision(2, 2);
+				checkBGCollision(3, 2);
+				checkBGCollision(4, 2);
 
-		// DBG MSG's
-		if(debug)
-		{
-			dbgPrint("LoadGame = " + loadGame);
-			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
-			dbgPrint(inGameState("EnterPwd") + "");
+				if(getKey(KeyEsc))
+				{
+					stateCounter = 0;
+
+					moveObjects(null, 0);
+					if(getKey(KeyEsc))
+					{
+						clearKey(KeyEsc);
+						addState("Pause");
+					}
+				}
+			}
+			else if(inGameState("EnterPwd"))
+			{
+				if(getKey(KeyEnter))
+				{
+					clearKey(KeyEnter);
+					passString = "";
+					for(String perPass : passPosList)
+					{
+						passString += perPass;
+					}
+					if(getObjLevels().checkPassword(passString))
+					{
+						passIsCorrect = true;
+						stateCounter = nextState();
+					}
+					else
+					{
+						passIsCorrect = false;
+						passAttempt++;
+					}
+				}
+				else if(getKey(KeyEsc))
+				{
+					clearKey(KeyEsc);
+					stateCounter = prevState();
+				}
+			}
+			else
+			{
+				if(getKey(KeyEnter))
+				{
+					// next step is player selection
+					clearKey(KeyEnter);
+					stateCounter = nextState();
+				}
+				else if(getKey(KeyEsc))
+				{
+					clearKey(KeyEsc);
+					stateCounter = prevState();
+				}
+			}
+
+			// DBG MSG's
+			if(debug)
+			{
+				dbgPrint("LoadGame = " + loadGame);
+				dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
+				dbgPrint(inGameState("EnterPwd") + "");
+			}
+
 		}
 	}
 
@@ -198,17 +213,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startTitle()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameTitle()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameTitle()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Title
@@ -218,17 +242,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startPlayerSelect()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFramePlayerSelect()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFramePlayerSelect()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Player Select
@@ -238,17 +271,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startStartGame()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameStartGame()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameStartGame()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Start Game
@@ -270,17 +312,26 @@ public class Game extends JGEngine
 
 	public void startEnterPwd()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameEnterPwd()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameEnterPwd()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Enter Password
@@ -290,17 +341,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startInGame()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameInGame()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameInGame()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State InGame
@@ -310,17 +370,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startPause()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFramePause()
 	{
-		getCurrentState().doFrame();
+		if(paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFramePause()
 	{
-		getCurrentState().paintFrame();
+		if(paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Pause
@@ -330,17 +399,26 @@ public class Game extends JGEngine
 //***************************************
 	public void startWin()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameWin()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameWin()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State Win
@@ -350,49 +428,55 @@ public class Game extends JGEngine
 //***************************************
 	public void startGameOver()
 	{
-		getCurrentState().start();
+		if(!paused)
+		{
+			getCurrentState().start();
+		}
 	}
 
 	public void doFrameGameOver()
 	{
-		getCurrentState().doFrame();
+		if(!paused)
+		{
+			getCurrentState().doFrame();
+		}
 	}
 
 	public void paintFrameGameOver()
 	{
-		getCurrentState().paintFrame();
+		if(!paused)
+		{
+			getCurrentState().paintFrame();
+		}
 	}
 //***************************************
 // End Game State GameOver
 //***************************************
 
 	// Global Method(s)
-	public int nextState(int counter, ArrayList<String> states)
+	public int nextState()
 	{
-		if(counter < states.size() - 1)
+		if(stateCounter < states.size() - 1)
 		{
-			counter++;
+			stateCounter++;
 		}
 		if(inGameState("StartGame") && !loadGame)
 		{
-			counter++;
+			stateCounter++;
 		}
-		setCurrentState(states.get(counter));
-		return counter;
+		setCurrentState(states.get(stateCounter));
+
+		return stateCounter;
 	}
 
-	public int prevState(int counter, ArrayList<String> states)
+	public int prevState()
 	{
-		if(counter > 0)
+		if(stateCounter > 0)
 		{
-			counter--;
+			stateCounter--;
 		}
-		if(inGameState("StartGame") && !loadGame)
-		{
-			counter--;
-		}
-		setCurrentState(states.get(counter));
-		return counter;
+		setCurrentState(states.get(stateCounter));
+		return stateCounter;
 	}
 
 	// Getter(s) & Setter(s)
@@ -509,5 +593,10 @@ public class Game extends JGEngine
 		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
 		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 		return null;
+	}
+
+	public Player getPlayer()
+	{
+		return player;
 	}
 }
