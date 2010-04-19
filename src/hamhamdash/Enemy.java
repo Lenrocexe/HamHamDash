@@ -18,18 +18,20 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+""+x+""+y, false, x, y, 2, name + "Idle");
+		super(name+"_"+x+"_"+y, false, x, y, 2, name + "Idle");
 
 
 		this.type = name;
-		setDirection(MoveDirection.LEFT);
+		setDirection(MoveDirection.RIGHT);
 	}
 
+	@Override
 	public MoveDirection getDirection()
 	{
 		return Direction;
 	}
 
+	@Override
 	public void setDirection(MoveDirection newDirection)
 	{
 		Direction = newDirection;
@@ -82,7 +84,6 @@ public class Enemy extends GCharacter
 	@Override
 	public void move()
 	{
-//		System.out.println(getDirection());
 		switch(getDirection())
 		{
 			case LEFT:
@@ -114,6 +115,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
+		System.out.println("Cid"+tilecid);
 		if(tilecid == 3)
 		{
 			yspeed = 0;
@@ -137,6 +139,12 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
+		if(obj.colid == 3)
+		{
+			yspeed = 0;
+			xspeed = 0;
+			turnRight();
+		}
 	}
 
 	public String getType()

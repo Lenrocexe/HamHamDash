@@ -42,8 +42,6 @@ public class Level
 		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
-		//game.getCurrentLevel().loadEnemies();
-		//insertGObjects();
 		clearField();
 	}
 
@@ -245,12 +243,6 @@ public class Level
 		}
 	}
 
-	public void loadEnemies()
-	{
-		// Insert Enemies
-		
-	}
-
 	/**
 	 * Changes a given tile to an empty tile
 	 * @param x
@@ -258,7 +250,7 @@ public class Level
 	 */
 	public void digTile(int x, int y)
 	{
-		game.setTile(1, 1, ".");
+		game.setTile(x, y, ".");
 	}
 
 	/**

@@ -21,7 +21,7 @@ public class PlayerCharacter extends GCharacter
 	 */
 	public PlayerCharacter(String name, int x, int y)//, Player player)
 	{
-		super(name+""+x+""+y, true, x, y, 1, name + "idle");
+		super(name, true, x, y, 1, name + "idle");
 		this.name = name;
 		//this.player = player;
 	}
@@ -129,6 +129,8 @@ public class PlayerCharacter extends GCharacter
 			yspeed = 0;
 			xdir = 0;
 			ydir = 0;
+
+			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
 		}
 		else if (tilecid == 3)
 		{
