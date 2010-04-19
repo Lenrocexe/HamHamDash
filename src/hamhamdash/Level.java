@@ -58,7 +58,7 @@ public class Level
 			int type = d[0];
 			int x = d[1];
 			int y = d[2];
-			Diamond test = new Diamond("diamond", true, x*game.getTileSize(), y*game.getTileSize(), "diamondtile");
+			Diamond diamond = new Diamond("diamond", true, x*game.getTileSize(), y*game.getTileSize(), "diamond");
 		}
 
 		// Insert Rocks
@@ -67,6 +67,7 @@ public class Level
 			int type = r[0];
 			int x = r[1];
 			int y = r[2];
+			Rock rock = new Rock("rock", true, x*game.getTileSize(), y*game.getTileSize(), "rock");
 		}
 
 		// Clear Enemies

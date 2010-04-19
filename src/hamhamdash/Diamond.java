@@ -10,7 +10,7 @@ public class Diamond extends GObject
 {
 	public Diamond(String name, boolean unique, int x, int y, String sprite)
 	{
-		super(name+""+x+""+y, unique, x, y, 3, "diamond");
+		super(name, unique, x, y, 3, "diamond");
 	}
 
 	@Override
