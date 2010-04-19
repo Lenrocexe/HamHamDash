@@ -23,6 +23,7 @@ public class Game extends JGEngine
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;
 	private State currentState = null;
+	private State previousState = null;
 
 //***************************************
 // Start Game initialization
@@ -97,7 +98,7 @@ public class Game extends JGEngine
 			if(getKey(KeyEsc))
 			{
 				clearKey(KeyEsc);
-				addCurrentState("Pause");
+				addState("Pause");
 			}
 		}
 		else if(inGameState("EnterPwd"))
@@ -447,23 +448,8 @@ public class Game extends JGEngine
 	 */
 	public void setCurrentState(String state)
 	{
-		try
-		{
-			State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
-
-			if(debug)
-			{
-				System.out.println(c.getClass());
-			}
-			if(c instanceof State)
-			{
-				this.currentState = c;
-				setGameState(state);
-			}
-		}
-		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
-		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
-		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
+		this.currentState = getStateClass(state);
+		setGameState(state);
 	}
 
 	/**
@@ -471,27 +457,35 @@ public class Game extends JGEngine
 	 * Will create a new Instance of the given state class and stores ref in currentState.
 	 * @param state The state name
 	 */
-	public void addCurrentState(String state)
+	public void addState(String state)
 	{
+		saveState();
+		this.currentState = getStateClass(state);
+		addGameState(state);
+	}
+
+	public void saveState()
+	{
+		this.previousState = currentState;
+	}
+
+	public void recoverState()
+	{
+		currentState = previousState;
+	}
+
+	public State getStateClass(String state)
+	{
+		State c = null;
 		try
 		{
-			State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
-
-			if(debug)
-			{
-				System.out.println(c.getClass());
-			}
-			if(c instanceof State)
-			{
-				this.currentState = c;
-				addGameState(state);
-			}
+			//State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
+			c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
+			return c;
 		}
 		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
 		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
 		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
+		return null;
 	}
-	
-
-
 }

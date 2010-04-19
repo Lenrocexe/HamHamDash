@@ -35,6 +35,7 @@ public class StatePause extends State implements Runnable
 			game.clearKey(Game.KeyEsc);
 			paused = false;
 			game.start();
+			game.recoverState();
 			game.removeGameState("Pause");
 		}
 		else if(game.getKey(Game.KeyDown))
