@@ -28,7 +28,7 @@ public class StateInGame extends State
 	{
 		if(!init)
 		{
-			game.enemy = new Enemy("SpatA", 160, 200);
+			//game.enemy = new Enemy("SpatA", 160, 200);
 			init = true;
 		}
 		if(game.isDebug())

@@ -95,8 +95,6 @@ public class Game extends JGEngine
 		if(inGameState("InGame"))
 		{
 			moveObjects(null, 0);
-			System.out.println("Player: " + player.getPc().colid);
-			System.out.println("Enemy: " + enemy.colid);
 			//Object collision
 			//Enemy -> Hamtaro
 			checkCollision(2, 1);
