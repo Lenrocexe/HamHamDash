@@ -37,7 +37,6 @@ public class StatePause extends State
 	@Override
 	public void start()
 	{
-		game.paused = true;
 		toDrawImage = pauseScreens[0][0][0];
 		started = true;
 	}
@@ -45,6 +44,12 @@ public class StatePause extends State
 	@Override
 	public void doFrame()
 	{
+
+//										System.out.println("amigwAWD IM GOOD");
+										System.out.println(started);
+
+
+
 		if(started)
 		{
 			if(game.getKey(Game.KeyEsc))
@@ -57,7 +62,6 @@ public class StatePause extends State
 				}
 				else
 				{
-					game.paused = false;
 					game.recoverState();
 					game.removeGameState("Pause");
 				}
@@ -88,7 +92,6 @@ public class StatePause extends State
 				else if(toDrawImage.endsWith(pauseScreens[2][0][0]))
 				{
 					game.setCurrentState("Title");
-					game.paused = false;
 				}
 				else if(toDrawImage.endsWith(pauseScreens[3][0][0]))
 				{
