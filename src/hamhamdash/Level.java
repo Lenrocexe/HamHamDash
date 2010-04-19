@@ -42,8 +42,7 @@ public class Level
 		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
-		game.player.setPc(new PlayerCharacter("h", 80, 160));
-		game.getCurrentLevel().loadEnemies();
+		//game.getCurrentLevel().loadEnemies();
 		insertGObjects();
 	}
 
