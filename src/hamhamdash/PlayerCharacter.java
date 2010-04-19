@@ -109,11 +109,18 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
+		if(tilecid == 1)
+		{
+			xspeed = 0;
+			yspeed = 0;
+			xdir = 0;
+			ydir = 0;
+		}
 	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-//		System.out.println
+		System.out.println("Bam");
 	}
 }
