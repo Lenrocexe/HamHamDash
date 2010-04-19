@@ -39,7 +39,7 @@ public class Game extends JGEngine
 	 */
 	private static class GameHolder
 	{
-		private static final Game INSTANCE = new Game(new JGPoint(800, 800));
+		private static final Game INSTANCE = new Game(new JGPoint(400, 400));
 	}
 
 	/**
@@ -485,12 +485,12 @@ public class Game extends JGEngine
 
 	public int getViewportWidth()
 	{
-		return 400;
+		return 200;
 	}
 
 	public int getViewportHeight()
 	{
-		return 400;
+		return 200;
 	}
 
 	/**
@@ -596,5 +596,11 @@ public class Game extends JGEngine
 	public Player getPlayer()
 	{
 		return player;
+	}
+
+	public void resetViewport()
+	{
+		setViewOffset(0, 0, true);
+		setPFSize(10, 10);
 	}
 }
