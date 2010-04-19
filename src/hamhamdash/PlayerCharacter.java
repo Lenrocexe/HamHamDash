@@ -114,5 +114,6 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
+//		System.out.println
 	}
 }

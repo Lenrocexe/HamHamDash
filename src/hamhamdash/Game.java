@@ -395,7 +395,6 @@ public class Game extends JGEngine
 	public void setFieldSize(int[] t)
 	{
 		setPFSize(t[0], t[1]);
-//		System.out.println(objLevels.getCurrentLevelSize()[0] + " " + objLevels.getCurrentLevelSize()[1]);
 	}
 
 	public Level getCurrentLevel()

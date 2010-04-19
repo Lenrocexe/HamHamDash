@@ -6,25 +6,21 @@ import hamhamdash.*;
  *
  * @author Serhan Uygur
  */
-public class StatePause extends State implements Runnable
+public class StatePause extends State
 {
-	private Thread pause;
 	private boolean paused;
 	private String toDrawImage;
 	
 	public StatePause()
 	{
 		paused = true;
-		pause = new Thread(this);
 		toDrawImage = "pause_res_game";
-
 	}
 
 	@Override
 	public void start()
 	{
 		game.stop();
-		pause.start();
 	}
 
 	@Override
@@ -60,21 +56,4 @@ public class StatePause extends State implements Runnable
 		}
 	}
 
-	@Override
-	public void run()
-	{
-		while(paused)
-		{
-			doFrame();
-			paintFrame();
-
-			try
-			{
-				Thread.sleep((int)(game.getFrameRate()) * 2);
-			} catch (InterruptedException e)
-			{
-			}
-			
-		}
-	}
 }
