@@ -29,7 +29,7 @@ public class StateInGame extends State
 	{
 		if(!init)
 		{
-			game.getCurrentLevel().loadEnemies();
+			game.getCurrentLevel().insertGObjects();
 			init = true;
 		}
 		if(game.isDebug())
