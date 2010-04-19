@@ -9,7 +9,9 @@ import jgame.*;
 public class PlayerCharacter extends GCharacter
 {
 	private String name = null;
-	private Boolean stop_walking = false;
+	private Boolean stopWalking = false;
+	private Boolean isAlive = true;
+	private int speed = 3;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
 	//private Player player;
@@ -39,7 +41,7 @@ public class PlayerCharacter extends GCharacter
 		yspeed = 0;
 		xdir = 0;
 		ydir = 0;
-		if (eng.getKey(eng.KeyUp) && stop_walking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
+		if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
 //			if (y < game.viewHeight() - 230)
 //			{
@@ -50,11 +52,11 @@ public class PlayerCharacter extends GCharacter
 //			else
 			{
 				setGraphic(getName() + "runup");
-				yspeed = -6;
+				yspeed = speed - 2*speed;
 				ydir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyDown) && stop_walking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
+		else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
 		{
 //			if (y > game.viewHeight()- 57)
 //			{
@@ -65,11 +67,11 @@ public class PlayerCharacter extends GCharacter
 //			else
 			{
 				setGraphic(getName() + "rundown");
-				yspeed = 6;
+				yspeed = speed;
 				ydir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyLeft) && stop_walking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+		else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
 //			if (x < game.viewWidth() - 300)
 //			{
@@ -80,11 +82,11 @@ public class PlayerCharacter extends GCharacter
 //			else
 			{
 				setGraphic(getName() + "runleft");
-				xspeed = -6;
+				xspeed = speed - 2*speed;
 				xdir = 1;
 			}
 		}
-		else if (eng.getKey(eng.KeyRight) && stop_walking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+		else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 		{
 //			if (x > game.viewWidth() - 60)
 //			{
@@ -95,17 +97,24 @@ public class PlayerCharacter extends GCharacter
 //			else
 			{
 				setGraphic(getName() + "runright");
-				xspeed = 6;
+				xspeed = speed;
 				xdir = 1;
 			}
 		}
 		else
 		{
-//			setGraphic(getName() + "idle");
+			if(isAlive)
+			{	
+				setGraphic(getName() + "idle");
+			}
 			xspeed = 0;
 			yspeed = 0;
 			xdir = 0;
 			ydir = 0;
+			eng.clearKey(eng.KeyUp);
+			eng.clearKey(eng.KeyDown);
+			eng.clearKey(eng.KeyLeft);
+			eng.clearKey(eng.KeyRight);
 		}
 	}
 
@@ -148,27 +157,31 @@ public class PlayerCharacter extends GCharacter
 	public void hit(JGObject obj)
 	{
 		System.out.println("Bam");
-		stop_walking = true;
-		setGraphic(getName() + "howdie");
-		new JGTimer(70, true)
+		if(obj.colid == 2)
 		{
-			// the alarm method is called when the timer ticks to zero
-			public void alarm()
+			stopWalking = true;
+			isAlive = false;
+			setGraphic(getName() + "howdie");
+			new JGTimer(70, true)
 			{
-				remove();
-				if (game.getPlayer().getLifes() > 0)
+				// the alarm method is called when the timer ticks to zero
+				public void alarm()
 				{
-					game.getPlayer().removeLife();
-					game.setCurrentState("Death");
-					System.out.println("Continue!!!");
+					remove();
+					if (game.getPlayer().getLifes() > 0)
+					{
+						game.getPlayer().removeLife();
+						game.setCurrentState("Death");
+						System.out.println("Continue!!!");
+					}
+					else
+					{
+						game.resetViewport();
+						game.setCurrentState("GameOver");
+					}
 				}
-				else
-				{
-					game.resetViewport();
-					game.setCurrentState("GameOver");
-				}
-			}
-		};
+			};
+		}
 
 		//remove();
 	}
