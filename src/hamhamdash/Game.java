@@ -512,4 +512,9 @@ public class Game extends JGEngine
 		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 		return null;
 	}
+
+	public Player getPlayer()
+	{
+		return player;
+	}
 }
