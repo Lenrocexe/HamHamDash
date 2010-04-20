@@ -141,7 +141,7 @@ public class PlayerCharacter extends GCharacter
 		System.out.println("Bam");
 		if(obj.colid == 2)
 		{
-			
+			obj.remove();
 			stopWalking = true;
 			isAlive = false;
 			setGraphic(getName() + "howdie");
