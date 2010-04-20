@@ -162,25 +162,7 @@ public class PlayerCharacter extends GCharacter
 			stopWalking = true;
 			isAlive = false;
 			setGraphic(getName() + "howdie");
-			new JGTimer(70, true)
-			{
-				// the alarm method is called when the timer ticks to zero
-				public void alarm()
-				{
-					remove();
-					if (game.getPlayer().getLifes() > 0)
-					{
-						game.getPlayer().removeLife();
-						game.setCurrentState("Death");
-						System.out.println("Continue!!!");
-					}
-					else
-					{
-						game.resetViewport();
-						game.setCurrentState("GameOver");
-					}
-				}
-			};
+			game.addState("Death");
 		}
 
 		//remove();
