@@ -127,6 +127,7 @@ pause_exit_title	-	0	pause_menu		2	-
 pause_exit_windows	-	0	pause_menu		3	-
 
 titlebg	resources/sounds/title.wav
+select	resources/sounds/select.wav
 
 // Tiles
 // (Same as sprites)

@@ -98,32 +98,6 @@ public class Game extends JGEngine
 			{
 				if(inGameState("InGame"))
 				{
-					moveObjects(null, 0);
-//					System.out.println("Player: " + player.getPc().colid);
-//					System.out.println("Enemy: " + enemy.colid);
-					//Object collision
-					//Enemy -> Hamtaro
-					checkCollision(2, 1);
-					//Diamond -> Hamtaro
-					checkCollision(3, 1);
-					//Rock -> Hamtaro
-					checkCollision(4, 1);
-					//Enemy collision
-					checkCollision(2, 2);
-					checkCollision(3, 2);
-					checkCollision(4, 2);
-					//Tile collision
-					//Hamtaro
-					checkBGCollision(1, 1);
-					checkBGCollision(2, 1);
-					checkBGCollision(3, 1);
-					checkBGCollision(4, 1);
-					//Enemy
-					checkBGCollision(1, 2);
-					checkBGCollision(2, 2);
-					checkBGCollision(3, 2);
-					checkBGCollision(4, 2);
-
 					stateCounter = 0;
 
 					if(getKey(KeyEsc))
