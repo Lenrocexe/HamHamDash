@@ -20,7 +20,7 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+"_"+x+"_"+y, false, x, y, 2, name + "idle");
+		super(name+"_"+x+"_"+y, false, x, y, 2, name + "still");
 		this.type = name;
 		setDirection(MoveDirection.RIGHT);
 		cids.add(1);
@@ -156,12 +156,10 @@ public class Enemy extends GCharacter
 		}
 		else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
 		{
-			System.out.println(getDirection());
 			yspeed = 0;
 			xspeed = 0;
 			turnRight();
 
-			System.out.println(getDirection());
 			if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
 			{
 				doMove();

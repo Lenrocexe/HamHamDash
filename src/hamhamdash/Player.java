@@ -8,7 +8,7 @@ import jgame.*;
  */
 public class Player
 {
-	private PlayerCharacter pc;
+	public PlayerCharacter pc = null;
 	private int lifes;
 	private int score;
 	private String playerName;

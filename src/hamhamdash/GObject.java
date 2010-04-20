@@ -102,7 +102,6 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println(obj.colid);
 		if(obj.colid == 1)
 		{
 			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){

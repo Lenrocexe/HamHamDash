@@ -19,10 +19,12 @@ public class StateInGame extends State
 
 	@Override
 	public void start()
-	{
+	{	
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
-		game.getPlayer().setPc(new PlayerCharacter("h", 80, 160));
+		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
+		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
+		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
 		game.stateCounter = 0;
 	}
 
@@ -31,8 +33,6 @@ public class StateInGame extends State
 	{
 		timer -= 1;
 		game.moveObjects();
-//					System.out.println("Player: " + player.getPc().colid);
-//					System.out.println("Enemy: " + enemy.colid);
 		//Object collision
 		//Enemy -> Hamtaro
 		game.checkCollision(2, 1);

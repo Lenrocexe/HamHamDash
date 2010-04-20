@@ -1,33 +1,20 @@
 [CONFIG]
 password=100000
-startposx=6
-startposy=2
+startposx=1
+startposy=1
 xtiles=31
 ytiles=17
-reqdiamonds=12
+reqdiamonds=5
 timer=1500
 [/CONFIG]
 
 [MAP]
-<<<<<<< HEAD
-XXXXXXXXXXXXXXXX
-X.#####R#R#####X
-X##############X
-X######D#R#####X
-X##############X
-X#####R########X
-X##############X
-X.......#######X
-X...1..########X
-X.......######CX
-XXXXXXXXXXXXXXXX
-=======
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 X.####.R.R######......###.####X
 X##############XDD####...1....X
 X######D#R#####XRRRR####......X
 X##############XXXXXXXDDRRRRRRX
-X##############X......########X
+X###DDDDDD#####X......########X
 X##############X.....DD####...X
 X...###########XRRRXXXX#######X
 X...1..#####R#RXRRDXXXXXXRRRRRX
@@ -37,7 +24,6 @@ XRD##############XXRR#########X
 X#############################X
 X#########...................1X
 X..........####RRRRRRXXRRRRRRRX
-X#....RRRR###################DX
+X#....RRRR##################CDX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
->>>>>>> 4392c084b95a35bab84b2eceb34879ebbe9ff462
 [/MAP]

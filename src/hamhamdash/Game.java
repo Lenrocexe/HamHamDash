@@ -191,7 +191,6 @@ public class Game extends JGEngine
 			}
 		} else if (inGameState("Death"))
 		{
-//			System.out.println("I should move something!");
 			moveObjects("h", 0);
 		}
 

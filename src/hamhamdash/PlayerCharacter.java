@@ -26,7 +26,7 @@ public class PlayerCharacter extends GCharacter
 	 */
 	public PlayerCharacter(String name, int x, int y)//, Player player)
 	{
-		super(name, true, x, y, 1, name + "idle");
+		super(name, true, x, y, 1, name + "still");
 		this.name = name;
 	}
 
@@ -48,7 +48,6 @@ public class PlayerCharacter extends GCharacter
 				yspeed = speed - 2*speed;
 				ydir = 1;
 				isWalking = true;
-
 			}
 			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)))
 			{
@@ -96,18 +95,13 @@ public class PlayerCharacter extends GCharacter
 	//@Override
 	public void hit_bg(int tilecid)
 	{
-		if (tilecid == 1)
-		{
-
-
-		}
-		else if (tilecid == 2)
+		if (tilecid == 2)
 		{
 			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
 		}
-		else if (tilecid == 3)
+		else if (tilecid == 7)
 		{
-
+			game.addState("Win");
 		}
 	}
 	//@Override
