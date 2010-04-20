@@ -26,6 +26,7 @@ public class Enemy extends GCharacter
 		cids.add(1);
 		cids.add(2);
 		cids.add(3);
+
 	}
 
 	@Override
@@ -40,7 +41,7 @@ public class Enemy extends GCharacter
 		Direction = newDirection;
 	}
 
-	private void turnRight()
+	public void turnRight()
 	{
 		if(getDirection() == MoveDirection.LEFT)
 		{
@@ -64,29 +65,53 @@ public class Enemy extends GCharacter
 		}
 	}
 
-	private void turnLeft()
+	public void turnLeft()
 	{
 		if(getDirection() == MoveDirection.LEFT)
 		{
 			setDirection(MoveDirection.DOWN);
+			setGraphic("spatAwalkdown");
 		}
 		else if(getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.RIGHT);
+			setGraphic("spatAwalkright");
 		}
 		else if(getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.UP);
+			setGraphic("spatAwalkup");
 		}
 		else if(getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.LEFT);
+			setGraphic("spatAwalkleft");
+		}
+	}
+	public void checkDirection()
+	{
+		if (getDirection() == MoveDirection.LEFT)
+		{
+//			if (tileDirection == )(MoveDirection.UP);
+		}
+		if (getDirection() == MoveDirection.UP)
+		{
+//			[Left,Up,Right];
+		}
+		if (getDirection() == MoveDirection.RIGHT)
+		{
+//			[Up,Right,Down];
+		}
+		if(getDirection() == MoveDirection.DOWN)
+		{
+//			[Right,Down,Left];
 		}
 	}
 
 	@Override
 	public void move()
 	{
+		
 		switch(getDirection())
 		{
 			case LEFT:
@@ -122,30 +147,47 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
+
+		//if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4)
+
 		if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
 		{
 			doMove();
 		}
 		else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
 		{
-			doMove();
+			System.out.println(getDirection());
+			yspeed = 0;
+			xspeed = 0;
+			turnRight();
+
+			System.out.println(getDirection());
+			if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
+			{
+				doMove();
+			}
+			else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
+			{
+				doMove();
+			}
+			else if(getDirection() == Direction.LEFT && !and(checkBGCollision(-1, 0), 0))
+			{
+				doMove();
+
+			}
+			else if(getDirection() == Direction.RIGHT && !and(checkBGCollision(1, 0), 0))
+			{
+				doMove();
+			}
+			clearBBox();
+			clearTileBBox();
 		}
-		else if(getDirection() == Direction.LEFT && !and(checkBGCollision(-1, 0), 0))
-		{
-			doMove();
-		}
-		else if(getDirection() == Direction.RIGHT && !and(checkBGCollision(1, 0), 0))
-		{
-			doMove();
-		}
-		clearBBox();
-		clearTileBBox();
 	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		if(obj.colid == 3)
+		if(obj.colid == 3 || obj.colid == 1 || obj.colid == 2 || obj.colid == 4)
 		{
 			yspeed = 0;
 			xspeed = 0;
@@ -164,5 +206,22 @@ public class Enemy extends GCharacter
 			turnRight();
 		else
 			turnLeft();
+	}
+
+	public boolean loopTiles()
+	{
+		boolean test = false;
+		for(int i : cids)
+		{
+			if(getDirection() == Direction.UP && and(checkBGCollision(0, -yspeed), i))
+				test = true;
+			else if(getDirection() == Direction.DOWN && and(checkBGCollision(0, yspeed), i))
+				test = true;
+			else if(getDirection() == Direction.LEFT && and(checkBGCollision(-xspeed, 0), i))
+				test = true;
+			else if(getDirection() == Direction.RIGHT && and(checkBGCollision(xspeed, 0), i))
+				test = true;
+		}
+		return test;
 	}
 }

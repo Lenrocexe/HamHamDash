@@ -14,6 +14,7 @@ public class PlayerCharacter extends GCharacter
 	private Boolean isWalking = false;
 	private int speed = 5;
 	JGPoint occupied=null;
+	private int counter = 0;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
 	//private Player player;
@@ -139,5 +140,14 @@ public class PlayerCharacter extends GCharacter
 		isAlive = false;
 		setGraphic(getName() + "howdie");
 		game.addState("Death");
+	}
+	public void setAlive(boolean b)
+	{
+		this.isAlive = b;
+	}
+
+	public void setWalking(boolean b)
+	{
+		this.stopWalking = b;
 	}
 }
