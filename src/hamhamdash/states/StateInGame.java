@@ -108,6 +108,7 @@ public class StateInGame extends State
 	@Override
 	public void paintFrame()
 	{
-		game.drawString("Timer: " + timer, 100, 0, 0);
+		game.drawImage(100, 0, "timebox");
+		game.drawString("" + timer, 126, 5, 0);
 	}
 }
