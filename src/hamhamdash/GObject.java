@@ -8,8 +8,9 @@ import jgame.*;
  */
 public abstract class GObject extends JGObject
 {
-	private boolean pickable, pushable, falling = false;
+	public boolean pickable, pushable, falling = false;
 	public Game game = Game.getGame();
+	private int speed = 3;
 
 	/**
 	 *
@@ -28,14 +29,22 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		String[][] tile = game.getCurrentLevel().getSurroundingTiles((int) x, (int) y);
-
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
+		
 		if(tile[5][0].contains("."))
 		{
 			startFalling();
 			moveDown();
 		}
-		else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
+		else if(tile[5][0].contains("#") || tile[5][0].contains("X") || tile[5][0].contains("C") || tile[5][0].contains("O"))
+		{
+			double margin = 1.9;
+			if(isXAligned(margin) && isYAligned(margin))
+			{
+				stopFalling();
+			}
+		}
+		/*else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
 			//explode();
 		}
@@ -81,14 +90,20 @@ public abstract class GObject extends JGObject
 			{
 				return;
 			}
-		}
+		}*/
 	}
 
 	@Override
-	public abstract void hit_bg(int tilecid);
+	public void hit_bg(int tilecid)
+	{
+	
+	}
 
 	@Override
-	public abstract void hit(JGObject obj);
+	public void hit(JGObject obj)
+	{
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
+	}
 
 	public void setPickable(boolean p)
 	{
@@ -118,8 +133,10 @@ public abstract class GObject extends JGObject
 	 */
 	public void stopFalling()
 	{
-		yspeed = 0;
 		xspeed = 0;
+		yspeed = 0;
+		xdir = 0;
+		ydir = 0;
 		falling = false;
 	}
 
@@ -128,28 +145,18 @@ public abstract class GObject extends JGObject
 	 */
 	public void moveDown()
 	{
-		for(int i = 0; i <= 19; i++)
-		{
-			yspeed = 2;
-		}
-		stopFalling();
+		yspeed = speed;
+		ydir = 1;
 	}
 
 	public void moveLeft()
 	{
-		for(int i = 0; i <= 19; i++)
-		{
-			xspeed = -2;
-		}
-		stopFalling();
+
 	}
 
 	public void moveRight()
 	{
-		for(int i = 0; i <= 19; i++)
-		{
-			xspeed = 2;
-		}
-		stopFalling();
+
 	}
+
 }

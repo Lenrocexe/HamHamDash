@@ -8,17 +8,19 @@ import jgame.*;
  */
 public class Diamond extends GObject
 {
+
+	public int diamondPoint = 3;// Points for diamond
+	public int diamondsLeft = 5;// Diamonds left for next level
+
+
 	public Diamond(String name, boolean unique, int x, int y, String sprite)
+
 	{
 		super(name, unique, x, y, 3, "diamond");
 	}
-
-	@Override
-	public void move(){};
-
-	@Override
-	public void hit_bg(int tilecid){};
-
-	@Override
-	public void hit(JGObject obj){};
+		@Override
+	public void hit(JGObject obj)
+	{
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
+	}
 }

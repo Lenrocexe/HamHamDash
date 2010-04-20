@@ -122,7 +122,6 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		System.out.println(getDirection());
 		if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
 		{
 			doMove();

@@ -1,7 +1,6 @@
 package hamhamdash;
 
 import jgame.*;
-
 /**
  *
  * @author Cornel Alders
@@ -12,27 +11,9 @@ public class Rock extends GObject
 	{
 		super(name, unique, x, y, 4, "rock");
 	}
-
 	@Override
-	public void move(){};
-
-	@Override
-	public void hit_bg(int tilecid){
-//        String duw = getPushSource();
-//		if(duw == left)
-//		{
-//			moveRight();
-//		}
-//		if(duw == right)
-//		{
-//			moveLeft();
-//		}
-//		if(duw == down)
-//		{
-//			return;
-//		}
+	public void hit(JGObject obj)
+	{
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
-
-	@Override
-	public void hit(JGObject obj){};
 }
