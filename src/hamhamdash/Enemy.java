@@ -22,12 +22,12 @@ public class Enemy extends GCharacter
 		this.type = name;
 		setDirection(MoveDirection.LEFT);
 	}
-
+	@Override
 	public MoveDirection getDirection()
 	{
 		return Direction;
 	}
-
+	@Override
 	public void setDirection(MoveDirection newDirection)
 	{
 		Direction = newDirection;
@@ -62,25 +62,30 @@ public class Enemy extends GCharacter
 		if(getDirection() == MoveDirection.LEFT)
 		{
 			setDirection(MoveDirection.DOWN);
+			setGraphic("SpatAIdle");
 		}
 		else if(getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.RIGHT);
+			setGraphic("SpatAIdle");
 		}
 		else if(getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.UP);
+			setGraphic("SpatAIdle");
 		}
 		else if(getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.LEFT);
+			setGraphic("SpatAIdle");
 		}
 	}
-
 	@Override
 	public void move()
 	{
-//		System.out.println(getDirection());
+		System.out.println(getDirection());
+
+		System.out.println(getDirection());
 		switch(getDirection())
 		{
 			case LEFT:
