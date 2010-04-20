@@ -141,7 +141,7 @@ public class PlayerCharacter extends GCharacter
 		
 		if(obj.colid == 2)
 		{
-			
+			obj.remove();
 			stopWalking = true;
 			isAlive = false;
 			setGraphic(getName() + "howdie");
@@ -167,11 +167,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if(obj.colid == 3)
 		{
-			System.out.println("STOP");
-			//xspeed = 0;
-			//yspeed = 0;
-			//xdir = 0;
-			//ydir = 0;
+			game.getCurrentLevel().pickupDiamond(obj);
 		}
 	}
 }
