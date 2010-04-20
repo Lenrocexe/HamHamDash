@@ -105,7 +105,7 @@ public class PlayerCharacter extends GCharacter
 		{
 			if(isAlive)
 			{	
-				setGraphic(getName() + "idle");
+				setGraphic(getName() + "still");
 			}
 			xspeed = 0;
 			yspeed = 0;

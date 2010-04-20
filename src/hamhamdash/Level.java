@@ -77,11 +77,11 @@ public class Level
 			String name = null;
 			if(type==1)
 			{
-				name = "SpatA";
+				name = "spatA";
 			}
 			else if(type==2)
 			{
-				name = "SpatB";
+				name = "spatB";
 			}
 
 			arrEnemyObj.add(new Enemy(name, x*game.getTileSize(), y*game.getTileSize()));
