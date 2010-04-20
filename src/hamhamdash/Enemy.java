@@ -1,7 +1,6 @@
 package hamhamdash;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import jgame.*;
 
 /**
@@ -12,6 +11,7 @@ public class Enemy extends GCharacter
 {
 	private String type = null;
 	public MoveDirection Direction;
+	private ArrayList<Integer> cids = new ArrayList<Integer>();
 
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
@@ -22,8 +22,11 @@ public class Enemy extends GCharacter
 	{
 		super(name+"_"+x+"_"+y, false, x, y, 2, name + "idle");
 		this.type = name;
-		String Left, Up, Right, Down;
-		setDirection(MoveDirection.LEFT);
+		setDirection(MoveDirection.RIGHT);
+		cids.add(1);
+		cids.add(2);
+		cids.add(3);
+
 	}
 
 	@Override
@@ -113,21 +116,25 @@ public class Enemy extends GCharacter
 		{
 			case LEFT:
 			{
-				xspeed = -2;
+				yspeed = 0;
+				xspeed = -xspeed;
 				break;
 			}
 			case RIGHT:
 			{
+				yspeed = 0;
 				xspeed = 2;
 				break;
 			}
 			case UP:
 			{
-				yspeed = -2;
+				xspeed = 0;
+				yspeed = -yspeed;
 				break;
 			}
 			case DOWN:
 			{
+				xspeed = 0;
 				yspeed = 2;
 				break;
 			}
@@ -146,6 +153,27 @@ public class Enemy extends GCharacter
 			yspeed = 0;
 			xspeed = 0;
 			turnRight();
+
+			System.out.println(getDirection());
+			if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
+			{
+				doMove();
+			}
+			else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
+			{
+				doMove();
+			}
+			else if(getDirection() == Direction.LEFT && !and(checkBGCollision(-1, 0), 0))
+			{
+				doMove();
+
+			}
+			else if(getDirection() == Direction.RIGHT && !and(checkBGCollision(1, 0), 0))
+			{
+				doMove();
+			}
+			clearBBox();
+			clearTileBBox();
 		}
 	}
 
@@ -163,5 +191,13 @@ public class Enemy extends GCharacter
 	public String getType()
 	{
 		return type;
+	}
+
+	public void doMove()
+	{
+		if(getType().equals("spatA"))
+			turnRight();
+		else
+			turnLeft();
 	}
 }
