@@ -138,7 +138,7 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println("Bam");
+		
 		if(obj.colid == 2)
 		{
 			

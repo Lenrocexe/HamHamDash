@@ -8,7 +8,7 @@ import jgame.*;
  */
 public abstract class GObject extends JGObject
 {
-	private boolean pickable, pushable, falling = false;
+	public boolean pickable, pushable, falling = false;
 	public Game game = Game.getGame();
 
 	/**
@@ -28,12 +28,16 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
+			System.out.println("test");
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles((int) x, (int) y);
 
 		if(tile[5][0].contains("."))
 		{
+			
 			startFalling();
+
 			moveDown();
+			
 		}
 		else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
