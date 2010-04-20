@@ -36,9 +36,17 @@ public class StateRestart extends State
 	@Override
 	public void paintFrame()
 	{
+		int x = (game.viewWidth() / 2);
+		int y = game.viewHeight() / 2;
+
+		// Offset
+		y -= 20;
+
+		game.setColor(JGColor.white);
 		game.drawImage(0, 0, "restart_bg");
-		game.drawString("Je ben DOOD, Jongè!", game.viewWidth() / 2, game.viewHeight() / 2, 0);
-		game.drawString("Life x" + game.getPlayer().getLifes(), game.viewWidth() / 2, (game.viewHeight() / 2)  + 30, 0);
+		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", x, y, 0);
+		game.drawImage(x - 40, y + 5, "hstill");
+		game.drawString("x" + game.getPlayer().getLifes(), x, y  + 30, -1);
 	}
 
 
