@@ -122,14 +122,22 @@ public class PlayerCharacter extends GCharacter
 		if(obj.colid == 2)
 		{
 			obj.remove();
-			stopWalking = true;
-			isAlive = false;
-			setGraphic(getName() + "howdie");
-			game.addState("Death");
+			kill();
 		}
 		else if(obj.colid == 3)
 		{
-			game.getCurrentLevel().pickupDiamond(obj);
+			if(obj.getCenterTile().x == game.player.getPc().getCenterTile().x)
+			{
+				game.getCurrentLevel().pickupDiamond(obj);
+			}
 		}
+	}
+
+	public void kill()
+	{
+		stopWalking = true;
+		isAlive = false;
+		setGraphic(getName() + "howdie");
+		game.addState("Death");
 	}
 }

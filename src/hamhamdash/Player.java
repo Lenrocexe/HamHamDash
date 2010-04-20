@@ -94,4 +94,8 @@ public class Player
 	{
 		setScore(0);
 	}
+	public void kill()
+	{
+		pc.kill();
+	}
 }

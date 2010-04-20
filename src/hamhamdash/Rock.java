@@ -11,9 +11,5 @@ public class Rock extends GObject
 	{
 		super(name, unique, x, y, 4, "rock");
 	}
-	@Override
-	public void hit(JGObject obj)
-	{
-		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
-	}
+
 }

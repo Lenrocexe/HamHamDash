@@ -31,7 +31,7 @@ public abstract class GObject extends JGObject
 	{
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
 		
-		if(tile[5][0].contains("."))
+		if(tile[5][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
 		{
 			startFalling();
 			moveDown();
@@ -102,7 +102,22 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
+		System.out.println(obj.colid);
+		if(obj.colid == 1)
+		{
+			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){
+				game.player.kill();
+			} else {
+				stopFalling();
+			}
+		}
+		else if(obj.colid == 2)
+		{
+			if(this.isFalling())
+			{
+				obj.remove();
+			}
+		}
 	}
 
 	public void setPickable(boolean p)
