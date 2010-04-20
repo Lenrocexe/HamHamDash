@@ -40,10 +40,8 @@ public class Levels
 	 */
 	public void startLevel()
 	{
-		System.out.println(currentLevelId);
 		arrLevels.get(currentLevelId).runLevel();
 		arrLevels.get(currentLevelId).getTileXYByPixel(92, 10);
-		System.out.println("STARTED");
 	}
 
 	/**
