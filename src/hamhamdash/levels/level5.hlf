@@ -7,16 +7,17 @@ endposy=8
 [/CONFIG]
 
 [MAP]
-XXXXXXXXXX
-X########X
-X##....##X
-X##.#####X
-X##...###X
-X#####.##X
-X######.#X
-X#####.##X
-X##...###X
-XXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X.##RR##D##########R##R###D#X
+X###DD##############XD#DR##DX
+X###DD###....##XXXXXXXXXXXXXX
+X#######.....##R#X#D
+X##...D########R#X##X
+X####DDDD########R..X
+X.......#####RRXXXXXXXXXXXXX
+X...1..#######C
+X.......#######
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 [/MAP]
 
 [ENEMY]

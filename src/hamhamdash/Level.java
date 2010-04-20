@@ -416,7 +416,7 @@ public class Level
 			{
 				if(!(newX == x && newY == y))
 				{
-					surroundingTiles[cntCoord][0] = game.getTileStr(newX, newY);
+					surroundingTiles[cntCoord][0] = game.getTileStr(newX+1, newY);
 					surroundingTiles[cntCoord][1] = newX + "";
 					surroundingTiles[cntCoord][2] = newY + "";
 					cntCoord++;
