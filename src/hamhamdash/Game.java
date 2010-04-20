@@ -98,6 +98,29 @@ public class Game extends JGEngine
 			{
 				if (inGameState("InGame"))
 				{
+					checkCollision(2, 1);
+					checkCollision(3, 1);
+					checkCollision(2, 2);
+					checkCollision(4, 4);
+
+					checkCollision(1, 4); // Hamtaro , Rock
+					checkCollision(2, 4);
+					//Enemy collision
+					checkCollision(2, 2);
+					checkCollision(3, 2);
+					checkCollision(4, 2);
+					//Tile collision
+					//Hamtaro
+					checkBGCollision(1, 1);
+					checkBGCollision(2, 1);
+					checkBGCollision(3, 1);
+					checkBGCollision(4, 1);
+					//Enemy
+					checkBGCollision(1, 2);
+					checkBGCollision(2, 2);
+					checkBGCollision(3, 2);
+					checkBGCollision(4, 2);
+
 					stateCounter = 0;
 
 					if (getKey(KeyEsc))
@@ -166,7 +189,6 @@ public class Game extends JGEngine
 			}
 		} else if (inGameState("Death"))
 		{
-//			System.out.println("I should move something!");
 			moveObjects("h", 0);
 		}
 

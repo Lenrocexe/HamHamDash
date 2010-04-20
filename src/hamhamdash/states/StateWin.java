@@ -17,13 +17,32 @@ public class StateWin extends State
 	@Override
 	public void start()
 	{
-		System.out.println("Starting Win!");
+		game.removeObjects(null, 2); // Clear all objects from the field
+		//game.removeObjects(null, 3);
+		game.removeObjects(null, 4);
+		game.resetViewport();
+
+		boolean nextLevel = game.getObjLevels().nextLevel();
+		if(!nextLevel)
+		{
+			System.out.println("WIN!!!");
+		}
+		else
+		{
+			game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
+			game.getObjLevels().startLevel();
+			int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.getTileSize();
+			int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.getTileSize();
+			game.player.getPc().setPos(startPosX, startPosY);
+			game.stateCounter = 0;
+			game.setCurrentState("InGame");
+		}
 	}
 
 	@Override
 	public void doFrame()
 	{
-		System.out.println(game.player.getLifes());
+
 	}
 
 	@Override
