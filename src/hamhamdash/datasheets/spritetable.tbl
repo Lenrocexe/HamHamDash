@@ -135,6 +135,8 @@ select		resources/sounds/select.wav
 //HUD
 timebox	-	0	resources/sprites/time.png	-
 
+congrats	-	0	resources/sprites/congrats.png	-
+
 // Tiles
 // (Same as sprites)
 emptytile	.	0	resources/sprites/emptytile.png	-
