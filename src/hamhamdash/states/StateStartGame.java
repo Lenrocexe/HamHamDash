@@ -14,7 +14,7 @@ public class StateStartGame extends State
 {
 	private int sgButtonWidth = 70;
 	private int sgButtonHeight = 30;
-	private JGPoint sgPoint = new JGPoint(game.pfWidth() / 2, 60);
+	private JGPoint sgPoint = new JGPoint(game.viewWidth() / 2, 60);
 	private JGColor hamButtonLabelColor = new JGColor(180, 175, 150);
 	private int newGameState = 1; // 'New Game' is highlighted as default
 	private int loadGameState = 0; // 'Load Game' is not

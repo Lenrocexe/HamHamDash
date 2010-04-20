@@ -31,7 +31,6 @@ public class Level
 		this.fileName = fileName;
 		loadSettings();
 		loadMapObjects();
-		loadEnemies();
 	}
 
 	/**
@@ -43,17 +42,13 @@ public class Level
 		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
-		game.player.setPc(new PlayerCharacter("h", 80, 160));
-		insertGObjects();
-
-			//System.out.println("Player: " + game.player.getPc().colid);
-			//System.out.println("Enemy: " + game.enemy.colid);
+		clearField();
 	}
 
 	/**
 	 * Inserts game objects
 	 */
-	private void insertGObjects()
+	public void insertGObjects()
 	{
 		// Insert Diamonds
 		for(int[] d : arrDiamonds)
@@ -61,9 +56,48 @@ public class Level
 			int type = d[0];
 			int x = d[1];
 			int y = d[2];
+			Diamond diamond = new Diamond("diamond", true, x*game.getTileSize(), y*game.getTileSize(), "diamond");
+		}
+
+		// Insert Rocks
+		for(int[] r : arrRocks)
+		{
+			int type = r[0];
+			int x = r[1];
+			int y = r[2];
+			Rock rock = new Rock("rock", true, x*game.getTileSize(), y*game.getTileSize(), "rock");
+		}
+
+		// Clear Enemies
+		for(int[] e : arrEnemies)
+		{
+			int type = e[0];
+			int x = e[1]; // Tile location multiplied by the tile size = tile location in pixels
+			int y = e[2];
+			String name = null;
+			if(type==1)
+			{
+				name = "spatA";
+			}
+			else if(type==2)
+			{
+				name = "spatB";
+			}
+
+			arrEnemyObj.add(new Enemy(name, x*game.getTileSize(), y*game.getTileSize()));
+		}
+	}
+
+	public void clearField()
+	{
+		// Insert Diamonds
+		for(int[] d : arrDiamonds)
+		{
+			int x = d[1];
+			int y = d[2];
 			game.setTile(x,y,".");
 		}
-		
+
 		// Insert Rocks
 		for(int[] r : arrRocks)
 		{
@@ -76,7 +110,8 @@ public class Level
 		// Clear Enemies
 		for(int[] e : arrEnemies)
 		{
-			int x = e[1];
+
+			int x = e[1]; // Tile location multiplied by the tile size = tile location in pixels
 			int y = e[2];
 			game.setTile(x,y,".");
 		}
@@ -208,27 +243,6 @@ public class Level
 		}
 	}
 
-	public void loadEnemies()
-	{
-		// Insert Enemies
-		for(int[] e : arrEnemies)
-		{
-			int type = e[0];
-			int x = e[1]*game.getTileSize(); // Tile location multiplied by the tile size = tile location in pixels
-			int y = e[2]*game.getTileSize();
-			String name = null;
-			if(type==1)
-			{
-				name = "SpatA";
-			}
-			else if(type==2)
-			{
-				name = "SpatB";
-			}
-			arrEnemyObj.add(new Enemy(name, x, y));
-		}
-	}
-
 	/**
 	 * Changes a given tile to an empty tile
 	 * @param x
@@ -236,7 +250,7 @@ public class Level
 	 */
 	public void digTile(int x, int y)
 	{
-		game.setTile(1, 1, ".");
+		game.setTile(x, y, ".");
 	}
 
 	/**

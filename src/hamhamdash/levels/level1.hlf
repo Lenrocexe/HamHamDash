@@ -3,7 +3,7 @@ password=100000
 startposx=1
 startposy=1
 xtiles=16
-ytiles=10
+ytiles=11
 reqdiamonds=1
 [/CONFIG]
 
@@ -11,11 +11,12 @@ reqdiamonds=1
 XXXXXXXXXXXXXXXX
 X.##RR##D######X
 X###DD#########X
-X###DD#########X
-X##############X
-X##D..D########X
+X###DD###....##X
+X#######.....##X
+X##...D########X
 X####DDDD######X
-X#....#######RRX
-X#..##########CX
+X.......#####RRX
+X#..1..#######CX
+X.......#######X
 XXXXXXXXXXXXXXXX
 [/MAP]

@@ -15,16 +15,20 @@ public class StatePause extends State
 	//	[ Main Screen Name ][ Sub Screens ][ Pages ]
 	private String[][][] pauseScreens =
 	{
-		{{"pause_res_game"}, {""} , {""}},														// Item 0, zonder submenu's
-		{{"pause_help"}, {"game_goal", "game_controls", "game_objects"} , {"1", "2", "5"}},		// Item 1, met submenu's
-		{{"pause_exit_title"}, {""} , {""}},													// Item 2, zonder submenu's
-		{{"pause_exit_windows"}, {""} , {""}}													// Item 3, zonder submenu's
+		// Item 0, zonder submenu's
+		{{"pause_res_game"}, {""} , {""}},
+		// Item 1, met submenu's
+		{{"pause_help"}, {"game_goal", "game_controls", "game_objects", "game_back"} , {"1", "2", "5", "0"}},
+		// Item 2, zonder submenu's
+		{{"pause_exit_title"}, {""} , {""}},
+		// Item 3, zonder submenu's
+		{{"pause_exit_windows"}, {""} , {""}}
 	};
 
 	// Counters for the screens
 	private int currentMainScreen = 0;
 	private int currentSubScreen = 0;
-	private int currentPage = 0;
+	private int currentPage = 1;
 
 	// Checkers for sub or not
 	private boolean inSub = false;
@@ -37,7 +41,6 @@ public class StatePause extends State
 	@Override
 	public void start()
 	{
-		game.paused = true;
 		toDrawImage = pauseScreens[0][0][0];
 		started = true;
 	}
@@ -54,10 +57,10 @@ public class StatePause extends State
 				{
 					inSub = false;
 					toDrawImage = pauseScreens[1][0][0];
+					currentSubScreen = 0;
 				}
 				else
 				{
-					game.paused = false;
 					game.recoverState();
 					game.removeGameState("Pause");
 				}
@@ -76,25 +79,31 @@ public class StatePause extends State
 			{
 				game.clearKey(Game.KeyEnter);
 				
-				if (toDrawImage.endsWith(pauseScreens[0][0][0]))
+				if (toDrawImage.equals(pauseScreens[0][0][0]))
 				{
-
+					game.recoverState();
+					game.removeGameState("Pause");
 				}
 				else if(toDrawImage.equals(pauseScreens[1][0][0]))
 				{
 					inSub = true;
-					toDrawImage = pauseScreens[1][1][0];
+					toDrawImage = pauseScreens[1][1][0] + 1; // select 1st sub page
 				}
-				else if(toDrawImage.endsWith(pauseScreens[2][0][0]))
+				else if(toDrawImage.equals(pauseScreens[2][0][0]))
 				{
 					game.setCurrentState("Title");
-					game.paused = false;
 				}
-				else if(toDrawImage.endsWith(pauseScreens[3][0][0]))
+				else if(toDrawImage.equals(pauseScreens[3][0][0]))
 				{
 					game.exitEngine("Thank you for playing!");
 				}
 
+			}
+			else if(game.getKey(Game.KeyRight))
+			{
+				game.clearKey(Game.KeyRight);
+//				prevScreen(pauseScreens);
+				nextPage();
 			}
 		}
 
@@ -105,7 +114,7 @@ public class StatePause extends State
 	{
 		if(started)
 		{
-			game.drawImage(game.getViewportWidth() / 2 - (256/2), game.getViewportHeight() / 2 - (250/2), toDrawImage);
+			game.drawImage(game.viewWidth() / 2 - (256/2), game.viewHeight() / 2 - (250/2), toDrawImage, false);
 		}
 	}
 
@@ -116,20 +125,20 @@ public class StatePause extends State
 		
 		if(!inSub)
 		{
-			if(currentMainScreen < pauseScreens.length - 1)
+			if(currentMainScreen < pauseScreens.length - 1)		// -1 because we start with 0
 			{
 				currentMainScreen++;
 			}
-			toDrawImage = pauseScreens[currentMainScreen][0][currentSubScreen];
+			toDrawImage = pauseScreens[currentMainScreen][0][0];
 		}
 		else
 		{
-			
-			if(currentSubScreen < pauseScreens[currentMainScreen].length-1)
+			currentPage = 1;
+			if(currentSubScreen < pauseScreens[currentMainScreen].length)
 			{
 				currentSubScreen++;
 			}
-			toDrawImage = pauseScreens[currentMainScreen][1][currentSubScreen];
+			toDrawImage = pauseScreens[currentMainScreen][1][currentSubScreen] + currentPage;
 		}
 		
 
@@ -140,28 +149,43 @@ public class StatePause extends State
 	{
 		String toDrawImage = "";
 
-
-
 		if(!inSub)
 		{
 			if(currentMainScreen > 0)
 			{
 				currentMainScreen--;
 			}
-			toDrawImage = pauseScreens[currentMainScreen][0][currentSubScreen];
+			toDrawImage = pauseScreens[currentMainScreen][0][0];
 		}
 		else
 		{
-
+			currentPage = 1;
 			if(currentSubScreen > 0)
 			{
 				currentSubScreen--;
 			}
 			
-			toDrawImage = pauseScreens[currentMainScreen][1][currentSubScreen];
+			toDrawImage = pauseScreens[currentMainScreen][1][currentSubScreen] + currentPage;
 		}
 
 
 		this.toDrawImage = toDrawImage;
 	}
+
+	public void nextPage()
+	{
+		String toDrawImage = "";
+
+
+//		if(currentMainScreen < pauseScreens.length - 1)		// -1 because we start with 0
+		{
+			currentPage++;
+		}
+		toDrawImage = pauseScreens[currentMainScreen][currentSubScreen][0] + currentPage;
+
+System.out.println(toDrawImage);
+
+		this.toDrawImage = toDrawImage;
+	}
+
 }
