@@ -74,33 +74,15 @@ public class PlayerCharacter extends GCharacter
 			}
 			else
 			{
-				/*if(this.isLeftAligned(1) && this.isBottomAligned(1)){
-					System.out.println("IsAligned");
-					if(isAlive)
-					{
-						setGraphic(getName() + "idle");
-					}
-					xspeed = 0;
-					yspeed = 0;
-					xdir = 0;
-					ydir = 0;
-					eng.clearKey(eng.KeyUp);
-					eng.clearKey(eng.KeyDown);
-					eng.clearKey(eng.KeyLeft);
-					eng.clearKey(eng.KeyRight);
-				} else {
-
-				}*/
 				if(isAlive)
 				{
 					setGraphic(getName() + "still");
 				}
-				
 			}
 		}
 		else
 		{
-			double margin = 1.5;
+			double margin = 1.9;
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				xspeed = 0;
@@ -145,25 +127,7 @@ public class PlayerCharacter extends GCharacter
 			stopWalking = true;
 			isAlive = false;
 			setGraphic(getName() + "howdie");
-			new JGTimer(70, true)
-			{
-				// the alarm method is called when the timer ticks to zero
-				public void alarm()
-				{
-					remove();
-					if (game.getPlayer().getLifes() > 0)
-					{
-						game.getPlayer().removeLife();
-						game.setCurrentState("Death");
-						System.out.println("Continue!!!");
-					}
-					else
-					{
-						game.resetViewport();
-						game.setCurrentState("GameOver");
-					}
-				}
-			};
+			game.addState("Death");
 		}
 		else if(obj.colid == 3)
 		{

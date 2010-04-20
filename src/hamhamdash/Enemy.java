@@ -147,7 +147,14 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4)
+
+		//if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4)
+
+		if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
+		{
+			doMove();
+		}
+		else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
 		{
 			System.out.println(getDirection());
 			yspeed = 0;
