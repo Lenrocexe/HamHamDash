@@ -28,7 +28,7 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-			System.out.println("test");
+			//System.out.println("test");
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles((int) x, (int) y);
 
 		if(tile[5][0].contains("."))
