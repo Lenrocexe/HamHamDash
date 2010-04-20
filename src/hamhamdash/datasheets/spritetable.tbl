@@ -30,7 +30,7 @@ spatA	resources/sprites/SpatAsheet.png		0	0	40	40	0	0
 // Individual sprites
 // spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
 // if(spritesheet)frameonsheet;;sprite-modifier;;
-// Sprite-modifiers:
+// Sprite-modifiers: x = mirror
 // Hamtaro
 hstill		-	0	hamtaro	0	-
 hhamha1		-	0	hamtaro	1	-

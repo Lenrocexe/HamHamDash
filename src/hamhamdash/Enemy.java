@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import jgame.*;
 
 /**
@@ -113,19 +115,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		if(tilecid == 3)
-		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
-		}
-		if(tilecid == 2)
-		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
-		}
-		if(tilecid == 1)
+		if(tilecid == 1 || tilecid == 2 || tilecid == 3)
 		{
 			yspeed = 0;
 			xspeed = 0;
