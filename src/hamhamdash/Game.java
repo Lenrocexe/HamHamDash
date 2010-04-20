@@ -14,7 +14,7 @@ public class Game extends JGEngine
 	public boolean loadGame = false; // by default 'New Game' is selected
 	public int stateCounter = 0;
 	private ArrayList<String> states = new ArrayList<String>();
-	public Player player = new Player();
+	public Player player = null;
 	public Enemy enemy = null;
 	private Levels objLevels;
 	public String passString;
@@ -156,7 +156,21 @@ public class Game extends JGEngine
 						clearKey(KeyEsc);
 						stateCounter = prevState();
 					}
-				} else
+				} else if(inGameState("PlayerSelect"))
+				{
+					if (getKey(KeyEnter))
+					{
+						clearKey(KeyEnter);
+						setPlayer(new Player());
+						stateCounter = nextState();
+					}
+					else if (getKey(KeyEsc))
+					{
+						clearKey(KeyEsc);
+						stateCounter = prevState();
+					}
+				}
+				else
 				{
 					if (getKey(KeyEnter))
 					{
@@ -675,6 +689,11 @@ public class Game extends JGEngine
 	public Player getPlayer()
 	{
 		return player;
+	}
+	
+	public void setPlayer(Player p)
+	{
+		this.player = p;
 	}
 
 	public void resetViewport()

@@ -18,6 +18,7 @@ public class StateGameOver extends State
 	public void start()
 	{
 		System.out.println("Starting Game Over!");
+		game.setCurrentState("Title");
 	}
 
 	@Override

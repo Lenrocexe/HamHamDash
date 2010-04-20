@@ -1,5 +1,6 @@
 package hamhamdash.states;
 
+import hamhamdash.Player;
 import hamhamdash.State;
 
 /**
