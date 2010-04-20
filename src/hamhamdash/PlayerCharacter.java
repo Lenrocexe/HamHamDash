@@ -27,8 +27,6 @@ public class PlayerCharacter extends GCharacter
 	{
 		super(name, true, x, y, 1, name + "idle");
 		this.name = name;
-
-		//this.player = player;
 	}
 
 	@Override

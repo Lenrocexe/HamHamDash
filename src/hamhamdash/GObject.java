@@ -91,17 +91,18 @@ public abstract class GObject extends JGObject
 				return;
 			}
 		}*/
-
 	}
 
 	@Override
-	public abstract void hit_bg(int tilecid);
+	public void hit_bg(int tilecid)
+	{
+	
+	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println("XXX");
-		System.out.println(obj.getName());
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
 
 	public void setPickable(boolean p)
