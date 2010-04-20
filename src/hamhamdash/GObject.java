@@ -36,7 +36,7 @@ public abstract class GObject extends JGObject
 			startFalling();
 			moveDown();
 		}
-		else if(tile[5][0].contains("#") || tile[5][0].contains("X"))
+		else if(tile[5][0].contains("#") || tile[5][0].contains("X") || tile[5][0].contains("C") || tile[5][0].contains("O"))
 		{
 			double margin = 1.9;
 			if(isXAligned(margin) && isYAligned(margin))
@@ -91,17 +91,18 @@ public abstract class GObject extends JGObject
 				return;
 			}
 		}*/
-
 	}
 
 	@Override
-	public abstract void hit_bg(int tilecid);
+	public void hit_bg(int tilecid)
+	{
+	
+	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println("XXX");
-		System.out.println(obj.getName());
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
 
 	public void setPickable(boolean p)

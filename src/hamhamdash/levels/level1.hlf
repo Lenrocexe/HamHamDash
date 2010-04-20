@@ -8,11 +8,10 @@ reqdiamonds=1
 [/CONFIG]
 
 [MAP]
-[MAP]
 XXXXXXXXXXXXXXXX
-X.#############X
+X.#####R#R#####X
+X##############X
 X######D#R#####X
-X######.#.#####X
 X##############X
 X##############X
 X##############X
@@ -20,5 +19,4 @@ X...###########X
 X...1..########X
 X.......######CX
 XXXXXXXXXXXXXXXX
-[/MAP]
 [/MAP]
