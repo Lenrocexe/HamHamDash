@@ -92,40 +92,15 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
+		playAudio("1", "titlebg", true);
 		if (!inGameState("Death"))
 		{
 			if (!inGameState("Pause"))
 			{
 				if (inGameState("InGame"))
 				{
-//					System.out.println("Player: " + player.getPc().colid);
-//					System.out.println("Enemy: " + enemy.colid);
-					//Object collision
-					//Enemy -> Hamtaro
-					checkCollision(2, 1);
-					//Diamond -> Hamtaro
-					checkCollision(3, 1);
-					//Rock -> Hamtaro
-					checkCollision(4, 1);
-					//Enemy collision
-					checkCollision(2, 2);
-					checkCollision(3, 2);
-					checkCollision(4, 2);
-					//Tile collision
-					//Hamtaro
-					checkBGCollision(1, 1);
-					checkBGCollision(2, 1);
-					checkBGCollision(3, 1);
-					checkBGCollision(4, 1);
-					//Enemy
-					checkBGCollision(1, 2);
-					checkBGCollision(2, 2);
-					checkBGCollision(3, 2);
-					checkBGCollision(4, 2);
-
 					stateCounter = 0;
 
-					moveObjects();
 					if (getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
@@ -161,10 +136,13 @@ public class Game extends JGEngine
 					if (getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
-						System.out.println("New Player gemaakt");
 						setPlayer(new Player());
 						stateCounter = nextState();
-
+					}
+					else if (getKey(KeyEsc))
+					{
+						clearKey(KeyEsc);
+						stateCounter = prevState();
 					}
 				}
 				else

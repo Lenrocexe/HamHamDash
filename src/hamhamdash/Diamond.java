@@ -18,20 +18,9 @@ public class Diamond extends GObject
 	{
 		super(name, unique, x, y, 3, "diamond");
 	}
-
-	@Override
-	public void hit_bg(int tilecid)
-	{
-
-		if ( tilecid == 1 )
-		{
-			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
-		}
-	}
-
-@Override
+		@Override
 	public void hit(JGObject obj)
 	{
-
+		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
 }

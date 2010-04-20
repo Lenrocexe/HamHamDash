@@ -207,4 +207,21 @@ public class Enemy extends GCharacter
 		else
 			turnLeft();
 	}
+
+	public boolean loopTiles()
+	{
+		boolean test = false;
+		for(int i : cids)
+		{
+			if(getDirection() == Direction.UP && and(checkBGCollision(0, -yspeed), i))
+				test = true;
+			else if(getDirection() == Direction.DOWN && and(checkBGCollision(0, yspeed), i))
+				test = true;
+			else if(getDirection() == Direction.LEFT && and(checkBGCollision(-xspeed, 0), i))
+				test = true;
+			else if(getDirection() == Direction.RIGHT && and(checkBGCollision(xspeed, 0), i))
+				test = true;
+		}
+		return test;
+	}
 }

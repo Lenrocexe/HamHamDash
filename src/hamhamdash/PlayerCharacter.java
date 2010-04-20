@@ -12,8 +12,9 @@ public class PlayerCharacter extends GCharacter
 	private Boolean stopWalking = false;
 	private Boolean isAlive = true;
 	private Boolean isWalking = false;
-	private int speed = 3;
+	private int speed = 5;
 	JGPoint occupied=null;
+	private int counter = 0;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
 	//private Player player;
@@ -27,8 +28,6 @@ public class PlayerCharacter extends GCharacter
 	{
 		super(name, true, x, y, 1, name + "idle");
 		this.name = name;
-
-		//this.player = player;
 	}
 
 	@Override
