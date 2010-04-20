@@ -21,13 +21,12 @@ public class StateDeath extends State
 	@Override
 	public void doFrame()
 	{
+		// wait a bit for Hamtaro to finish dieng
 		new JGTimer(50, true, "Death")
 		{
 			// the alarm method is called when the timer ticks to zero
 			public void alarm()
 			{
-				System.out.println("Making Timer!");
-
 				// remove Life cuz you diedz!
 				game.getPlayer().removeLife();
 
@@ -35,7 +34,6 @@ public class StateDeath extends State
 				{
 					game.resetViewport();
 					game.setCurrentState("Restart");
-					System.out.println("Continue with restart of game!!!");
 				}
 				else
 				{

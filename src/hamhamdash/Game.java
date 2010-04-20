@@ -161,10 +161,13 @@ public class Game extends JGEngine
 					if (getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
-						System.out.println("New Player gemaakt");
 						setPlayer(new Player());
 						stateCounter = nextState();
-
+					}
+					else if (getKey(KeyEsc))
+					{
+						clearKey(KeyEsc);
+						stateCounter = prevState();
 					}
 				}
 				else
