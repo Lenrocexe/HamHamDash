@@ -23,7 +23,7 @@ public class Enemy extends GCharacter
 		super(name+"_"+x+"_"+y, false, x, y, 2, name + "idle");
 		this.type = name;
 		String Left, Up, Right, Down;
-		setDirection(MoveDirection.RIGHT);
+		setDirection(MoveDirection.LEFT);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class Enemy extends GCharacter
 		Direction = newDirection;
 	}
 
-	private void turnRight()
+	public void turnRight()
 	{
 		if(getDirection() == MoveDirection.LEFT)
 		{
@@ -62,7 +62,7 @@ public class Enemy extends GCharacter
 		}
 	}
 
-	private void turnLeft()
+	public void turnLeft()
 	{
 		if(getDirection() == MoveDirection.LEFT)
 		{
@@ -89,7 +89,7 @@ public class Enemy extends GCharacter
 	{
 		if (getDirection() == MoveDirection.LEFT)
 		{
-//			[Down,Left,Up];
+//			if (tileDirection == )(MoveDirection.UP);
 		}
 		if (getDirection() == MoveDirection.UP)
 		{
@@ -108,7 +108,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void move()
 	{
-		System.out.println(getDirection());
+		
 		switch(getDirection())
 		{
 			case LEFT:
@@ -140,8 +140,9 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4 || tilecid == 5)
+		if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4)
 		{
+			System.out.println(getDirection());
 			yspeed = 0;
 			xspeed = 0;
 			turnRight();
@@ -151,7 +152,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
-		if(obj.colid == 3)
+		if(obj.colid == 3 || obj.colid == 1 || obj.colid == 2 || obj.colid == 4)
 		{
 			yspeed = 0;
 			xspeed = 0;
