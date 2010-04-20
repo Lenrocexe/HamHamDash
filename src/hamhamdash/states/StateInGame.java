@@ -1,7 +1,7 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
-import java.awt.Color;
+import jgame.JGTimer;
 
 /**
  *
@@ -10,9 +10,11 @@ import java.awt.Color;
 public class StateInGame extends State
 {
 	private boolean init = false;
+	private int timer;
 	public StateInGame()
 	{
 		game.setBackground(null);
+		timer = game.getObjLevels().getCurrentLevel().getLevelTimer();
 	}
 
 	@Override
@@ -27,6 +29,7 @@ public class StateInGame extends State
 	@Override
 	public void doFrame()
 	{
+		timer -= 1;
 		game.moveObjects();
 //					System.out.println("Player: " + player.getPc().colid);
 //					System.out.println("Enemy: " + enemy.colid);
@@ -44,9 +47,9 @@ public class StateInGame extends State
 		//Tile collision
 		//Hamtaro
 		game.checkBGCollision(1, 1);
-		game.checkBGCollision(game.player.getPc().getBBox());
-		game.checkBGCollision(game.player.getPc().getBBox());
-		game.checkBGCollision(game.player.getPc().getBBox());
+		game.checkBGCollision(2, 1);
+		game.checkBGCollision(3, 1);
+		game.checkBGCollision(4, 1);
 		//Enemy
 		game.checkBGCollision(1, 2);
 		game.checkBGCollision(2, 2);
@@ -87,11 +90,24 @@ public class StateInGame extends State
 			System.out.println(game.getPlayer().getPc().getTiles());
 			System.out.println(game.getPlayer().getPc().getTopLeftTile());
 		}
+		new JGTimer(game.getObjLevels().getCurrentLevel().getLevelTimer(), true, "InGame")
+		{
+			public void alarm()
+			{
+				game.getPlayer().getPc().remove();
+				game.getPlayer().getPc().setWalking(false);
+				game.getPlayer().getPc().setAlive(false);
+				game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
+				game.addState("Death");
+			}
+		};
+
 //		game.getPlayer().getPc().setTileBBox(game.getPlayer().getPc().getTopLeftTile().x, game.getPlayer().getPc().getTopLeftTile().y, 1, 1);
 	}
 
 	@Override
 	public void paintFrame()
 	{
+		game.drawString("Timer: " + timer, 100, 0, 0);
 	}
 }
