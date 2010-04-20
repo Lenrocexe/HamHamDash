@@ -2,8 +2,10 @@
 password=167486
 startposx=1
 startposy=1
-endposx=22
-endposy=12
+endposx=10
+endposy=10
+xtiles=22
+ytiles=12
 reqdiamonds=10
 [/CONFIG]
 
