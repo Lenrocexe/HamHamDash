@@ -25,7 +25,6 @@ public class StateWin extends State
 		boolean nextLevel = game.getObjLevels().nextLevel();
 		if(!nextLevel)
 		{
-			System.out.println("WIN!!!");
 		}
 		else
 		{

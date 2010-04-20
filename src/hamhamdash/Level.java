@@ -274,7 +274,6 @@ public class Level
 	{
 		obj.remove();
 		pickedUpDiamonds++;
-		System.out.println(pickedUpDiamonds + " moet zijn " + Integer.parseInt(settings.getProperty("reqdiamonds")));
 		if(pickedUpDiamonds == Integer.parseInt(settings.getProperty("reqdiamonds")))
 		{
 			openExit();
