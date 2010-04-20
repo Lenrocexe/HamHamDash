@@ -24,6 +24,7 @@ public class StateInGame extends State
 		game.getObjLevels().startLevel();
 		game.getPlayer().setPc(new PlayerCharacter("h", 80, 160));
 		game.stateCounter = 0;
+		game.switchMusic("levelbg");
 	}
 
 	@Override
@@ -82,7 +83,7 @@ public class StateInGame extends State
 		game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
-		if(game.getMouseButton(1))
+		if(game.isDebug() && game.getMouseButton(1))
 		{
 			System.out.println("X: " + game.getMouseX() + " Y: " + game.getMouseY());
 			System.out.println(game.getPlayer().getPc().getBBox());

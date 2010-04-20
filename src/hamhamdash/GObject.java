@@ -102,7 +102,7 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
+//		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
 
 	public void setPickable(boolean p)

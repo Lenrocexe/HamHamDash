@@ -14,6 +14,6 @@ public class Rock extends GObject
 	@Override
 	public void hit(JGObject obj)
 	{
-		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
+//		System.out.println(obj.getName() +" COLLIDES WITH "+ this.getName());
 	}
 }

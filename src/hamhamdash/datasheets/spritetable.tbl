@@ -127,9 +127,10 @@ game_back1			-	0	help_menu		3	-
 pause_exit_title	-	0	pause_menu		2	-
 pause_exit_windows	-	0	pause_menu		3	-
 
-title	resources/sounds/title.wav
-titlebg	resources/sounds/title2.wav
-select	resources/sounds/select.wav
+titlebg1	resources/sounds/title.wav
+titlebg2	resources/sounds/title2.wav
+levelbg		resources/sounds/level.wav
+select		resources/sounds/select.wav
 
 //HUD
 timebox	-	0	resources/sprites/time.png	-
