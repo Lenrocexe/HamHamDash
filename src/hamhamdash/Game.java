@@ -91,6 +91,7 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
+		playAudio("1", "titlebg", true);
 		if(!inGameState("Death"))
 		{
 			if(!inGameState("Pause"))
@@ -125,7 +126,6 @@ public class Game extends JGEngine
 
 					stateCounter = 0;
 
-					moveObjects(null, 0);
 					if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
