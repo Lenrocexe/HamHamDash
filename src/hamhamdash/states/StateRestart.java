@@ -10,21 +10,13 @@ import jgame.JGColor;
  */
 public class StateRestart extends State
 {
-	private boolean started = false; //lowsy boolean for start() method
-
-
 	public StateRestart()
 	{
 		
 	}
-@Override
+	@Override
 	public void start()
 	{
-	
-		game.setBGColor(JGColor.red);
-		System.out.println("Restarting!");
-
-		started = true;
 	}
 
 	@Override
