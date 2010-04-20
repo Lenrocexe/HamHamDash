@@ -92,11 +92,24 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		playAudio("1", "titlebg", true);
+		playAudio("1", "title", true);
 		if (!inGameState("Death"))
 		{
 			if (!inGameState("Pause"))
 			{
+				if(getKey(KeyCtrl) && getKey(getKeyCode("1")))
+				{
+					stopAudio();
+					clearKey(getKeyCode("1"));
+					playAudio("1", "title", true);
+				}
+				if(getKey(KeyCtrl) && getKey(getKeyCode("2")))
+				{
+					stopAudio();
+					clearKey(getKeyCode("2"));
+					playAudio("1", "titlebg", true);
+				}
+
 				if (inGameState("InGame"))
 				{
 					stateCounter = 0;
