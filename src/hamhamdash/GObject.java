@@ -28,7 +28,8 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		String[][] tile = game.getCurrentLevel().getSurroundingTiles((int) x, (int) y);
+
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
 
 		if(tile[5][0].contains("."))
 		{
@@ -128,6 +129,7 @@ public abstract class GObject extends JGObject
 	 */
 	public void moveDown()
 	{
+		System.out.println("X");
 		for(int i = 0; i <= 19; i++)
 		{
 			yspeed = 2;
