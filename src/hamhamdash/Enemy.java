@@ -138,8 +138,6 @@ public class Enemy extends GCharacter
 		{
 			doMove();
 		}
-		clearBBox();
-		clearTileBBox();
 	}
 
 	@Override
