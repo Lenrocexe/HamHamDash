@@ -1,7 +1,5 @@
 package hamhamdash;
 
-import jgame.*;
-
 /**
  *
  * @author Cornel Alders
@@ -14,25 +12,7 @@ public class Rock extends GObject
 	}
 
 	@Override
-	public void move(){};
-
-	@Override
 	public void hit_bg(int tilecid){
-//        String duw = getPushSource();
-//		if(duw == left)
-//		{
-//			moveRight();
-//		}
-//		if(duw == right)
-//		{
-//			moveLeft();
-//		}
-//		if(duw == down)
-//		{
-//			return;
-//		}
-	}
 
-	@Override
-	public void hit(JGObject obj){};
+	}
 }
