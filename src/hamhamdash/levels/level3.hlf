@@ -1,7 +1,7 @@
 [CONFIG]
 password=300000
-startposx=6
-startposy=2
+startposx=1
+startposy=1
 xtiles=11
 ytiles=10
 reqdiamonds=2
