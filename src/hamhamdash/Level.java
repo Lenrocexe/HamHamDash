@@ -454,4 +454,9 @@ public class Level
 
 		return levelSize;
 	}
+
+	public int getLevelTimer()
+	{
+		return Integer.parseInt(settings.getProperty("timer"));
+	}
 }

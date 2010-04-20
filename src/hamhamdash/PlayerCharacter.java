@@ -133,4 +133,14 @@ public class PlayerCharacter extends GCharacter
 			game.getCurrentLevel().pickupDiamond(obj);
 		}
 	}
+
+	public void setAlive(boolean b)
+	{
+		this.isAlive = b;
+	}
+
+	public void setWalking(boolean b)
+	{
+		this.stopWalking = b;
+	}
 }
