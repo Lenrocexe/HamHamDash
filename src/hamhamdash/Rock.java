@@ -1,6 +1,5 @@
 package hamhamdash;
 
-import jgame.*;
 /**
  *
  * @author Cornel Alders
@@ -11,5 +10,4 @@ public class Rock extends GObject
 	{
 		super(name, unique, x, y, 4, "rock");
 	}
-
 }

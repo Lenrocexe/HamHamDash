@@ -16,6 +16,7 @@ public class StateDeath extends State
 	@Override
 	public void start()
 	{
+		game.stopAudio();
 	}
 
 	@Override

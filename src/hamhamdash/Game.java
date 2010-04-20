@@ -92,7 +92,6 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		playAudio("1", "titlebg", true);
 		if (!inGameState("Death"))
 		{
 			if (!inGameState("Pause"))
@@ -129,7 +128,6 @@ public class Game extends JGEngine
 						clearKey(KeyEsc);
 						addState("Pause");
 					}
-
 				} else if (inGameState("EnterPwd"))
 				{
 					if (getKey(KeyEnter))
@@ -697,5 +695,11 @@ public class Game extends JGEngine
 	{
 		setViewOffset(0, 0, true);
 		setPFSize(10, 10);
+	}
+
+	public void switchMusic(String music)
+	{
+//		stopAudio();
+		playAudio("1", music, true);
 	}
 }
