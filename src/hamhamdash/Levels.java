@@ -150,9 +150,10 @@ public class Levels
 	 */
 	private String[] getLevelDirList()
 	{
-		String[] levels = new String[2];
+		String[] levels = new String[3];
 		levels[0] = "level1.hlf";
 		levels[1] = "level2.hlf";
+		levels[2] = "level3.hlf";
 		return levels;
 	}
 }

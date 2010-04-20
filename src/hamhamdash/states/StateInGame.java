@@ -79,8 +79,16 @@ public class StateInGame extends State
 				game.getObjLevels().prevLevel();
 			}
 		}
-		game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
-		game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
+
+		try
+		{
+			game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
+			game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
+		}
+		catch(java.lang.NullPointerException e)
+		{
+			
+		}
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
 		if(game.isDebug() && game.getMouseButton(1))
