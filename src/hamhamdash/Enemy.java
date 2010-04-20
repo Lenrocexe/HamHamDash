@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import jgame.*;
 
 /**
@@ -18,9 +20,7 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+"_"+x+"_"+y, false, x, y, 2, name + "Idle");
-
-
+		super(name+"_"+x+"_"+y, false, x, y, 2, name + "idle");
 		this.type = name;
 		setDirection(MoveDirection.RIGHT);
 	}
@@ -42,22 +42,22 @@ public class Enemy extends GCharacter
 		if(getDirection() == MoveDirection.LEFT)
 		{
 			setDirection(MoveDirection.UP);
-			setGraphic("SpatAIdle");
+			setGraphic("spatAwalkup");
 		}
 		else if(getDirection() == MoveDirection.UP)
 		{
 			setDirection(MoveDirection.RIGHT);
-			setGraphic("SpatAIdle");
+			setGraphic("spatAwalkright");
 		}
 		else if(getDirection() == MoveDirection.RIGHT)
 		{
 			setDirection(MoveDirection.DOWN);
-			setGraphic("SpatAIdle");
+			setGraphic("spatAwalkdown");
 		}
 		else if(getDirection() == MoveDirection.DOWN)
 		{
 			setDirection(MoveDirection.LEFT);
-			setGraphic("SpatAIdle");
+			setGraphic("spatAwalkleft");
 		}
 	}
 
@@ -115,19 +115,7 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		if(tilecid == 3)
-		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
-		}
-		if(tilecid == 2)
-		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
-		}
-		if(tilecid == 1)
+		if(tilecid == 1 || tilecid == 2 || tilecid == 3)
 		{
 			yspeed = 0;
 			xspeed = 0;

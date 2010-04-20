@@ -59,7 +59,7 @@ public class Game extends JGEngine
 	{
 		setFrameRate(45, 2);
 		setVideoSyncedUpdate(true);
-		defineMedia("datasheets/testdata.tbl");
+		defineMedia("datasheets/spritetable.tbl");
 
 		objLevels = new Levels();
 		states.add("Title");

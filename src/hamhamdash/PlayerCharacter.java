@@ -91,7 +91,7 @@ public class PlayerCharacter extends GCharacter
 				} else {
 
 				}*/
-								if(isAlive)
+				if(isAlive)
 				{
 					setGraphic(getName() + "idle");
 				}

@@ -111,6 +111,7 @@ public class StateEnterPwd extends State
 
 		if(!game.passIsCorrect && game.passAttempt > 0)
 		{
+			game.setColor(JGColor.white);
 			game.drawString("Password was wrong, please try again!", epPoint.x, epPoint.y + 50, 0);
 		}
 	}
