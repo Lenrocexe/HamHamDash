@@ -12,7 +12,7 @@ public class PlayerCharacter extends GCharacter
 	private Boolean stopWalking = false;
 	private Boolean isAlive = true;
 	private Boolean isWalking = false;
-	private int speed = 3;
+	private int speed = 5;
 	JGPoint occupied=null;
 	//private JGEngine game;
 	//private GCharacter GCharacter;

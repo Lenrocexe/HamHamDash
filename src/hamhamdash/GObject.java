@@ -36,7 +36,7 @@ public abstract class GObject extends JGObject
 			startFalling();
 			moveDown();
 		}
-		else if(tile[5][0].contains("#") || tile[5][0].contains("X"))
+		else if(tile[5][0].contains("#") || tile[5][0].contains("X") || tile[5][0].contains("C") || tile[5][0].contains("O"))
 		{
 			double margin = 1.9;
 			if(isXAligned(margin) && isYAligned(margin))
