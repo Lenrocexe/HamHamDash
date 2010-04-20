@@ -3,6 +3,8 @@ package hamhamdash;
 import java.io.*;
 import java.util.*;
 
+import jgame.*;
+
 /**
  *
  * @author Cornel Alders
@@ -260,7 +262,16 @@ public class Level
 	 */
 	public void explodeTile(int x, int y)
 	{
-		game.setTile(1, 2, ".");
+		game.setTile(x, x, ".");
+	}
+
+	/**
+	 * Picks up a diamond object
+	 * @param obj
+	 */
+	public void pickupDiamond(JGObject obj)
+	{
+		obj.remove();
 	}
 
 	public void openExit()
