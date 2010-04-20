@@ -11,7 +11,9 @@ public class PlayerCharacter extends GCharacter
 	private String name = null;
 	private Boolean stopWalking = false;
 	private Boolean isAlive = true;
+	private Boolean isWalking = false;
 	private int speed = 3;
+	JGPoint occupied=null;
 	//private JGEngine game;
 	//private GCharacter GCharacter;
 	//private Player player;
@@ -25,6 +27,7 @@ public class PlayerCharacter extends GCharacter
 	{
 		super(name, true, x, y, 1, name + "idle");
 		this.name = name;
+
 		//this.player = player;
 	}
 
@@ -37,84 +40,75 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void move()
 	{
-		xspeed = 0;
-		yspeed = 0;
-		xdir = 0;
-		ydir = 0;
-		if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
+
+		if(!isWalking)
 		{
-//			if (y < game.viewHeight() - 230)
-//			{
-//				setGraphic(getName() + "runup");
-//				yspeed = 0;
-//				ydir = 0;
-//			}
-//			else
+			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)))
 			{
 				setGraphic(getName() + "runup");
 				yspeed = speed - 2*speed;
 				ydir = 1;
+				isWalking = true;
+
 			}
-		}
-		else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight)))
-		{
-//			if (y > game.viewHeight()- 57)
-//			{
-//				setGraphic(getName() + "rundown");
-//				yspeed = 0;
-//				ydir = 0;
-//			}
-//			else
+			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)))
 			{
 				setGraphic(getName() + "rundown");
 				yspeed = speed;
 				ydir = 1;
+				isWalking = true;
 			}
-		}
-		else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
-		{
-//			if (x < game.viewWidth() - 300)
-//			{
-//				setGraphic(getName() + "runleft");
-//				xspeed = 0;
-//				xdir = 0;
-//			}
-//			else
+			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 			{
 				setGraphic(getName() + "runleft");
 				xspeed = speed - 2*speed;
 				xdir = 1;
+				isWalking = true;
 			}
-		}
-		else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
-		{
-//			if (x > game.viewWidth() - 60)
-//			{
-//				setGraphic(getName() + "runright");
-//				xspeed = 0;
-//				xdir = 0;
-//			}
-//			else
+			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
 			{
 				setGraphic(getName() + "runright");
 				xspeed = speed;
 				xdir = 1;
+				isWalking = true;
+			}
+			else
+			{
+				/*if(this.isLeftAligned(1) && this.isBottomAligned(1)){
+					System.out.println("IsAligned");
+					if(isAlive)
+					{
+						setGraphic(getName() + "idle");
+					}
+					xspeed = 0;
+					yspeed = 0;
+					xdir = 0;
+					ydir = 0;
+					eng.clearKey(eng.KeyUp);
+					eng.clearKey(eng.KeyDown);
+					eng.clearKey(eng.KeyLeft);
+					eng.clearKey(eng.KeyRight);
+				} else {
+
+				}*/
+								if(isAlive)
+				{
+					setGraphic(getName() + "idle");
+				}
+				
 			}
 		}
 		else
 		{
-			if(isAlive)
-			{	
-				setGraphic(getName() + "idle");
+			double margin = 1.5;
+			if(isXAligned(margin) && isYAligned(margin))
+			{
+				xspeed = 0;
+				yspeed = 0;
+				xdir = 0;
+				ydir = 0;
+				isWalking = false;
 			}
-			xspeed = 0;
-			yspeed = 0;
-			xdir = 0;
-			ydir = 0;
-			eng.clearKey(eng.KeyUp);
-			eng.clearKey(eng.KeyDown);
-			eng.clearKey(eng.KeyLeft);
-			eng.clearKey(eng.KeyRight);
 		}
 	}
 
@@ -123,28 +117,16 @@ public class PlayerCharacter extends GCharacter
 	{
 		if (tilecid == 1)
 		{
-			//destroy();
-			//System.out.println("1");
-			xspeed = 0;
-			yspeed = 0;
-			xdir = 0;
-			ydir = 0;
+
+
 		}
 		else if (tilecid == 2)
 		{
-			//setGraphic(getName() + "runleft");
-			//System.out.println("2");
-			xspeed = 0;
-			yspeed = 0;
-			xdir = 0;
-			ydir = 0;
-
 			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
 		}
 		else if (tilecid == 3)
 		{
-			//System.out.println("3");
-			//remove();
+
 		}
 	}
 	//@Override
@@ -159,6 +141,7 @@ public class PlayerCharacter extends GCharacter
 		System.out.println("Bam");
 		if(obj.colid == 2)
 		{
+			
 			stopWalking = true;
 			isAlive = false;
 			setGraphic(getName() + "howdie");
@@ -182,7 +165,13 @@ public class PlayerCharacter extends GCharacter
 				}
 			};
 		}
-
-		//remove();
+		else if(obj.colid == 3)
+		{
+			System.out.println("STOP");
+			//xspeed = 0;
+			//yspeed = 0;
+			//xdir = 0;
+			//ydir = 0;
+		}
 	}
 }
