@@ -15,7 +15,10 @@ public class Level
 	private String[] tileMap;
 	private String fileName;
 	private ArrayList<int[]> arrEnemies = new ArrayList<int[]>();
-	private ArrayList<int[]> arrDiamondRock = new ArrayList<int[]>();
+	private ArrayList<Enemy> arrEnemyObj = new ArrayList<Enemy>();
+	private ArrayList<int[]> arrDiamonds = new ArrayList<int[]>();
+	private ArrayList<int[]> arrRocks = new ArrayList<int[]>();
+	private int[] exitPos = new int[2];
 
 	/**
 	 * Level Constructor
@@ -27,8 +30,7 @@ public class Level
 	{
 		this.fileName = fileName;
 		loadSettings();
-		loadEnemies();
-		loadDiamondRock();
+		loadMapObjects();
 	}
 
 	/**
@@ -40,39 +42,85 @@ public class Level
 		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
-		insertEnemies();
-		insertDiamondRock();
+		clearField();
 	}
 
 	/**
-	 * Inserts enemies in the current level
+	 * Inserts game objects
 	 */
-	private void insertEnemies()
+	public void insertGObjects()
 	{
-		int i;
-		for(i = 0; i < arrEnemies.size(); i++)
+		// Insert Diamonds
+		for(int[] d : arrDiamonds)
 		{
-			int x = arrEnemies.get(i)[1];
-			int y = arrEnemies.get(i)[2];
-			game.setTile(x, y, "."); // Clear background tiles
+			int type = d[0];
+			int x = d[1];
+			int y = d[2];
+			Diamond diamond = new Diamond("diamond", true, x*game.getTileSize(), y*game.getTileSize(), "diamond");
+		}
+
+		// Insert Rocks
+		for(int[] r : arrRocks)
+		{
+			int type = r[0];
+			int x = r[1];
+			int y = r[2];
+			Rock rock = new Rock("rock", true, x*game.getTileSize(), y*game.getTileSize(), "rock");
+		}
+
+		// Clear Enemies
+		for(int[] e : arrEnemies)
+		{
+			int type = e[0];
+			int x = e[1]; // Tile location multiplied by the tile size = tile location in pixels
+			int y = e[2];
+			String name = null;
+			if(type==1)
+			{
+				name = "spatA";
+			}
+			else if(type==2)
+			{
+				name = "spatB";
+			}
+
+			arrEnemyObj.add(new Enemy(name, x*game.getTileSize(), y*game.getTileSize()));
+		}
+	}
+
+	public void clearField()
+	{
+		// Insert Diamonds
+		for(int[] d : arrDiamonds)
+		{
+			int x = d[1];
+			int y = d[2];
+			game.setTile(x,y,".");
+		}
+
+		// Insert Rocks
+		for(int[] r : arrRocks)
+		{
+			int type = r[0];
+			int x = r[1];
+			int y = r[2];
+			game.setTile(x,y,".");
+		}
+
+		// Clear Enemies
+		for(int[] e : arrEnemies)
+		{
+
+			int x = e[1]; // Tile location multiplied by the tile size = tile location in pixels
+			int y = e[2];
+			game.setTile(x,y,".");
 		}
 	}
 
 	/**
-	 * Inserts Diamonds and Rocks in the current level
+	 * Loads the level datafile
+	 * @return
 	 */
-	private void insertDiamondRock()
-	{
-		int i;
-		for(i = 0; i < arrDiamondRock.size(); i++)
-		{
-			int type = arrDiamondRock.get(i)[0];
-			int x = arrDiamondRock.get(i)[1];
-			int y = arrDiamondRock.get(i)[2];
-			game.setTile(x, y, "."); // Clear background tiles
-		}
-	}
-
 	private InputStream loadDataFile()
 	{
 		InputStream datafile = this.getClass().getResourceAsStream("levels/" + fileName);
@@ -104,80 +152,9 @@ public class Level
 	}
 
 	/**
-	 * Loads the enemies
+	 * Loads the objects found on the map
 	 */
-	private void loadEnemies()
-	{
-		// Read File
-		BufferedReader br = null;
-		try
-		{	// Put lines in ArrayList
-			br = new BufferedReader(new InputStreamReader(loadDataFile()));
-
-			String line;
-			int y = 0;
-			boolean blockStarted = false;
-			while((line = br.readLine()) != null)
-			{
-				if(line.contains("[/MAP]"))
-				{
-					blockStarted = false;
-				}
-				if(blockStarted)
-				{
-					int x;
-					String[] chars = new String[line.split("").length];
-					chars = line.split("");
-
-					for(x = 0; x < line.split("").length; x++)
-					{
-						if(chars[x].matches("1"))
-						{
-							int[] pos = new int[3];
-							pos[0] = 1;
-							pos[1] = x - 1;
-							pos[2] = y;
-							arrEnemies.add(pos);
-						}
-						else if(chars[x].matches("2"))
-						{
-							int[] pos = new int[3];
-							pos[0] = 2;
-							pos[1] = x - 1;
-							pos[2] = y;
-							arrEnemies.add(pos);
-						}
-					}
-				}
-				y++;
-				if(line.contains("[MAP]"))
-				{
-					blockStarted = true;
-					y = 0;
-				}
-			}
-		}
-		catch(IOException e)
-		{	// Fileread error
-			e.printStackTrace();
-		}
-		finally
-		{
-			try
-			{
-				br.close();
-			}
-			catch(IOException ex)
-			{
-				ex.printStackTrace();
-			}
-		}
-	}
-
-	/**
-	 * Loads the diamonds and rocks
-	 */
-	private void loadDiamondRock()
+	private void loadMapObjects()
 	{
 		// Read File
 		BufferedReader br = null;
@@ -208,7 +185,7 @@ public class Level
 							pos[0] = 1;
 							pos[1] = x - 1;
 							pos[2] = y;
-							arrDiamondRock.add(pos);
+							arrDiamonds.add(pos);
 						}
 						else if(chars[x].matches("R"))
 						{
@@ -216,7 +193,28 @@ public class Level
 							pos[0] = 2;
 							pos[1] = x - 1;
 							pos[2] = y;
-							arrDiamondRock.add(pos);
+							arrRocks.add(pos);
+						} 
+						else if(chars[x].matches("1"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 1;
+							pos[1] = x - 1;
+							pos[2] = y;
+							arrEnemies.add(pos);
+						}
+						else if(chars[x].matches("2"))
+						{
+							int[] pos = new int[3];
+							pos[0] = 2;
+							pos[1] = x - 1;
+							pos[2] = y;
+							arrEnemies.add(pos);
+						}
+						else if(chars[x].matches("E"))
+						{
+							exitPos[0] = x - 1;
+							exitPos[1] = y;
 						}
 					}
 				}
@@ -252,7 +250,7 @@ public class Level
 	 */
 	public void digTile(int x, int y)
 	{
-		game.setTile(1, 1, ".");
+		game.setTile(x, y, ".");
 	}
 
 	/**
@@ -263,6 +261,11 @@ public class Level
 	public void explodeTile(int x, int y)
 	{
 		game.setTile(1, 2, ".");
+	}
+
+	public void openExit()
+	{
+		game.setTile(exitPos[0], exitPos[1], "E");
 	}
 
 	// Get Functions

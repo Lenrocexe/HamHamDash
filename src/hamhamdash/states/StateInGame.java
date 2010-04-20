@@ -21,6 +21,7 @@ public class StateInGame extends State
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.player.setPc(new PlayerCharacter("h", 80, 160));
+		game.stateCounter = 0;
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class StateInGame extends State
 	{
 		if(!init)
 		{
-			game.enemy = new Enemy("SpatA", 160, 200);
+			game.getCurrentLevel().insertGObjects();
 			init = true;
 		}
 		if(game.isDebug())
@@ -48,8 +49,8 @@ public class StateInGame extends State
 				game.getObjLevels().prevLevel();
 			}
 		}
-		game.setXoffset((int) game.player.getPc().x + game.pfWidth() /game.viewWidth());
-		game.setYoffset((int) game.player.getPc().y + game.pfHeight() / game.viewHeight());
+		game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
+		game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
 	}

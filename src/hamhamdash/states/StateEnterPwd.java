@@ -11,7 +11,7 @@ import jgame.JGPoint;
 public class StateEnterPwd extends State
 {
 	private boolean started = false;
-	private JGPoint epPoint = new JGPoint(game.pfWidth() / 2, 60);
+	private JGPoint epPoint = new JGPoint(game.viewWidth() / 2, 60);
 	// pp (passPos) draw attributes
 	private int ppWidth = 10;
 	private int ppHeight = 10;
@@ -111,6 +111,7 @@ public class StateEnterPwd extends State
 
 		if(!game.passIsCorrect && game.passAttempt > 0)
 		{
+			game.setColor(JGColor.white);
 			game.drawString("Password was wrong, please try again!", epPoint.x, epPoint.y + 50, 0);
 		}
 	}
