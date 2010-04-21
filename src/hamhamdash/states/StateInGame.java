@@ -107,18 +107,15 @@ public class StateInGame extends State
 			System.out.println(game.getPlayer().getPc().getTopLeftTile());
 		}
 
-		new JGTimer(game.getObjLevels().getCurrentLevel().getLevelTimer(), true, "InGame")
+		if(game.getTimer() == 0)
 		{
-			public void alarm()
-			{
 				game.getPlayer().getPc().remove();
 				game.getPlayer().getPc().setWalking(false);
 				game.getPlayer().getPc().setAlive(false);
 				game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
 				game.stopTimer();
 				game.addState("Death");
-			}
-		};
+		}
 	}
 
 	@Override
