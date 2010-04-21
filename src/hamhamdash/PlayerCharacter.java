@@ -14,17 +14,13 @@ public class PlayerCharacter extends GCharacter
 	private Boolean isWalking = false;
 	private int speed = 5;
 	JGPoint occupied=null;
-	private int counter = 0;
-	//private JGEngine game;
-	//private GCharacter GCharacter;
-	//private Player player;
 
 	/**
 	 *
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public PlayerCharacter(String name, int x, int y)//, Player player)
+	public PlayerCharacter(String name, int x, int y)
 	{
 		super(name, true, x, y, 1, name + "still");
 		this.name = name;
@@ -104,11 +100,6 @@ public class PlayerCharacter extends GCharacter
 			game.addState("Win");
 		}
 	}
-	//@Override
-	//public void destroy()
-	//{
-	//	setGraphic(getName() + "howdie");
-//	}
 
 	@Override
 	public void hit(JGObject obj)
@@ -135,6 +126,7 @@ public class PlayerCharacter extends GCharacter
 		setGraphic(getName() + "howdie");
 		game.addState("Death");
 	}
+
 	public void setAlive(boolean b)
 	{
 		this.isAlive = b;

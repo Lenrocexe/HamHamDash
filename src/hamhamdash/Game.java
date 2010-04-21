@@ -92,75 +92,56 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if (!inGameState("Death"))
+		if(!inGameState("Death"))
 		{
-			if (!inGameState("Pause"))
+			if(!inGameState("Pause"))
 			{
-				if (inGameState("InGame"))
+				if(inGameState("InGame"))
 				{
-					checkCollision(2, 1);
-					checkCollision(3, 1);
-					checkCollision(2, 2);
-					checkCollision(4, 4);
-
-					checkCollision(1, 4); // Hamtaro , Rock
-					checkCollision(2, 4);
-					//Enemy collision
-					checkCollision(2, 2);
-					checkCollision(3, 2);
-					checkCollision(4, 2);
-					//Tile collision
-					//Hamtaro
-					checkBGCollision(1, 1);
-					checkBGCollision(2, 1);
-					checkBGCollision(3, 1);
-					checkBGCollision(4, 1);
-					//Enemy
-					checkBGCollision(1, 2);
-					checkBGCollision(2, 2);
-					checkBGCollision(3, 2);
-					checkBGCollision(4, 2);
-
 					stateCounter = 0;
 
-					if (getKey(KeyEsc))
+					if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						addState("Pause");
 					}
-				} else if (inGameState("EnterPwd"))
+				}
+				else if(inGameState("EnterPwd"))
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
 						passString = "";
-						for (String perPass : passPosList)
+						for(String perPass : passPosList)
 						{
 							passString += perPass;
 						}
-						if (getObjLevels().checkPassword(passString))
+						if(getObjLevels().checkPassword(passString))
 						{
 							passIsCorrect = true;
 							stateCounter = nextState();
-						} else
+						}
+						else
 						{
 							passIsCorrect = false;
 							passAttempt++;
 						}
-					} else if (getKey(KeyEsc))
+					}
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
 					}
-				} else if(inGameState("PlayerSelect"))
+				}
+				else if(inGameState("PlayerSelect"))
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
 						setPlayer(new Player());
 						stateCounter = nextState();
 					}
-					else if (getKey(KeyEsc))
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
@@ -168,7 +149,7 @@ public class Game extends JGEngine
 				}
 				else
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						// next step is player selection
 						clearKey(KeyEnter);
@@ -180,28 +161,27 @@ public class Game extends JGEngine
 						{
 							stateCounter = nextState();
 						}
-					} else if (getKey(KeyEsc))
+					}
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
 					}
 				}
 			}
-		} else if (inGameState("Death"))
+		}
+		else if(inGameState("Death"))
 		{
 			moveObjects("h", 0);
 		}
 
-
 		// DBG MSG's
-		if (debug)
+		if(debug)
 		{
 			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}
-
-
 	}
 
 	@Override
@@ -691,15 +671,21 @@ public class Game extends JGEngine
 		this.player = p;
 	}
 
+	/**
+	 * Resets the viewpoint offset to zero
+	 */
 	public void resetViewport()
 	{
 		setViewOffset(0, 0, true);
 		setPFSize(10, 10);
 	}
 
+	/**
+	 * Play a music file
+	 * @param music
+	 */
 	public void switchMusic(String music)
 	{
-//		stopAudio();
 		playAudio("1", music, true);
 	}
 }

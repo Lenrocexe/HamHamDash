@@ -11,6 +11,7 @@ public class StateInGame extends State
 {
 	private boolean init = false;
 	private int timer;
+
 	public StateInGame()
 	{
 		game.setBackground(null);
@@ -36,12 +37,15 @@ public class StateInGame extends State
 		timer -= 1;
 		game.moveObjects();
 		//Object collision
+		game.checkCollision(1, 4); // Hamtaro , Rock
+		game.checkCollision(2, 4); // Enemy, Rock
 		//Enemy -> Hamtaro
 		game.checkCollision(2, 1);
 		//Diamond -> Hamtaro
 		game.checkCollision(3, 1);
 		//Rock -> Hamtaro
 		game.checkCollision(4, 1);
+		game.checkCollision(4, 4);
 		//Enemy collision
 		game.checkCollision(2, 2);
 		game.checkCollision(3, 2);
@@ -58,11 +62,14 @@ public class StateInGame extends State
 		game.checkBGCollision(3, 2);
 		game.checkBGCollision(4, 2);
 
+		//Objects should only be loaded once
 		if(!init)
 		{
 			game.getCurrentLevel().insertGObjects();
 			init = true;
 		}
+
+		//Debug for level testing
 		if(game.isDebug())
 		{
 			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyRight))
@@ -81,17 +88,17 @@ public class StateInGame extends State
 			}
 		}
 
+		//Try to move the viewoffset based on the players coordinates
 		try
 		{
 			game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
 			game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
 		}
-		catch(java.lang.NullPointerException e)
-		{
-			
-		}
+		catch(java.lang.NullPointerException e){}
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
+
+		//Debug to get player positions
 		if(game.isDebug() && game.getMouseButton(1))
 		{
 			System.out.println("X: " + game.getMouseX() + " Y: " + game.getMouseY());
@@ -100,6 +107,7 @@ public class StateInGame extends State
 			System.out.println(game.getPlayer().getPc().getTiles());
 			System.out.println(game.getPlayer().getPc().getTopLeftTile());
 		}
+
 		new JGTimer(game.getObjLevels().getCurrentLevel().getLevelTimer(), true, "InGame")
 		{
 			public void alarm()
@@ -111,8 +119,6 @@ public class StateInGame extends State
 				game.addState("Death");
 			}
 		};
-
-//		game.getPlayer().getPc().setTileBBox(game.getPlayer().getPc().getTopLeftTile().x, game.getPlayer().getPc().getTopLeftTile().y, 1, 1);
 	}
 
 	@Override

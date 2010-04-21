@@ -34,8 +34,6 @@ public class StatePlayerSelect extends State
 		{
 			game.dbgPrint("PlayerAmount = " + playerAmount);
 		}
-
-
 														// PLAYER SELECTION!!! DO NOT REMOVEEE!!!
 
 //		if(game.getKey(Game.KeyLeft) || game.getKey(Game.KeyUp))
@@ -50,9 +48,6 @@ public class StatePlayerSelect extends State
 //			game.clearKey(Game.KeyDown);
 //			togglePlayerSelect();
 //		}
-
-		
-		
 	}
 
 	@Override
@@ -66,6 +61,9 @@ public class StatePlayerSelect extends State
 		}
 	}
 
+	/**
+	 * Toggles button images
+	 */
 	private void togglePlayerSelect()
 	{
 		if(playerAmount == 1)

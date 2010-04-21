@@ -206,6 +206,10 @@ public class Enemy extends GCharacter
 			turnLeft();
 	}
 
+	/**
+	 * loop through the cids Array to check for collision -Test version-
+	 * @return
+	 */
 	public boolean loopTiles()
 	{
 		boolean test = false;
