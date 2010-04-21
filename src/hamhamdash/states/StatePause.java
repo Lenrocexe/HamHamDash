@@ -79,6 +79,7 @@ public class StatePause extends State
 	public void start()
 	{
 		toDrawImage = pauseScreens[0][0][0];
+		game.stopTimer();
 		started = true;
 	}
 
@@ -98,6 +99,7 @@ public class StatePause extends State
 				} else
 				{
 					game.recoverState();
+					game.startTimer();
 					game.removeGameState("Pause");
 				}
 			} else if (game.getKey(Game.KeyDown))

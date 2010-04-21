@@ -304,6 +304,8 @@ public class Game extends JGEngine
 	public JGColor selectedPosColor = JGColor.red;
 	public boolean passIsCorrect = false;
 	public int passAttempt = 0;
+	private int timer = 0;
+	private int timercounter = 0;
 
 	public void startEnterPwd()
 	{
@@ -686,5 +688,26 @@ public class Game extends JGEngine
 	public void switchMusic(String music)
 	{
 		playAudio("1", music, true);
+	}
+
+	public void startTimer()
+	{
+		timercounter = 1;
+		timer -= timercounter;
+	}
+
+	public void stopTimer()
+	{
+		timercounter = 0;
+	}
+
+	public void resetTimer()
+	{
+		timer = getObjLevels().getCurrentLevel().getLevelTimer();
+	}
+
+	public int getTimer()
+	{
+		return timer;
 	}
 }

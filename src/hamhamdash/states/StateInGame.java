@@ -10,12 +10,10 @@ import jgame.JGTimer;
 public class StateInGame extends State
 {
 	private boolean init = false;
-	private int timer;
 
 	public StateInGame()
 	{
 		game.setBackground(null);
-		timer = game.getObjLevels().getCurrentLevel().getLevelTimer();
 	}
 
 	@Override
@@ -28,13 +26,14 @@ public class StateInGame extends State
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
 		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
 		game.stateCounter = 0;
+		game.resetTimer();
 		game.switchMusic("levelbg");
 	}
 
 	@Override
 	public void doFrame()
 	{
-		timer -= 1;
+		game.startTimer();
 		game.moveObjects();
 		//Object collision
 		game.checkCollision(1, 4); // Hamtaro , Rock
@@ -116,6 +115,7 @@ public class StateInGame extends State
 				game.getPlayer().getPc().setWalking(false);
 				game.getPlayer().getPc().setAlive(false);
 				game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
+				game.stopTimer();
 				game.addState("Death");
 			}
 		};
@@ -125,6 +125,6 @@ public class StateInGame extends State
 	public void paintFrame()
 	{
 		game.drawImage(100, 0, "timebox", false);
-		game.drawString("" + timer, 126, 5, 0);
+		game.drawString("" + game.getTimer(), 126, 5, 0);
 	}
 }
