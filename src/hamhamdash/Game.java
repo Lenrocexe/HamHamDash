@@ -18,7 +18,7 @@ public class Game extends JGEngine
 	public Enemy enemy = null;
 	private Levels objLevels;
 	public String passString;
-	private boolean debug = false;
+	public boolean debug = false;
 	public int tileWidth = 40;
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;

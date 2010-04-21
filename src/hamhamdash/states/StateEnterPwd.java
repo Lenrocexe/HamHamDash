@@ -33,14 +33,14 @@ public class StateEnterPwd extends State
 		game.passPosList[3] = game.goodNumbers[0];
 		game.passPosList[4] = game.goodNumbers[0];
 		game.passPosList[5] = game.goodNumbers[0];
-		started = true;
 		game.loadGame = false;
+		started = true;
 	}
 
 	@Override
 	public void doFrame()
 	{
-		if(game.isDebug())
+		if(game.debug)
 		{
 			game.dbgPrint("Password = " + game.passString);
 
@@ -93,26 +93,29 @@ public class StateEnterPwd extends State
 	@Override
 	public void paintFrame()
 	{
-		game.drawString("Enter Password", epPoint.x, epPoint.y, 0);
-
-		// Draw the individual passPos vars
-		for(int i = 0; i < game.passPosList.length; i++)
+		if(started)
 		{
-			if(game.selectedPos == i)
+			game.drawString("Enter Password", epPoint.x, epPoint.y, 0);
+
+			// Draw the individual passPos vars
+			for(int i = 0; i < game.passPosList.length; i++)
 			{
-				game.setColor(game.selectedPosColor);
+				if(game.selectedPos == i)
+				{
+					game.setColor(game.selectedPosColor);
+				}
+				else
+				{
+					game.setColor(JGColor.white);
+				}
+				game.drawString(game.passPosList[i], epPoint.x + (i * ppWidth) - (((game.passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
 			}
-			else
+
+			if(!game.passIsCorrect && game.passAttempt > 0)
 			{
 				game.setColor(JGColor.white);
+				game.drawString("Password was wrong, please try again!", epPoint.x, epPoint.y + 50, 0);
 			}
-			game.drawString(game.passPosList[i], epPoint.x + (i * ppWidth) - (((game.passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
-		}
-
-		if(!game.passIsCorrect && game.passAttempt > 0)
-		{
-			game.setColor(JGColor.white);
-			game.drawString("Password was wrong, please try again!", epPoint.x, epPoint.y + 50, 0);
 		}
 	}
 }

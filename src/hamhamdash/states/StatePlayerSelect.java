@@ -30,7 +30,7 @@ public class StatePlayerSelect extends State
 	@Override
 	public void doFrame()
 	{
-		if(game.isDebug())
+		if(game.debug)
 		{
 			game.dbgPrint("PlayerAmount = " + playerAmount);
 		}
