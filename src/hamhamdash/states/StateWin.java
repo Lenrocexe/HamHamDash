@@ -47,6 +47,7 @@ public class StateWin extends State
 	@Override
 	public void paintFrame()
 	{
+		game.drawImage(game.viewHeight()/2-100, game.viewHeight()/2-100, "congrats");
 	}
 
 }
