@@ -5,7 +5,7 @@ startposy=1
 xtiles=22
 ytiles=12
 reqdiamonds=2
-timer=1500
+timer=2500
 [/CONFIG]
 
 [MAP]
