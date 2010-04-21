@@ -22,6 +22,7 @@ public class StateInGame extends State
 	{	
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
+		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
 		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));

@@ -39,31 +39,31 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void move()
 	{
-
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
 		if(!isWalking)
 		{
-			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)))
+			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)) && !(tile[1][0].equals("X")))
 			{
 				setGraphic(getName() + "runup");
 				yspeed = speed - 2*speed;
 				ydir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)))
+			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
 			{
 				setGraphic(getName() + "rundown");
 				yspeed = speed;
 				ydir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[3][0].equals("X")))
 			{
 				setGraphic(getName() + "runleft");
 				xspeed = speed - 2*speed;
 				xdir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[4][0].equals("X")))
 			{
 				setGraphic(getName() + "runright");
 				xspeed = speed;

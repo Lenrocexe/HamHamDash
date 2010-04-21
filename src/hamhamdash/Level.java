@@ -280,39 +280,23 @@ public class Level
 		}
 	}
 
+	/**
+	 * Resets the picked up diamond count to zero
+	 */
+	public void resetDiamonds()
+	{
+		pickedUpDiamonds = 0;
+	}
+
+	/**
+	 * Opens up the Exit
+	 */
 	public void openExit()
 	{
 		game.setTile(exitPos[0], exitPos[1], "E");
 	}
 
 	// Get Functions
-	/**
-	 * Returns total diamond count for this level
-	 * @return
-	 */
-	public int getTotalDiamonds()
-	{
-		return 0;
-	}
-
-	/**
-	 * Returns the timercount for this level
-	 * @return
-	 */
-	public int getStartTimer()
-	{
-		return 0;
-	}
-
-	/**
-	 * Returns the amoebe count for this level
-	 * @return
-	 */
-	public int getAmoebetimer()
-	{
-		return 0;
-	}
-
 	/**
 	 * Returns the password for this level
 	 * @return
@@ -422,7 +406,7 @@ public class Level
 			{
 				if(!(newX == x && newY == y))
 				{
-					surroundingTiles[cntCoord][0] = game.getTileStr(newX+1, newY);
+					surroundingTiles[cntCoord][0] = game.getTileStr(newX, newY);
 					surroundingTiles[cntCoord][1] = newX + "";
 					surroundingTiles[cntCoord][2] = newY + "";
 					cntCoord++;
@@ -461,11 +445,19 @@ public class Level
 		return levelSize;
 	}
 
+	/**
+	 * Gets the level timer start time
+	 * @return
+	 */
 	public int getLevelTimer()
 	{
 		return Integer.parseInt(settings.getProperty("timer"));
 	}
 
+	/**
+	 * Gets the start position
+	 * @return
+	 */
 	public int[] getStartPosition()
 	{
 		int[] startPosition = new int[2];

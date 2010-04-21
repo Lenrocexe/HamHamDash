@@ -29,7 +29,7 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x+1, this.getCenterTile().y);
 		
 		if(tile[5][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
 		{
