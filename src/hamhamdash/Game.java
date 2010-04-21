@@ -187,16 +187,15 @@ public class Game extends JGEngine
 	@Override
 	public void paintFrame()
 	{
-		if (debug)
+		if (!(inGameState("InGame")) && !(inGameState("Restart")))
 		{
-			if (!(inGameState("InGame")) && !(inGameState("Restart")))
-			{
-				drawImage(0, 0, "menu_bg");
-				drawString("<ESC> - Back", viewWidth() - 91, viewHeight() - 60, -1, true);
-				drawString("<ENTER> - Next", viewWidth() - 103, viewHeight() - 40, -1, true);
-				drawString("<ARROWS> - Navigation", viewWidth() - 115, viewHeight() - 20, -1, true);
-			}
+			drawImage(0, 0, "menu_bg");
+			int x = viewWidth() - 30;
+			drawString("<ESC>    -            Back", x, viewHeight() - 60, 1, true);
+			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
+			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
 		}
+	
 	}
 
 //***************************************
