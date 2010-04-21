@@ -8,7 +8,7 @@ import jgame.*;
  */
 public class Player
 {
-	private PlayerCharacter pc;
+	public PlayerCharacter pc = null;
 	private int lifes;
 	private int score;
 	private String playerName;
@@ -93,5 +93,9 @@ public class Player
 	public void resetScore()
 	{
 		setScore(0);
+	}
+	public void kill()
+	{
+		pc.kill();
 	}
 }

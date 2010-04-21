@@ -14,18 +14,15 @@ public class PlayerCharacter extends GCharacter
 	private Boolean isWalking = false;
 	private int speed = 5;
 	JGPoint occupied=null;
-	//private JGEngine game;
-	//private GCharacter GCharacter;
-	//private Player player;
 
 	/**
 	 *
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public PlayerCharacter(String name, int x, int y)//, Player player)
+	public PlayerCharacter(String name, int x, int y)
 	{
-		super(name, true, x, y, 1, name + "idle");
+		super(name, true, x, y, 1, name + "still");
 		this.name = name;
 	}
 
@@ -38,32 +35,31 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void move()
 	{
-
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
 		if(!isWalking)
 		{
-			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)))
+			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)) && !(tile[1][0].equals("X")))
 			{
 				setGraphic(getName() + "runup");
 				yspeed = speed - 2*speed;
 				ydir = 1;
 				isWalking = true;
-
 			}
-			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)))
+			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
 			{
 				setGraphic(getName() + "rundown");
 				yspeed = speed;
 				ydir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[3][0].equals("X")))
 			{
 				setGraphic(getName() + "runleft");
 				xspeed = speed - 2*speed;
 				xdir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)))
+			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[4][0].equals("X")))
 			{
 				setGraphic(getName() + "runright");
 				xspeed = speed;
@@ -95,25 +91,15 @@ public class PlayerCharacter extends GCharacter
 	//@Override
 	public void hit_bg(int tilecid)
 	{
-		if (tilecid == 1)
-		{
-
-
-		}
-		else if (tilecid == 2)
+		if (tilecid == 2)
 		{
 			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
 		}
-		else if (tilecid == 3)
+		else if (tilecid == 7)
 		{
-
+			game.addState("Win");
 		}
 	}
-	//@Override
-	//public void destroy()
-	//{
-	//	setGraphic(getName() + "howdie");
-//	}
 
 	@Override
 	public void hit(JGObject obj)
@@ -122,14 +108,32 @@ public class PlayerCharacter extends GCharacter
 		if(obj.colid == 2)
 		{
 			obj.remove();
-			stopWalking = true;
-			isAlive = false;
-			setGraphic(getName() + "howdie");
-			game.addState("Death");
+			kill();
 		}
 		else if(obj.colid == 3)
 		{
-			game.getCurrentLevel().pickupDiamond(obj);
+			if(obj.getCenterTile().x == game.player.getPc().getCenterTile().x)
+			{
+				game.getCurrentLevel().pickupDiamond(obj);
+			}
 		}
+	}
+
+	public void kill()
+	{
+		stopWalking = true;
+		isAlive = false;
+		setGraphic(getName() + "howdie");
+		game.addState("Death");
+	}
+
+	public void setAlive(boolean b)
+	{
+		this.isAlive = b;
+	}
+
+	public void setWalking(boolean b)
+	{
+		this.stopWalking = b;
 	}
 }

@@ -16,6 +16,7 @@ public class StateDeath extends State
 	@Override
 	public void start()
 	{
+		game.stopAudio();
 	}
 
 	@Override
@@ -29,6 +30,7 @@ public class StateDeath extends State
 			{
 				// remove Life cuz you diedz!
 				game.getPlayer().removeLife();
+				game.removeObjects("", 0); // Clear all objects from the field
 
 				if (game.getPlayer().getLifes() > 0)
 				{

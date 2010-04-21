@@ -18,7 +18,7 @@ public class Game extends JGEngine
 	public Enemy enemy = null;
 	private Levels objLevels;
 	public String passString;
-	private boolean debug = true;
+	public boolean debug = false;
 	public int tileWidth = 40;
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;
@@ -92,79 +92,56 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if (!inGameState("Death"))
+		if(!inGameState("Death"))
 		{
-			if (!inGameState("Pause"))
+			if(!inGameState("Pause"))
 			{
-				if (inGameState("InGame"))
+				if(inGameState("InGame"))
 				{
-//					System.out.println("Player: " + player.getPc().colid);
-//					System.out.println("Enemy: " + enemy.colid);
-					//Object collision
-					//Enemy -> Hamtaro
-					checkCollision(2, 1);
-					//Diamond -> Hamtaro
-					checkCollision(3, 1);
-					//Rock -> Hamtaro
-					checkCollision(4, 1);
-					//Enemy collision
-					checkCollision(2, 2);
-					checkCollision(3, 2);
-					checkCollision(4, 2);
-					//Tile collision
-					//Hamtaro
-					checkBGCollision(1, 1);
-					checkBGCollision(2, 1);
-					checkBGCollision(3, 1);
-					checkBGCollision(4, 1);
-					//Enemy
-					checkBGCollision(1, 2);
-					checkBGCollision(2, 2);
-					checkBGCollision(3, 2);
-					checkBGCollision(4, 2);
-
 					stateCounter = 0;
 
-					moveObjects();
-					if (getKey(KeyEsc))
+					if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						addState("Pause");
 					}
-
-				} else if (inGameState("EnterPwd"))
+				}
+				else if(inGameState("EnterPwd"))
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
 						passString = "";
-						for (String perPass : passPosList)
+						for(String perPass : passPosList)
 						{
 							passString += perPass;
 						}
-						if (getObjLevels().checkPassword(passString))
+						if(getObjLevels().checkPassword(passString))
 						{
 							passIsCorrect = true;
 							stateCounter = nextState();
-						} else
+						}
+						else
 						{
 							passIsCorrect = false;
 							passAttempt++;
 						}
-					} else if (getKey(KeyEsc))
+					}
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
 					}
-				} else if(inGameState("PlayerSelect"))
+				}
+				else if(inGameState("PlayerSelect"))
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						clearKey(KeyEnter);
 						setPlayer(new Player());
 						stateCounter = nextState();
 					}
-					else if (getKey(KeyEsc))
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
@@ -172,7 +149,7 @@ public class Game extends JGEngine
 				}
 				else
 				{
-					if (getKey(KeyEnter))
+					if(getKey(KeyEnter))
 					{
 						// next step is player selection
 						clearKey(KeyEnter);
@@ -184,44 +161,41 @@ public class Game extends JGEngine
 						{
 							stateCounter = nextState();
 						}
-					} else if (getKey(KeyEsc))
+					}
+					else if(getKey(KeyEsc))
 					{
 						clearKey(KeyEsc);
 						stateCounter = prevState();
 					}
 				}
 			}
-		} else if (inGameState("Death"))
+		}
+		else if(inGameState("Death"))
 		{
-//			System.out.println("I should move something!");
 			moveObjects("h", 0);
 		}
 
-
 		// DBG MSG's
-		if (debug)
+		if(debug)
 		{
 			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}
-
-
 	}
 
 	@Override
 	public void paintFrame()
 	{
-		if (debug)
+		if (!(inGameState("InGame")) && !(inGameState("Restart")))
 		{
-			if (!(inGameState("InGame")) && !(inGameState("Restart")))
-			{
-				drawImage(0, 0, "menu_bg");
-				drawString("<ESC> - Back", viewWidth() - 91, viewHeight() - 60, -1, true);
-				drawString("<ENTER> - Next", viewWidth() - 103, viewHeight() - 40, -1, true);
-				drawString("<ARROWS> - Navigation", viewWidth() - 115, viewHeight() - 20, -1, true);
-			}
+			drawImage(0, 0, "menu_bg");
+			int x = viewWidth() - 30;
+			drawString("<ESC>    -            Back", x, viewHeight() - 60, 1, true);
+			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
+			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
 		}
+	
 	}
 
 //***************************************
@@ -330,6 +304,8 @@ public class Game extends JGEngine
 	public JGColor selectedPosColor = JGColor.red;
 	public boolean passIsCorrect = false;
 	public int passAttempt = 0;
+	private int timer = 0;
+	private int timercounter = 0;
 
 	public void startEnterPwd()
 	{
@@ -696,9 +672,42 @@ public class Game extends JGEngine
 		this.player = p;
 	}
 
+	/**
+	 * Resets the viewpoint offset to zero
+	 */
 	public void resetViewport()
 	{
 		setViewOffset(0, 0, true);
 		setPFSize(10, 10);
+	}
+
+	/**
+	 * Play a music file
+	 * @param music
+	 */
+	public void switchMusic(String music)
+	{
+		playAudio("1", music, true);
+	}
+
+	public void startTimer()
+	{
+		timercounter = 1;
+		timer -= timercounter;
+	}
+
+	public void stopTimer()
+	{
+		timercounter = 0;
+	}
+
+	public void resetTimer()
+	{
+		timer = getObjLevels().getCurrentLevel().getLevelTimer();
+	}
+
+	public int getTimer()
+	{
+		return timer;
 	}
 }

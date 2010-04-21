@@ -89,20 +89,20 @@ spatAwalkright3	-	0	spatA	22	x
 // Define sprite animations.
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
 //Hamtaro
-hhamha		hhamha1;hhamha2;hhamha3;hhamha4;hhamha5			0.09	false
-hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5	0.09	false
-hrunup		hrunup1;hrunup2;hrunup3;hrunup4					0.09	false
-hrundown	hrundown1;hrundown2;hrundown3;hrundown4			0.09	false
-hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4			0.09	false
-hrunright	hrunright1;hrunright2;hrunright3;hrunright4		0.09	false
+hhamha		hhamha1;hhamha2;hhamha3;hhamha4;hhamha5			0.1	false
+hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5	0.1	false
+hrunup		hrunup1;hrunup2;hrunup3;hrunup4					0.2	false
+hrundown	hrundown1;hrundown2;hrundown3;hrundown4			0.2	false
+hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4			0.2	false
+hrunright	hrunright1;hrunright2;hrunright3;hrunright4		0.2	false
 
 //SpatA
 spatAidle		spatAidle1;spatAidle2;spatAidle3;spatAidle4	0.09	true
 spatAlaugh		spatAlaugh1;spatAlaugh2	0.09	false
 spatAwalkup		spatAwalkup1;spatAwalkup2;spatAwalkup3	0.09	false
-spatAwalkdown	spatAwalkdown1;spatAwalkdown2;spatAwalkdown3	0.09	false
-spatAwalkleft	spatAwalkleft1;spatAwalkleft2;spatAwalkleft3	0.09	false
-spatAwalkright	spatAwalkright1;spatAwalkright2;spatAwalkright3	0.09	false
+spatAwalkdown	spatAwalkdown1;spatAwalkdown2;spatAwalkdown3	0.1	false
+spatAwalkleft	spatAwalkleft1;spatAwalkleft2;spatAwalkleft3	0.1	false
+spatAwalkright	spatAwalkright1;spatAwalkright2;spatAwalkright3	0.1	false
 
 // Define Pause Sheets
 pause_menu	resources/sprites/pause_menu_sheet.png	0	0	256	250	0	0
@@ -126,6 +126,16 @@ game_objects8		-	0	help_menu		30	-
 game_back1			-	0	help_menu		3	-
 pause_exit_title	-	0	pause_menu		2	-
 pause_exit_windows	-	0	pause_menu		3	-
+
+titlebg1	resources/sounds/title.wav
+titlebg2	resources/sounds/title2.wav
+levelbg		resources/sounds/level.wav
+select		resources/sounds/select.wav
+
+//HUD
+timebox	-	0	resources/sprites/time.png	-
+
+congrats	-	0	resources/sprites/congrats.png	-
 
 // Tiles
 // (Same as sprites)

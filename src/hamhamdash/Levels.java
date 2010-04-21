@@ -1,6 +1,5 @@
 package hamhamdash;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -68,12 +67,15 @@ public class Levels
 	/**
 	 * Starts the next available level
 	 */
-	public void nextLevel()
+	public boolean nextLevel()
 	{
-		if(currentLevelId != arrLevels.size() - 1)
+		if(currentLevelId != arrLevels.size()-1)
 		{
 			currentLevelId++;
 			startLevel();
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -148,19 +150,10 @@ public class Levels
 	 */
 	private String[] getLevelDirList()
 	{
-		File dir = new File("./src/hamhamdash/levels");
-		String[] children = dir.list();
-
-		FilenameFilter filter = new FilenameFilter()
-		{
-			public boolean accept(File dir, String name)
-			{
-				return name.endsWith(".hlf");
-			}
-		};
-
-		children = dir.list(filter);
-		Arrays.sort(children);
-		return children;
+		String[] levels = new String[3];
+		levels[0] = "level1.hlf";
+		levels[1] = "level2.hlf";
+		levels[2] = "level3.hlf";
+		return levels;
 	}
 }
