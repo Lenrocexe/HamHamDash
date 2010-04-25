@@ -24,6 +24,8 @@ public class Game extends JGEngine
 	private int xofs, yofs = 0;
 	private State currentState = null;
 	private State previousState = null;
+	private int timer = 0;
+	private int timercounter = 0;
 
 //***************************************
 // Start Game initialization
@@ -293,19 +295,10 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Enter Password
 //***************************************
-	// Array with correct password chars
-	public String[] goodNumbers =
-	{
-		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
-	};
 	// 1 var for each password position, these vars will combine to be the passString
 	public String[] passPosList;
-	public int selectedPos, selectedNum;
-	public JGColor selectedPosColor = JGColor.red;
 	public boolean passIsCorrect = false;
 	public int passAttempt = 0;
-	private int timer = 0;
-	private int timercounter = 0;
 
 	public void startEnterPwd()
 	{
