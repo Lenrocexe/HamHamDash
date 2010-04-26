@@ -24,6 +24,8 @@ public class Game extends JGEngine
 	private int xofs, yofs = 0;
 	private State currentState = null;
 	private State previousState = null;
+	private int timer = 0;
+	private int timercounter = 0;
 
 //***************************************
 // Start Game initialization
@@ -293,19 +295,10 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Enter Password
 //***************************************
-	// Array with correct password chars
-	public String[] goodNumbers =
-	{
-		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
-	};
 	// 1 var for each password position, these vars will combine to be the passString
 	public String[] passPosList;
-	public int selectedPos, selectedNum;
-	public JGColor selectedPosColor = JGColor.red;
 	public boolean passIsCorrect = false;
 	public int passAttempt = 0;
-	private int timer = 0;
-	private int timercounter = 0;
 
 	public void startEnterPwd()
 	{
@@ -641,6 +634,12 @@ public class Game extends JGEngine
 		currentState = previousState;
 	}
 
+	/**
+	 * Dynamically searches for the given state and returns a new instance of it.
+	 *
+	 * @param state
+	 * @return
+	 */
 	public State getStateClass(String state)
 	{
 		State c = null;
@@ -649,16 +648,10 @@ public class Game extends JGEngine
 			//State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
 			c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
 			return c;
-		} catch (ClassNotFoundException cnfe)
-		{
-			System.out.println("Class not found!");
-		} catch (InstantiationException ie)
-		{
-			System.out.println("Instantiation Error!");
-		} catch (IllegalAccessException iae)
-		{
-			System.out.println("Illegal Access!");
 		}
+		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
+		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
+		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 		return null;
 	}
 
@@ -682,30 +675,36 @@ public class Game extends JGEngine
 	}
 
 	/**
-	 * Play a music file
-	 * @param music
+	 * Starts the level timer.
+	 * This should only be called in the InGame state.
 	 */
-	public void switchMusic(String music)
-	{
-		playAudio("1", music, true);
-	}
-
 	public void startTimer()
 	{
 		timercounter = 1;
 		timer -= timercounter;
 	}
 
+	/**
+	 * Stop the timer. Use it in states like Pause.
+	 */
 	public void stopTimer()
 	{
 		timercounter = 0;
 	}
 
+	/**
+	 * Resets the level timer.
+	 * Should be called when a life has been lost and when changing levels.
+	 */
 	public void resetTimer()
 	{
 		timer = getObjLevels().getCurrentLevel().getLevelTimer();
 	}
 
+	/**
+	 * Returns the current value of the level timer.
+	 * @return amount of time left
+	 */
 	public int getTimer()
 	{
 		return timer;

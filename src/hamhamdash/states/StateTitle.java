@@ -1,6 +1,6 @@
 package hamhamdash.states;
 
-import hamhamdash.Player;
+import hamhamdash.Jukebox;
 import hamhamdash.State;
 
 /**
@@ -17,12 +17,32 @@ public class StateTitle extends State
 	public void start()
 	{
 		game.setViewOffset(0, 0, true);
-		game.switchMusic("titlebg1");
+		Jukebox.playMusic("titlebg1");
 	}
 
 	@Override
 	public void doFrame()
 	{
+		if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCode("1")))
+		{
+			game.clearKey(game.getKeyCode("1"));
+			Jukebox.playMusic("titlebg1");
+		}
+		else if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCode("2")))
+		{
+			game.clearKey(game.getKeyCode("2"));
+			Jukebox.playMusic("titlebg2");
+		}
+		else if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCode("3")))
+		{
+			game.clearKey(game.getKeyCode("3"));
+			Jukebox.playSound("select");
+		}
+		else if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCode("4")))
+		{
+			game.clearKey(game.getKeyCode("4"));
+			Jukebox.stop();
+		}
 	}
 
 	@Override

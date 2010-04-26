@@ -27,7 +27,7 @@ public class StateInGame extends State
 		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
 		game.stateCounter = 0;
 		game.resetTimer();
-		game.switchMusic("levelbg");
+		Jukebox.playMusic("levelbg");
 	}
 
 	@Override
