@@ -140,8 +140,8 @@ public abstract class GObject extends JGObject
 		xdir = 0;
 		ydir = 0;
 		falling = false;
-		x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-		y = Math.round(y/game.tileHeight)*game.tileHeight;
+		x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+		y = Math.round(y/game.getTileSize())*game.getTileSize();
 	}
 
 	/**

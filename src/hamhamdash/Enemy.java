@@ -120,7 +120,16 @@ public class Enemy extends GCharacter
 			}
 			isAligned = false;
 		}
-
+		else
+		{
+			double margin = 1;
+			if(isXAligned(margin)&&isYAligned(margin))
+			{
+				isAligned = true;
+				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+				y = Math.round(y/game.getTileSize())*game.getTileSize();
+			}
+		}
 	}
 
 	public void turnLeft()
@@ -156,8 +165,8 @@ public class Enemy extends GCharacter
 			if(isXAligned(margin)&&isYAligned(margin))
 			{
 				isAligned = true;
-				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-				y = Math.round(y/game.tileHeight)*game.tileHeight;
+				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+				y = Math.round(y/game.getTileSize())*game.getTileSize();
 				turnClockwise();
 			}
 			else 

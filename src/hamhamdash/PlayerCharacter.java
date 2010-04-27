@@ -92,8 +92,8 @@ public class PlayerCharacter extends GCharacter
 				ydir = 0;
 
 				isWalking = false;
-				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-				y = Math.round(y/game.tileHeight)*game.tileHeight;
+				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+				y = Math.round(y/game.getTileSize())*game.getTileSize();
 			}
 		}
 	}
@@ -160,8 +160,8 @@ public class PlayerCharacter extends GCharacter
 					ydir = 0;
 
 					isWalking = false;
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+					y = Math.round(y/game.getTileSize())*game.getTileSize();
 				}
 			}
 		}
