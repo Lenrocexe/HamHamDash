@@ -45,26 +45,36 @@ public class StateInGame extends State
 		//Rock -> Hamtaro
 		game.checkCollision(4, 1);
 		game.checkCollision(1, 4);
-		//Rock -> Rock
+		//Rock, Daimond <-> Rock, Daimond
 		game.checkCollision(4, 4);
-		//Rock <-> Daimond
 		game.checkCollision(3, 4);
+		game.checkCollision(4, 3);
+		game.checkCollision(3, 3);
 		//Enemy collision
 		game.checkCollision(2, 2);
 		game.checkCollision(3, 2);
 		game.checkCollision(4, 2);
+		game.checkCollision(2, 3);
+		game.checkCollision(2, 4);
 		//Tile collision
-		//Hamtaro
-		game.checkBGCollision(1, 1);
+//		//Hamtaro
+//		game.checkBGCollision(69, 1);
 		game.checkBGCollision(2, 1);
-		game.checkBGCollision(3, 1);
-		game.checkBGCollision(4, 1);
-		//Enemy
-		game.checkBGCollision(1, 2);
-		game.checkBGCollision(2, 2);
-		game.checkBGCollision(3, 2);
-		game.checkBGCollision(4, 2);
-
+//		game.checkBGCollision(3, 1);
+//		game.checkBGCollision(4, 1);
+//		//Enemy
+//		game.checkBGCollision(1, 2);
+//		game.checkBGCollision(2, 2);
+//		game.checkBGCollision(3, 2);
+//		game.checkBGCollision(4, 2);
+		//Daimond
+		game.checkBGCollision(69, 3);
+//		game.checkBGCollision(7, 3);
+//		game.checkBGCollision(6, 3);
+//		game.checkBGCollision(3, 3);
+//		game.checkBGCollision(2, 3);
+		//Rock
+		game.checkBGCollision(69, 4);
 		//Objects should only be loaded once
 		if(!init)
 		{

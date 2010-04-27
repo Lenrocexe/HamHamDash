@@ -21,6 +21,7 @@ public class Diamond extends GObject
 	@Override
 	public void hit(JGObject obj)
 	{
+		super.hit(obj);
 		if(obj.colid == 2)
 		{
 			if(this.isFalling())
@@ -28,9 +29,12 @@ public class Diamond extends GObject
 				obj.remove();
 			}
 		}
-		else if(obj.colid == 4 || obj.colid == 3)
-		{
-			stopFalling();
-		}
 	}
+
+//	@Override
+//	public void hit_bg(int tilecid)
+//	{
+//		System.out.println(tilecid + " wtf ...");
+//	}
+
 }

@@ -92,8 +92,8 @@ public class PlayerCharacter extends GCharacter
 				ydir = 0;
 
 				isWalking = false;
-				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-				y = Math.round(y/game.tileHeight)*game.tileHeight;
+				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+				y = Math.round(y/game.getTileSize())*game.getTileSize();
 			}
 		}
 	}
@@ -118,8 +118,10 @@ public class PlayerCharacter extends GCharacter
 		if(obj.colid == 4)
 		{
 			Rock collidRock = game.getObjLevels().getCurrentLevel().getRock(obj.getName());
+			System.out.println(collidRock.isFalling());
 			if(!collidRock.isFalling())
 			{
+				System.out.println("CANT MOVE!");
 				xspeed = 0;
 				yspeed = 0;
 				xdir = 0;
@@ -159,8 +161,8 @@ public class PlayerCharacter extends GCharacter
 					ydir = 0;
 
 					isWalking = false;
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
+					y = Math.round(y/game.getTileSize())*game.getTileSize();
 				}
 			}
 		}

@@ -17,6 +17,7 @@ public class Rock extends GObject
 	@Override
 	public void hit(JGObject obj)
 	{
+		super.hit(obj);
 		if(obj.colid == 1)
 		{
 			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){
@@ -25,6 +26,7 @@ public class Rock extends GObject
 				stopFalling();
 			}
 		}
+
 		else if(obj.colid == 2)
 		{
 			Enemy collidEnemy = game.getObjLevels().getCurrentLevel().getEnemy(obj.getName());

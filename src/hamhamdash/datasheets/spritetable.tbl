@@ -139,7 +139,7 @@ congrats	-	0	resources/sprites/congrats.png	-
 
 // Tiles
 // (Same as sprites)
-emptytile	.	0	resources/sprites/emptytile.png	-
+emptytile	.	69	resources/sprites/emptytile.png	-
 walltile	X	1	resources/sprites/walltile.png	-
 groundtile	#	2	resources/sprites/groundtile.png	-
 diamond		D	3	resources/sprites/diamond.png	-
