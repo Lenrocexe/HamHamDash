@@ -28,5 +28,9 @@ public class Diamond extends GObject
 				obj.remove();
 			}
 		}
+		else if(obj.colid == 4 || obj.colid == 3)
+		{
+			stopFalling();
+		}
 	}
 }

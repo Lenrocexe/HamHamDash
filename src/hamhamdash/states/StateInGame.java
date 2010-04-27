@@ -45,8 +45,10 @@ public class StateInGame extends State
 		//Rock -> Hamtaro
 		game.checkCollision(4, 1);
 		game.checkCollision(1, 4);
+		//Rock -> Rock
 		game.checkCollision(4, 4);
-//		game.checkCollision(4, 4);
+		//Rock <-> Daimond
+		game.checkCollision(3, 4);
 		//Enemy collision
 		game.checkCollision(2, 2);
 		game.checkCollision(3, 2);

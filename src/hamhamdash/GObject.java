@@ -38,7 +38,7 @@ public abstract class GObject extends JGObject
 		}
 		else if(tile[6][0].contains("#") || tile[6][0].contains("X") || tile[6][0].contains("C") || tile[6][0].contains("O"))
 		{
-			double margin = 1.9;
+			double margin = 1;
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				stopFalling();
@@ -140,6 +140,8 @@ public abstract class GObject extends JGObject
 		xdir = 0;
 		ydir = 0;
 		falling = false;
+		x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+		y = Math.round(y/game.tileHeight)*game.tileHeight;
 	}
 
 	/**
