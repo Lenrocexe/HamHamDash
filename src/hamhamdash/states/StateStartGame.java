@@ -31,13 +31,28 @@ public class StateStartGame extends State
 	@Override
 	public void doFrame()
 	{
+		//Navigation
+		if(game.getKey(game.KeyEnter))
+		{
+			game.clearKey(game.KeyEnter);
+			if(loadGameState == 1)
+				game.setCurrentState("EnterPwd");
+			else
+				game.setCurrentState("InGame");
+		}
+		else if(game.getKey(game.KeyEsc))
+		{
+			game.clearKey(game.KeyEsc);
+			game.setCurrentState("PlayerSelect");
+		}
+
+		//Select new/load game
 		if(game.getKey(Game.KeyLeft) || game.getKey(Game.KeyUp))
 		{
 			game.clearKey(Game.KeyLeft);
 			game.clearKey(Game.KeyUp);
 			toggleLoadGame();
 		}
-
 		if(game.getKey(Game.KeyRight) || game.getKey(Game.KeyDown))
 		{
 			game.clearKey(Game.KeyRight);

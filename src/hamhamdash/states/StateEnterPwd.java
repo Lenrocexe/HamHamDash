@@ -22,6 +22,7 @@ public class StateEnterPwd extends State
 	// pp (passPos) draw attributes
 	private int ppWidth = 10;
 	private int ppHeight = 10;
+	// 1 var for each password position, these vars will combine to be the passString
 	public String[] passPosList;
 	public boolean passIsCorrect = false;
 	public int passAttempt = 0;
@@ -75,7 +76,7 @@ public class StateEnterPwd extends State
 				if(game.getObjLevels().checkPassword(passString))
 				{
 					passIsCorrect = true;
-					game.stateCounter = game.nextState();
+					game.setCurrentState("InGame");
 				}
 				else
 				{
@@ -86,7 +87,7 @@ public class StateEnterPwd extends State
 			else if(game.getKey(game.KeyEsc))
 			{
 				game.clearKey(game.KeyEsc);
-				game.stateCounter = game.prevState();
+				game.setCurrentState("StartGame");
 			}
 
 			if(game.getKey(Game.KeyLeft))

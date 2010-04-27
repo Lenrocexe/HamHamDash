@@ -22,6 +22,7 @@ public class StateDeath extends State
 	@Override
 	public void doFrame()
 	{
+		game.moveObjects("h", 0);
 		// wait a bit for Hamtaro to finish dieng
 		new JGTimer(50, true, "Death")
 		{

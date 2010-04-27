@@ -25,7 +25,6 @@ public class StateInGame extends State
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
 		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
-		game.stateCounter = 0;
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
 	}
@@ -33,6 +32,12 @@ public class StateInGame extends State
 	@Override
 	public void doFrame()
 	{
+		if(game.getKey(game.KeyEsc))
+		{
+			game.clearKey(game.KeyEsc);
+			game.addState("Pause");
+		}
+
 		game.startTimer();
 		game.moveObjects();
 		//Object collision
@@ -45,7 +50,7 @@ public class StateInGame extends State
 		//Rock -> Hamtaro
 		game.checkCollision(4, 1);
 		game.checkCollision(1, 4);
-		//Rock, Daimond <-> Rock, Daimond
+		//Rock, Diamond <-> Rock, Diamond
 		game.checkCollision(4, 4);
 		game.checkCollision(3, 4);
 		game.checkCollision(4, 3);
