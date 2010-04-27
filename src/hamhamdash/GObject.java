@@ -33,7 +33,8 @@ public abstract class GObject extends JGObject
 		{
 			startFalling();
 			moveDown();
-		}else
+		}
+		else
 		{
 			double margin = 1;
 			if(isXAligned(margin) && isYAligned(margin))
@@ -42,7 +43,6 @@ public abstract class GObject extends JGObject
 			}
 		}
 
-		
 		/*else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
 			//explode();
@@ -96,7 +96,7 @@ public abstract class GObject extends JGObject
 	public void hit_bg(int tilecid)
 	{
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
-		if(tile[6][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
+		if(tile[6][0].contains(".") && !(game.getPlayer().getPc().getCenterTiles().y - 1 == this.getCenterTile().y && game.getPlayer().getPc().getCenterTiles().x == this.getCenterTile().x))
 		{
 			setFalling(true);
 		}
@@ -106,19 +106,17 @@ public abstract class GObject extends JGObject
 		}
 	}
 
-
 	@Override
 	public void hit(JGObject obj)
 	{
-
 		stopFalling();
-
 	}
 
 	public void setFalling(boolean falls)
 	{
 		falling = falls;
 	}
+
 	public void setPickable(boolean pickedUp)
 	{
 		pickable = pickedUp;
@@ -152,8 +150,8 @@ public abstract class GObject extends JGObject
 		xdir = 0;
 		ydir = 0;
 		falling = false;
-		x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
-		y = Math.round(y/game.getTileSize())*game.getTileSize();
+		x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+		y = Math.round(y / game.getTileSize()) * game.getTileSize();
 	}
 
 	/**
@@ -176,5 +174,4 @@ public abstract class GObject extends JGObject
 		xspeed = speed;
 		xdir = 1;
 	}
-
 }

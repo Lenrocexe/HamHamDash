@@ -1,7 +1,6 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
-import jgame.JGTimer;
 
 /**
  *
@@ -18,7 +17,7 @@ public class StateInGame extends State
 
 	@Override
 	public void start()
-	{	
+	{
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.getObjLevels().getCurrentLevel().resetDiamonds();
@@ -109,8 +108,8 @@ public class StateInGame extends State
 		//Try to move the viewoffset based on the players coordinates
 		try
 		{
-			game.setXoffset((int) game.player.getPc().x + game.viewWidth() /game.viewWidth());
-			game.setYoffset((int) game.player.getPc().y + game.viewHeight() / game.viewHeight());
+			game.setXoffset((int) game.getPlayer().getPc().x + game.viewWidth() / game.viewWidth());
+			game.setYoffset((int) game.getPlayer().getPc().y + game.viewHeight() / game.viewHeight());
 		}
 		catch(java.lang.NullPointerException e){}
 
@@ -128,12 +127,12 @@ public class StateInGame extends State
 
 		if(game.getTimer() == 0)
 		{
-				game.getPlayer().getPc().remove();
-				game.getPlayer().getPc().setWalking(false);
-				game.getPlayer().getPc().setAlive(false);
-				game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
-				game.stopTimer();
-				game.addState("Death");
+			game.getPlayer().getPc().remove();
+			game.getPlayer().getPc().setWalking(false);
+			game.getPlayer().getPc().setAlive(false);
+			game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
+			game.stopTimer();
+			game.addState("Death");
 		}
 	}
 

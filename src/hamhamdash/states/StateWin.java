@@ -32,7 +32,7 @@ public class StateWin extends State
 			game.getObjLevels().startLevel();
 			int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.getTileSize();
 			int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.getTileSize();
-			game.player.getPc().setPos(startPosX, startPosY);
+			game.getPlayer().getPc().setPos(startPosX, startPosY);
 			game.setCurrentState("InGame");
 		}
 	}

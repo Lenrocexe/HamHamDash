@@ -13,20 +13,21 @@ public class Rock extends GObject
 		super(name, unique, x, y, 4, "rock");
 	}
 
-
 	@Override
 	public void hit(JGObject obj)
 	{
 		super.hit(obj);
 		if(obj.colid == 1)
 		{
-			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){
-				game.player.kill();
-			} else {
+			if(this.isFalling() && this.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
+			{
+				game.getPlayer().kill();
+			}
+			else
+			{
 				stopFalling();
 			}
 		}
-
 		else if(obj.colid == 2)
 		{
 			Enemy collidEnemy = game.getObjLevels().getCurrentLevel().getEnemy(obj.getName());
@@ -38,5 +39,4 @@ public class Rock extends GObject
 			stopFalling();
 		}
 	}
-
 }

@@ -15,7 +15,7 @@ public class Game extends JGEngine
 
 	// Game constants
 	public boolean loadGame = false; // by default 'New Game' is selected
-	public Player player = null; //The player that is currently playing
+	private Player player = null; //The player that is currently playing
 	private ArrayList<Player> playerList = new ArrayList<Player>(); //The list that tracks all players
 	private Levels objLevels; //Stores an instance of the Levels factory
 	private int tileSize = 40; //Default tile size

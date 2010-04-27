@@ -13,7 +13,7 @@ public class PlayerCharacter extends GCharacter
 	private Boolean isAlive = true;
 	private Boolean isWalking = false;
 	private int speed = 5;
-	JGPoint occupied=null;
+	JGPoint occupied = null;
 
 	/**
 	 *
@@ -38,7 +38,7 @@ public class PlayerCharacter extends GCharacter
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
 		if(!isWalking)
 		{
-			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)) && !(tile[1][0].equals("X")))
+			if(eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)) && !(tile[1][0].equals("X")))
 			{
 				setGraphic(getName() + "runup");
 				setDirection(MoveDirection.UP);
@@ -46,7 +46,7 @@ public class PlayerCharacter extends GCharacter
 				ydir = 1;
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
+			else if(eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
 			{
 				setGraphic(getName() + "rundown");
 				setDirection(MoveDirection.DOWN);
@@ -55,7 +55,7 @@ public class PlayerCharacter extends GCharacter
 				setDirSpeed(0, 1, 0, speed);
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[3][0].equals("X")))
+			else if(eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[3][0].equals("X")))
 			{
 				setGraphic(getName() + "runleft");
 				setDirection(MoveDirection.LEFT);
@@ -64,7 +64,7 @@ public class PlayerCharacter extends GCharacter
 				setDirSpeed(1, 0, -speed, 0);
 				isWalking = true;
 			}
-			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[4][0].equals("X")))
+			else if(eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[4][0].equals("X")))
 			{
 				setGraphic(getName() + "runright");
 				setDirection(MoveDirection.RIGHT);
@@ -92,8 +92,8 @@ public class PlayerCharacter extends GCharacter
 				ydir = 0;
 
 				isWalking = false;
-				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
-				y = Math.round(y/game.getTileSize())*game.getTileSize();
+				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+				y = Math.round(y / game.getTileSize()) * game.getTileSize();
 			}
 		}
 	}
@@ -101,11 +101,11 @@ public class PlayerCharacter extends GCharacter
 	//@Override
 	public void hit_bg(int tilecid)
 	{
-		if (tilecid == 2)
+		if(tilecid == 2)
 		{
 			game.getCurrentLevel().digTile(getCenterTile().x, getCenterTile().y);
 		}
-		else if (tilecid == 7)
+		else if(tilecid == 7)
 		{
 			game.addState("Win");
 		}
@@ -114,7 +114,6 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
-		
 		if(obj.colid == 4)
 		{
 			Rock collidRock = game.getObjLevels().getCurrentLevel().getRock(obj.getName());
@@ -147,22 +146,19 @@ public class PlayerCharacter extends GCharacter
 					xspeed = -speed;
 					xdir = 1;
 				}
-
 				setDirSpeed(xdir, ydir, xspeed, yspeed);
 
-
 				double margin = 1;
-				if(isXAligned(margin)&&isYAligned(margin))
+				if(isXAligned(margin) && isYAligned(margin))
 				{
-
 					xspeed = 0;
 					yspeed = 0;
 					xdir = 0;
 					ydir = 0;
 
 					isWalking = false;
-					x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
-					y = Math.round(y/game.getTileSize())*game.getTileSize();
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
 				}
 			}
 		}
@@ -173,7 +169,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if(obj.colid == 3)
 		{
-			if(obj.getCenterTile().x == game.player.getPc().getCenterTile().x)
+			if(obj.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
 			{
 				game.getCurrentLevel().pickupDiamond(obj);
 			}

@@ -20,7 +20,7 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+"_"+x+"_"+y,  false, x, y, 2, name + "still");
+		super(name + "_" + x + "_" + y, false, x, y, 2, name + "still");
 		setDirection(MoveDirection.RIGHT);
 		setGraphic("spatAwalkright");
 	}
@@ -35,8 +35,8 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
 					setDirection(MoveDirection.RIGHT);
 					setGraphic("spatAwalkright");
 					hitObject = false;
@@ -65,8 +65,8 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
 					setDirection(MoveDirection.DOWN);
 					setGraphic("spatAwalkdown");
 					hitObject = false;
@@ -95,8 +95,8 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
 					setDirection(MoveDirection.LEFT);
 					setGraphic("spatAwalkleft");
 					hitObject = false;
@@ -125,8 +125,8 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
 					setDirection(MoveDirection.UP);
 					setGraphic("spatAwalkup");
 					hitObject = false;
@@ -156,11 +156,11 @@ public class Enemy extends GCharacter
 		else
 		{
 			double margin = 1;
-			if(isXAligned(margin)&&isYAligned(margin))
+			if(isXAligned(margin) && isYAligned(margin))
 			{
 				isAligned = true;
-				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
-				y = Math.round(y/game.getTileSize())*game.getTileSize();
+				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+				y = Math.round(y / game.getTileSize()) * game.getTileSize();
 			}
 		}
 	}
@@ -200,14 +200,14 @@ public class Enemy extends GCharacter
 		if(!isAligned)
 		{
 			double margin = 0;
-			if(isXAligned(margin)&&isYAligned(margin))
+			if(isXAligned(margin) && isYAligned(margin))
 			{
 				isAligned = true;
-				x = Math.round(x/game.getTileSize())*game.getTileSize(); // X and Y Correction
-				y = Math.round(y/game.getTileSize())*game.getTileSize();
+				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+				y = Math.round(y / game.getTileSize()) * game.getTileSize();
 				turnClockwise();
 			}
-			else 
+			else
 			{
 				isAligned = false;
 			}
@@ -248,8 +248,6 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-
-
 	}
 
 	@Override

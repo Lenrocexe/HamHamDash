@@ -16,8 +16,6 @@ public class Diamond extends GObject
 		super(name, unique, x, y, 3, "diamond");
 	}
 
-
-
 	@Override
 	public void hit(JGObject obj)
 	{
@@ -36,5 +34,4 @@ public class Diamond extends GObject
 //	{
 //		System.out.println(tilecid + " wtf ...");
 //	}
-
 }
