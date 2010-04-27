@@ -36,7 +36,7 @@ public class Game extends JGEngine
 	private Game(JGPoint dimension)
 	{
 		initEngine(dimension.x, dimension.y);
-//		setGameSpeed(0.3);
+		//setGameSpeed(0.8);
 	}
 
 	/**

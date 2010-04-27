@@ -26,25 +26,12 @@ public class Enemy extends GCharacter
 
 	public void turnClockwise()
 	{
-		if(!isAligned)
-		{
-			double margin = 1;
-			if(isXAligned(margin)&&isYAligned(margin))
-			{
-				isAligned = true;
-				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-				y = Math.round(y/game.tileHeight)*game.tileHeight;
-			}
-		}
-
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(getCenterTile().x, getCenterTile().y);
 
 		if(isAligned)
 		{
-
 			if(getDirection() == MoveDirection.LEFT)
 			{
-				System.out.println(tile[1][0]);
 				if(tile[1][0].equals("."))
 				{
 					setDirection(MoveDirection.UP);
@@ -163,6 +150,23 @@ public class Enemy extends GCharacter
 	@Override
 	public void move()
 	{
+		if(!isAligned)
+		{
+			double margin = 0;
+			if(isXAligned(margin)&&isYAligned(margin))
+			{
+				isAligned = true;
+				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+				y = Math.round(y/game.tileHeight)*game.tileHeight;
+				turnClockwise();
+			}
+			else 
+			{
+				isAligned = false;
+			}
+		}
+
+
 		switch(getDirection())
 		{
 			case LEFT:
@@ -198,7 +202,8 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-		turnClockwise();
+
+
 	}
 
 	@Override
