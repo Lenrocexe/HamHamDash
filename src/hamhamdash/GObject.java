@@ -29,14 +29,11 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
-		
-		if(tile[6][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
+		if(isFalling())
 		{
 			startFalling();
 			moveDown();
-		}
-		else if(tile[6][0].contains("#") || tile[6][0].contains("X") || tile[6][0].contains("C") || tile[6][0].contains("O"))
+		}else
 		{
 			double margin = 1;
 			if(isXAligned(margin) && isYAligned(margin))
@@ -44,6 +41,8 @@ public abstract class GObject extends JGObject
 				stopFalling();
 			}
 		}
+
+		
 		/*else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
 			//explode();
@@ -96,25 +95,38 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit_bg(int tilecid)
 	{
-	
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
+		if(tile[6][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
+		{
+			setFalling(true);
+		}
+		else if(tile[6][0].contains("#") || tile[6][0].contains("X") || tile[6][0].contains("C") || tile[6][0].contains("O"))
+		{
+			setFalling(false);
+		}
 	}
+
 
 	@Override
 	public void hit(JGObject obj)
 	{
 
-		
+		stopFalling();
 
 	}
 
-	public void setPickable(boolean p)
+	public void setFalling(boolean falls)
 	{
-		pickable = p;
+		falling = falls;
+	}
+	public void setPickable(boolean pickedUp)
+	{
+		pickable = pickedUp;
 	}
 
-	public void setPushable(boolean p)
+	public void setPushable(boolean pushed)
 	{
-		pushable = p;
+		pushable = pushed;
 	}
 
 	public boolean isFalling()
@@ -155,12 +167,14 @@ public abstract class GObject extends JGObject
 
 	public void moveLeft()
 	{
-
+		xspeed = -speed;
+		xdir = 1;
 	}
 
 	public void moveRight()
 	{
-
+		xspeed = speed;
+		xdir = 1;
 	}
 
 }
