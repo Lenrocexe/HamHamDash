@@ -83,14 +83,17 @@ public class PlayerCharacter extends GCharacter
 		}
 		else
 		{
-			double margin = 1.9;
+			double margin = 1;
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				xspeed = 0;
 				yspeed = 0;
 				xdir = 0;
 				ydir = 0;
+
 				isWalking = false;
+				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+				y = Math.round(y/game.tileHeight)*game.tileHeight;
 			}
 		}
 	}
@@ -111,47 +114,57 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
+		
 		if(obj.colid == 4)
 		{
-			System.out.println(obj.colid + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + "        " + getDirection());
+			System.out.println(obj.getName());
+			Rock collidRock = game.getObjLevels().getCurrentLevel().getRock(obj.getName());
+			if(!collidRock.isFalling())
+			{
+				System.out.println(obj.colid + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + "        " + getDirection());
 
-			xspeed = 0;
-			yspeed = 0;
-			xdir = 0;
-			ydir = 0;
-
-			if(getDirection() == MoveDirection.UP)
-			{
-				yspeed = speed;
-				ydir = 1;
-			}
-			else if(getDirection() == MoveDirection.DOWN)
-			{
-				yspeed = -speed;
-				ydir = 1;
-			}
-			else if(getDirection() == MoveDirection.LEFT)
-			{
-				xspeed = speed;
-				xdir = 1;
-			}
-			else if(getDirection() == MoveDirection.RIGHT)
-			{
-				xspeed = -speed;
-				xdir = 1;
-			}
-			
-			setDirSpeed(xdir, ydir, xspeed, yspeed);
-			
-			double margin = 1.9;
-			if(isXAligned(margin) && isYAligned(margin))
-			{
 				xspeed = 0;
 				yspeed = 0;
 				xdir = 0;
 				ydir = 0;
 
-				isWalking = false;
+				if(getDirection() == MoveDirection.UP)
+				{
+					yspeed = speed;
+					ydir = 1;
+				}
+				else if(getDirection() == MoveDirection.DOWN)
+				{
+					yspeed = -speed;
+					ydir = 1;
+				}
+				else if(getDirection() == MoveDirection.LEFT)
+				{
+					xspeed = speed;
+					xdir = 1;
+				}
+				else if(getDirection() == MoveDirection.RIGHT)
+				{
+					xspeed = -speed;
+					xdir = 1;
+				}
+
+				setDirSpeed(xdir, ydir, xspeed, yspeed);
+
+
+				double margin = 1;
+				if(isXAligned(margin)&&isYAligned(margin))
+				{
+
+					xspeed = 0;
+					yspeed = 0;
+					xdir = 0;
+					ydir = 0;
+
+					isWalking = false;
+					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+					y = Math.round(y/game.tileHeight)*game.tileHeight;
+				}
 			}
 		}
 		else if(obj.colid == 2)

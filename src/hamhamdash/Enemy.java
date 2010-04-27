@@ -19,19 +19,32 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+"_"+x+"_"+y, false, x, y, 2, name + "still");
+		super(name+"_"+x+"_"+y,  false, x, y, 2, name + "still");
 		setDirection(MoveDirection.RIGHT);
 		setGraphic("spatAwalkright");
 	}
 
 	public void turnClockwise()
 	{
+		if(!isAligned)
+		{
+			double margin = 1;
+			if(isXAligned(margin)&&isYAligned(margin))
+			{
+				isAligned = true;
+				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+				y = Math.round(y/game.tileHeight)*game.tileHeight;
+			}
+		}
+
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(getCenterTile().x, getCenterTile().y);
 
 		if(isAligned)
 		{
+
 			if(getDirection() == MoveDirection.LEFT)
 			{
+				System.out.println(tile[1][0]);
 				if(tile[1][0].equals("."))
 				{
 					setDirection(MoveDirection.UP);
@@ -54,7 +67,6 @@ public class Enemy extends GCharacter
 			}
 			else if(getDirection() == MoveDirection.UP)
 			{
-				System.out.println("UP");
 				if(tile[4][0].equals("."))
 				{
 					setDirection(MoveDirection.RIGHT);
@@ -121,16 +133,7 @@ public class Enemy extends GCharacter
 			}
 			isAligned = false;
 		}
-		else
-		{
-			double margin = 1;
-			if(isXAligned(margin)&&isYAligned(margin))
-			{
-				isAligned = true;
-				x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
-				y = Math.round(y/game.tileHeight)*game.tileHeight;
-			}
-		}
+
 	}
 
 	public void turnLeft()

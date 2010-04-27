@@ -20,6 +20,8 @@ public class Level
 	private ArrayList<Enemy> arrEnemyObj = new ArrayList<Enemy>();
 	private ArrayList<int[]> arrDiamonds = new ArrayList<int[]>();
 	private ArrayList<int[]> arrRocks = new ArrayList<int[]>();
+	private ArrayList<Rock> arrRockObj = new ArrayList<Rock>();
+
 	private int pickedUpDiamonds = 0;
 	private int[] exitPos = new int[2];
 
@@ -69,7 +71,7 @@ public class Level
 			int type = r[0];
 			int x = r[1];
 			int y = r[2];
-			Rock rock = new Rock("rock", true, x*game.getTileSize(), y*game.getTileSize(), "rock");
+			arrRockObj.add(new Rock("rock", true, x*game.getTileSize(), y*game.getTileSize(), "rock"));
 		}
 
 		// Clear Enemies
@@ -415,6 +417,20 @@ public class Level
 			}
 		}
 		return surroundingTiles;
+	}
+
+	public Rock getRock(String name)
+	{
+		Rock foundRock = null;
+		for(Rock r : arrRockObj)
+		{
+			if(r.getName().equals(name))
+			{
+				foundRock = r;
+			}
+		}
+		System.out.println(foundRock.getName());
+		return foundRock;
 	}
 
 	/**

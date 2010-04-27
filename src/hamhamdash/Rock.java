@@ -25,6 +25,10 @@ public class Rock extends GObject
 				stopFalling();
 			}
 		}
+		else if(obj.colid == 4)
+		{
+			stopFalling();
+		}
 	}
 
 }
