@@ -13,6 +13,7 @@ public class Rock extends GObject
 		super(name, unique, x, y, 4, "rock");
 	}
 
+
 	@Override
 	public void hit(JGObject obj)
 	{
@@ -25,4 +26,5 @@ public class Rock extends GObject
 			}
 		}
 	}
+
 }

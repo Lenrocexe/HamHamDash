@@ -102,18 +102,8 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit(JGObject obj)
 	{
-		if(obj.colid == 1)
-		{
-//			System.out.println("OMG");
-			
-		}
-		else if(obj.colid == 2)
-		{
-			if(this.isFalling())
-			{
-				obj.remove();
-			}
-		}
+
+		
 
 	}
 

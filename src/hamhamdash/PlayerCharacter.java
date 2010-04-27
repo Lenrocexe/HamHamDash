@@ -42,9 +42,8 @@ public class PlayerCharacter extends GCharacter
 			{
 				setGraphic(getName() + "runup");
 				setDirection(MoveDirection.UP);
-//				yspeed = -speed;
-//				ydir = 1;
-				setDirSpeed(0, 1, 0, -speed);
+				yspeed = -speed;
+				ydir = 1;
 				isWalking = true;
 			}
 			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
@@ -141,15 +140,12 @@ public class PlayerCharacter extends GCharacter
 				xspeed = -speed;
 				xdir = 1;
 			}
-
-
+			
 			setDirSpeed(xdir, ydir, xspeed, yspeed);
-
-
+			
 			double margin = 1.9;
 			if(isXAligned(margin) && isYAligned(margin))
 			{
-				
 				xspeed = 0;
 				yspeed = 0;
 				xdir = 0;
