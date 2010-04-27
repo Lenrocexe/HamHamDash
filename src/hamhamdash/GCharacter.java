@@ -11,8 +11,8 @@ public abstract class GCharacter extends JGObject
 	private Boolean doWalking;
 	private int stepInpixels;
 	private MoveDirection direction;
-	public static Boolean moveUp = false, moveDown = false,
-			moveLeft = false, moveRight = false;
+//	public static Boolean moveUp = false, moveDown = false,
+//			moveLeft = false, moveRight = false;
 	public Game game = Game.getGame();
 	private Boolean alive;
 
@@ -50,13 +50,13 @@ public abstract class GCharacter extends JGObject
 		this.stepInpixels = stepInpixels;
 	}
 
-	public void stopWalking()
-	{
-		moveUp = false;
-		moveDown = false;
-		moveLeft = false;
-		moveRight = false;
-	}
+//	public void stopWalking()
+//	{
+//		moveUp = false;
+//		moveDown = false;
+//		moveLeft = false;
+//		moveRight = false;
+//	}
 
 	public void startWalking()
 	{

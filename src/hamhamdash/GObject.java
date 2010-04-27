@@ -104,11 +104,8 @@ public abstract class GObject extends JGObject
 	{
 		if(obj.colid == 1)
 		{
-			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){
-				game.player.kill();
-			} else {
-				stopFalling();
-			}
+//			System.out.println("OMG");
+			
 		}
 		else if(obj.colid == 2)
 		{
@@ -117,6 +114,7 @@ public abstract class GObject extends JGObject
 				obj.remove();
 			}
 		}
+
 	}
 
 	public void setPickable(boolean p)

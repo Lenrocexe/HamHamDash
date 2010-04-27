@@ -41,29 +41,37 @@ public class PlayerCharacter extends GCharacter
 			if (eng.getKey(eng.KeyUp) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyDown)) && !(tile[1][0].equals("X")))
 			{
 				setGraphic(getName() + "runup");
-				yspeed = speed - 2*speed;
-				ydir = 1;
+				setDirection(MoveDirection.UP);
+//				yspeed = -speed;
+//				ydir = 1;
+				setDirSpeed(0, 1, 0, -speed);
 				isWalking = true;
 			}
 			else if (eng.getKey(eng.KeyDown) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp)) && !(tile[6][0].equals("X")))
 			{
 				setGraphic(getName() + "rundown");
-				yspeed = speed;
-				ydir = 1;
+				setDirection(MoveDirection.DOWN);
+//				yspeed = speed;
+//				ydir = 1;
+				setDirSpeed(0, 1, 0, speed);
 				isWalking = true;
 			}
 			else if (eng.getKey(eng.KeyLeft) && stopWalking == false && !(eng.getKey(eng.KeyRight) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[3][0].equals("X")))
 			{
 				setGraphic(getName() + "runleft");
-				xspeed = speed - 2*speed;
-				xdir = 1;
+				setDirection(MoveDirection.LEFT);
+//				xspeed = -speed;
+//				xdir = 1;
+				setDirSpeed(1, 0, -speed, 0);
 				isWalking = true;
 			}
 			else if (eng.getKey(eng.KeyRight) && stopWalking == false && !(eng.getKey(eng.KeyLeft) || eng.getKey(eng.KeyUp) || eng.getKey(eng.KeyDown)) && !(tile[4][0].equals("X")))
 			{
 				setGraphic(getName() + "runright");
-				xspeed = speed;
-				xdir = 1;
+				setDirection(MoveDirection.RIGHT);
+//				xspeed = speed;
+//				xdir = 1;
+				setDirSpeed(1, 0, speed, 0);
 				isWalking = true;
 			}
 			else
@@ -104,8 +112,53 @@ public class PlayerCharacter extends GCharacter
 	@Override
 	public void hit(JGObject obj)
 	{
-		
-		if(obj.colid == 2)
+		if(obj.colid == 4)
+		{
+			System.out.println(obj.colid + " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH" + "        " + getDirection());
+
+			xspeed = 0;
+			yspeed = 0;
+			xdir = 0;
+			ydir = 0;
+
+			if(getDirection() == MoveDirection.UP)
+			{
+				yspeed = speed;
+				ydir = 1;
+			}
+			else if(getDirection() == MoveDirection.DOWN)
+			{
+				yspeed = -speed;
+				ydir = 1;
+			}
+			else if(getDirection() == MoveDirection.LEFT)
+			{
+				xspeed = speed;
+				xdir = 1;
+			}
+			else if(getDirection() == MoveDirection.RIGHT)
+			{
+				xspeed = -speed;
+				xdir = 1;
+			}
+
+
+			setDirSpeed(xdir, ydir, xspeed, yspeed);
+
+
+			double margin = 1.9;
+			if(isXAligned(margin) && isYAligned(margin))
+			{
+				
+				xspeed = 0;
+				yspeed = 0;
+				xdir = 0;
+				ydir = 0;
+
+				isWalking = false;
+			}
+		}
+		else if(obj.colid == 2)
 		{
 			obj.remove();
 			kill();

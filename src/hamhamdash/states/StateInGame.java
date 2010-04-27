@@ -36,15 +36,15 @@ public class StateInGame extends State
 		game.startTimer();
 		game.moveObjects();
 		//Object collision
-		game.checkCollision(1, 4); // Hamtaro , Rock
-		game.checkCollision(2, 4); // Enemy, Rock
+//		game.checkCollision(1, 4); // Hamtaro , Rock
+//		game.checkCollision(2, 4); // Enemy, Rock
 		//Enemy -> Hamtaro
 		game.checkCollision(2, 1);
 		//Diamond -> Hamtaro
 		game.checkCollision(3, 1);
 		//Rock -> Hamtaro
 		game.checkCollision(4, 1);
-		game.checkCollision(4, 4);
+//		game.checkCollision(4, 4);
 		//Enemy collision
 		game.checkCollision(2, 2);
 		game.checkCollision(3, 2);
