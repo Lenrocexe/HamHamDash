@@ -99,10 +99,10 @@ hrunright	hrunright1;hrunright2;hrunright3;hrunright4		0.2	false
 //SpatA
 spatAidle		spatAidle1;spatAidle2;spatAidle3;spatAidle4	0.09	true
 spatAlaugh		spatAlaugh1;spatAlaugh2	0.09	false
-spatAwalkup		spatAwalkup1;spatAwalkup2;spatAwalkup3	0.09	false
-spatAwalkdown	spatAwalkdown1;spatAwalkdown2;spatAwalkdown3	0.1	false
-spatAwalkleft	spatAwalkleft1;spatAwalkleft2;spatAwalkleft3	0.1	false
-spatAwalkright	spatAwalkright1;spatAwalkright2;spatAwalkright3	0.1	false
+spatAwalkup		spatAwalkup1;spatAwalkup2;spatAwalkup3	0.09	true
+spatAwalkdown	spatAwalkdown1;spatAwalkdown2;spatAwalkdown3	0.1	true
+spatAwalkleft	spatAwalkleft1;spatAwalkleft2;spatAwalkleft3	0.1	true
+spatAwalkright	spatAwalkright1;spatAwalkright2;spatAwalkright3	0.1	true
 
 // Define Pause Sheets
 pause_menu	resources/sprites/pause_menu_sheet.png	0	0	256	250	0	0
