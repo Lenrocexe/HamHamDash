@@ -10,6 +10,10 @@ import jgame.platform.*;
  */
 public class Game extends JGEngine
 {
+	// DEBUG VAR!
+	public boolean debug = true;
+
+
 	// Define "GLOBAL" Vars
 	public boolean loadGame = false; // by default 'New Game' is selected
 	public int stateCounter = 0;
@@ -18,7 +22,6 @@ public class Game extends JGEngine
 	public Enemy enemy = null;
 	private Levels objLevels;
 	public String passString;
-	public boolean debug = false;
 	public int tileWidth = 40;
 	public int tileHeight = 40;
 	private int xofs, yofs = 0;
