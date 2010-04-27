@@ -11,6 +11,7 @@ public class Enemy extends GCharacter
 	public MoveDirection Direction;
 	public int speed = 1;
 	public boolean isAligned = false;
+	public boolean hitObject = false;
 
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
@@ -28,11 +29,19 @@ public class Enemy extends GCharacter
 	{
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(getCenterTile().x, getCenterTile().y);
 
-		if(isAligned)
+		if(isAligned || hitObject)
 		{
 			if(getDirection() == MoveDirection.LEFT)
 			{
-				if(tile[1][0].equals("."))
+				if(hitObject)
+				{
+					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					setDirection(MoveDirection.RIGHT);
+					setGraphic("spatAwalkright");
+					hitObject = false;
+				}
+				else if(tile[1][0].equals("."))
 				{
 					setDirection(MoveDirection.UP);
 					setGraphic("spatAwalkup");
@@ -54,7 +63,15 @@ public class Enemy extends GCharacter
 			}
 			else if(getDirection() == MoveDirection.UP)
 			{
-				if(tile[4][0].equals("."))
+				if(hitObject)
+				{
+					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					setDirection(MoveDirection.DOWN);
+					setGraphic("spatAwalkdown");
+					hitObject = false;
+				}
+				else if(tile[4][0].equals("."))
 				{
 					setDirection(MoveDirection.RIGHT);
 					setGraphic("spatAwalkright");
@@ -76,7 +93,15 @@ public class Enemy extends GCharacter
 			}
 			else if(getDirection() == MoveDirection.RIGHT)
 			{
-				if(tile[6][0].equals("."))
+				if(hitObject)
+				{
+					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					setDirection(MoveDirection.LEFT);
+					setGraphic("spatAwalkleft");
+					hitObject = false;
+				}
+				else if(tile[6][0].equals("."))
 				{
 					setDirection(MoveDirection.DOWN);
 					setGraphic("spatAwalkdown");
@@ -98,7 +123,15 @@ public class Enemy extends GCharacter
 			}
 			else if(getDirection() == MoveDirection.DOWN)
 			{
-				if(tile[3][0].equals("."))
+				if(hitObject)
+				{
+					x = Math.round(x/game.tileWidth)*game.tileWidth; // X and Y Correction
+					y = Math.round(y/game.tileHeight)*game.tileHeight;
+					setDirection(MoveDirection.UP);
+					setGraphic("spatAwalkup");
+					hitObject = false;
+				}
+				else if(tile[3][0].equals("."))
 				{
 					setDirection(MoveDirection.LEFT);
 					setGraphic("spatAwalkleft");
@@ -147,6 +180,11 @@ public class Enemy extends GCharacter
 		}
 	}
 
+	public void kill()
+	{
+		this.remove();
+	}
+
 	@Override
 	public void move()
 	{
@@ -165,7 +203,6 @@ public class Enemy extends GCharacter
 				isAligned = false;
 			}
 		}
-
 
 		switch(getDirection())
 		{
@@ -211,8 +248,7 @@ public class Enemy extends GCharacter
 	{
 		if(obj.colid == 3 || obj.colid == 1 || obj.colid == 2 || obj.colid == 4)
 		{
-			yspeed = 0;
-			xspeed = 0;
+			hitObject = true;
 			turnClockwise();
 		}
 	}

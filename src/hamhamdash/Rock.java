@@ -25,6 +25,12 @@ public class Rock extends GObject
 				stopFalling();
 			}
 		}
+		else if(obj.colid == 2)
+		{
+			Enemy collidEnemy = game.getObjLevels().getCurrentLevel().getEnemy(obj.getName());
+			collidEnemy.kill();
+			this.remove();
+		}
 		else if(obj.colid == 4 || obj.colid == 3)
 		{
 			stopFalling();

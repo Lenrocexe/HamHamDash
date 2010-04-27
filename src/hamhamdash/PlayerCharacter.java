@@ -117,7 +117,6 @@ public class PlayerCharacter extends GCharacter
 		
 		if(obj.colid == 4)
 		{
-			System.out.println(obj.getName());
 			Rock collidRock = game.getObjLevels().getCurrentLevel().getRock(obj.getName());
 			if(!collidRock.isFalling())
 			{
