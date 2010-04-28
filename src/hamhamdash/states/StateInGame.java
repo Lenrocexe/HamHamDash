@@ -31,7 +31,6 @@ public class StateInGame extends State
 	{
 		if(game.isDebug())
 		{
-			System.out.println(game.getPlayer().getPlayerName());
 			//Debug to get player positions
 			if(game.getMouseButton(1))
 			{

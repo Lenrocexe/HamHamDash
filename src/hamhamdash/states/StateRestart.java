@@ -41,7 +41,7 @@ public class StateRestart extends State
 		game.setColor(JGColor.white);
 		game.drawImage(0, 0, "restart_bg");
 		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", x, y, 0);
-		game.drawImage(x - 40, y + 5, "hstill");
+		game.drawImage(x - 40, y + 5, game.getPlayer().getIdentifier() + "still");
 		game.drawString("x" + game.getPlayer().getLifes(), x, y  + 30, -1);
 	}
 
