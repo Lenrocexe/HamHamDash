@@ -96,6 +96,7 @@ public abstract class GObject extends JGObject
 	public void hit_bg(int tilecid)
 	{
 		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
+
 		if(tile[6][0].contains(".") && !(game.getPlayer().getPc().getCenterTiles().y - 1 == this.getCenterTile().y && game.getPlayer().getPc().getCenterTiles().x == this.getCenterTile().x))
 		{
 			setFalling(true);

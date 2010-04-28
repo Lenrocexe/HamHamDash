@@ -29,6 +29,7 @@ public class StateWin extends State
 		if(!nextLevel)
 		{
 			//Do win logic here.
+			System.out.println("over!");
 		}
 		else
 		{
@@ -44,6 +45,11 @@ public class StateWin extends State
 	@Override
 	public void doFrame()
 	{
+		if(game.getKey(Game.KeyEnter) || game.getKey(Game.KeyEsc))
+		{
+			game.clearKey(game.getLastKey());
+			game.setCurrentState("Title");
+		}
 	}
 
 	@Override

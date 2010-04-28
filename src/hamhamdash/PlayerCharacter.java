@@ -119,7 +119,6 @@ public class PlayerCharacter extends GCharacter
 		if(obj.colid == 4)
 		{
 			Rock collidRock = game.getObjLevels().getCurrentLevel().getRock(obj.getName());
-			System.out.println(collidRock.isFalling());
 			if(!collidRock.isFalling())
 			{
 				System.out.println("CANT MOVE!");
@@ -174,7 +173,7 @@ public class PlayerCharacter extends GCharacter
 			if(obj.getCenterTile().x == getCenterTile().x)
 			{
 				game.getCurrentLevel().pickupDiamond(obj);
-				player.addToLevelScore(100);
+				player.addToLevelScore(10);
 			}
 		}
 	}

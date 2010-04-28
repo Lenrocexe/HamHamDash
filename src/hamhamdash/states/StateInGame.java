@@ -17,7 +17,6 @@ public class StateInGame extends State
 		game.setBackground(null);
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
-		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
 		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY, game.getPlayer()));
@@ -142,9 +141,25 @@ public class StateInGame extends State
 	@Override
 	public void paintFrame()
 	{
-		game.drawImage(100, 0, "timebox", false);
-		game.drawString("" + game.getTimer(), 126, 5, 0);
-		game.drawImage(100, 20, "scorebox", false);
-		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), 126, 25, 0);
+		int seconden = (int)Math.round((game.getTimer()/game.getFrameRate()) + 0.0);
+		int x = (game.getViewportWidth() / 2) - 66;
+		int y = 0;
+
+		// ONDER ELKAAR
+//		game.drawImage(x + 100, y + 5, "timebox", false);
+//		game.drawString("" + seconden, x + 140, y + 10, 1);
+//		game.drawImage(x + 100, y + 0, "scorebox", false);
+//		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), x + 140, y + 25, 1);
+//		game.drawImage(x + 100, y + 35, "daimondbox", false);
+//		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDaimonds()), x + 140, y + 40, 1);
+
+
+		// NAAST ELKAAR
+		game.drawImage(x + 100, y + 5, "timebox", false);
+		game.drawString("" + seconden, x + 138, y + 10, 1);
+		game.drawImage(x + 144, y + 5, "scorebox", false);
+		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), x + 182, y + 10, 1);
+		game.drawImage(x + 188, y + 5, "daimondbox", false);
+		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDaimonds()), x + 227, y + 10, 1);
 	}
 }

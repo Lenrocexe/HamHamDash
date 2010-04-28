@@ -19,7 +19,8 @@ public class Rock extends GObject
 		super.hit(obj);
 		if(obj.colid == 1)
 		{
-			if(this.isFalling() && this.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
+			System.out.println(this.isFalling() + " its falling");
+			if(this.isFalling())// && this.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
 			{
 				game.getPlayer().kill();
 			}

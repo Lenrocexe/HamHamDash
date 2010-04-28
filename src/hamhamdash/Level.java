@@ -23,6 +23,7 @@ public class Level
 	private ArrayList<Rock> arrRockObj = new ArrayList<Rock>();
 
 	private int pickedUpDiamonds = 0;
+	private int requiredDiamonds = 0;
 	private int[] exitPos = new int[2];
 
 	/**
@@ -121,6 +122,9 @@ public class Level
 			int y = e[2];
 			game.setTile(x,y,".");
 		}
+		
+		resetRequiredDiamonds();
+		resetDiamonds();
 	}
 
 	/**
@@ -289,6 +293,20 @@ public class Level
 	public void resetDiamonds()
 	{
 		pickedUpDiamonds = 0;
+	}
+
+	public void resetRequiredDiamonds()
+	{
+		requiredDiamonds = Integer.parseInt(settings.getProperty("reqdiamonds"));
+	}
+
+	public int getRemainingDaimonds()
+	{
+		int som = requiredDiamonds - pickedUpDiamonds;
+
+		if(som < 0) som = 0;
+
+		return som;
 	}
 
 	/**

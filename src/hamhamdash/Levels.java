@@ -42,6 +42,7 @@ public class Levels
 	{
 		arrLevels.get(currentLevelId).runLevel();
 		arrLevels.get(currentLevelId).getTileXYByPixel(92, 10);
+		System.out.println("Level Started!");
 	}
 
 	/**
@@ -134,6 +135,11 @@ public class Levels
 		return getCurrentLevel().getLevelSize();
 	}
 
+	public int getCurrentLevelRemainingDaimonds()
+	{
+		return getCurrentLevel().getRemainingDaimonds();
+	}
+
 	/**
 	 * Get the level object of the given level
 	 * @param levelId
@@ -161,5 +167,24 @@ public class Levels
 	public void setCurrentLevelId(int currentLevelId)
 	{
 		this.currentLevelId = currentLevelId;
+	}
+
+	public void resetLevels()
+	{
+		this.currentLevelId = 0;
+
+		for(Level l : arrLevels)
+		{
+			l.clearField();
+		}
+		System.out.println("Reseted Levels....");
+	}
+
+	public void resetLevel(int currentLevelId)
+	{
+
+		getLevel(currentLevelId).clearField();
+		
+		System.out.println("Reseted single Level....");
 	}
 }

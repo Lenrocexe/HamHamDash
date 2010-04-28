@@ -21,7 +21,7 @@ public class StateGameOver extends State
 
 
 		// wait a bit so the pain sinks in
-		new JGTimer(500, true, "GameOver")
+		new JGTimer(70, true, "GameOver")
 		{
 			// the alarm method is called when the timer ticks to zero
 			public void alarm()

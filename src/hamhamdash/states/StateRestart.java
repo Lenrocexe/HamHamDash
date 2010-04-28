@@ -3,7 +3,6 @@ package hamhamdash.states;
 import hamhamdash.Game;
 import hamhamdash.State;
 import jgame.JGColor;
-import jgame.JGObject;
 
 /**
  *
@@ -11,24 +10,20 @@ import jgame.JGObject;
  */
 public class StateRestart extends State
 {
-	private JGObject obj;
 	int objX, objY;
 
 	public StateRestart()
 	{
-		obj = new JGObject("hamreset", true, 0, 0, 0, "hhamha");
 	}
 	@Override
 	public void start()
 	{
-		obj.startAnim();
 		System.out.println("started.......");
 	}
 
 	@Override
 	public void doFrame()
 	{
-		game.moveObjects();
 		if(game.getKey(Game.KeyEnter))
 		{
 			game.clearKey(Game.KeyEnter);

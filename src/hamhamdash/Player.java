@@ -45,18 +45,6 @@ public class Player
 		setLifes(3);
 	}
 
-	/*public void gameOver()
-	{
-		if (lifes == 0)
-		{
-			setGameState("Game Over");
-		}
-		else if ( )
-		{
-			Game.setGameState("Win");
-		}
-	}*/
-
 	public void setLifes(int lifes)
 	{
 		this.lifes = lifes;

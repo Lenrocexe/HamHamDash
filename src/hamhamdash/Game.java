@@ -19,7 +19,7 @@ public class Game extends JGEngine
 	private Levels objLevels; //Stores an instance of the Levels factory
 	private int tileSize = 40; //Default tile size
 	private int xofs, yofs = 0; //The scrollpane offset
-	private State currentState = null; //The state that should be running
+	private State currentState = null;	//The state that should be running
 	private State previousState = null; //the state that was previously running
 										//Mainly used to save the InGame state during the Pause
 	private int timer = 0; //This is the amount of time left to finish a level
