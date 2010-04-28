@@ -33,19 +33,16 @@ public class StateDeath extends State
 				// remove Life cuz you diedz!
 				game.getPlayer().removeLife();
 				game.removeObjects("", 0); // Clear all objects from the field
+
 				if(game.countPlayers() == 2)
 					game.switchPlayers();
 
+				game.resetViewport();
+
 				if (game.getPlayer().getLifes() > 0)
-				{
-					game.resetViewport();
 					game.setCurrentState("Restart");
-				}
 				else
-				{
-					game.resetViewport();
 					game.setCurrentState("GameOver");
-				}
 			}
 		};
 	}

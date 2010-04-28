@@ -107,7 +107,6 @@ public class Game extends JGEngine
 			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
 			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
 		}
-	
 	}
 
 //***************************************

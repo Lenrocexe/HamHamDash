@@ -16,7 +16,7 @@ public class StateInGame extends State
 		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
-		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY));
+		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY, game.getPlayer()));
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
 	}
@@ -128,7 +128,8 @@ public class StateInGame extends State
 			game.getPlayer().getPc().remove();
 			game.getPlayer().getPc().setWalking(false);
 			game.getPlayer().getPc().setAlive(false);
-			game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
+			game.getPlayer().getPc().setGraphic(game.getPlayer().getIdentifier() + "howdie");
+			game.getPlayer().resetLevelScore();
 			game.stopTimer();
 			game.addState("Death");
 		}
@@ -139,5 +140,7 @@ public class StateInGame extends State
 	{
 		game.drawImage(100, 0, "timebox", false);
 		game.drawString("" + game.getTimer(), 126, 5, 0);
+		game.drawImage(100, 20, "scorebox", false);
+		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), 126, 25, 0);
 	}
 }

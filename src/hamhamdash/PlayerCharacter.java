@@ -8,6 +8,7 @@ import jgame.*;
  */
 public class PlayerCharacter extends GCharacter
 {
+	private Player player = null;
 	private String name = null;
 	private Boolean stopWalking = false;
 	private Boolean isAlive = true;
@@ -20,9 +21,10 @@ public class PlayerCharacter extends GCharacter
 	 * @param x Starting x position
 	 * @param y Starting y position
 	 */
-	public PlayerCharacter(String name, int x, int y)
+	public PlayerCharacter(String name, int x, int y, Player player)
 	{
 		super(name, true, x, y, 1, name + "still");
+		this.player = player;
 		this.name = name;
 	}
 
@@ -172,6 +174,7 @@ public class PlayerCharacter extends GCharacter
 			if(obj.getCenterTile().x == getCenterTile().x)
 			{
 				game.getCurrentLevel().pickupDiamond(obj);
+				player.addToLevelScore(100);
 			}
 		}
 	}
@@ -180,6 +183,7 @@ public class PlayerCharacter extends GCharacter
 	{
 		stopWalking = true;
 		isAlive = false;
+		player.resetLevelScore();
 		setGraphic(getName() + "howdie");
 		game.addState("Death");
 	}

@@ -7,8 +7,9 @@ package hamhamdash;
 public class Player
 {
 	private PlayerCharacter pc = null;
-	private int lifes;
-	private int score;
+	private int lifes = 0;
+	private int totalscore = 0;
+	private int levelscore = 0;
 	private String playerName;
 	private String identifier;
 
@@ -26,7 +27,12 @@ public class Player
 
 	public int getScore()
 	{
-		return score;
+		return totalscore;
+	}
+
+	public int getLevelScore()
+	{
+		return levelscore;
 	}
 
 	public String getPlayerName()
@@ -76,25 +82,31 @@ public class Player
 		this.pc = pc;
 	}
 
-	public void setScore(int score)
-	{
-		this.score = score;
-	}
-
 	public void setPlayerName(String playerName)
 	{
 		this.playerName = playerName;
 	}
 
-	public void addScore(int score)
+	public void addScoreToTotal()
 	{
-		this.score += score;
+		this.totalscore += levelscore;
 	}
 
 	public void resetScore()
 	{
-		setScore(0);
+		totalscore = 0;
 	}
+
+	public void addToLevelScore(int i)
+	{
+		levelscore += i;
+	}
+
+	public void resetLevelScore()
+	{
+		levelscore = 0;
+	}
+
 	public void kill()
 	{
 		pc.kill();

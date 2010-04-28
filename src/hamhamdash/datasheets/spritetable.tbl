@@ -167,7 +167,8 @@ levelbg		resources/sounds/level.wav
 select		resources/sounds/select.wav
 
 //HUD
-timebox	-	0	resources/sprites/time.png	-
+timebox		-	0	resources/sprites/time.png	-
+scorebox	-	0	resources/sprites/score.png	-
 
 congrats	-	0	resources/sprites/congrats.png	-
 

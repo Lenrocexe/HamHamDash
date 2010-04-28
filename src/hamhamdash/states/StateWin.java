@@ -22,6 +22,9 @@ public class StateWin extends State
 		game.removeObjects(null, 4);
 		game.resetViewport();
 
+		game.getPlayer().addScoreToTotal();
+		game.getPlayer().resetLevelScore();
+
 		boolean nextLevel = game.getObjLevels().nextLevel();
 		if(!nextLevel)
 		{
