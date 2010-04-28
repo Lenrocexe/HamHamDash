@@ -300,7 +300,7 @@ public class Level
 		requiredDiamonds = Integer.parseInt(settings.getProperty("reqdiamonds"));
 	}
 
-	public int getRemainingDaimonds()
+	public int getRemainingDiamonds()
 	{
 		int som = requiredDiamonds - pickedUpDiamonds;
 
