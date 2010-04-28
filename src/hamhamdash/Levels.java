@@ -135,7 +135,7 @@ public class Levels
 		return getCurrentLevel().getLevelSize();
 	}
 
-	public int getCurrentLevelRemainingDaimonds()
+	public int getCurrentLevelRemainingDiamonds()
 	{
 		return getCurrentLevel().getRemainingDiamonds();
 	}

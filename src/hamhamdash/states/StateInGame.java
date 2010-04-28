@@ -1,7 +1,6 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
-import jgame.JGObject;
 
 
 /**
@@ -11,6 +10,7 @@ import jgame.JGObject;
 public class StateInGame extends State
 {
 	private boolean init = false;
+	private int waitTillDeath = 0; //Used for selfKill
 	
 	public StateInGame()
 	{
@@ -65,6 +65,15 @@ public class StateInGame extends State
 		{
 			game.clearKey(Game.KeyEsc);
 			game.addState("Pause");
+		}
+
+		if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCodeStatic("1")))
+		{
+			waitTillDeath++;
+		}
+		else
+		{
+			waitTillDeath = 0;
 		}
 
 		game.startTimer();
@@ -126,8 +135,9 @@ public class StateInGame extends State
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
 
-		if(game.getTimer() == 0)
+		if(game.getTimer() == 0 || waitTillDeath >= 200)
 		{
+			//Need a graphic that tells times up.
 			game.getPlayer().getPc().remove();
 			game.getPlayer().getPc().setWalking(false);
 			game.getPlayer().getPc().setAlive(false);
@@ -151,7 +161,7 @@ public class StateInGame extends State
 //		game.drawImage(x + 100, y + 0, "scorebox", false);
 //		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), x + 140, y + 25, 1);
 //		game.drawImage(x + 100, y + 35, "daimondbox", false);
-//		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDaimonds()), x + 140, y + 40, 1);
+//		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDiamonds()), x + 140, y + 40, 1);
 
 
 		// NAAST ELKAAR
@@ -160,6 +170,6 @@ public class StateInGame extends State
 		game.drawImage(x + 144, y + 5, "scorebox", false);
 		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), x + 182, y + 10, 1);
 		game.drawImage(x + 188, y + 5, "daimondbox", false);
-		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDaimonds()), x + 227, y + 10, 1);
+		game.drawString("" + (game.getObjLevels().getCurrentLevelRemainingDiamonds()), x + 227, y + 10, 1);
 	}
 }
