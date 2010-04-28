@@ -22,9 +22,13 @@ public class StateWin extends State
 		game.removeObjects(null, 4);
 		game.resetViewport();
 
+		game.getPlayer().addScoreToTotal();
+		game.getPlayer().resetLevelScore();
+
 		boolean nextLevel = game.getObjLevels().nextLevel();
 		if(!nextLevel)
 		{
+			//Do win logic here.
 		}
 		else
 		{
@@ -40,7 +44,6 @@ public class StateWin extends State
 	@Override
 	public void doFrame()
 	{
-
 	}
 
 	@Override
@@ -48,5 +51,4 @@ public class StateWin extends State
 	{
 		game.drawImage(game.viewHeight()/2-100, game.viewHeight()/2-100, "congrats");
 	}
-
 }

@@ -18,6 +18,7 @@ public class StateStartGame extends State
 	private JGColor hamButtonLabelColor = new JGColor(180, 175, 150);
 	private int newGameState = 1; // 'New Game' is highlighted as default
 	private int loadGameState = 0; // 'Load Game' is not
+	private boolean loadGame = false; // by default 'New Game' is selected
 
 	public StateStartGame()
 	{
@@ -31,6 +32,10 @@ public class StateStartGame extends State
 	@Override
 	public void doFrame()
 	{
+		if(game.isDebug())
+		{
+			game.dbgPrint("LoadGame = " + loadGame);
+		}
 		//Navigation
 		if(game.getKey(game.KeyEnter))
 		{
@@ -75,19 +80,19 @@ public class StateStartGame extends State
 	}
 
 	// Player Select Methods
-	public void toggleLoadGame()
+	private void toggleLoadGame()
 	{
-		if(game.loadGame)
+		if(loadGame)
 		{
 			newGameState = 1;
 			loadGameState = 0;
-			game.loadGame = false;
+			loadGame = false;
 		}
 		else
 		{
 			newGameState = 0;
 			loadGameState = 1;
-			game.loadGame = true;
+			loadGame = true;
 		}
 	}
 }

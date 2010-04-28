@@ -5,7 +5,7 @@ import jgame.*;
 import jgame.platform.*;
 
 /**
- * This class is startup class and contains all game items
+ * This class is the startup class and contains all game items
  * @author Cornel Alders
  */
 public class Game extends JGEngine
@@ -14,7 +14,6 @@ public class Game extends JGEngine
 	private boolean debug = true;
 
 	// Game constants
-	public boolean loadGame = false; // by default 'New Game' is selected
 	private Player player = null; //The player that is currently playing
 	private ArrayList<Player> playerList = new ArrayList<Player>(); //The list that tracks all players
 	private Levels objLevels; //Stores an instance of the Levels factory
@@ -92,7 +91,6 @@ public class Game extends JGEngine
 		// DBG MSG's
 		if(isDebug())
 		{
-			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}
@@ -109,7 +107,6 @@ public class Game extends JGEngine
 			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
 			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
 		}
-	
 	}
 
 //***************************************
@@ -598,6 +595,18 @@ public class Game extends JGEngine
 		player = playerList.get(i);
 	}
 
+	public void switchPlayers()
+	{
+		if(player.getPlayerName().equals("hamtaro"))
+		{
+			player = playerList.get(1);
+		}
+		else
+		{
+			player = playerList.get(0);
+		}
+	}
+
 	public int countPlayers()
 	{
 		return playerList.size();
@@ -606,5 +615,10 @@ public class Game extends JGEngine
 	public void clearPlayerList()
 	{
 		playerList.clear();
+	}
+
+	public ArrayList<Player> getPlayerList()
+	{
+		return playerList;
 	}
 }

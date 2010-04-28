@@ -9,8 +9,9 @@ package hamhamdash;
 public abstract class State
 {
 	public Game game = Game.getGame();
-//	public boolean started = false; //lowsy boolean for start() method.
-//									//Needed because sometimes doFrame
+	public boolean started = false; //lowsy boolean for start() method.
+									//Needed because sometimes doFrame does not wait for start
+									//to finish.
 
 	public State(){}
 

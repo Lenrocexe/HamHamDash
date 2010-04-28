@@ -1,6 +1,9 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
+import jgame.JGObject;
+import jgame.JGTimer;
+
 
 /**
  *
@@ -9,28 +12,71 @@ import hamhamdash.*;
 public class StateInGame extends State
 {
 	private boolean init = false;
-
+	private JGObject obj;
+	
 	public StateInGame()
 	{
 		game.setBackground(null);
-	}
 
-	@Override
-	public void start()
-	{
+		obj = new JGObject("hamreset", true, 0, 0, 0, "hhamha");
+		System.out.println( "huh?");
+
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
-		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
+
+
+		// DE BOOSDOENER!
+
+//		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY, game.getPlayer()));
+
+
+
+
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
+		obj.startAnim();
+	}
+
+	@Override
+	public void start()
+	{
 	}
 
 	@Override
 	public void doFrame()
 	{
+		if(game.isDebug())
+		{
+			//Debug to get player positions
+			if(game.getMouseButton(1))
+			{
+				game.clearMouseButton(1);
+				System.out.println("Mouse X: " + game.getMouseX() + " Y: " + game.getMouseY());
+				System.out.println("Player BBox: " + game.getPlayer().getPc().getBBox());
+				System.out.println("Player ImageBBox: " + game.getPlayer().getPc().getImageBBox());
+				System.out.println("Player Tiles: " + game.getPlayer().getPc().getTiles());
+				System.out.println("Player TopleftTile: " + game.getPlayer().getPc().getTopLeftTile());
+			}
+			//Debug for level testing
+			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyRight))
+			{
+				game.clearKey(Game.KeyCtrl);
+				game.clearKey(Game.KeyShift);
+				game.clearKey(Game.KeyRight);
+				game.getObjLevels().nextLevel();
+			}
+			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyLeft))
+			{
+				game.clearKey(Game.KeyCtrl);
+				game.clearKey(Game.KeyShift);
+				game.clearKey(Game.KeyLeft);
+				game.getObjLevels().prevLevel();
+			}
+		}
+
 		if(game.getKey(game.KeyEsc))
 		{
 			game.clearKey(game.KeyEsc);
@@ -80,57 +126,29 @@ public class StateInGame extends State
 		//Rock
 		game.checkBGCollision(69, 4);
 		//Objects should only be loaded once
-		if(!init)
+		if(!started)
 		{
 			game.getCurrentLevel().insertGObjects();
-			init = true;
-		}
-
-		//Debug for level testing
-		if(game.isDebug())
-		{
-			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyRight))
-			{
-				game.clearKey(Game.KeyCtrl);
-				game.clearKey(Game.KeyShift);
-				game.clearKey(Game.KeyRight);
-				game.getObjLevels().nextLevel();
-			}
-			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyLeft))
-			{
-				game.clearKey(Game.KeyCtrl);
-				game.clearKey(Game.KeyShift);
-				game.clearKey(Game.KeyLeft);
-				game.getObjLevels().prevLevel();
-			}
+			started = true;
 		}
 
 		//Try to move the viewoffset based on the players coordinates
-		try
-		{
+//		try
+//		{
 			game.setXoffset((int) game.getPlayer().getPc().x + game.viewWidth() / game.viewWidth());
 			game.setYoffset((int) game.getPlayer().getPc().y + game.viewHeight() / game.viewHeight());
-		}
-		catch(java.lang.NullPointerException e){}
+//		}
+//		catch(java.lang.NullPointerException e){}
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
-
-		//Debug to get player positions
-		if(game.isDebug() && game.getMouseButton(1))
-		{
-			System.out.println("X: " + game.getMouseX() + " Y: " + game.getMouseY());
-			System.out.println(game.getPlayer().getPc().getBBox());
-			System.out.println(game.getPlayer().getPc().getImageBBox());
-			System.out.println(game.getPlayer().getPc().getTiles());
-			System.out.println(game.getPlayer().getPc().getTopLeftTile());
-		}
 
 		if(game.getTimer() == 0)
 		{
 			game.getPlayer().getPc().remove();
 			game.getPlayer().getPc().setWalking(false);
 			game.getPlayer().getPc().setAlive(false);
-			game.getPlayer().getPc().setGraphic(game.getPlayer().getPc().getName() + "howdie");
+			game.getPlayer().getPc().setGraphic(game.getPlayer().getIdentifier() + "howdie");
+			game.getPlayer().resetLevelScore();
 			game.stopTimer();
 			game.addState("Death");
 		}
@@ -141,5 +159,7 @@ public class StateInGame extends State
 	{
 		game.drawImage(100, 0, "timebox", false);
 		game.drawString("" + game.getTimer(), 126, 5, 0);
+		game.drawImage(100, 20, "scorebox", false);
+		game.drawString("" + (game.getPlayer().getScore() + game.getPlayer().getLevelScore()), 126, 25, 0);
 	}
 }

@@ -3,6 +3,7 @@ package hamhamdash.states;
 import hamhamdash.Game;
 import hamhamdash.State;
 import jgame.JGColor;
+import jgame.JGObject;
 
 /**
  *
@@ -10,18 +11,27 @@ import jgame.JGColor;
  */
 public class StateRestart extends State
 {
+	private JGObject obj;
+	int objX, objY;
+
 	public StateRestart()
 	{
-		
+		obj = new JGObject("hamreset", true, 0, 0, 0, "hhamha");
 	}
 	@Override
 	public void start()
 	{
+		obj.startAnim();
+				System.out.println("started.......");
+
 	}
 
 	@Override
 	public void doFrame()
 	{
+//		System.out.println("Restarting!");
+//		System.out.println("I should move things....");
+		game.moveObjects();
 		if(game.getKey(game.KeyEnter))
 		{
 			game.clearKey(game.KeyEnter);
@@ -32,17 +42,29 @@ public class StateRestart extends State
 	@Override
 	public void paintFrame()
 	{
-		int x = (game.viewWidth() / 2);
-		int y = game.viewHeight() / 2;
+		objX = (game.viewWidth() / 2);
+		objY = game.viewHeight() / 2;
 
 		// Offset
-		y -= 20;
+		objY -= 20;
 
 		game.setColor(JGColor.white);
 		game.drawImage(0, 0, "restart_bg");
-		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", x, y, 0);
-		game.drawImage(x - 40, y + 5, "hstill");
-		game.drawString("x" + game.getPlayer().getLifes(), x, y  + 30, -1);
+		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", objX, objY, 0);
+//		game.drawImage(objX - 40, objY + 5, "hhamha2");
+
+		
+//		obj.dbgPrint();
+		
+		game.drawImage(objX - 40, objX + 5, game.getPlayer().getIdentifier() + "still");
+		game.drawString("x" + game.getPlayer().getLifes(), objX, objX  + 30, -1);
+
+
+		obj.setPos(150, 150);
+		obj.paint();
+		System.out.println(obj.getImageName());
+
+
 	}
 
 

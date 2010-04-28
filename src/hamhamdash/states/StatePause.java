@@ -9,7 +9,6 @@ import hamhamdash.*;
 public class StatePause extends State
 {
 	private String toDrawImage = "";
-	private boolean started = false; //lowsy boolean for start() method
 	// Pause Screens
 	//	[ Main Screen Name ][ Sub Screens ][ Pages ]
 	private String[][][] pauseScreens =

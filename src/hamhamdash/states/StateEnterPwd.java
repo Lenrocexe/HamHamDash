@@ -11,22 +11,22 @@ import jgame.JGPoint;
 public class StateEnterPwd extends State
 {
 	// Array with correct password chars
-	public String[] goodNumbers =
+	private String[] goodNumbers =
 	{
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 	};
-	public int selectedPos, selectedNum;
-	public JGColor selectedPosColor = JGColor.red;
+	private int selectedPos, selectedNum;
+	private JGColor selectedPosColor = JGColor.red;
 	private boolean started = false;
 	private JGPoint epPoint = new JGPoint(game.viewWidth() / 2, 60);
 	// pp (passPos) draw attributes
 	private int ppWidth = 10;
 	private int ppHeight = 10;
 	// 1 var for each password position, these vars will combine to be the passString
-	public String[] passPosList;
-	public boolean passIsCorrect = false;
-	public int passAttempt = 0;
-	public String passString;
+	private String[] passPosList;
+	private boolean passIsCorrect = false;
+	private int passAttempt = 0;
+	private String passString;
 
 	public StateEnterPwd()
 	{
@@ -45,7 +45,6 @@ public class StateEnterPwd extends State
 		passPosList[3] = goodNumbers[0];
 		passPosList[4] = goodNumbers[0];
 		passPosList[5] = goodNumbers[0];
-		game.loadGame = false;
 		started = true;
 	}
 

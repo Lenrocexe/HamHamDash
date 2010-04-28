@@ -1,5 +1,6 @@
 package hamhamdash.states;
 
+import hamhamdash.*;
 import hamhamdash.State;
 import jgame.JGTimer;
 
@@ -22,8 +23,8 @@ public class StateDeath extends State
 	@Override
 	public void doFrame()
 	{
-		game.moveObjects("h", 0);
-		// wait a bit for Hamtaro to finish dieng
+		game.moveObjects(game.getPlayer().getIdentifier(), 0);
+		// wait a bit for Hamtaro to finish dieing
 		new JGTimer(50, true, "Death")
 		{
 			// the alarm method is called when the timer ticks to zero
@@ -33,16 +34,15 @@ public class StateDeath extends State
 				game.getPlayer().removeLife();
 				game.removeObjects("", 0); // Clear all objects from the field
 
+				if(game.countPlayers() == 2)
+					game.switchPlayers();
+
+				game.resetViewport();
+
 				if (game.getPlayer().getLifes() > 0)
-				{
-					game.resetViewport();
 					game.setCurrentState("Restart");
-				}
 				else
-				{
-					game.resetViewport();
 					game.setCurrentState("GameOver");
-				}
 			}
 		};
 	}
