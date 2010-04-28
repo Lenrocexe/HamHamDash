@@ -2,7 +2,6 @@ package hamhamdash.states;
 
 import hamhamdash.*;
 import jgame.JGObject;
-import jgame.JGTimer;
 
 
 /**
@@ -12,32 +11,18 @@ import jgame.JGTimer;
 public class StateInGame extends State
 {
 	private boolean init = false;
-	private JGObject obj;
 	
 	public StateInGame()
 	{
 		game.setBackground(null);
-
-		obj = new JGObject("hamreset", true, 0, 0, 0, "hhamha");
-		System.out.println( "huh?");
-
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
 		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
-
-
-		// DE BOOSDOENER!
-
-//		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY, game.getPlayer()));
-
-
-
-
+		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY, game.getPlayer()));
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
-		obj.startAnim();
 	}
 
 	@Override
@@ -77,9 +62,9 @@ public class StateInGame extends State
 			}
 		}
 
-		if(game.getKey(game.KeyEsc))
+		if(game.getKey(Game.KeyEsc))
 		{
-			game.clearKey(game.KeyEsc);
+			game.clearKey(Game.KeyEsc);
 			game.addState("Pause");
 		}
 

@@ -6,6 +6,7 @@ splash_image	-	0	resources/sprites/splash.png	-
 title_bg	-	0	resources/sprites/title.png		-
 menu_bg		-	0	resources/sprites/menu.png		-
 restart_bg	-	0	resources/sprites/restart.png	-
+gameover_bg	-	0	resources/sprites/gameover.png	-
 
 // Define Button animation sheets.
 ham_button		resources/sprites/ham_button.png	0	0	100	60	0	0

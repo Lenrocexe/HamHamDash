@@ -22,19 +22,16 @@ public class StateRestart extends State
 	public void start()
 	{
 		obj.startAnim();
-				System.out.println("started.......");
-
+		System.out.println("started.......");
 	}
 
 	@Override
 	public void doFrame()
 	{
-//		System.out.println("Restarting!");
-//		System.out.println("I should move things....");
 		game.moveObjects();
-		if(game.getKey(game.KeyEnter))
+		if(game.getKey(Game.KeyEnter))
 		{
-			game.clearKey(game.KeyEnter);
+			game.clearKey(Game.KeyEnter);
 			game.setCurrentState("InGame");
 		}
 	}
@@ -42,29 +39,17 @@ public class StateRestart extends State
 	@Override
 	public void paintFrame()
 	{
-		objX = (game.viewWidth() / 2);
+		objX = game.viewWidth() / 2;
 		objY = game.viewHeight() / 2;
 
-		// Offset
+//		// Offset
 		objY -= 20;
 
 		game.setColor(JGColor.white);
 		game.drawImage(0, 0, "restart_bg");
 		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", objX, objY, 0);
-//		game.drawImage(objX - 40, objY + 5, "hhamha2");
-
-		
-//		obj.dbgPrint();
-		
-		game.drawImage(objX - 40, objX + 5, game.getPlayer().getIdentifier() + "still");
-		game.drawString("x" + game.getPlayer().getLifes(), objX, objX  + 30, -1);
-
-
-		obj.setPos(150, 150);
-		obj.paint();
-		System.out.println(obj.getImageName());
-
-
+		game.drawImage(objX - 45, objY + 5, game.getPlayer().getIdentifier() + "still");
+		game.drawString("x" + game.getPlayer().getLifes(), objX, objY + 30, -1);
 	}
 
 
