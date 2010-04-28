@@ -8,10 +8,8 @@ import hamhamdash.*;
  */
 public class StateGameOver extends State
 {
-
 	public StateGameOver()
 	{
-		
 	}
 
 	@Override
@@ -24,12 +22,10 @@ public class StateGameOver extends State
 	@Override
 	public void doFrame()
 	{
-
 	}
 
 	@Override
 	public void paintFrame()
 	{
 	}
-
 }

@@ -32,6 +32,11 @@ public class StateRestart extends State
 //		System.out.println("Restarting!");
 //		System.out.println("I should move things....");
 		game.moveObjects();
+		if(game.getKey(game.KeyEnter))
+		{
+			game.clearKey(game.KeyEnter);
+			game.setCurrentState("InGame");
+		}
 	}
 
 	@Override
@@ -47,11 +52,19 @@ public class StateRestart extends State
 		game.drawImage(0, 0, "restart_bg");
 		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", objX, objY, 0);
 //		game.drawImage(objX - 40, objY + 5, "hhamha2");
+
+		
+//		obj.dbgPrint();
+		
+		game.drawImage(objX - 40, objX + 5, game.getPlayer().getIdentifier() + "still");
+		game.drawString("x" + game.getPlayer().getLifes(), objX, objX  + 30, -1);
+
+
 		obj.setPos(150, 150);
 		obj.paint();
 		System.out.println(obj.getImageName());
-//		obj.dbgPrint();
-		game.drawString("x" + game.getPlayer().getLifes(), objX, objX, -1);
+
+
 	}
 
 

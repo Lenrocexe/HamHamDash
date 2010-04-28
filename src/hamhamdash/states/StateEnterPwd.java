@@ -11,17 +11,22 @@ import jgame.JGPoint;
 public class StateEnterPwd extends State
 {
 	// Array with correct password chars
-	public String[] goodNumbers =
+	private String[] goodNumbers =
 	{
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
 	};
-	public int selectedPos, selectedNum;
-	public JGColor selectedPosColor = JGColor.red;
+	private int selectedPos, selectedNum;
+	private JGColor selectedPosColor = JGColor.red;
 	private boolean started = false;
 	private JGPoint epPoint = new JGPoint(game.viewWidth() / 2, 60);
 	// pp (passPos) draw attributes
 	private int ppWidth = 10;
 	private int ppHeight = 10;
+	// 1 var for each password position, these vars will combine to be the passString
+	private String[] passPosList;
+	private boolean passIsCorrect = false;
+	private int passAttempt = 0;
+	private String passString;
 
 	public StateEnterPwd()
 	{
@@ -30,35 +35,60 @@ public class StateEnterPwd extends State
 	@Override
 	public void start()
 	{
-		game.passString = "";
+		passString = "";
 		selectedPos = 0;
 		selectedNum = 0;
-		game.passPosList = new String[6];
-		game.passPosList[0] = goodNumbers[0];
-		game.passPosList[1] = goodNumbers[0];
-		game.passPosList[2] = goodNumbers[0];
-		game.passPosList[3] = goodNumbers[0];
-		game.passPosList[4] = goodNumbers[0];
-		game.passPosList[5] = goodNumbers[0];
-		game.loadGame = false;
+		passPosList = new String[6];
+		passPosList[0] = goodNumbers[0];
+		passPosList[1] = goodNumbers[0];
+		passPosList[2] = goodNumbers[0];
+		passPosList[3] = goodNumbers[0];
+		passPosList[4] = goodNumbers[0];
+		passPosList[5] = goodNumbers[0];
 		started = true;
 	}
 
 	@Override
 	public void doFrame()
 	{
-		if(game.debug)
+		if(game.isDebug())
 		{
-			game.dbgPrint("Password = " + game.passString);
+			game.dbgPrint("Password = " + passString);
 
 			game.dbgPrint(selectedPos + "");
-			game.dbgPrint(goodNumbers[Integer.parseInt(game.passPosList[selectedPos])]);
-			game.dbgPrint(game.passPosList[selectedPos] + "");
+			game.dbgPrint(goodNumbers[Integer.parseInt(passPosList[selectedPos])]);
+			game.dbgPrint(passPosList[selectedPos] + "");
 			game.dbgPrint(selectedNum + "");
 		}
 		if(started)
 		{
-			selectedNum = Integer.parseInt(game.passPosList[selectedPos]);
+			selectedNum = Integer.parseInt(passPosList[selectedPos]);
+
+			if(game.getKey(game.KeyEnter))
+			{
+				game.clearKey(game.KeyEnter);
+				passString = "";
+				for(String perPass : passPosList)
+				{
+					passString += perPass;
+				}
+				if(game.getObjLevels().checkPassword(passString))
+				{
+					passIsCorrect = true;
+					game.setCurrentState("InGame");
+				}
+				else
+				{
+					passIsCorrect = false;
+					passAttempt++;
+				}
+			}
+			else if(game.getKey(game.KeyEsc))
+			{
+				game.clearKey(game.KeyEsc);
+				game.setCurrentState("StartGame");
+			}
+
 			if(game.getKey(Game.KeyLeft))
 			{
 				game.clearKey(Game.KeyLeft);
@@ -74,13 +104,13 @@ public class StateEnterPwd extends State
 				{
 					selectedNum++;
 				}
-				game.passPosList[selectedPos] = goodNumbers[selectedNum];
+				passPosList[selectedPos] = goodNumbers[selectedNum];
 
 			}
 			if(game.getKey(Game.KeyRight))
 			{
 				game.clearKey(Game.KeyRight);
-				if(selectedPos < game.passPosList.length - 1)
+				if(selectedPos < passPosList.length - 1)
 				{
 					selectedPos++;
 				}
@@ -92,7 +122,7 @@ public class StateEnterPwd extends State
 				{
 					selectedNum--;
 				}
-				game.passPosList[selectedPos] = goodNumbers[selectedNum];
+				passPosList[selectedPos] = goodNumbers[selectedNum];
 			}
 		}
 	}
@@ -105,7 +135,7 @@ public class StateEnterPwd extends State
 			game.drawString("Enter Password", epPoint.x, epPoint.y, 0);
 
 			// Draw the individual passPos vars
-			for(int i = 0; i < game.passPosList.length; i++)
+			for(int i = 0; i < passPosList.length; i++)
 			{
 				if(selectedPos == i)
 				{
@@ -115,10 +145,10 @@ public class StateEnterPwd extends State
 				{
 					game.setColor(JGColor.white);
 				}
-				game.drawString(game.passPosList[i], epPoint.x + (i * ppWidth) - (((game.passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
+				game.drawString(passPosList[i], epPoint.x + (i * ppWidth) - (((passPosList.length - 1) * ppWidth) / 2), epPoint.y + 20, 1);
 			}
 
-			if(!game.passIsCorrect && game.passAttempt > 0)
+			if(!passIsCorrect && passAttempt > 0)
 			{
 				game.setColor(JGColor.white);
 				game.drawString("Password was wrong, please try again!", epPoint.x, epPoint.y + 50, 0);

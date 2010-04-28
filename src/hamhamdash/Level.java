@@ -429,8 +429,20 @@ public class Level
 				foundRock = r;
 			}
 		}
-		System.out.println(foundRock.getName());
 		return foundRock;
+	}
+
+	public Enemy getEnemy(String name)
+	{
+		Enemy foundEnemy = null;
+		for(Enemy e : arrEnemyObj)
+		{
+			if(e.getName().equals(name))
+			{
+				foundEnemy = e;
+			}
+		}
+		return foundEnemy;
 	}
 
 	/**
@@ -472,7 +484,7 @@ public class Level
 	}
 
 	/**
-	 * Gets the start position
+	 * Gets the start position for the player
 	 * @return
 	 */
 	public int[] getStartPosition()

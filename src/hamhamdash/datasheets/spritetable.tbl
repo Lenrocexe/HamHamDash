@@ -26,7 +26,8 @@ ham_button_over	ham_button_rollover1;ham_button_rollover2	0.2	false
 // Define animation sprite sheet.
 // sheetname;;location;;(0,0)-topleft coordinates;;(40,40)-spritesize;;(0,0)-pixels to skip
 hamtaro	resources/sprites/hamtarosheet.png		0	0	40	40	0	0
-spatA	resources/sprites/SpatAsheet.png		0	0	40	40	0	0
+bijou	resources/sprites/bijousheet.png		0	0	40	40	0	0
+spatA	resources/sprites/spatAsheet.png		0	0	40	40	0	0
 
 // Individual sprites
 // spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
@@ -43,7 +44,6 @@ hhowdie1	-	0	hamtaro	6	-
 hhowdie2	-	0	hamtaro	7	-
 hhowdie3	-	0	hamtaro	8	-
 hhowdie4	-	0	hamtaro	9	-
-hhowdie5	-	0	hamtaro	10	-
 hrunup1		-	0	hamtaro	12	-
 hrunup2		-	0	hamtaro	13	-
 hrunup3		-	0	hamtaro	14	-
@@ -61,7 +61,33 @@ hrunright2	-	0	hamtaro	31	-
 hrunright3	-	0	hamtaro	32	-
 hrunright4	-	0	hamtaro	33	-
 
-//Biyou
+//Bijou
+bstill		-	0	bijou	0	-
+bhamha1		-	0	bijou	1	-
+bhamha2		-	0	bijou	2	-
+bhamha3		-	0	bijou	3	-
+bhamha4		-	0	bijou	4	-
+bhamha5		-	0	bijou	5	-
+bhowdie1	-	0	bijou	6	-
+bhowdie2	-	0	bijou	7	-
+bhowdie3	-	0	bijou	8	-
+bhowdie4	-	0	bijou	9	-
+brunup1		-	0	bijou	12	-
+brunup2		-	0	bijou	13	-
+brunup3		-	0	bijou	14	-
+brunup4		-	0	bijou	15	-
+brundown1	-	0	bijou	18	-
+brundown2	-	0	bijou	19	-
+brundown3	-	0	bijou	20	-
+brundown4	-	0	bijou	21	-
+brunleft1	-	0	bijou	24	-
+brunleft2	-	0	bijou	25	-
+brunleft3	-	0	bijou	26	-
+brunleft4	-	0	bijou	27	-
+brunright1	-	0	bijou	24	x
+brunright2	-	0	bijou	25	x
+brunright3	-	0	bijou	26	x
+brunright4	-	0	bijou	27	x
 
 //SpatA
 spatAstill	-	0	spatA	0	-
@@ -90,11 +116,19 @@ spatAwalkright3	-	0	spatA	22	x
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
 //Hamtaro
 hhamha		hhamha1;hhamha2;hhamha3;hhamha4;hhamha5			0.1	false
-hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4;hhowdie5	0.1	false
+hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4				0.1	false
 hrunup		hrunup1;hrunup2;hrunup3;hrunup4					0.2	false
 hrundown	hrundown1;hrundown2;hrundown3;hrundown4			0.2	false
 hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4			0.2	false
 hrunright	hrunright1;hrunright2;hrunright3;hrunright4		0.2	false
+
+//Bijou
+bhamha		bhamha1;bhamha2;bhamha3;bhamha4;bhamha5			0.1	false
+bhowdie		bhowdie1;bhowdie2;bhowdie3;bhowdie4				0.1	false
+brunup		brunup1;brunup2;brunup3;brunup4					0.2	false
+brundown	brundown1;brundown2;brundown3;brundown4			0.2	false
+brunleft	brunleft1;brunleft2;brunleft3;brunleft4			0.2	false
+brunright	brunright1;brunright2;brunright3;brunright4		0.2	false
 
 //SpatA
 spatAidle		spatAidle1;spatAidle2;spatAidle3;spatAidle4	0.09	true
@@ -133,7 +167,8 @@ levelbg		resources/sounds/level.wav
 select		resources/sounds/select.wav
 
 //HUD
-timebox	-	0	resources/sprites/time.png	-
+timebox		-	0	resources/sprites/time.png	-
+scorebox	-	0	resources/sprites/score.png	-
 
 congrats	-	0	resources/sprites/congrats.png	-
 

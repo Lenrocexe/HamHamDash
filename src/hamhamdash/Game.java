@@ -5,30 +5,25 @@ import jgame.*;
 import jgame.platform.*;
 
 /**
- *
+ * This class is the startup class and contains all game items
  * @author Cornel Alders
  */
 public class Game extends JGEngine
 {
 	// DEBUG VAR!
-	public boolean debug = true;
+	private boolean debug = true;
 
-
-	// Define "GLOBAL" Vars
-	public boolean loadGame = false; // by default 'New Game' is selected
-	public int stateCounter = 0;
-	private ArrayList<String> states = new ArrayList<String>();
-	public Player player = null;
-	public Enemy enemy = null;
-	private Levels objLevels;
-	public String passString;
-	public int tileWidth = 40;
-	public int tileHeight = 40;
-	private int xofs, yofs = 0;
-	private State currentState = null;
-	private State previousState = null;
-	private int timer = 0;
-	private int timercounter = 0;
+	// Game constants
+	private Player player = null; //The player that is currently playing
+	private ArrayList<Player> playerList = new ArrayList<Player>(); //The list that tracks all players
+	private Levels objLevels; //Stores an instance of the Levels factory
+	private int tileSize = 40; //Default tile size
+	private int xofs, yofs = 0; //The scrollpane offset
+	private State currentState = null; //The state that should be running
+	private State previousState = null; //the state that was previously running
+										//Mainly used to save the InGame state during the Pause
+	private int timer = 0; //This is the amount of time left to finish a level
+	private int timercounter = 0; //If zero, timer does not count down
 
 //***************************************
 // Start Game initialization
@@ -59,7 +54,7 @@ public class Game extends JGEngine
 
 	public void initCanvas()
 	{
-		setCanvasSettings(10, 10, tileWidth, tileHeight, JGColor.white, new JGColor(44, 44, 44), null);
+		setCanvasSettings(10, 10, getTileSize(), getTileSize(), JGColor.white, new JGColor(44, 44, 44), null);
 	}
 
 	public void initGame()
@@ -69,13 +64,8 @@ public class Game extends JGEngine
 		defineMedia("datasheets/spritetable.tbl");
 
 		objLevels = new Levels();
-		states.add("Title");
-		states.add("PlayerSelect");
-		states.add("StartGame");
-		states.add("EnterPwd");
-		states.add("InGame");
 
-		if (debug)
+		if(isDebug())
 		{
 			dbgShowBoundingBox(true);
 			dbgShowGameState(true);
@@ -98,93 +88,9 @@ public class Game extends JGEngine
 	@Override
 	public void doFrame()
 	{
-		if(!inGameState("Death"))
-		{
-			if(!inGameState("Pause"))
-			{
-				if(inGameState("InGame"))
-				{
-					stateCounter = 0;
-
-					if(getKey(KeyEsc))
-					{
-						clearKey(KeyEsc);
-						addState("Pause");
-					}
-				}
-				else if(inGameState("EnterPwd"))
-				{
-					if(getKey(KeyEnter))
-					{
-						clearKey(KeyEnter);
-						passString = "";
-						for(String perPass : passPosList)
-						{
-							passString += perPass;
-						}
-						if(getObjLevels().checkPassword(passString))
-						{
-							passIsCorrect = true;
-							stateCounter = nextState();
-						}
-						else
-						{
-							passIsCorrect = false;
-							passAttempt++;
-						}
-					}
-					else if(getKey(KeyEsc))
-					{
-						clearKey(KeyEsc);
-						stateCounter = prevState();
-					}
-				}
-				else if(inGameState("PlayerSelect"))
-				{
-					if(getKey(KeyEnter))
-					{
-						clearKey(KeyEnter);
-						setPlayer(new Player());
-						stateCounter = nextState();
-					}
-					else if(getKey(KeyEsc))
-					{
-						clearKey(KeyEsc);
-						stateCounter = prevState();
-					}
-				}
-				else
-				{
-					if(getKey(KeyEnter))
-					{
-						// next step is player selection
-						clearKey(KeyEnter);
-						if(inGameState("Restart"))
-						{
-							setCurrentState("InGame");
-						}
-						else
-						{
-							stateCounter = nextState();
-						}
-					}
-					else if(getKey(KeyEsc))
-					{
-						clearKey(KeyEsc);
-						stateCounter = prevState();
-					}
-				}
-			}
-		}
-		else if(inGameState("Death"))
-		{
-			moveObjects("h", 0);
-		}
-
 		// DBG MSG's
-		if(debug)
+		if(isDebug())
 		{
-			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}
@@ -201,7 +107,6 @@ public class Game extends JGEngine
 			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
 			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
 		}
-	
 	}
 
 //***************************************
@@ -239,7 +144,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Player Select
 //***************************************
-
 	public void startPlayerSelect()
 	{
 		if (!inGameState("Pause"))
@@ -269,7 +173,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Start Game
 //***************************************
-
 	public void startStartGame()
 	{
 		if (!inGameState("Pause"))
@@ -299,11 +202,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Enter Password
 //***************************************
-	// 1 var for each password position, these vars will combine to be the passString
-	public String[] passPosList;
-	public boolean passIsCorrect = false;
-	public int passAttempt = 0;
-
 	public void startEnterPwd()
 	{
 		if (!inGameState("Pause"))
@@ -333,7 +231,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State InGame
 //***************************************
-
 	public void startInGame()
 	{
 		if (!inGameState("Pause"))
@@ -360,7 +257,6 @@ public class Game extends JGEngine
 //***************************************
 // End Game State InGame
 //***************************************
-
 //***************************************
 // Start Game State Death
 //***************************************
@@ -393,7 +289,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Restart
 //***************************************
-
 	public void startRestart()
 	{
 		if (!inGameState("Pause"))
@@ -420,7 +315,6 @@ public class Game extends JGEngine
 //***************************************
 // End Game State Restart
 //***************************************
-
 //***************************************
 // Start Game State Pause
 //***************************************
@@ -453,7 +347,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State Win
 //***************************************
-
 	public void startWin()
 	{
 		if (!inGameState("Pause"))
@@ -483,7 +376,6 @@ public class Game extends JGEngine
 //***************************************
 // Start Game State GameOver
 //***************************************
-
 	public void startGameOver()
 	{
 		if (!inGameState("Pause"))
@@ -511,36 +403,9 @@ public class Game extends JGEngine
 // End Game State GameOver
 //***************************************
 
-	// Global Method(s)
-	public int nextState()
-	{
-		if (stateCounter < states.size() - 1)
-		{
-			stateCounter++;
-		}
-		if (inGameState("StartGame") && !loadGame)
-		{
-			stateCounter++;
-		}
-		setCurrentState(states.get(stateCounter));
-
-		return stateCounter;
-	}
-
-	public int prevState()
-	{
-		if (stateCounter > 0)
-		{
-			stateCounter--;
-		}
-		setCurrentState(states.get(stateCounter));
-		return stateCounter;
-	}
-
-	// Getter(s) & Setter(s)
 	public int getTileSize()
 	{
-		return 40;
+		return tileSize;
 	}
 
 	public int getViewportWidth()
@@ -617,7 +482,7 @@ public class Game extends JGEngine
 	}
 
 	/**
-	 * Add a Game State ex: "InGame" or "Title", to the current Game State
+	 * Add a Game State to the current Game State. Mostly used for the Pause state.
 	 * Will create a new Instance of the given state class and stores ref in currentState.
 	 * @param state The state name
 	 */
@@ -628,11 +493,18 @@ public class Game extends JGEngine
 		addGameState(state);
 	}
 
+	/**
+	 * Save the current state and all it contains before switching to a new state.
+	 * Use it when you want to pause the game or something.
+	 */
 	public void saveState()
 	{
 		this.previousState = currentState;
 	}
 
+	/**
+	 * Recover the previously saved state to run it again.
+	 */
 	public void recoverState()
 	{
 		currentState = previousState;
@@ -649,7 +521,6 @@ public class Game extends JGEngine
 		State c = null;
 		try
 		{
-			//State c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
 			c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
 			return c;
 		}
@@ -657,16 +528,6 @@ public class Game extends JGEngine
 		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
 		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
 		return null;
-	}
-
-	public Player getPlayer()
-	{
-		return player;
-	}
-	
-	public void setPlayer(Player p)
-	{
-		this.player = p;
 	}
 
 	/**
@@ -712,5 +573,52 @@ public class Game extends JGEngine
 	public int getTimer()
 	{
 		return timer;
+	}
+
+	public boolean allowStateExecute()
+	{
+		return !(inGameState("Death") || inGameState("Pause"));
+	}
+
+	public Player getPlayer()
+	{
+		return player;
+	}
+
+	public void addPlayer(Player p)
+	{
+		playerList.add(p);
+	}
+
+	public void setActivePlayer(int i)
+	{
+		player = playerList.get(i);
+	}
+
+	public void switchPlayers()
+	{
+		if(player.getPlayerName().equals("hamtaro"))
+		{
+			player = playerList.get(1);
+		}
+		else
+		{
+			player = playerList.get(0);
+		}
+	}
+
+	public int countPlayers()
+	{
+		return playerList.size();
+	}
+
+	public void clearPlayerList()
+	{
+		playerList.clear();
+	}
+
+	public ArrayList<Player> getPlayerList()
+	{
+		return playerList;
 	}
 }

@@ -23,6 +23,14 @@ public class StateTitle extends State
 	@Override
 	public void doFrame()
 	{
+		//Navigation
+		if(game.getKey(game.KeyEnter))
+		{
+			game.clearKey(game.KeyEnter);
+			game.setCurrentState("PlayerSelect");
+		}
+
+		//Juxebox
 		if(game.getKey(game.KeyCtrl) && game.getKey(game.getKeyCode("1")))
 		{
 			game.clearKey(game.getKeyCode("1"));
@@ -49,6 +57,6 @@ public class StateTitle extends State
 	public void paintFrame()
 	{
 		game.drawImage(0, 0, "title_bg");
-		game.drawString("Press <ENTER> to continue", game.viewWidth()/ 2, game.viewHeight() - 50, 0);
+		game.drawString("Press <ENTER> to continue", game.viewWidth() / 2, game.viewHeight() - 50, 0);
 	}
 }
