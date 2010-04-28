@@ -33,7 +33,8 @@ public class StateDeath extends State
 				// remove Life cuz you diedz!
 				game.getPlayer().removeLife();
 				game.removeObjects("", 0); // Clear all objects from the field
-				game.switchPlayers();
+				if(game.countPlayers() == 2)
+					game.switchPlayers();
 
 				if (game.getPlayer().getLifes() > 0)
 				{
@@ -52,17 +53,5 @@ public class StateDeath extends State
 	@Override
 	public void paintFrame()
 	{
-	}
-
-	private boolean anyLifesLeft()
-	{
-		for(Player p : game.getPlayerList())
-		{
-			if(p.getLifes() > 0)
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 }
