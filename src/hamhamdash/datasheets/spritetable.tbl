@@ -36,6 +36,10 @@ spatA	resources/sprites/spatAsheet.png		0	0	40	40	0	0
 // Sprite-modifiers: x = mirror
 // Hamtaro
 hstill		-	0	hamtaro	0	-
+hidle1		-	0	hamtaro	11	-
+hidle2		-	0	hamtaro	17	-
+hidle3		-	0	hamtaro	23	-
+hidle4		-	0	hamtaro	29	-
 hhamha1		-	0	hamtaro	1	-
 hhamha2		-	0	hamtaro	2	-
 hhamha3		-	0	hamtaro	3	-
@@ -64,6 +68,10 @@ hrunright4	-	0	hamtaro	33	-
 
 //Bijou
 bstill		-	0	bijou	0	-
+bidle1		-	0	bijou	10	-
+bidle2		-	0	bijou	11	-
+bidle3		-	0	bijou	16	-
+bidle4		-	0	bijou	17	-
 bhamha1		-	0	bijou	1	-
 bhamha2		-	0	bijou	2	-
 bhamha3		-	0	bijou	3	-
@@ -116,6 +124,7 @@ spatAwalkright3	-	0	spatA	22	x
 // Define sprite animations.
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
 //Hamtaro
+hidle		hstill;hstill;hstill;hstill;hstill;hstill;hidle1;hidle2;hidle1;hidle2;hidle1;hidle2;hidle3;hidle4;hidle3;hidle4;hidle3;hidle4;hstill;hstill;hstill;hstill;hstill;hstill	0.2	true
 hhamha		hhamha1;hhamha2;hhamha3;hhamha4;hhamha5			0.1	false
 hhowdie		hhowdie1;hhowdie2;hhowdie3;hhowdie4				0.1	false
 hrunup		hrunup1;hrunup2;hrunup3;hrunup4					0.2	false
@@ -124,6 +133,7 @@ hrunleft	hrunleft1;hrunleft2;hrunleft3;hrunleft4			0.2	false
 hrunright	hrunright1;hrunright2;hrunright3;hrunright4		0.2	false
 
 //Bijou
+bidle		bstill;bstill;bstill;bstill;bstill;bstill;bidle1;bidle2;bidle1;bidle2;bidle1;bidle2;bidle3;bidle4;bidle3;bidle4;bidle3;bidle4;bstill;bstill;bstill;bstill;bstill;bstill	0.2	true
 bhamha		bhamha1;bhamha2;bhamha3;bhamha4;bhamha5			0.1	false
 bhowdie		bhowdie1;bhowdie2;bhowdie3;bhowdie4				0.1	false
 brunup		brunup1;brunup2;brunup3;brunup4					0.2	false

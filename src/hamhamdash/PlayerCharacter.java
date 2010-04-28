@@ -23,7 +23,7 @@ public class PlayerCharacter extends GCharacter
 	 */
 	public PlayerCharacter(String name, int x, int y, Player player)
 	{
-		super(name, true, x, y, 1, name + "still");
+		super(name, true, x, y, 1, name + "idle");
 		this.player = player;
 		this.name = name;
 	}
@@ -79,7 +79,7 @@ public class PlayerCharacter extends GCharacter
 			{
 				if(isAlive)
 				{
-					setGraphic(getName() + "still");
+					setGraphic(getName() + "idle");
 				}
 			}
 		}

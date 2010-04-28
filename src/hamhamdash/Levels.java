@@ -135,9 +135,9 @@ public class Levels
 		return getCurrentLevel().getLevelSize();
 	}
 
-	public int getCurrentLevelRemainingDaimonds()
+	public int getCurrentLevelRemainingDiamonds()
 	{
-		return getCurrentLevel().getRemainingDaimonds();
+		return getCurrentLevel().getRemainingDiamonds();
 	}
 
 	/**
@@ -156,11 +156,13 @@ public class Levels
 	 */
 	private String[] getLevelDirList()
 	{
-		String[] levels = new String[4];
+		String[] levels = new String[6];
 		levels[0] = "level1.hlf";
 		levels[1] = "level2.hlf";
 		levels[2] = "level3.hlf";
-		levels[3] = "level6.hlf";
+		levels[3] = "level4.hlf";
+		levels[4] = "level5.hlf";
+		levels[5] = "level6.hlf";
 		return levels;
 	}
 
