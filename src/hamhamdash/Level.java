@@ -484,7 +484,7 @@ public class Level
 	}
 
 	/**
-	 * Gets the start position
+	 * Gets the start position for the player
 	 * @return
 	 */
 	public int[] getStartPosition()

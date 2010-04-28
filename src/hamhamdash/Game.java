@@ -5,7 +5,7 @@ import jgame.*;
 import jgame.platform.*;
 
 /**
- * This class is startup class and contains all game items
+ * This class is the startup class and contains all game items
  * @author Cornel Alders
  */
 public class Game extends JGEngine
@@ -14,7 +14,6 @@ public class Game extends JGEngine
 	private boolean debug = true;
 
 	// Game constants
-	public boolean loadGame = false; // by default 'New Game' is selected
 	private Player player = null; //The player that is currently playing
 	private ArrayList<Player> playerList = new ArrayList<Player>(); //The list that tracks all players
 	private Levels objLevels; //Stores an instance of the Levels factory
@@ -92,7 +91,6 @@ public class Game extends JGEngine
 		// DBG MSG's
 		if(isDebug())
 		{
-			dbgPrint("LoadGame = " + loadGame);
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}

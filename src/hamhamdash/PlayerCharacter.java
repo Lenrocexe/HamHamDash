@@ -169,7 +169,7 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if(obj.colid == 3)
 		{
-			if(obj.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
+			if(obj.getCenterTile().x == getCenterTile().x)
 			{
 				game.getCurrentLevel().pickupDiamond(obj);
 			}

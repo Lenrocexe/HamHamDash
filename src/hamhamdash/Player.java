@@ -1,14 +1,12 @@
 package hamhamdash;
 
-import jgame.*;
-
 /**
  * The dataclass of a player
  * @author Cornel Alders
  */
 public class Player
 {
-	public PlayerCharacter pc = null;
+	private PlayerCharacter pc = null;
 	private int lifes;
 	private int score;
 	private String playerName;

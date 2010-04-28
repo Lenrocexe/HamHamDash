@@ -9,7 +9,6 @@ import jgame.JGPoint;
  */
 public class StatePlayerSelect extends State
 {
-	private boolean started = false;
 	private JGPoint psPoint = new JGPoint(game.viewWidth() / 2, 60);
 	private String playerOneButtonState;
 	private String playerTwoButtonState;
@@ -99,7 +98,7 @@ public class StatePlayerSelect extends State
 	 * Creates players based on the selection made.
 	 * Always creates Hamtaro as a player.
 	 */
-	public void createPlayers()
+	private void createPlayers()
 	{
 		game.addPlayer(new Player("Hamtaro"));
 		if(playerAmount == 2)
