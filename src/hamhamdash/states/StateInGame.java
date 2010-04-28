@@ -1,6 +1,7 @@
 package hamhamdash.states;
 
 import hamhamdash.*;
+import jgame.JGObject;
 import jgame.JGTimer;
 
 /**
@@ -10,10 +11,16 @@ import jgame.JGTimer;
 public class StateInGame extends State
 {
 	private boolean init = false;
+	private JGObject obj;
 
 	public StateInGame()
 	{
 		game.setBackground(null);
+		obj = new JGObject("hamreset", true, 0, 0, 0, "hhamha");
+
+
+				System.out.println( "huh?");
+
 	}
 
 	@Override
@@ -28,6 +35,7 @@ public class StateInGame extends State
 		game.stateCounter = 0;
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
+		obj.startAnim();
 	}
 
 	@Override
@@ -137,5 +145,8 @@ public class StateInGame extends State
 	{
 		game.drawImage(100, 0, "timebox", false);
 		game.drawString("" + game.getTimer(), 126, 5, 0);
+
+		
+
 	}
 }
