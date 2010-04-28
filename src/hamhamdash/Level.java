@@ -45,6 +45,7 @@ public class Level
 		objTileMap = new TileMap();
 		tileMap = objTileMap.getTiles(loadDataFile());
 		game.setTiles(0, 0, tileMap);
+		game.resetTimer();
 		clearField();
 	}
 
