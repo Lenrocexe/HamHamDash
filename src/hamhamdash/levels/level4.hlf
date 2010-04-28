@@ -1,11 +1,11 @@
 [CONFIG]
-password=100111
+password=400000
 startposx=1
 startposy=1
 xtiles=31
 ytiles=17
 reqdiamonds=9
-timer=2500
+timer=4000
 [/CONFIG]
 
 [MAP]

@@ -150,10 +150,16 @@ public class Levels
 	 */
 	private String[] getLevelDirList()
 	{
-		String[] levels = new String[3];
+		String[] levels = new String[4];
 		levels[0] = "level1.hlf";
 		levels[1] = "level2.hlf";
 		levels[2] = "level3.hlf";
+		levels[3] = "level6.hlf";
 		return levels;
+	}
+
+	public void setCurrentLevelId(int currentLevelId)
+	{
+		this.currentLevelId = currentLevelId;
 	}
 }
