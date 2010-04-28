@@ -13,8 +13,9 @@ public class Player
 	private int score;
 	private String playerName;
 
-	public Player()
+	public Player(String name)
 	{
+		setPlayerName(name);
 		resetLifes();
 	}
 

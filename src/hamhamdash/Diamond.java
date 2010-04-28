@@ -1,5 +1,7 @@
 package hamhamdash;
 
+import jgame.JGObject;
+
 /**
  *
  * @author Cornel Alders
@@ -13,4 +15,23 @@ public class Diamond extends GObject
 	{
 		super(name, unique, x, y, 3, "diamond");
 	}
+
+	@Override
+	public void hit(JGObject obj)
+	{
+		super.hit(obj);
+		if(obj.colid == 2)
+		{
+			if(this.isFalling())
+			{
+				obj.remove();
+			}
+		}
+	}
+
+//	@Override
+//	public void hit_bg(int tilecid)
+//	{
+//		System.out.println(tilecid + " wtf ...");
+//	}
 }

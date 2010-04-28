@@ -1,6 +1,5 @@
 package hamhamdash;
 
-import java.util.ArrayList;
 import jgame.*;
 
 /**
@@ -9,9 +8,10 @@ import jgame.*;
  */
 public class Enemy extends GCharacter
 {
-	private String type = null;
 	public MoveDirection Direction;
-	private ArrayList<Integer> cids = new ArrayList<Integer>();
+	public int speed = 1;
+	public boolean isAligned = false;
+	public boolean hitObject = false;
 
 	/*
 	 * @param name Possible choices for name are "spat" and "spatAlt"
@@ -20,48 +20,148 @@ public class Enemy extends GCharacter
 	 */
 	public Enemy(String name, int x, int y)
 	{
-		super(name+"_"+x+"_"+y, false, x, y, 2, name + "still");
-		this.type = name;
+		super(name + "_" + x + "_" + y, false, x, y, 2, name + "still");
 		setDirection(MoveDirection.RIGHT);
-		cids.add(1);
-		cids.add(2);
-		cids.add(3);
-
+		setGraphic("spatAwalkright");
 	}
 
-	@Override
-	public MoveDirection getDirection()
+	public void turnClockwise()
 	{
-		return Direction;
-	}
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(getCenterTile().x, getCenterTile().y);
 
-	@Override
-	public void setDirection(MoveDirection newDirection)
-	{
-		Direction = newDirection;
-	}
-
-	public void turnRight()
-	{
-		if(getDirection() == MoveDirection.LEFT)
+		if(isAligned || hitObject)
 		{
-			setDirection(MoveDirection.UP);
-			setGraphic("spatAwalkup");
+			if(getDirection() == MoveDirection.LEFT)
+			{
+				if(hitObject)
+				{
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					setDirection(MoveDirection.RIGHT);
+					setGraphic("spatAwalkright");
+					hitObject = false;
+				}
+				else if(tile[1][0].equals("."))
+				{
+					setDirection(MoveDirection.UP);
+					setGraphic("spatAwalkup");
+				}
+				else if(tile[3][0].equals("."))
+				{
+					//Just keep on movin'
+				}
+				else if(tile[6][0].equals("."))
+				{
+					setDirection(MoveDirection.DOWN);
+					setGraphic("spatAwalkdown");
+				}
+				else if(tile[4][0].equals("."))
+				{
+					setDirection(MoveDirection.RIGHT);
+					setGraphic("spatAwalkright");
+				}
+			}
+			else if(getDirection() == MoveDirection.UP)
+			{
+				if(hitObject)
+				{
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					setDirection(MoveDirection.DOWN);
+					setGraphic("spatAwalkdown");
+					hitObject = false;
+				}
+				else if(tile[4][0].equals("."))
+				{
+					setDirection(MoveDirection.RIGHT);
+					setGraphic("spatAwalkright");
+				}
+				else if(tile[1][0].equals("."))
+				{
+					//Just keep on movin'
+				}
+				else if(tile[3][0].equals("."))
+				{
+					setDirection(MoveDirection.LEFT);
+					setGraphic("spatAwalkleft");
+				}
+				else if(tile[6][0].equals("."))
+				{
+					setDirection(MoveDirection.DOWN);
+					setGraphic("spatAwalkdown");
+				}
+			}
+			else if(getDirection() == MoveDirection.RIGHT)
+			{
+				if(hitObject)
+				{
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					setDirection(MoveDirection.LEFT);
+					setGraphic("spatAwalkleft");
+					hitObject = false;
+				}
+				else if(tile[6][0].equals("."))
+				{
+					setDirection(MoveDirection.DOWN);
+					setGraphic("spatAwalkdown");
+				}
+				else if(tile[4][0].equals("."))
+				{
+					//Just keep on movin'
+				}
+				else if(tile[1][0].equals("."))
+				{
+					setDirection(MoveDirection.UP);
+					setGraphic("spatAwalkup");
+				}
+				else if(tile[3][0].equals("."))
+				{
+					setDirection(MoveDirection.LEFT);
+					setGraphic("spatAwalkleft");
+				}
+			}
+			else if(getDirection() == MoveDirection.DOWN)
+			{
+				if(hitObject)
+				{
+					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					setDirection(MoveDirection.UP);
+					setGraphic("spatAwalkup");
+					hitObject = false;
+				}
+				else if(tile[3][0].equals("."))
+				{
+					setDirection(MoveDirection.LEFT);
+					setGraphic("spatAwalkleft");
+				}
+				else if(tile[6][0].equals("."))
+				{
+					//Just keep on movin'
+				}
+				else if(tile[4][0].equals("."))
+				{
+					setDirection(MoveDirection.RIGHT);
+					setGraphic("spatAwalkright");
+				}
+				else if(tile[1][0].equals("."))
+				{
+					setDirection(MoveDirection.UP);
+					setGraphic("spatAwalkup");
+				}
+			}
+			isAligned = false;
 		}
-		else if(getDirection() == MoveDirection.UP)
+		else
 		{
-			setDirection(MoveDirection.RIGHT);
-			setGraphic("spatAwalkright");
-		}
-		else if(getDirection() == MoveDirection.RIGHT)
-		{
-			setDirection(MoveDirection.DOWN);
-			setGraphic("spatAwalkdown");
-		}
-		else if(getDirection() == MoveDirection.DOWN)
-		{
-			setDirection(MoveDirection.LEFT);
-			setGraphic("spatAwalkleft");
+			double margin = 1;
+			if(isXAligned(margin) && isYAligned(margin))
+			{
+				isAligned = true;
+				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+				y = Math.round(y / game.getTileSize()) * game.getTileSize();
+			}
 		}
 	}
 
@@ -88,54 +188,55 @@ public class Enemy extends GCharacter
 			setGraphic("spatAwalkleft");
 		}
 	}
-	public void checkDirection()
+
+	public void kill()
 	{
-		if (getDirection() == MoveDirection.LEFT)
-		{
-//			if (tileDirection == )(MoveDirection.UP);
-		}
-		if (getDirection() == MoveDirection.UP)
-		{
-//			[Left,Up,Right];
-		}
-		if (getDirection() == MoveDirection.RIGHT)
-		{
-//			[Up,Right,Down];
-		}
-		if(getDirection() == MoveDirection.DOWN)
-		{
-//			[Right,Down,Left];
-		}
+		this.remove();
 	}
 
 	@Override
 	public void move()
 	{
-		
+		if(!isAligned)
+		{
+			double margin = 0;
+			if(isXAligned(margin) && isYAligned(margin))
+			{
+				isAligned = true;
+				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+				y = Math.round(y / game.getTileSize()) * game.getTileSize();
+				turnClockwise();
+			}
+			else
+			{
+				isAligned = false;
+			}
+		}
+
 		switch(getDirection())
 		{
 			case LEFT:
 			{
 				yspeed = 0;
-				xspeed = -xspeed;
+				xspeed = -speed;
 				break;
 			}
 			case RIGHT:
 			{
 				yspeed = 0;
-				xspeed = 2;
+				xspeed = speed;
 				break;
 			}
 			case UP:
 			{
 				xspeed = 0;
-				yspeed = -yspeed;
+				yspeed = -speed;
 				break;
 			}
 			case DOWN:
 			{
 				xspeed = 0;
-				yspeed = 2;
+				yspeed = speed;
 				break;
 			}
 			default:
@@ -147,39 +248,6 @@ public class Enemy extends GCharacter
 	@Override
 	public void hit_bg(int tilecid)
 	{
-
-		//if(tilecid == 1 || tilecid == 2 || tilecid == 3 || tilecid == 4)
-
-		if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
-		{
-			doMove();
-		}
-		else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
-		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
-
-			if(getDirection() == Direction.UP && !and(checkBGCollision(-1, -1), 0))
-			{
-				doMove();
-			}
-			else if(getDirection() == Direction.DOWN && !and(checkBGCollision(1, 1), 0))
-			{
-				doMove();
-			}
-			else if(getDirection() == Direction.LEFT && !and(checkBGCollision(-1, 0), 0))
-			{
-				doMove();
-
-			}
-			else if(getDirection() == Direction.RIGHT && !and(checkBGCollision(1, 0), 0))
-			{
-				doMove();
-			}
-			clearBBox();
-			clearTileBBox();
-		}
 	}
 
 	@Override
@@ -187,43 +255,8 @@ public class Enemy extends GCharacter
 	{
 		if(obj.colid == 3 || obj.colid == 1 || obj.colid == 2 || obj.colid == 4)
 		{
-			yspeed = 0;
-			xspeed = 0;
-			turnRight();
+			hitObject = true;
+			turnClockwise();
 		}
-	}
-
-	public String getType()
-	{
-		return type;
-	}
-
-	public void doMove()
-	{
-		if(getType().equals("spatA"))
-			turnRight();
-		else
-			turnLeft();
-	}
-
-	/**
-	 * loop through the cids Array to check for collision -Test version-
-	 * @return
-	 */
-	public boolean loopTiles()
-	{
-		boolean test = false;
-		for(int i : cids)
-		{
-			if(getDirection() == Direction.UP && and(checkBGCollision(0, -yspeed), i))
-				test = true;
-			else if(getDirection() == Direction.DOWN && and(checkBGCollision(0, yspeed), i))
-				test = true;
-			else if(getDirection() == Direction.LEFT && and(checkBGCollision(-xspeed, 0), i))
-				test = true;
-			else if(getDirection() == Direction.RIGHT && and(checkBGCollision(xspeed, 0), i))
-				test = true;
-		}
-		return test;
 	}
 }

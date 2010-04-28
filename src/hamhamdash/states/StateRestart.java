@@ -22,7 +22,11 @@ public class StateRestart extends State
 	@Override
 	public void doFrame()
 	{
-//		System.out.println("Restarting!");
+		if(game.getKey(game.KeyEnter))
+		{
+			game.clearKey(game.KeyEnter);
+			game.setCurrentState("InGame");
+		}
 	}
 
 	@Override

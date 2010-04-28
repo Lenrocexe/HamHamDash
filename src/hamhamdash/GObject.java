@@ -29,21 +29,20 @@ public abstract class GObject extends JGObject
 	@Override
 	public void move()
 	{
-		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x+1, this.getCenterTile().y);
-		
-		if(tile[5][0].contains(".") && !(game.player.getPc().getCenterTiles().y-1 == this.getCenterTile().y && game.player.getPc().getCenterTiles().x == this.getCenterTile().x))
+		if(isFalling())
 		{
 			startFalling();
 			moveDown();
 		}
-		else if(tile[5][0].contains("#") || tile[5][0].contains("X") || tile[5][0].contains("C") || tile[5][0].contains("O"))
+		else
 		{
-			double margin = 1.9;
+			double margin = 1;
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				stopFalling();
 			}
 		}
+
 		/*else if(tile[5][0].contains("P") || tile[5][0].contains("E") && isFalling())
 		{
 			//explode();
@@ -96,37 +95,36 @@ public abstract class GObject extends JGObject
 	@Override
 	public void hit_bg(int tilecid)
 	{
-	
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(this.getCenterTile().x, this.getCenterTile().y);
+		if(tile[6][0].contains(".") && !(game.getPlayer().getPc().getCenterTiles().y - 1 == this.getCenterTile().y && game.getPlayer().getPc().getCenterTiles().x == this.getCenterTile().x))
+		{
+			setFalling(true);
+		}
+		else if(tile[6][0].contains("#") || tile[6][0].contains("X") || tile[6][0].contains("C") || tile[6][0].contains("O"))
+		{
+			setFalling(false);
+		}
 	}
 
 	@Override
 	public void hit(JGObject obj)
 	{
-		if(obj.colid == 1)
-		{
-			if(this.isFalling() && this.getCenterTile().x == game.player.getPc().getCenterTile().x){
-				game.player.kill();
-			} else {
-				stopFalling();
-			}
-		}
-		else if(obj.colid == 2)
-		{
-			if(this.isFalling())
-			{
-				obj.remove();
-			}
-		}
+		stopFalling();
 	}
 
-	public void setPickable(boolean p)
+	public void setFalling(boolean falls)
 	{
-		pickable = p;
+		falling = falls;
 	}
 
-	public void setPushable(boolean p)
+	public void setPickable(boolean pickedUp)
 	{
-		pushable = p;
+		pickable = pickedUp;
+	}
+
+	public void setPushable(boolean pushed)
+	{
+		pushable = pushed;
 	}
 
 	public boolean isFalling()
@@ -152,6 +150,8 @@ public abstract class GObject extends JGObject
 		xdir = 0;
 		ydir = 0;
 		falling = false;
+		x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
+		y = Math.round(y / game.getTileSize()) * game.getTileSize();
 	}
 
 	/**
@@ -165,12 +165,13 @@ public abstract class GObject extends JGObject
 
 	public void moveLeft()
 	{
-
+		xspeed = -speed;
+		xdir = 1;
 	}
 
 	public void moveRight()
 	{
-
+		xspeed = speed;
+		xdir = 1;
 	}
-
 }
