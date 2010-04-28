@@ -57,6 +57,17 @@ public class Level
 	 */
 	public void insertGObjects()
 	{
+		System.out.println("Gonna insert the objects now ...");
+
+
+//		arrEnemies = new ArrayList<int[]>();
+//		arrEnemyObj = new ArrayList<Enemy>();
+//		arrDiamonds = new ArrayList<int[]>();
+//		arrRocks = new ArrayList<int[]>();
+//		arrRockObj = new ArrayList<Rock>();
+
+
+
 		// Insert Diamonds
 		for(int[] d : arrDiamonds)
 		{
@@ -122,9 +133,12 @@ public class Level
 			int y = e[2];
 			game.setTile(x,y,".");
 		}
-		
+
+
 		resetRequiredDiamonds();
 		resetDiamonds();
+
+
 	}
 
 	/**
