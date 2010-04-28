@@ -10,10 +10,12 @@ public class Player
 	private int lifes;
 	private int score;
 	private String playerName;
+	private String identifier;
 
 	public Player(String name)
 	{
 		setPlayerName(name);
+		setIdentifier(String.valueOf(name.charAt(0)));
 		resetLifes();
 	}
 
@@ -96,5 +98,15 @@ public class Player
 	public void kill()
 	{
 		pc.kill();
+	}
+
+	public void setIdentifier(String s)
+	{
+		this.identifier = s;
+	}
+
+	public String getIdentifier()
+	{
+		return identifier;
 	}
 }

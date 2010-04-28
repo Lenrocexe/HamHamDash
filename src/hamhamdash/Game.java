@@ -596,6 +596,18 @@ public class Game extends JGEngine
 		player = playerList.get(i);
 	}
 
+	public void switchPlayers()
+	{
+		if(player.getPlayerName().equals("hamtaro"))
+		{
+			player = playerList.get(1);
+		}
+		else
+		{
+			player = playerList.get(0);
+		}
+	}
+
 	public int countPlayers()
 	{
 		return playerList.size();
@@ -604,5 +616,10 @@ public class Game extends JGEngine
 	public void clearPlayerList()
 	{
 		playerList.clear();
+	}
+
+	public ArrayList<Player> getPlayerList()
+	{
+		return playerList;
 	}
 }

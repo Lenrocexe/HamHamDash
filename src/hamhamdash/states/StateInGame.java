@@ -16,7 +16,7 @@ public class StateInGame extends State
 		game.getObjLevels().getCurrentLevel().resetDiamonds();
 		int startPosX = game.getObjLevels().getCurrentLevel().getStartPosition()[0] * game.tileWidth();
 		int startPosY = game.getObjLevels().getCurrentLevel().getStartPosition()[1] * game.tileHeight();
-		game.getPlayer().setPc(new PlayerCharacter("h", startPosX, startPosY));
+		game.getPlayer().setPc(new PlayerCharacter(game.getPlayer().getIdentifier(), startPosX, startPosY));
 		game.resetTimer();
 		Jukebox.playMusic("levelbg");
 	}
@@ -31,6 +31,7 @@ public class StateInGame extends State
 	{
 		if(game.isDebug())
 		{
+			System.out.println(game.getPlayer().getPlayerName());
 			//Debug to get player positions
 			if(game.getMouseButton(1))
 			{

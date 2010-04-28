@@ -100,10 +100,10 @@ public class StatePlayerSelect extends State
 	 */
 	private void createPlayers()
 	{
-		game.addPlayer(new Player("Hamtaro"));
+		game.addPlayer(new Player("hamtaro"));
 		if(playerAmount == 2)
 		{
-			game.addPlayer(new Player("Biyou"));
+			game.addPlayer(new Player("bijou"));
 		}
 		game.setActivePlayer(0);
 	}
