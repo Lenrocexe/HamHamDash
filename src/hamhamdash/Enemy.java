@@ -35,8 +35,7 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					correctPosition();
 					setDirection(MoveDirection.RIGHT);
 					setGraphic("spatAwalkright");
 					hitObject = false;
@@ -65,8 +64,7 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					correctPosition();
 					setDirection(MoveDirection.DOWN);
 					setGraphic("spatAwalkdown");
 					hitObject = false;
@@ -95,8 +93,7 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					correctPosition();
 					setDirection(MoveDirection.LEFT);
 					setGraphic("spatAwalkleft");
 					hitObject = false;
@@ -125,8 +122,7 @@ public class Enemy extends GCharacter
 			{
 				if(hitObject)
 				{
-					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					correctPosition();
 					setDirection(MoveDirection.UP);
 					setGraphic("spatAwalkup");
 					hitObject = false;
@@ -159,8 +155,7 @@ public class Enemy extends GCharacter
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				isAligned = true;
-				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-				y = Math.round(y / game.getTileSize()) * game.getTileSize();
+				correctPosition();
 			}
 		}
 	}
@@ -203,8 +198,7 @@ public class Enemy extends GCharacter
 			if(isXAligned(margin) && isYAligned(margin))
 			{
 				isAligned = true;
-				x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-				y = Math.round(y / game.getTileSize()) * game.getTileSize();
+				correctPosition();
 				turnClockwise();
 			}
 			else

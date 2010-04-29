@@ -50,6 +50,15 @@ public abstract class GCharacter extends JGObject
 		this.stepInpixels = stepInpixels;
 	}
 
+	/**
+	 * This will snap the character to the tile after movement
+	 */
+	public void correctPosition()
+	{
+		x = Math.round(x / game.getTileSize()) * game.getTileSize();
+		y = Math.round(y / game.getTileSize()) * game.getTileSize();
+	}
+
 //	public void stopWalking()
 //	{
 //		moveUp = false;
