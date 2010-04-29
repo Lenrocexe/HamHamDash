@@ -11,7 +11,7 @@ import jgame.platform.*;
 public class Game extends JGEngine
 {
 	// DEBUG VAR!
-	private boolean debug = true;
+	private boolean debug = false;
 
 	// Game constants
 	private Player player = null; //The player that is currently playing
@@ -438,6 +438,12 @@ public class Game extends JGEngine
 	public Levels getObjLevels()
 	{
 		return objLevels;
+	}
+
+	public void resetObjLevels()
+	{
+		removeObjects(null, 0);
+		objLevels = new Levels();
 	}
 
 	public int getXoffset()

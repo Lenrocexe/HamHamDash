@@ -51,6 +51,7 @@ public class StateInGame extends State
 				game.clearKey(Game.KeyShift);
 				game.clearKey(Game.KeyRight);
 				game.getObjLevels().nextLevel();
+				started = false;
 			}
 			if(game.getKey(Game.KeyCtrl) && game.getKey(Game.KeyShift) && game.getKey(Game.KeyLeft))
 			{
@@ -58,6 +59,7 @@ public class StateInGame extends State
 				game.clearKey(Game.KeyShift);
 				game.clearKey(Game.KeyLeft);
 				game.getObjLevels().prevLevel();
+				started = false;
 			}
 		}
 

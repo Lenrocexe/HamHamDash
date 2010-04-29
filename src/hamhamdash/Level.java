@@ -19,6 +19,7 @@ public class Level
 	private ArrayList<int[]> arrEnemies = new ArrayList<int[]>();
 	private ArrayList<Enemy> arrEnemyObj = new ArrayList<Enemy>();
 	private ArrayList<int[]> arrDiamonds = new ArrayList<int[]>();
+	private ArrayList<Diamond> arrDiamondObj = new ArrayList<Diamond>();
 	private ArrayList<int[]> arrRocks = new ArrayList<int[]>();
 	private ArrayList<Rock> arrRockObj = new ArrayList<Rock>();
 
@@ -57,17 +58,6 @@ public class Level
 	 */
 	public void insertGObjects()
 	{
-		System.out.println("Gonna insert the objects now ...");
-
-
-//		arrEnemies = new ArrayList<int[]>();
-//		arrEnemyObj = new ArrayList<Enemy>();
-//		arrDiamonds = new ArrayList<int[]>();
-//		arrRocks = new ArrayList<int[]>();
-//		arrRockObj = new ArrayList<Rock>();
-
-
-
 		// Insert Diamonds
 		for(int[] d : arrDiamonds)
 		{
@@ -75,6 +65,7 @@ public class Level
 			int x = d[1];
 			int y = d[2];
 			Diamond diamond = new Diamond("diamond", true, x*game.getTileSize(), y*game.getTileSize(), "diamond");
+			arrDiamondObj.add(diamond);
 		}
 
 		// Insert Rocks
@@ -175,6 +166,7 @@ public class Level
 		}
 	}
 
+
 	/**
 	 * Loads the objects found on the map
 	 */
@@ -185,7 +177,6 @@ public class Level
 		try
 		{	// Put lines in ArrayList
 			br = new BufferedReader(new InputStreamReader(loadDataFile()));
-
 			String line;
 			int y = 0;
 			boolean blockStarted = false;

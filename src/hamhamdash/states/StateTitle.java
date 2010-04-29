@@ -18,6 +18,7 @@ public class StateTitle extends State
 	public void start()
 	{
 		game.setViewOffset(0, 0, true);
+		game.resetObjLevels();
 		Jukebox.playMusic("titlebg1");
 	}
 
