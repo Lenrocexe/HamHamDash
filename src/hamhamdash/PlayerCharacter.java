@@ -44,6 +44,8 @@ public class PlayerCharacter extends GCharacter
 			{
 				setGraphic(getName() + "runup");
 				setDirection(MoveDirection.UP);
+				if(checkCollision(4, 0, -speed) == 4)
+					return;
 				yspeed = -speed;
 				ydir = 1;
 				isWalking = true;
@@ -52,8 +54,8 @@ public class PlayerCharacter extends GCharacter
 			{
 				setGraphic(getName() + "rundown");
 				setDirection(MoveDirection.DOWN);
-//				yspeed = speed;
-//				ydir = 1;
+				if(checkCollision(4, 0, speed) == 4)
+					return;
 				setDirSpeed(0, 1, 0, speed);
 				isWalking = true;
 			}
@@ -61,8 +63,8 @@ public class PlayerCharacter extends GCharacter
 			{
 				setGraphic(getName() + "runleft");
 				setDirection(MoveDirection.LEFT);
-//				xspeed = -speed;
-//				xdir = 1;
+				if(checkCollision(4, -speed, 0) == 4)
+					return;
 				setDirSpeed(1, 0, -speed, 0);
 				isWalking = true;
 			}
@@ -70,8 +72,8 @@ public class PlayerCharacter extends GCharacter
 			{
 				setGraphic(getName() + "runright");
 				setDirection(MoveDirection.RIGHT);
-//				xspeed = speed;
-//				xdir = 1;
+				if(checkCollision(4, speed, 0) == 4)
+					return;
 				setDirSpeed(1, 0, speed, 0);
 				isWalking = true;
 			}
