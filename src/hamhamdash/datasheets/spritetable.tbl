@@ -190,6 +190,6 @@ walltile	X	1	resources/sprites/walltile.png	-
 groundtile	#	2	resources/sprites/groundtile.png	-
 diamond		D	3	resources/sprites/diamond.png	-
 rock		R	4	resources/sprites/rock.png	-
-enemy1		1	5	resources/sprites/SpatAsheet.png	-
+enemy1		1	5	resources/sprites/spatAsheet.png	-
 closedexit	C	6	resources/sprites/endtile-closed.png	-
 openexit	E	7	resources/sprites/endtile-open.png	-
