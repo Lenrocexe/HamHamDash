@@ -9,7 +9,7 @@ import jgame.*;
 public class Enemy extends GCharacter
 {
 	public MoveDirection Direction;
-	public int speed = 1;
+	public int speed = 2;
 	public boolean isAligned = false;
 	public boolean hitObject = false;
 
