@@ -151,8 +151,7 @@ public abstract class GObject extends JGObject
 		xdir = 0;
 		ydir = 0;
 		falling = false;
-		x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-		y = Math.round(y / game.getTileSize()) * game.getTileSize();
+		correctPosition();
 	}
 
 	/**
@@ -174,5 +173,14 @@ public abstract class GObject extends JGObject
 	{
 		xspeed = speed;
 		xdir = 1;
+	}
+
+	/**
+	 * This will snap the object to the tile after movement
+	 */
+	public void correctPosition()
+	{
+		x = Math.round(x / game.getTileSize()) * game.getTileSize();
+		y = Math.round(y / game.getTileSize()) * game.getTileSize();
 	}
 }

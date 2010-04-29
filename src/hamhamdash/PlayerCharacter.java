@@ -92,8 +92,6 @@ public class PlayerCharacter extends GCharacter
 			{
 				xspeed = 0;
 				yspeed = 0;
-				xdir = 0;
-				ydir = 0;
 
 				isWalking = false;
 				correctPosition();
@@ -124,28 +122,22 @@ public class PlayerCharacter extends GCharacter
 			{
 				xspeed = 0;
 				yspeed = 0;
-				xdir = 0;
-				ydir = 0;
 
 				if(getDirection() == MoveDirection.UP)
 				{
 					yspeed = speed;
-					ydir = 1;
 				}
 				else if(getDirection() == MoveDirection.DOWN)
 				{
 					yspeed = -speed;
-					ydir = 1;
 				}
 				else if(getDirection() == MoveDirection.LEFT)
 				{
 					xspeed = speed;
-					xdir = 1;
 				}
 				else if(getDirection() == MoveDirection.RIGHT)
 				{
 					xspeed = -speed;
-					xdir = 1;
 				}
 				setDirSpeed(xdir, ydir, xspeed, yspeed);
 
@@ -154,12 +146,9 @@ public class PlayerCharacter extends GCharacter
 				{
 					xspeed = 0;
 					yspeed = 0;
-					xdir = 0;
-					ydir = 0;
 
 					isWalking = false;
-					x = Math.round(x / game.getTileSize()) * game.getTileSize(); // X and Y Correction
-					y = Math.round(y / game.getTileSize()) * game.getTileSize();
+					correctPosition();
 				}
 			}
 		}

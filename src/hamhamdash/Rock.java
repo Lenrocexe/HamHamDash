@@ -17,11 +17,12 @@ public class Rock extends GObject
 	public void hit(JGObject obj)
 	{
 		super.hit(obj);
+		String[][] tile = game.getCurrentLevel().getSurroundingTiles(getCenterTile().x, getCenterTile().y);
 		if(obj.colid == 1)
 		{
-			System.out.println(this.isFalling() + " its falling");
 			if(this.isFalling())// && this.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
 			{
+			System.out.println(this.isFalling() + " its falling");
 				game.getPlayer().kill();
 			}
 			else

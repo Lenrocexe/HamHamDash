@@ -29,6 +29,7 @@ ham_button_over	ham_button_rollover1;ham_button_rollover2	0.2	false
 hamtaro	resources/sprites/hamtarosheet.png		0	0	40	40	0	0
 bijou	resources/sprites/bijousheet.png		0	0	40	40	0	0
 spatA	resources/sprites/spatAsheet.png		0	0	40	40	0	0
+explode	resources/sprites/explosion.png			0	0	40	40	0	0
 
 // Individual sprites
 // spritename;;tileidentifier;;collisionidentifier;;spritesheet(from above or as separate image);;
@@ -121,6 +122,10 @@ spatAwalkright3	-	0	spatA	22	x
 
 //SpatB
 
+//Explosion
+explode1	-	0	explode	0	-
+explode2	-	0	explode	1	-
+
 // Define sprite animations.
 // animationname;;spritesasframes;;animationspeed;;ping-pong effect<->
 //Hamtaro
@@ -148,6 +153,9 @@ spatAwalkup		spatAwalkup1;spatAwalkup2;spatAwalkup3	0.09	true
 spatAwalkdown	spatAwalkdown1;spatAwalkdown2;spatAwalkdown3	0.1	true
 spatAwalkleft	spatAwalkleft1;spatAwalkleft2;spatAwalkleft3	0.1	true
 spatAwalkright	spatAwalkright1;spatAwalkright2;spatAwalkright3	0.1	true
+
+//Explosion
+explosion	explode1;explode2	0.1	true
 
 // Define Pause Sheets
 pause_menu	resources/sprites/pause_menu_sheet.png	0	0	256	250	0	0
