@@ -137,7 +137,7 @@ public class StateInGame extends State
 
 		game.setViewOffset(game.getXoffset(), game.getYoffset(), true);
 
-		if(game.getTimer() == 0 || waitTillDeath >= 200)
+		if(game.getTimer() == 0 || waitTillDeath >= 100)
 		{
 			//Need a graphic that tells times up.
 			game.getPlayer().getPc().remove();
