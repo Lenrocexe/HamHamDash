@@ -192,6 +192,7 @@ timebox		-	0	resources/sprites/time.png	-
 scorebox	-	0	resources/sprites/score.png	-
 daimondbox	-	0	resources/sprites/daimondsLeft.png	-
 congrats	-	0	resources/sprites/congrats.png	-
+victory		-	0	resources/sprites/victory.png	-
 
 // Tiles
 // (Same as sprites)
