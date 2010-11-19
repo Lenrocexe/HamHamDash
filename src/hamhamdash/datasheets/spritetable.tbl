@@ -20,6 +20,8 @@ player1_button_normal	-	0	player_button	0	-
 player1_button_rollover	-	0	player_button	1	-
 player2_button_normal	-	0	player_button	2	-
 player2_button_rollover	-	0	player_button	3	-
+player1alt_button_normal	-	0	player_button	4	-
+player1alt_button_rollover	-	0	player_button	5	-
 
 // Define Button animations.
 ham_button_over	ham_button_rollover1;ham_button_rollover2	0.2	false
