@@ -10,5 +10,5 @@ package hamhamdash;
  */
 public enum MoveDirection
 {
-	LEFT, RIGHT, UP, DOWN
+    LEFT, RIGHT, UP, DOWN
 }

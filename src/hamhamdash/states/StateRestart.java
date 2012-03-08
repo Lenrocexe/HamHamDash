@@ -10,43 +10,42 @@ import jgame.JGColor;
  */
 public class StateRestart extends State
 {
-	int objX, objY;
+    int objX, objY;
 
-	public StateRestart()
-	{
-		super("restart");
-		//System.out.println("restarted.......");
-	}
-	@Override
-	public void start()
-	{
-	}
+    public StateRestart()
+    {
+        super("restart");
+        //System.out.println("restarted.......");
+    }
 
-	@Override
-	public void doFrame()
-	{
-		if(game.getKey(Game.KeyEnter))
-		{
-			game.clearKey(Game.KeyEnter);
-			game.setCurrentState("InGame");
-		}
-	}
+    @Override
+    public void start()
+    {
+    }
 
-	@Override
-	public void paintFrame()
-	{
-		objX = game.viewWidth() / 2;
-		objY = game.viewHeight() / 2;
+    @Override
+    public void doFrame()
+    {
+        if(game.getKey(Game.KeyEnter))
+        {
+            game.clearKey(Game.KeyEnter);
+            game.setCurrentState("InGame");
+        }
+    }
 
-//		// Offset
-		objY -= 20;
+    @Override
+    public void paintFrame()
+    {
+        objX = game.viewWidth() / 2;
+        objY = game.viewHeight() / 2;
 
-		game.setColor(JGColor.white);
-		game.drawImage(0, 0, "restart_bg");
-		game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", objX, objY, 0);
-		game.drawImage(objX - 45, objY + 5, game.getPlayer().getIdentifier() + "still");
-		game.drawString("x" + game.getPlayer().getLifes(), objX, objY + 30, -1);
-	}
+        // Offset
+        objY -= 20;
 
-
+        game.setColor(JGColor.white);
+        game.drawImage(0, 0, "restart_bg");
+        game.drawString("Too bad you did not survive that. Have another go by pressing <ENTER>", objX, objY, 0);
+        game.drawImage(objX - 45, objY + 5, game.getPlayer().getIdentifier() + "still");
+        game.drawString("x" + game.getPlayer().getLifes(), objX, objY + 30, -1);
+    }
 }

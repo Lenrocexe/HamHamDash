@@ -9,42 +9,42 @@ import jgame.JGTimer;
  */
 public class StateGameOver extends State
 {
-	public StateGameOver()
-	{
-		super("gameover");
-		//System.out.println("Starting Game Over!");
-		game.resetViewport();
+    public StateGameOver()
+    {
+        super("gameover");
+        //System.out.println("Starting Game Over!");
+        game.resetViewport();
 
-		// wait a bit so the pain sinks in
-		new JGTimer(70, true, "GameOver")
-		{
-			// the alarm method is called when the timer ticks to zero
-			public void alarm()
-			{
-				//System.out.println("Go to Title");
-				game.setCurrentState("Title");
-			}
-		};
-	}
+        // wait a bit so the pain sinks in
+        new JGTimer(70, true, "GameOver")
+        {
+            // the alarm method is called when the timer ticks to zero
+            public void alarm()
+            {
+                //System.out.println("Go to Title");
+                game.setCurrentState("Title");
+            }
+        };
+    }
 
-	@Override
-	public void start()
-	{
-	}
+    @Override
+    public void start()
+    {
+    }
 
-	@Override
-	public void doFrame()
-	{
-		if(game.getKey(Game.KeyEnter))
-		{
-			game.clearKey(Game.KeyEnter);
-			game.setCurrentState("Title");
-		}
-	}
+    @Override
+    public void doFrame()
+    {
+        if(game.getKey(Game.KeyEnter))
+        {
+            game.clearKey(Game.KeyEnter);
+            game.setCurrentState("Title");
+        }
+    }
 
-	@Override
-	public void paintFrame()
-	{
-		game.drawImage(0, 0, "gameover_bg");
-	}
+    @Override
+    public void paintFrame()
+    {
+        game.drawImage(0, 0, "gameover_bg");
+    }
 }

@@ -8,26 +8,26 @@ package hamhamdash;
  */
 public abstract class State
 {
-	public Game game = Game.getGame();
-	public String name = "";
-	public boolean started = false; //lowsy boolean for start() method.
-									//Needed because sometimes doFrame does not wait for start
-									//to finish.
+    public Game game = Game.getGame();
+    public String name = "";
+    public boolean started = false; //lowsy boolean for start() method.
+                                    //Needed because sometimes doFrame
+                                    //does not wait for start to finish.
 
-	public State(String name)
-	{
-		this.name = name;
-	}
+    public State(String name)
+    {
+        this.name = name;
+    }
 
-	//Each of the methods below must be called in the respective game state method.
-	public abstract void start();
+    //Each of the methods below must be called in the respective game state method.
+    public abstract void start();
 
-	public abstract void doFrame();
+    public abstract void doFrame();
 
-	public abstract void paintFrame();
+    public abstract void paintFrame();
 
-	public String toString()
-	{
-		return this.name;
-	}
+    public String toString()
+    {
+        return this.name;
+    }
 }
