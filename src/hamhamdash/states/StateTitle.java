@@ -12,14 +12,15 @@ public class StateTitle extends State
 {
 	public StateTitle()
 	{
+		super("title");
+		game.setViewOffset(0, 0, true);
+		game.resetObjLevels();
+		Jukebox.playMusic("titlebg1");
 	}
 
 	@Override
 	public void start()
 	{
-		game.setViewOffset(0, 0, true);
-		game.resetObjLevels();
-		Jukebox.playMusic("titlebg1");
 	}
 
 	@Override

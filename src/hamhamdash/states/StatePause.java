@@ -46,14 +46,17 @@ public class StatePause extends State
 	private boolean inSub = false;
 	private boolean arePages = false;
 
-	public StatePause(){}
+	public StatePause()
+	{
+		super("pauze");
+		toDrawImage = pauseScreens[0][0][0];
+		game.stopTimer();
+		started = true;
+	}
 
 	@Override
 	public void start()
 	{
-		toDrawImage = pauseScreens[0][0][0];
-		game.stopTimer();
-		started = true;
 	}
 
 	@Override
@@ -74,7 +77,8 @@ public class StatePause extends State
 				{
 					game.recoverState();
 					game.startTimer();
-					game.removeGameState("Pause");
+					game.repaint();
+//					game.removeGameState("Pause");
 				}
 			}
 			//navigate between options
@@ -97,7 +101,7 @@ public class StatePause extends State
 				if(toDrawImage.equals(pauseScreens[0][0][0]))
 				{
 					game.recoverState();
-					game.removeGameState("Pause");
+//					game.removeGameState("Pause");
 				}
 				else if(toDrawImage.equals(pauseScreens[1][0][0])) // Help item has subs
 				{

@@ -14,11 +14,12 @@ public class StateRestart extends State
 
 	public StateRestart()
 	{
+		super("restart");
+		//System.out.println("restarted.......");
 	}
 	@Override
 	public void start()
 	{
-		System.out.println("started.......");
 	}
 
 	@Override

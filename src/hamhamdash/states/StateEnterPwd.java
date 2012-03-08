@@ -30,11 +30,7 @@ public class StateEnterPwd extends State
 
 	public StateEnterPwd()
 	{
-	}
-
-	@Override
-	public void start()
-	{
+		super("enterpwd");
 		passString = "";
 		selectedPos = 0;
 		selectedNum = 0;
@@ -46,6 +42,11 @@ public class StateEnterPwd extends State
 		passPosList[4] = goodNumbers[0];
 		passPosList[5] = goodNumbers[0];
 		started = true;
+	}
+
+	@Override
+	public void start()
+	{
 	}
 
 	@Override
@@ -132,6 +133,7 @@ public class StateEnterPwd extends State
 	{
 		if(started)
 		{
+			game.drawImage(0, 0, "menu_bg");
 			game.drawString("Enter Password", epPoint.x, epPoint.y, 0);
 
 			// Draw the individual passPos vars

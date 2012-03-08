@@ -22,6 +22,7 @@ public class StateStartGame extends State
 
 	public StateStartGame()
 	{
+		super("startgame");
 	}
 
 	@Override
@@ -70,6 +71,11 @@ public class StateStartGame extends State
 	public void paintFrame()
 	{
 		game.setBlendMode(1, 0);
+			game.drawImage(0, 0, "menu_bg");
+			int x = game.viewWidth() - 30;
+			game.drawString("<ESC>    -            Back", x, game.viewHeight() - 60, 1, true);
+			game.drawString("<ENTER>    -             Next", x, game.viewHeight() - 40, 1, true);
+			game.drawString("<ARROWS>    -   Navigation", x, game.viewHeight() - 20, 1, true);
 		game.drawString("Select your action", sgPoint.x, sgPoint.y, 0);
 
 		HamButton b;

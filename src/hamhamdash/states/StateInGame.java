@@ -14,6 +14,7 @@ public class StateInGame extends State
 	
 	public StateInGame()
 	{
+		super("ingame");
 		game.setBackground(null);
 		game.setFieldSize(game.getObjLevels().getCurrentLevelSize());
 		game.getObjLevels().startLevel();
@@ -66,6 +67,7 @@ public class StateInGame extends State
 		if(game.getKey(Game.KeyEsc))
 		{
 			game.clearKey(Game.KeyEsc);
+			//System.out.println("InGame State constructor");
 			game.addState("Pause");
 		}
 

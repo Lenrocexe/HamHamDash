@@ -12,7 +12,6 @@ public class Game extends JGEngine
 {
 	// DEBUG VAR!
 	private boolean debug = false;
-
 	// Game constants
 	private Player player = null; //The player that is currently playing
 	private ArrayList<Player> playerList = new ArrayList<Player>(); //The list that tracks all players
@@ -20,8 +19,9 @@ public class Game extends JGEngine
 	private int tileSize = 40; //Default tile size
 	private int xofs, yofs = 0; //The scrollpane offset
 	private State currentState = null;	//The state that should be running
-	private State previousState = null; //the state that was previously running
-										//Mainly used to save the InGame state during the Pause
+	private State previousState = null; //The state that was previously running.
+                                        //Mainly used to save the InGame state
+                                        //during the Pause state.
 	private int timer = 0; //This is the amount of time left to finish a level
 	private int timercounter = 0; //If zero, timer does not count down
 
@@ -83,8 +83,15 @@ public class Game extends JGEngine
 // End Game initialization
 //***************************************
 //***************************************
-// Start default loop
+// Start game loop
 //***************************************
+	@Override
+	public void start()
+	{
+        //This method is never, ever executed for some reason.
+        getCurrentState().start();
+	}
+
 	@Override
 	public void doFrame()
 	{
@@ -94,313 +101,17 @@ public class Game extends JGEngine
 			dbgPrint(getKeyDesc(getLastKey()) + " was pressed");
 			dbgPrint(inGameState("EnterPwd") + "");
 		}
+		getCurrentState().doFrame();
 	}
 
 	@Override
 	public void paintFrame()
 	{
-		if (!(inGameState("InGame")) && !(inGameState("Restart")))
-		{
-			drawImage(0, 0, "menu_bg");
-			int x = viewWidth() - 30;
-			drawString("<ESC>    -            Back", x, viewHeight() - 60, 1, true);
-			drawString("<ENTER>    -             Next", x, viewHeight() - 40, 1, true);
-			drawString("<ARROWS>    -   Navigation", x, viewHeight() - 20, 1, true);
-		}
+		getCurrentState().paintFrame();
 	}
 
 //***************************************
-// End default loop
-//***************************************
-//***************************************
-// Start Game State Title
-//***************************************
-	public void startTitle()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameTitle()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameTitle()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Title
-//***************************************
-//***************************************
-// Start Game State Player Select
-//***************************************
-	public void startPlayerSelect()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFramePlayerSelect()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFramePlayerSelect()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Player Select
-//***************************************
-//***************************************
-// Start Game State Start Game
-//***************************************
-	public void startStartGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameStartGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameStartGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Start Game
-//***************************************
-//***************************************
-// Start Game State Enter Password
-//***************************************
-	public void startEnterPwd()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameEnterPwd()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameEnterPwd()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Enter Password
-//***************************************
-//***************************************
-// Start Game State InGame
-//***************************************
-	public void startInGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameInGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameInGame()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State InGame
-//***************************************
-//***************************************
-// Start Game State Death
-//***************************************
-	public void startDeath()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameDeath()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameDeath()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Death
-//***************************************
-//***************************************
-// Start Game State Restart
-//***************************************
-	public void startRestart()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameRestart()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameRestart()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Restart
-//***************************************
-//***************************************
-// Start Game State Pause
-//***************************************
-	public void startPause()
-	{
-		if (inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFramePause()
-	{
-		if (inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFramePause()
-	{
-		if (inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Pause
-//***************************************
-//***************************************
-// Start Game State Win
-//***************************************
-	public void startWin()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameWin()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameWin()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State Win
-//***************************************
-//***************************************
-// Start Game State GameOver
-//***************************************
-	public void startGameOver()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().start();
-		}
-	}
-
-	public void doFrameGameOver()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().doFrame();
-		}
-	}
-
-	public void paintFrameGameOver()
-	{
-		if (!inGameState("Pause"))
-		{
-			getCurrentState().paintFrame();
-		}
-	}
-//***************************************
-// End Game State GameOver
+// End game loop
 //***************************************
 
 	public int getTileSize()
@@ -477,26 +188,30 @@ public class Game extends JGEngine
 	}
 
 	/**
-	 * Set the currente Game State ex: "InGame" or "Title"
+	 * Set the current Game State ex: "InGame" or "Title"
 	 * Will create a new Instance of the given state class and stores ref in currentState.
 	 * @param state The state name
 	 */
 	public void setCurrentState(String state)
 	{
 		this.currentState = getStateClass(state);
-		setGameState(state);
+
+		//System.out.println("setCurrentState to: " + this.currentState.toString());
 	}
 
 	/**
 	 * Add a Game State to the current Game State. Mostly used for the Pause state.
 	 * Will create a new Instance of the given state class and stores ref in currentState.
+	 * DO NOT CALL THIS METHOD MORE THAN ONCE BEFORE CALLING recoverState() OR YOU WILL
+	 * LOSE THE STATE THAT WAS SAVED!!!
+	 *
 	 * @param state The state name
 	 */
 	public void addState(String state)
 	{
 		saveState();
-		this.currentState = getStateClass(state);
 		addGameState(state);
+		setCurrentState(state);
 	}
 
 	/**
@@ -505,7 +220,7 @@ public class Game extends JGEngine
 	 */
 	public void saveState()
 	{
-		this.previousState = currentState;
+		previousState = currentState;
 	}
 
 	/**
@@ -524,15 +239,25 @@ public class Game extends JGEngine
 	 */
 	public State getStateClass(String state)
 	{
+        //System.out.println("Fetching class for state: " + state);
 		State c = null;
 		try
 		{
 			c = (State) Class.forName("hamhamdash.states.State" + state).newInstance();
 			return c;
 		}
-		catch(ClassNotFoundException cnfe){System.out.println("Class not found!");}
-		catch(InstantiationException ie){System.out.println("Instantiation Error!");}
-		catch(IllegalAccessException iae){System.out.println("Illegal Access!");}
+		catch(ClassNotFoundException cnfe)
+		{
+			System.out.println("Class not found!");
+		}
+		catch(InstantiationException ie)
+		{
+			System.out.println("Instantiation Error!");
+		}
+		catch(IllegalAccessException iae)
+		{
+			System.out.println("Illegal Access!");
+		}
 		return null;
 	}
 
@@ -579,11 +304,6 @@ public class Game extends JGEngine
 	public int getTimer()
 	{
 		return timer;
-	}
-
-	public boolean allowStateExecute()
-	{
-		return !(inGameState("Death") || inGameState("Pause"));
 	}
 
 	public Player getPlayer()

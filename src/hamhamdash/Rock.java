@@ -22,7 +22,7 @@ public class Rock extends GObject
 		{
 			if(this.isFalling())// && this.getCenterTile().x == game.getPlayer().getPc().getCenterTile().x)
 			{
-			System.out.println(this.isFalling() + " its falling");
+			//System.out.println(this.isFalling() + " its falling");
 				game.getPlayer().kill();
 			}
 			else

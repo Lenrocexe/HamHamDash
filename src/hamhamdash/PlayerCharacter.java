@@ -99,6 +99,7 @@ public class PlayerCharacter extends GCharacter
 		}
 	}
 
+    boolean test = false;
 	//@Override
 	public void hit_bg(int tilecid)
 	{
@@ -108,7 +109,11 @@ public class PlayerCharacter extends GCharacter
 		}
 		else if(tilecid == 7)
 		{
-			game.addState("Win");
+            if(!test) //Dirty hack to prevent multiple calls
+            {
+                test = true;
+                game.setCurrentState("Win");
+            }
 		}
 	}
 
@@ -173,7 +178,7 @@ public class PlayerCharacter extends GCharacter
 		isAlive = false;
 		player.resetLevelScore();
 		setGraphic(getName() + "howdie");
-		game.addState("Death");
+		game.setCurrentState("Death");
 	}
 
 	public void setAlive(boolean b)

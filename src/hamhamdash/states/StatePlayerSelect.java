@@ -18,6 +18,7 @@ public class StatePlayerSelect extends State
 
 	public StatePlayerSelect()
 	{
+		super("playerselect");
 		game.clearPlayerList();
 		playerOneButtonState = "rollover"; // 'player one' is highlighted as default
 		playerOneAltButtonState = "normal"; // 'player one alt' is not
@@ -77,6 +78,7 @@ public class StatePlayerSelect extends State
 	{
 		if(started)
 		{
+			game.drawImage(0, 0, "menu_bg");
 			game.drawString("Select amount of Player", psPoint.x, psPoint.y, 0);
 			game.drawImage(psPoint.x - (75 / 2), psPoint.y + 30, "player1_button_" + playerOneButtonState);
 			game.drawImage(psPoint.x, psPoint.y + 30, "player1alt_button_" + playerOneAltButtonState);

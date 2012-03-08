@@ -12,12 +12,13 @@ public class StateDeath extends State
 {
 	public StateDeath()
 	{
+		super("death");
+		game.stopAudio();
 	}
 
 	@Override
 	public void start()
 	{
-		game.stopAudio();
 	}
 
 	@Override
@@ -25,11 +26,11 @@ public class StateDeath extends State
 	{
 		game.moveObjects(game.getPlayer().getIdentifier(), 0);
 		// wait a bit for Hamtaro to finish dieing
-		new JGTimer(50, true, "Death")
-		{
+//		new JGTimer(50, true, "Death")
+//		{
 			// the alarm method is called when the timer ticks to zero
-			public void alarm()
-			{
+//			public void alarm()
+//			{
 				// remove Life cuz you diedz!
 				game.getPlayer().removeLife();
 				game.removeObjects("", 0); // Clear all objects from the field
@@ -43,8 +44,8 @@ public class StateDeath extends State
 					game.setCurrentState("Restart");
 				else
 					game.setCurrentState("GameOver");
-			}
-		};
+//			}
+//		};
 	}
 
 	@Override

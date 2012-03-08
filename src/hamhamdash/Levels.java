@@ -42,7 +42,7 @@ public class Levels
 	{
 		arrLevels.get(currentLevelId).runLevel();
 		arrLevels.get(currentLevelId).getTileXYByPixel(92, 10);
-		System.out.println("Level Started!");
+		//System.out.println("Level Started!");
 	}
 
 	/**
@@ -179,14 +179,12 @@ public class Levels
 		{
 			l.clearField();
 		}
-		System.out.println("Reseted Levels....");
+		//System.out.println("Resetted Levels....");
 	}
 
 	public void resetLevel(int currentLevelId)
 	{
-
 		getLevel(currentLevelId).clearField();
-		
-		System.out.println("Reseted single Level....");
+		//System.out.println("Resetted single Level....");
 	}
 }
